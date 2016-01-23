@@ -3,11 +3,10 @@ package com.spikes2212.robot2016;
 
 import com.spikes2212.robot2016.subsystems.Drivetrain;
 import com.spikes2212.robot2016.subsystems.Roller;
+import com.spikes2212.robot2016.subsystems.Triz;
 import com.spikes2212.robot2016.util.Gearbox;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.TalonSRX;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -33,6 +32,9 @@ public class Robot extends IterativeRobot {
 			RobotMap.RollerMap.ROLLER_FOLDER_TALON_PORT, RobotMap.DigitalInputMap.ROLLER_FOLDER_LIMIT_EXTEND_PORT,
 			RobotMap.DigitalInputMap.ROLLER_FOLDER_LIMIT_RETRACT_PORT,
 			RobotMap.AnalogInputMap.ROLLER_FOLDER_DISTANCE_SENSOR_PORT, RobotMap.DigitalInputMap.BOULDER_LIMIT_PORT);
+	public static Triz triz = new Triz(RobotMap.TrizMap.TALON_TRIZ_FOLDER_PORT,
+			RobotMap.DigitalInputMap.TRIZ_FOLD_LIMIT_PORt, RobotMap.DigitalInputMap.TRIZ_UNFOLD_LIMIT_PORT,
+			RobotMap.AnalogInputMap.TRIZ_POTENTIOMETER_PORT);
 
 	/**
 	 * This function is run when the robot is first started up and should be

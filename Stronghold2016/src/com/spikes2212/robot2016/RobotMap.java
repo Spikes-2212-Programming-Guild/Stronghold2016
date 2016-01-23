@@ -23,6 +23,10 @@ public class RobotMap {
 		public static final int ROLLER_FOLDER_LIMIT_EXTEND_PORT = 0;
 		public static final int ROLLER_FOLDER_LIMIT_RETRACT_PORT = 0;
 		public static final int BOULDER_LIMIT_PORT = 0;
+		public static final int TRIZ_FOLD_LIMIT_PORt = 0;
+		public static final int TRIZ_UNFOLD_LIMIT_PORT = 0;
+		public static final int TRIZ_FOLDER_ENCODER_PORT_A = 0;
+		public static final int TRIZ_FOLDER_ENCODER_PORT_B = 0;
 	}
 
 	class RollerMap {
@@ -30,7 +34,13 @@ public class RobotMap {
 		public static final int ROLLER_FOLDER_TALON_PORT = 0;
 	}
 
+	class TrizMap {
+
+		public static final int TALON_TRIZ_FOLDER_PORT = 0;
+	}
+
 	class AnalogInputMap {
 		public static final int ROLLER_FOLDER_DISTANCE_SENSOR_PORT = 0;
+		public static final int TRIZ_POTENTIOMETER_PORT = 0;
 	}
 }
