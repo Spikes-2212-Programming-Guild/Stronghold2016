@@ -3,16 +3,15 @@ package com.spikes2212.robot2016.commands.triz;
 import edu.wpi.first.wpilibj.command.Command;
 import static com.spikes2212.robot2016.Robot.*;
 
-import com.spikes2212.robot2016.Permanents;
-
 /**
  *
  */
-public class CloseTriz extends Command {
+public class JoustickMoveTriz extends Command {
 
-	public CloseTriz() {
+	public JoustickMoveTriz() {
 		requires(triz);
 		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
 	}
 
 	// Called just before this Command runs the first time
@@ -21,12 +20,12 @@ public class CloseTriz extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		triz.moveTriz(-Permanents.TRIZ_SPEED);
+		triz.moveTriz(oi.navigator.getY());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return triz.isUp();
+		return (triz.isUp() || triz.isDown());
 	}
 
 	// Called once after isFinished returns true
