@@ -1,19 +1,19 @@
 package com.spikes2212.robot2016.robot;
 
+import com.spikes2212.robot2016.subsystems.Drivetrain;
+import com.spikes2212.robot2016.util.Gearbox;
+
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-/**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
- */
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
+	public static Drivetrain drivetrain;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -21,13 +21,16 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		oi = new OI();
+		Encoder leftFront = new Encoder(RobotMap.LEFT_FRONT_ENCODER_PORT1, RobotMap.LEFT_FRONT_ENCODER_PORT2);
+		Encoder leftRear = new Encoder(RobotMap.LEFT_REAR_ENCODER_PORT1, RobotMap.LEFT_REAR_ENCODER_PORT2);
+		Encoder rightFront = new Encoder(RobotMap.RIGHT_FRONT_ENCODER_PORT1, RobotMap.RIGHT_FRONT_ENCODER_PORT2);
+		Encoder rightRear = new Encoder(RobotMap.RIGHT_REAR_ENCODER_PORT1, RobotMap.RIGHT_REAR_ENCODER_PORT2);
+		Gearbox left = new Gearbox(RobotMap.LEFT_REAR_MOTOR_PORT, RobotMap.LEFT_FRONT_MOTOR_PORT, leftFront, leftRear);
+		Gearbox right = new Gearbox(RobotMap.RIGHT_REAR_MOTOR_PORT, RobotMap.RIGHT_FRONT_MOTOR_PORT, rightFront,
+				rightRear);
+		drivetrain = new Drivetrain(left, right, new Gyro(RobotMap.GYRO_PORT), new BuiltInAccelerometer());
 	}
 
-	/**
-	 * This function is called once each time the robot enters Disabled mode.
-	 * You can use it to reset any subsystem information you want to clear when
-	 * the robot is disabled.
-	 */
 	public void disabledInit() {
 
 	}
