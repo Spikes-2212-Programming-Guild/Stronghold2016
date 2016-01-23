@@ -25,8 +25,6 @@ public class RobotMap {
 		public static final int BOULDER_LIMIT_PORT = 0;
 		public static final int TRIZ_FOLD_LIMIT_PORt = 0;
 		public static final int TRIZ_UNFOLD_LIMIT_PORT = 0;
-		public static final int TRIZ_FOLDER_ENCODER_PORT_A = 0;
-		public static final int TRIZ_FOLDER_ENCODER_PORT_B = 0;
 	}
 
 	class RollerMap {
@@ -35,7 +33,6 @@ public class RobotMap {
 	}
 
 	class TrizMap {
-
 		public static final int TALON_TRIZ_FOLDER_PORT = 0;
 	}
 
