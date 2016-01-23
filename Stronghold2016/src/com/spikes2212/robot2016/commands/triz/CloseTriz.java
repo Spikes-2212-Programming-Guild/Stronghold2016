@@ -8,9 +8,9 @@ import com.spikes2212.robot2016.Permanents;
 /**
  *
  */
-public class OpenTriz extends Command {
+public class CloseTriz extends Command {
 
-	public OpenTriz() {
+	public CloseTriz() {
 		requires(triz);
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
@@ -22,12 +22,12 @@ public class OpenTriz extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		triz.moveTriz(Permanents.TRIZ_SPEED);
+		triz.moveTriz(-Permanents.TRIZ_SPEED);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return triz.isDown();
+		return triz.isUp();
 	}
 
 	// Called once after isFinished returns true
