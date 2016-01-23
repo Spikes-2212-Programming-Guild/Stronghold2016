@@ -2,6 +2,7 @@
 package com.spikes2212.robot2016;
 
 import com.spikes2212.robot2016.subsystems.Drivetrain;
+import com.spikes2212.robot2016.subsystems.Triz;
 import com.spikes2212.robot2016.util.Gearbox;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -18,9 +19,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
-	public static Gearbox right = new Gearbox(RobotMap.RIGHT_FRONT_VICTOR_PORT, RobotMap.RIGHT_REAR_VICTOR_PORT);
-	public static Gearbox left = new Gearbox(RobotMap.LEFT_FRONT_VICTOR_PORT, RobotMap.LEFT_REAR_VICTOR_PORT);
-	public static Drivetrain drivetrain = new Drivetrain(left, right);
+	public static Gearbox right;
+	public static Gearbox left;
+	public static Drivetrain drivetrain;
+	public static Triz triz;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -28,6 +30,10 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		oi = new OI();
+		left = new Gearbox(RobotMap.LEFT_FRONT_VICTOR_PORT, RobotMap.LEFT_REAR_VICTOR_PORT);
+		right = new Gearbox(RobotMap.RIGHT_FRONT_VICTOR_PORT, RobotMap.RIGHT_REAR_VICTOR_PORT);
+		drivetrain = new Drivetrain(left, right);
+		triz = new Triz(RobotMap.TRIZ_TALON_PORT);
 	}
 
 	/**

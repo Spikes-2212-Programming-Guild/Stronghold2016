@@ -9,8 +9,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Triz extends Subsystem {
 	Talon trizTalon;
 
-	Triz(Talon trizTalon) {
+	public Triz(Talon trizTalon) {
 		this.trizTalon = trizTalon;
+	}
+
+	public Triz(int trizTalonPort) {
+		trizTalon = new Talon(trizTalonPort);
 	}
 
 	public void moveTriz(double speed) {

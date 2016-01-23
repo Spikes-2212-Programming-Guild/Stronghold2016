@@ -13,8 +13,8 @@ public class Drivetrain extends Subsystem {
 		this.right = right;
 	}
 
-	public Drivetrain(VictorSP leftFront, VictorSP leftRear, VictorSP rightFront, VictorSP rightRear ){
-		this(new Gearbox(leftFront,leftRear), new Gearbox(rightFront,rightRear));
+	public Drivetrain(VictorSP leftFront, VictorSP leftRear, VictorSP rightFront, VictorSP rightRear) {
+		this(new Gearbox(leftFront, leftRear), new Gearbox(rightFront, rightRear));
 	}
 
 	public void forward(double speed) {

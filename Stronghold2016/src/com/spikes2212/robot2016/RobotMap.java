@@ -7,11 +7,12 @@ package com.spikes2212.robot2016;
  * floating around.
  */
 public class RobotMap {
-	public static final int RIGHT_FRONT_VICTOR_PORT = 0;
-	public static final int RIGHT_REAR_VICTOR_PORT = 0;
 	public static final int LEFT_FRONT_VICTOR_PORT = 0;
 	public static final int LEFT_REAR_VICTOR_PORT = 0;
-	public static final int RIGHT_DRIVER_JOYSTICK_PORT = 0;
+	public static final int RIGHT_FRONT_VICTOR_PORT = 0;
+	public static final int RIGHT_REAR_VICTOR_PORT = 0;
 	public static final int LEFT_DRIVER_JOYSTICK_PORT = 0;
+	public static final int RIGHT_DRIVER_JOYSTICK_PORT = 0;
 	public static final int NAVIGATOR_JOYSTICK_PORT = 0;
+	public static final int TRIZ_TALON_PORT=0;
 }
