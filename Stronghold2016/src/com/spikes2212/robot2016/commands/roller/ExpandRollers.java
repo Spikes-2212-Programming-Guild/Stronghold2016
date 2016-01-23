@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *@author Itamar
+ * @author Itamar
  */
 public class ExpandRollers extends Command {
 
@@ -14,7 +14,7 @@ public class ExpandRollers extends Command {
 
 	public ExpandRollers() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.roller);
+		requires(Robot.folder);
 	}
 
 	// Called just before this Command runs the first time
@@ -24,14 +24,14 @@ public class ExpandRollers extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (Robot.roller.canExpand()) {
-			Robot.roller.fold(navigator.getX());
+		if (Robot.folder.canUnfold()) {
+			Robot.folder.fold(navigator.getX());
 		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return Robot.roller.canExpand();
+		return Robot.folder.canUnfold();
 	}
 
 	// Called once after isFinished returns true

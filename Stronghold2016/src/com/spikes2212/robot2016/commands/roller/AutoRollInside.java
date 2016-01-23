@@ -16,6 +16,7 @@ public class AutoRollInside extends CommandGroup {
 		// addSequential(new Command2());
 		// these will run in order.
 		requires(Robot.roller);
+		requires(Robot.folder);
 		addParallel(new ExpandRollers());
 		addParallel(new RollInside());
 		// To run multiple commands at the same time,

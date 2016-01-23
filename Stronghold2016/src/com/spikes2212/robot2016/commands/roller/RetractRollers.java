@@ -14,7 +14,7 @@ public class RetractRollers extends Command {
 
 	public RetractRollers() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.roller);
+		requires(Robot.folder);
 	}
 
 	// Called just before this Command runs the first time
@@ -24,14 +24,14 @@ public class RetractRollers extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (Robot.roller.canRetract()) {
-			Robot.roller.fold(navigator.getX());
+		if (Robot.folder.canFold()) {
+			Robot.folder.fold(navigator.getX());
 		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return Robot.roller.canRetract();
+		return Robot.folder.canFold();
 	}
 
 	// Called once after isFinished returns true

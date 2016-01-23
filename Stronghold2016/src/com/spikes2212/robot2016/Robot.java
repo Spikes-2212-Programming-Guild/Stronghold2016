@@ -2,6 +2,7 @@
 package com.spikes2212.robot2016;
 
 import com.spikes2212.robot2016.subsystems.Drivetrain;
+import com.spikes2212.robot2016.subsystems.Folder;
 import com.spikes2212.robot2016.subsystems.Roller;
 import com.spikes2212.robot2016.subsystems.Triz;
 import com.spikes2212.robot2016.util.Gearbox;
@@ -28,9 +29,10 @@ public class Robot extends IterativeRobot {
 	public static Gearbox right = new Gearbox(RobotMap.RIGHT_FRONT_VICTOR_PORT, RobotMap.RIGHT_REAR_VICTOR_PORT);
 	public static Gearbox left = new Gearbox(RobotMap.LEFT_FRONT_VICTOR_PORT, RobotMap.LEFT_REAR_VICTOR_PORT);
 	public static Drivetrain drivetrain = new Drivetrain(left, right);
-	public static Roller roller = new Roller(RobotMap.RollerMap.ROLLER_BOULDER_TALON_PORT,
-			RobotMap.RollerMap.ROLLER_FOLDER_TALON_PORT, RobotMap.DigitalInputMap.ROLLER_FOLDER_LIMIT_EXTEND_PORT,
-			RobotMap.DigitalInputMap.ROLLER_FOLDER_LIMIT_RETRACT_PORT,
+	public static Folder folder = new Folder(RobotMap.RollerMap.ROLLER_FOLDER_TALON_PORT,
+			RobotMap.DigitalInputMap.ROLLER_FOLDER_LIMIT_EXTEND_PORT,
+			RobotMap.DigitalInputMap.ROLLER_FOLDER_LIMIT_RETRACT_PORT);
+	public static Roller roller = new Roller(RobotMap.RollerMap.ROLLER_TALON_PORT,
 			RobotMap.AnalogInputMap.ROLLER_FOLDER_DISTANCE_SENSOR_PORT, RobotMap.DigitalInputMap.BOULDER_LIMIT_PORT);
 	public static Triz triz = new Triz(RobotMap.TrizMap.TALON_TRIZ_FOLDER_PORT,
 			RobotMap.DigitalInputMap.TRIZ_FOLD_LIMIT_PORt, RobotMap.DigitalInputMap.TRIZ_UNFOLD_LIMIT_PORT,

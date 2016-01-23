@@ -28,8 +28,8 @@ public class RobotMap {
 	}
 
 	class RollerMap {
-		public static final int ROLLER_BOULDER_TALON_PORT = 0;
 		public static final int ROLLER_FOLDER_TALON_PORT = 0;
+		public static final int ROLLER_TALON_PORT = 0;
 	}
 
 	class TrizMap {
