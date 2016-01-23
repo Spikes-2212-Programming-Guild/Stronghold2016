@@ -14,5 +14,8 @@ public class RobotMap {
 	public static final int LEFT_DRIVER_JOYSTICK_PORT = 0;
 	public static final int RIGHT_DRIVER_JOYSTICK_PORT = 0;
 	public static final int NAVIGATOR_JOYSTICK_PORT = 0;
-	public static final int TRIZ_TALON_PORT=0;
+	public static final int TRIZ_TALON_PORT = 0;
+	public static final int TRIZ_LIMITSWICH_UP_PORT = 0;
+	public static final int TRIZ_LIMITSWICH_DOWN_PORT = 0;
+
 }

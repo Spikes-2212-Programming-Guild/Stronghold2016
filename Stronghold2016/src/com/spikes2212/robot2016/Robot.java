@@ -33,7 +33,7 @@ public class Robot extends IterativeRobot {
 		left = new Gearbox(RobotMap.LEFT_FRONT_VICTOR_PORT, RobotMap.LEFT_REAR_VICTOR_PORT);
 		right = new Gearbox(RobotMap.RIGHT_FRONT_VICTOR_PORT, RobotMap.RIGHT_REAR_VICTOR_PORT);
 		drivetrain = new Drivetrain(left, right);
-		triz = new Triz(RobotMap.TRIZ_TALON_PORT);
+		triz = new Triz(RobotMap.TRIZ_TALON_PORT, RobotMap.TRIZ_LIMITSWICH_UP_PORT, RobotMap.TRIZ_LIMITSWICH_DOWN_PORT);
 	}
 
 	/**
