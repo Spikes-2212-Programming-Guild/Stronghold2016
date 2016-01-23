@@ -1,4 +1,8 @@
+
 package com.spikes2212.robot2016;
+
+import com.spikes2212.robot2016.subsystems.Drivetrain;
+import com.spikes2212.robot2016.util.Gearbox;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -14,6 +18,9 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
+	public static Gearbox right = new Gearbox(RobotMap.RIGHT_FRONT_VICTOR_PORT, RobotMap.RIGHT_REAR_VICTOR_PORT);
+	public static Gearbox left = new Gearbox(RobotMap.LEFT_FRONT_VICTOR_PORT, RobotMap.LEFT_REAR_VICTOR_PORT);
+	public static Drivetrain drivetrain = new Drivetrain(left, right);
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -56,6 +63,7 @@ public class Robot extends IterativeRobot {
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
 
+		// schedule the autonomous command (example)
 	}
 
 	/**
