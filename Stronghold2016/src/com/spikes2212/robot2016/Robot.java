@@ -1,6 +1,13 @@
+
 package com.spikes2212.robot2016;
 
+import com.spikes2212.robot2016.subsystems.Drivetrain;
+import com.spikes2212.robot2016.subsystems.Roller;
+import com.spikes2212.robot2016.util.Gearbox;
+
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.TalonSRX;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -14,6 +21,13 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
+	public static Gearbox right = new Gearbox(RobotMap.RIGHT_FRONT_VICTOR_PORT, RobotMap.RIGHT_REAR_VICTOR_PORT);
+	public static Gearbox left = new Gearbox(RobotMap.LEFT_FRONT_VICTOR_PORT, RobotMap.LEFT_REAR_VICTOR_PORT);
+	public static Drivetrain drivetrain = new Drivetrain(left, right);
+	public static Roller roller = new Roller(RobotMap.RollerMap.ROLLER_BOULDER_TALON_PORT,
+			RobotMap.RollerMap.ROLLER_FOLDER_TALON_PORT, RobotMap.DigitalInputMap.ROLLER_FOLDER_LIMIT_EXTEND_PORT,
+			RobotMap.DigitalInputMap.ROLLER_FOLDER_LIMIT_RETRACT_PORT,
+			RobotMap.AnalogInputMap.ROLLER_FOLDER_DISTANCE_SENSOR_PORT, RobotMap.DigitalInputMap.BOULDER_LIMIT_PORT);
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -56,6 +70,7 @@ public class Robot extends IterativeRobot {
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
 
+		// schedule the autonomous command (example)
 	}
 
 	/**

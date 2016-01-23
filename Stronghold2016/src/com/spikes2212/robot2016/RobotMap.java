@@ -1,4 +1,5 @@
 package com.spikes2212.robot2016;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -6,13 +7,27 @@ package com.spikes2212.robot2016;
  * floating around.
  */
 public class RobotMap {
-    // For example to map the left and right motors, you could define the
-    // following variables to use with your drivetrain subsystem.
-    // public static int leftMotor = 1;
-    // public static int rightMotor = 2;
-    
-    // If you are using multiple modules, make sure to define both the port
-    // number and the module. For example you with a rangefinder:
-    // public static int rangefinderPort = 1;
-    // public static int rangefinderModule = 1;
+	public static final int RIGHT_FRONT_VICTOR_PORT = 0;
+	public static final int RIGHT_REAR_VICTOR_PORT = 0;
+	public static final int LEFT_FRONT_VICTOR_PORT = 0;
+	public static final int LEFT_REAR_VICTOR_PORT = 0;
+	public static final int RIGHT_DRIVER_JOYSTICK_PORT = 0;
+	public static final int LEFT_DRIVER_JOYSTICK_PORT = 0;
+	public static final int NAVIGATOR_JOYSTICK_PORT = 0;
+
+	class DigitalInputMap {
+
+		public static final int ROLLER_FOLDER_LIMIT_EXTEND_PORT = 0;
+		public static final int ROLLER_FOLDER_LIMIT_RETRACT_PORT = 0;
+		public static final int BOULDER_LIMIT_PORT = 0;
+	}
+
+	class RollerMap {
+		public static final int ROLLER_BOULDER_TALON_PORT = 0;
+		public static final int ROLLER_FOLDER_TALON_PORT = 0;
+	}
+
+	class AnalogInputMap {
+		public static final int ROLLER_FOLDER_DISTANCE_SENSOR_PORT = 0;
+	}
 }
