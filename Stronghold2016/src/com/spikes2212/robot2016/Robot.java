@@ -18,6 +18,11 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
+/**
+ * 
+ * @author Itamar
+ *
+ */
 public class Robot extends IterativeRobot {
 
 	public static OI oi;

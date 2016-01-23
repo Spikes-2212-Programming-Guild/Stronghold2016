@@ -4,7 +4,11 @@ import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
-
+/**
+ * 
+ * @author Itamar
+ *
+ */
 public class Roller extends Subsystem {
 	private TalonSRX boulder, folder;
 	private DigitalInput folderLimitExpand, folderLimitRetract, boulderLimit;
@@ -62,7 +66,9 @@ public class Roller extends Subsystem {
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
-
 	}
 
+	public void stopFold() {
+		folder.stopMotor();
+	}
 }

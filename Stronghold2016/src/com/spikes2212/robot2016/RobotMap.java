@@ -6,6 +6,9 @@ package com.spikes2212.robot2016;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
+/**
+ * @author Itamar
+ */
 public class RobotMap {
 	public static final int RIGHT_FRONT_VICTOR_PORT = 0;
 	public static final int RIGHT_REAR_VICTOR_PORT = 0;

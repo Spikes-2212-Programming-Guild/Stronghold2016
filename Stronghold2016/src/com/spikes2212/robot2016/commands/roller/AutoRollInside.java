@@ -5,6 +5,7 @@ import com.spikes2212.robot2016.Robot;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
+ * @author Itamar
  *
  */
 public class AutoRollInside extends CommandGroup {
