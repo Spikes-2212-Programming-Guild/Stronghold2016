@@ -2,22 +2,24 @@ package com.spikes2212.robot2016.subsystems;
 
 import com.spikes2212.robot2016.util.Gearbox;
 
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Drivetrain extends Subsystem {
-	Gearbox left, right;
+	private Gearbox left, right;
 
 	public Drivetrain(Gearbox left, Gearbox right) {
 		this.left = left;
 		this.right = right;
 	}
 
-	public Drivetrain() {
+	public Drivetrain(VictorSP leftFront, VictorSP leftRear, VictorSP rightFront, VictorSP rightRear ){
+		this(new Gearbox(leftFront,leftRear), new Gearbox(rightFront,rightRear));
 	}
 
 	public void forward(double speed) {
-		right.set(speed);
-		left.set(-speed);
+		left.set(speed);
+		right.set(-speed);
 	}
 
 	public void turn(double speed) {
