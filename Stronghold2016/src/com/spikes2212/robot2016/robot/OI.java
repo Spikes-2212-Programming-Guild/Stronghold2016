@@ -1,4 +1,4 @@
-package com.spikes2212.robot2016;
+package com.spikes2212.robot2016.robot;
 
 /**
  * This class is the glue that binds the controls on the physical operator

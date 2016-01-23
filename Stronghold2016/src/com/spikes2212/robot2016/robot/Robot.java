@@ -1,4 +1,4 @@
-package com.spikes2212.robot2016;
+package com.spikes2212.robot2016.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
