@@ -15,6 +15,9 @@ public class Folder extends Subsystem {
 	public Folder(TalonSRX folderTalon) {
 		this.folderTalon = folderTalon;
 	}
+	public Folder(int folderTalonPort) {
+		this(new TalonSRX(folderTalonPort));
+	}
 
 	public void moveFolder(double speed) {
 		folderTalon.set(speed);

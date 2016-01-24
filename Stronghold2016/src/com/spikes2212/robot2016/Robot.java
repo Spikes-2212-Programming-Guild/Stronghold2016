@@ -2,6 +2,9 @@
 package com.spikes2212.robot2016;
 
 import com.spikes2212.robot2016.subsystems.Drivetrain;
+import com.spikes2212.robot2016.subsystems.Folder;
+import com.spikes2212.robot2016.subsystems.Picker;
+import com.spikes2212.robot2016.subsystems.Shooter;
 import com.spikes2212.robot2016.subsystems.Triz;
 import com.spikes2212.robot2016.util.Gearbox;
 
@@ -23,6 +26,9 @@ public class Robot extends IterativeRobot {
 	public static Gearbox left;
 	public static Drivetrain drivetrain;
 	public static Triz triz;
+	public static Folder folder;
+	public static Picker picker;
+	public static Shooter shooter;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -34,6 +40,9 @@ public class Robot extends IterativeRobot {
 		right = new Gearbox(RobotMap.RIGHT_FRONT_VICTOR_PORT, RobotMap.RIGHT_REAR_VICTOR_PORT);
 		drivetrain = new Drivetrain(left, right);
 		triz = new Triz(RobotMap.TRIZ_TALON_PORT, RobotMap.TRIZ_LIMITSWICH_UP_PORT, RobotMap.TRIZ_LIMITSWICH_DOWN_PORT);
+		shooter = new Shooter(RobotMap.SHOOTER_TALON_PORT);
+		picker = new Picker(RobotMap.PICKER_TALON_PORT);
+		folder = new Folder(RobotMap.FOLDER_TALON_PORT);
 	}
 
 	/**
