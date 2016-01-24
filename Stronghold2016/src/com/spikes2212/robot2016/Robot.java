@@ -2,10 +2,10 @@
 package com.spikes2212.robot2016;
 
 import com.spikes2212.robot2016.subsystems.Drivetrain;
-import com.spikes2212.robot2016.subsystems.Folder;
-import com.spikes2212.robot2016.subsystems.Picker;
-import com.spikes2212.robot2016.subsystems.Shooter;
 import com.spikes2212.robot2016.subsystems.Triz;
+import com.spikes2212.robot2016.subsystems.roller.Folder;
+import com.spikes2212.robot2016.subsystems.roller.Picker;
+import com.spikes2212.robot2016.subsystems.roller.Shooter;
 import com.spikes2212.robot2016.util.Gearbox;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
