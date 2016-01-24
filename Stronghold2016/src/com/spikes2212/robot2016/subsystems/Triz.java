@@ -10,18 +10,18 @@ import edu.wpi.first.wpilibj.hal.DIOJNI;
  */
 public class Triz extends Subsystem {
 	private Talon trizTalon;
-	private DigitalInput up, down; 
+	private DigitalInput up, down;
 
 	public Triz(Talon trizTalon, DigitalInput up, DigitalInput down) {
 		this.trizTalon = trizTalon;
-		this.up=up;
-		this.down=down;
+		this.up = up;
+		this.down = down;
 	}
 
-	public Triz(int trizTalonPort,int upPort,int downPort) {
+	public Triz(int trizTalonPort, int upPort, int downPort) {
 		trizTalon = new Talon(trizTalonPort);
 		up = new DigitalInput(upPort);
-		down= new DigitalInput(downPort);
+		down = new DigitalInput(downPort);
 	}
 
 	public void moveTriz(double speed) {
@@ -31,9 +31,11 @@ public class Triz extends Subsystem {
 	public void stop() {
 		trizTalon.set(0);
 	}
+
 	public boolean isUp() {
 		return up.get();
 	}
+
 	public boolean isDown() {
 		return down.get();
 	}

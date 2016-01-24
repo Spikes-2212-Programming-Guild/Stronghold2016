@@ -16,16 +16,12 @@ public class Folder extends Subsystem {
 		this.folderTalon = folderTalon;
 	}
 
-	public void open() {
-		folderTalon.set(Permanents.FOLDER_OPEN_SPEED);
-	}
-
-	public void close() {
-		folderTalon.set(Permanents.FOLDER_CLOSE_SPEED);
-	}
-
-	public void foldBySpeed(double speed) {
+	public void moveFolder(double speed) {
 		folderTalon.set(speed);
+	}
+
+	public void stop() {
+		folderTalon.set(0);
 	}
 
 	// Put methods for controlling this subsystem
