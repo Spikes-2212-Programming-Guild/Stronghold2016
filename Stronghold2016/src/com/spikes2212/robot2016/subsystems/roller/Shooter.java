@@ -8,25 +8,28 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Shooter extends Subsystem {
-    private CANTalon shooterTalon;
-    public Shooter(CANTalon shooterTalon){
-    	this.shooterTalon=shooterTalon;
-    }
-    public Shooter(int shooterTalonPort){
+	private CANTalon shooterTalon;
+
+	public Shooter(CANTalon shooterTalon) {
+		this.shooterTalon = shooterTalon;
+	}
+
+	public Shooter(int shooterTalonPort) {
 		this(new CANTalon(shooterTalonPort));
-    }
-    public void ShootBySpeed(double speed){
-    	this.shooterTalon.set(speed);
-    }
-    public void stop(){
-    	this.shooterTalon.set(0);
-    }
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+	}
 
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    }
+	public void shoot(double speed) {
+		this.shooterTalon.set(speed);
+	}
+
+	public void stop() {
+		this.shooterTalon.set(0);
+	}
+	// Put methods for controlling this subsystem
+	// here. Call these from Commands.
+
+	public void initDefaultCommand() {
+		// Set the default command for a subsystem here.
+		// setDefaultCommand(new MySpecialCommand());
+	}
 }
-

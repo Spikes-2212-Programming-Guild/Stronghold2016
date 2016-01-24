@@ -12,9 +12,10 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	public final Joystick rightDriver = new Joystick(0);
 	public final Joystick leftDriver = new Joystick(0);
-	public final Joystick navigator = new Joystick(0);
+	public final Joystick rightDriver = new Joystick(0);
+	public final Joystick leftNavigator = new Joystick(0);
+	public final Joystick rightNavigator = new Joystick(0);
 	public final Button forwardButton = new JoystickButton(rightDriver, 1);
 
 	public OI() {

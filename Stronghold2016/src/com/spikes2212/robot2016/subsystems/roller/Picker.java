@@ -17,7 +17,7 @@ public class Picker extends Subsystem {
 		this(new TalonSRX(pickerTalonPort));
 	}
 
-	public void movePicker(double speed) {
+	public void roll(double speed) {
 		pickerTalon.set(speed);
 	}
 
