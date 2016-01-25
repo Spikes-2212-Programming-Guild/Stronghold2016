@@ -7,6 +7,14 @@ package com.spikes2212.robot2016;
  * floating around.
  */
 public class RobotMap {
+	public static final int FRONT_RIGHT_ENCODER_CHANNEL_A=0;
+	public static final int FRONT_RIGHT_ENCODER_CHANNEL_B=0;
+	public static final int FRONT_LEFT_ENCODER_CHANNEL_A=0;
+	public static final int FRONT_LEFT_ENCODER_CHANNEL_B=0;
+	public static final int REAR_RIGHT_ENCODER_CHANNEL_A=0;
+	public static final int REAR_RIGHT_ENCODER_CHANNEL_B=0;
+	public static final int REAR_LEFT_ENCODER_CHANNEL_A=0;
+	public static final int REAR_LEFT_ENCODER_CHANNEL_B=0;
 	public static final int LEFT_FRONT_VICTOR_PORT = 0;
 	public static final int LEFT_REAR_VICTOR_PORT = 0;
 	public static final int RIGHT_FRONT_VICTOR_PORT = 0;

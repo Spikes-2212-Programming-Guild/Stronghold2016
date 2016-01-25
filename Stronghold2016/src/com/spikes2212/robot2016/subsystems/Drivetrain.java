@@ -12,16 +12,19 @@ public class Drivetrain extends Subsystem {
 	private Gearbox left, right;
 	private Encoder leftFrontEncoder, leftRearEncoder, rightFrontEncoder, rightRearEncoder;
 
-	 private Gyro gyro;
-	public Drivetrain( Gyro gyro, Gearbox left, Gearbox right) {
+	private Gyro gyro;
+
+	public Drivetrain(Gyro gyro, Gearbox left, Gearbox right) {
 		this.left = left;
 		this.right = right;
-		this.gyro=gyro;
+		this.gyro = gyro;
 	}
 
-	public Drivetrain(Gyro gyro, VictorSP leftFront, VictorSP leftRear, VictorSP rightFront, VictorSP rightRear) {
-		this(gyro,new Gearbox(leftFront, leftRear), new Gearbox(rightFront, rightRear));
-	
+	public Drivetrain(Gyro gyro, VictorSP leftFront, VictorSP leftRear, VictorSP rightFront, VictorSP rightRear,
+			Encoder encoderLeftFront, Encoder encoderLeftRear, Encoder encoderRightFront, Encoder encoderRightRear) {
+		this(gyro, new Gearbox(leftFront, leftRear, encoderLeftFront, encoderLeftRear),
+				new Gearbox(rightFront, rightRear, encoderRightFront, encoderRightRear));
+
 	}
 
 	public void forward(double speed) {
@@ -33,9 +36,11 @@ public class Drivetrain extends Subsystem {
 		right.set(speed);
 		left.set(speed);
 	}
+
 	public double getAngle() {
 		return gyro.getAngle();
 	}
+
 	// arcade
 	public void stop() {
 		this.forward(0);

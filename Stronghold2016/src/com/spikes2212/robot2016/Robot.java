@@ -32,15 +32,20 @@ public class Robot extends IterativeRobot {
 	public static Picker picker;
 	public static Shooter shooter;
 	public static Gyro gyro;
+
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
 		oi = new OI();
-		gyro=new ADXRS450_Gyro();
-		left = new Gearbox(RobotMap.LEFT_FRONT_VICTOR_PORT, RobotMap.LEFT_REAR_VICTOR_PORT);
-		right = new Gearbox(RobotMap.RIGHT_FRONT_VICTOR_PORT, RobotMap.RIGHT_REAR_VICTOR_PORT);
+		gyro = new ADXRS450_Gyro();
+		left = new Gearbox(RobotMap.LEFT_FRONT_VICTOR_PORT, RobotMap.LEFT_REAR_VICTOR_PORT,
+				RobotMap.FRONT_LEFT_ENCODER_CHANNEL_A, RobotMap.FRONT_LEFT_ENCODER_CHANNEL_B,
+				RobotMap.REAR_LEFT_ENCODER_CHANNEL_A, RobotMap.REAR_LEFT_ENCODER_CHANNEL_B);
+		right = new Gearbox(RobotMap.RIGHT_FRONT_VICTOR_PORT, RobotMap.RIGHT_REAR_VICTOR_PORT,
+				RobotMap.FRONT_RIGHT_ENCODER_CHANNEL_A, RobotMap.FRONT_RIGHT_ENCODER_CHANNEL_B,
+				RobotMap.REAR_RIGHT_ENCODER_CHANNEL_A, RobotMap.REAR_RIGHT_ENCODER_CHANNEL_B);
 		drivetrain = new Drivetrain(gyro, left, right);
 		triz = new Triz(RobotMap.TRIZ_TALON_PORT, RobotMap.TRIZ_LIMITSWICH_UP_PORT, RobotMap.TRIZ_LIMITSWICH_DOWN_PORT);
 		shooter = new Shooter(RobotMap.SHOOTER_TALON_PORT);
