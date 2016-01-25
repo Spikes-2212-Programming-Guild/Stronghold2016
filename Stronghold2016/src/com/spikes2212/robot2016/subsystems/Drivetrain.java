@@ -2,19 +2,26 @@ package com.spikes2212.robot2016.subsystems;
 
 import com.spikes2212.robot2016.util.Gearbox;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 public class Drivetrain extends Subsystem {
 	private Gearbox left, right;
+	private Encoder leftFrontEncoder, leftRearEncoder, rightFrontEncoder, rightRearEncoder;
 
-	public Drivetrain(Gearbox left, Gearbox right) {
+	 private Gyro gyro;
+	public Drivetrain( Gyro gyro, Gearbox left, Gearbox right) {
 		this.left = left;
 		this.right = right;
+		this.gyro=gyro;
 	}
 
-	public Drivetrain(VictorSP leftFront, VictorSP leftRear, VictorSP rightFront, VictorSP rightRear) {
-		this(new Gearbox(leftFront, leftRear), new Gearbox(rightFront, rightRear));
+	public Drivetrain(Gyro gyro, VictorSP leftFront, VictorSP leftRear, VictorSP rightFront, VictorSP rightRear) {
+		this(gyro,new Gearbox(leftFront, leftRear), new Gearbox(rightFront, rightRear));
+	
 	}
 
 	public void forward(double speed) {
@@ -26,7 +33,9 @@ public class Drivetrain extends Subsystem {
 		right.set(speed);
 		left.set(speed);
 	}
-
+	public double getAngle() {
+		return gyro.getAngle();
+	}
 	// arcade
 	public void stop() {
 		this.forward(0);

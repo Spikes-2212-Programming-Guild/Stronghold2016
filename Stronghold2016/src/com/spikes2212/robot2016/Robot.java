@@ -8,8 +8,10 @@ import com.spikes2212.robot2016.subsystems.roller.Picker;
 import com.spikes2212.robot2016.subsystems.roller.Shooter;
 import com.spikes2212.robot2016.util.Gearbox;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**
@@ -29,16 +31,17 @@ public class Robot extends IterativeRobot {
 	public static Folder folder;
 	public static Picker picker;
 	public static Shooter shooter;
-
+	public static Gyro gyro;
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
 		oi = new OI();
+		gyro=new ADXRS450_Gyro();
 		left = new Gearbox(RobotMap.LEFT_FRONT_VICTOR_PORT, RobotMap.LEFT_REAR_VICTOR_PORT);
 		right = new Gearbox(RobotMap.RIGHT_FRONT_VICTOR_PORT, RobotMap.RIGHT_REAR_VICTOR_PORT);
-		drivetrain = new Drivetrain(left, right);
+		drivetrain = new Drivetrain(gyro, left, right);
 		triz = new Triz(RobotMap.TRIZ_TALON_PORT, RobotMap.TRIZ_LIMITSWICH_UP_PORT, RobotMap.TRIZ_LIMITSWICH_DOWN_PORT);
 		shooter = new Shooter(RobotMap.SHOOTER_TALON_PORT);
 		picker = new Picker(RobotMap.PICKER_TALON_PORT);
