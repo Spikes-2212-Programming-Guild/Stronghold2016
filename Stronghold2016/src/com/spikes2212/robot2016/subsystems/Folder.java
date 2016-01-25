@@ -36,11 +36,11 @@ public class Folder extends Subsystem {
 		folder.set(speed);
 	}
 	public boolean canUnfold() {
-		return folderLimitUnfold.get();
+		return !folderLimitUnfold.get();
 	}
 
 	public boolean canFold() {
-		return folderLimitFold.get();
+		return !folderLimitFold.get();
 	}
 
 	public void initDefaultCommand() {
