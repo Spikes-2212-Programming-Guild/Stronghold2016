@@ -35,7 +35,7 @@ public class Robot extends IterativeRobot {
 	public static Roller roller = new Roller(RobotMap.RollerMap.ROLLER_TALON_PORT,
 			RobotMap.AnalogInputMap.ROLLER_FOLDER_DISTANCE_SENSOR_PORT, RobotMap.DigitalInputMap.BOULDER_LIMIT_PORT);
 	public static Triz triz = new Triz(RobotMap.TrizMap.TALON_TRIZ_FOLDER_PORT,
-			RobotMap.DigitalInputMap.TRIZ_FOLD_LIMIT_PORt, RobotMap.DigitalInputMap.TRIZ_UNFOLD_LIMIT_PORT,
+			RobotMap.DigitalInputMap.TRIZ_FOLD_LIMIT_PORT, RobotMap.DigitalInputMap.TRIZ_UNFOLD_LIMIT_PORT,
 			RobotMap.AnalogInputMap.TRIZ_POTENTIOMETER_PORT);
 
 	/**
