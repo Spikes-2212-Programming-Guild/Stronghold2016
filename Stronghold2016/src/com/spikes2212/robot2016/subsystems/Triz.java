@@ -10,18 +10,18 @@ import edu.wpi.first.wpilibj.hal.DIOJNI;
  */
 public class Triz extends Subsystem {
 	private Talon trizTalon;
-	private DigitalInput up, down;
+	private DigitalInput upLimit, downLimit;
 
 	public Triz(Talon trizTalon, DigitalInput up, DigitalInput down) {
 		this.trizTalon = trizTalon;
-		this.up = up;
-		this.down = down;
+		this.upLimit = up;
+		this.downLimit = down;
 	}
 
 	public Triz(int trizTalonPort, int upPort, int downPort) {
 		trizTalon = new Talon(trizTalonPort);
-		up = new DigitalInput(upPort);
-		down = new DigitalInput(downPort);
+		upLimit = new DigitalInput(upPort);
+		downLimit = new DigitalInput(downPort);
 	}
 
 	public void moveTriz(double speed) {
@@ -33,17 +33,15 @@ public class Triz extends Subsystem {
 	}
 
 	public boolean isUp() {
-		return up.get();
+		return !upLimit.get();
 	}
 
 	public boolean isDown() {
-		return down.get();
+		return !downLimit.get();
 	}
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
 	}
 }

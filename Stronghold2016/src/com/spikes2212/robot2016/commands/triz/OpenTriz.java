@@ -12,8 +12,6 @@ public class OpenTriz extends Command {
 
 	public OpenTriz() {
 		requires(triz);
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
 	}
 
 	// Called just before this Command runs the first time
@@ -22,7 +20,8 @@ public class OpenTriz extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		triz.moveTriz(Permanents.TRIZ_SPEED);
+		if (!triz.isDown())
+			triz.moveTriz(Permanents.TRIZ_SPEED);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

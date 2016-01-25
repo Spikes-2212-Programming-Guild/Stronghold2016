@@ -21,7 +21,8 @@ public class CloseTriz extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		triz.moveTriz(-Permanents.TRIZ_SPEED);
+		if (!triz.isUp())
+			triz.moveTriz(-Permanents.TRIZ_SPEED);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

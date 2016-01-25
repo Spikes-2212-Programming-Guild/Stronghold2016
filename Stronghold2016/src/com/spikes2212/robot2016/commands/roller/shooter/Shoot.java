@@ -24,7 +24,7 @@ public class Shoot extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	shooter.shoot(Permanents.Shoot_SPEED);
+    	shooter.shoot(Permanents.SHOOT_SPEED);
     }
 
     // Make this return true when this Command no longer needs to run execute()
