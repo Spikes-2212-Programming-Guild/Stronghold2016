@@ -12,7 +12,6 @@ public class FoldingAll extends CommandGroup {
 	public FoldingAll() {
 		addParallel(new CloseTriz());
 		addParallel(new FoldingRoller());
-		addParallel(new JoystickArcadeDrive());
 
 	}
 }
