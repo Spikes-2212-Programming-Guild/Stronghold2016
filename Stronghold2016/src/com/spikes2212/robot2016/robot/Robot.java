@@ -28,6 +28,7 @@ public class Robot extends IterativeRobot {
 		Gearbox left = new Gearbox(RobotMap.LEFT_REAR_MOTOR_PORT, RobotMap.LEFT_FRONT_MOTOR_PORT, leftFront, leftRear);
 		Gearbox right = new Gearbox(RobotMap.RIGHT_REAR_MOTOR_PORT, RobotMap.RIGHT_FRONT_MOTOR_PORT, rightFront,
 				rightRear);
+		//TODO: Fix Drivetrain to use all those sensors
 		drivetrain = new Drivetrain(left, right, new Gyro(RobotMap.GYRO_PORT), new BuiltInAccelerometer());
 	}
 
