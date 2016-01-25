@@ -32,6 +32,7 @@ public class Roller extends Subsystem {
 
 	public boolean detectBoulder() {
 		return (distanceSensor.getAverageVoltage()
+				//TODO: WTH, ever heard of imports?
 				* com.spikes2212.robot2016.consts.RollerConsts.VOLTAGE_TO_DISTANCE_CONVERSION < com.spikes2212.robot2016.consts.RollerConsts.BOULDER_DETECTION_THRESHOLD)
 				&& !hasBoulder();
 	}
