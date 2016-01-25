@@ -12,9 +12,6 @@ public class Drivetrain extends Subsystem {
 		this.left = left;
 	}
 
-	public Drivetrain() {
-	}
-
 	public void straight(double speed) {
 		left.set(-speed);
 		right.set(speed);
