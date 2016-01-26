@@ -3,8 +3,6 @@ package com.spikes2212.robot2016.commands.Triz;
 import com.spikes2212.robot2016.Robot;
 import com.spikes2212.robot2016.pid.PIDCommand;
 
-import edu.wpi.first.wpilibj.command.Command;
-
 public class LiftPortcullis extends PIDCommand {
 	private double maximumOutput;
 
