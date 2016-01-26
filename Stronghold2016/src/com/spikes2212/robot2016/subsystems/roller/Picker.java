@@ -1,5 +1,8 @@
 package com.spikes2212.robot2016.subsystems.roller;
 
+import javax.swing.plaf.basic.BasicLabelUI;
+
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -8,13 +11,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Picker extends Subsystem {
 	private TalonSRX pickerTalon;
+	private DigitalInput ballLimit;
 
-	public Picker(TalonSRX pickerTalon) {
+	public Picker(TalonSRX pickerTalon, DigitalInput ballLimit) {
 		this.pickerTalon = pickerTalon;
+		this.ballLimit=ballLimit;
 	}
 
-	public Picker(int pickerTalonPort) {
-		this(new TalonSRX(pickerTalonPort));
+	public Picker(int pickerTalonPort, int ballLimitChannel) {
+		this(new TalonSRX(pickerTalonPort), new DigitalInput(ballLimitChannel));
 	}
 
 	public void roll(double speed) {
@@ -24,7 +29,9 @@ public class Picker extends Subsystem {
 	public void stop() {
 		pickerTalon.set(0);
 	}
-
+	public boolean isBallIn(){
+		return !ballLimit.get();
+	}
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 

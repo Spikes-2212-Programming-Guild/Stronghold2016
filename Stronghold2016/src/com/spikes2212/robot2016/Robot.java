@@ -52,7 +52,7 @@ public class Robot extends IterativeRobot {
 				RobotMap.TRIZ_LIMITSWICH_UP_PORT,
 				RobotMap.TRIZ_LIMITSWICH_DOWN_PORT);
 		shooter = new Shooter(RobotMap.SHOOTER_TALON_PORT);
-		picker = new Picker(RobotMap.PICKER_TALON_PORT);
+		picker = new Picker(RobotMap.PICKER_TALON_PORT, RobotMap.BALL_LIMIT_SWITCH_CHANNEL);
 		folder = new Folder(RobotMap.FOLDER_TALON_PORT);
 	}
 

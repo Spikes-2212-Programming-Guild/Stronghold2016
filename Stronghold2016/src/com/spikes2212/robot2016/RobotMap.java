@@ -11,10 +11,6 @@ public class RobotMap {
 	public static final int RIGHT_ENCODER_CHANNEL_B=0;
 	public static final int LEFT_ENCODER_CHANNEL_A=0;
 	public static final int LEFT_ENCODER_CHANNEL_B=0;
-	public static final int REAR_RIGHT_ENCODER_CHANNEL_A=0;
-	public static final int REAR_RIGHT_ENCODER_CHANNEL_B=0;
-	public static final int REAR_LEFT_ENCODER_CHANNEL_A=0;
-	public static final int REAR_LEFT_ENCODER_CHANNEL_B=0;
 	public static final int LEFT_FRONT_VICTOR_PORT = 0;
 	public static final int LEFT_REAR_VICTOR_PORT = 0;
 	public static final int RIGHT_FRONT_VICTOR_PORT = 0;
@@ -28,5 +24,6 @@ public class RobotMap {
 	public static final int FOLDER_TALON_PORT = 0;
 	public static final int PICKER_TALON_PORT = 0;
 	public static final int SHOOTER_TALON_PORT = 0;
+	public static final int BALL_LIMIT_SWITCH_CHANNEL = 0;
 
 }
