@@ -70,4 +70,12 @@ public class Drivetrain extends Subsystem {
 	protected void initDefaultCommand() {
 
 	}
+
+	public double getLeftDistance() {
+		return -left.getDistance();
+	}
+	
+	public double getRightDistance() {
+		return right.getDistance();
+	}
 }

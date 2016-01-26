@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -55,7 +56,6 @@ public class Robot extends IterativeRobot {
 		picker = new Picker(RobotMap.PICKER_TALON_PORT, RobotMap.BALL_LIMIT_SWITCH_CHANNEL);
 		folder = new Folder(RobotMap.FOLDER_TALON_PORT);
 	}
-
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
 	 * You can use it to reset any subsystem information you want to clear when
