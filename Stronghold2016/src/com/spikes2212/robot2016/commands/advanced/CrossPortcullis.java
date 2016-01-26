@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 public class CrossPortcullis extends CommandGroup {
+	
 	public CrossPortcullis() {
 		addSequential(new StraightDriveToPortcullis(Permanents.DRIVE_TO_PORTCULLIS_VELOCITY));
 		addSequential(new LiftPortcullis(Permanents.LIFTING_PORTCULLIS_DISTANCE));

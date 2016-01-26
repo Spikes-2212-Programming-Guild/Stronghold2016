@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class CrossLowBar extends CommandGroup {
+public class CrossRamparts extends CommandGroup {
     
 	public static final double DISTANCE = 0;
 	
-    public CrossLowBar(Direction direction) {
+    public CrossRamparts(Direction direction) {
     	addSequential(new StraightDriveByDistance(direction.getSpeedDirection() * DISTANCE));
     }
 }
