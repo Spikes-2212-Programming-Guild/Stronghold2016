@@ -29,7 +29,7 @@ public class Picker extends Subsystem {
 	public void stop() {
 		pickerTalon.set(0);
 	}
-	public boolean isBallIn(){
+	public boolean isBallInside(){
 		return !ballLimit.get();
 	}
 	// Put methods for controlling this subsystem
