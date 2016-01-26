@@ -40,22 +40,18 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 		gyro = new ADXRS450_Gyro();
-		left = new Gearbox(RobotMap.LEFT_FRONT_VICTOR_PORT,
-				RobotMap.LEFT_REAR_VICTOR_PORT,
-				RobotMap.LEFT_ENCODER_CHANNEL_A,
-				RobotMap.LEFT_ENCODER_CHANNEL_B);
-		right = new Gearbox(RobotMap.RIGHT_FRONT_VICTOR_PORT,
-				RobotMap.RIGHT_REAR_VICTOR_PORT,
-				RobotMap.RIGHT_ENCODER_CHANNEL_A,
-				RobotMap.RIGHT_ENCODER_CHANNEL_B);
+		left = new Gearbox(RobotMap.LEFT_FRONT_VICTOR_PORT, RobotMap.LEFT_REAR_VICTOR_PORT,
+				RobotMap.LEFT_ENCODER_CHANNEL_A, RobotMap.LEFT_ENCODER_CHANNEL_B);
+		right = new Gearbox(RobotMap.RIGHT_FRONT_VICTOR_PORT, RobotMap.RIGHT_REAR_VICTOR_PORT,
+				RobotMap.RIGHT_ENCODER_CHANNEL_A, RobotMap.RIGHT_ENCODER_CHANNEL_B);
 		drivetrain = new Drivetrain(gyro, left, right);
-		triz = new Triz(RobotMap.TRIZ_TALON_PORT,
-				RobotMap.TRIZ_LIMITSWICH_UP_PORT,
-				RobotMap.TRIZ_LIMITSWICH_DOWN_PORT);
+		triz = new Triz(RobotMap.TRIZ_TALON_PORT, RobotMap.TRIZ_LIMITSWICH_UP_PORT, RobotMap.TRIZ_LIMITSWICH_DOWN_PORT,
+				RobotMap.TRIZ_UNDER_PORTCULLIS_PORT, RobotMap.TRIZ_ENCODER_CHANNEL_A, RobotMap.TRIZ_ENCODER_CHANNEL_B);
 		shooter = new Shooter(RobotMap.SHOOTER_TALON_PORT);
 		picker = new Picker(RobotMap.PICKER_TALON_PORT, RobotMap.BALL_LIMIT_SWITCH_CHANNEL);
 		folder = new Folder(RobotMap.FOLDER_TALON_PORT);
 	}
+
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
 	 * You can use it to reset any subsystem information you want to clear when

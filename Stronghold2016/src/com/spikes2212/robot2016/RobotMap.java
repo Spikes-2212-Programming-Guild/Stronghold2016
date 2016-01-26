@@ -21,6 +21,9 @@ public class RobotMap {
 	public static final int TRIZ_TALON_PORT = 0;
 	public static final int TRIZ_LIMITSWICH_UP_PORT = 0;
 	public static final int TRIZ_LIMITSWICH_DOWN_PORT = 0;
+	public static final int TRIZ_UNDER_PORTCULLIS_PORT = 0;
+	public static final int TRIZ_ENCODER_CHANNEL_A = 0;
+	public static final int TRIZ_ENCODER_CHANNEL_B = 0;
 	public static final int FOLDER_TALON_PORT = 0;
 	public static final int PICKER_TALON_PORT = 0;
 	public static final int SHOOTER_TALON_PORT = 0;

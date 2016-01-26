@@ -15,6 +15,7 @@ public class StraightDriveByDistance extends PIDCommand {
 
 	public StraightDriveByDistance(double distance) {
 		super(KP, KI, KD, distance);
+		requires(Robot.drivetrain);
 	}
 
 	@Override
