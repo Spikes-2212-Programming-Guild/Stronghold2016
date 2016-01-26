@@ -17,7 +17,7 @@ public class TwoJoysticksDrive extends Command {
 	}
 
 	protected void execute() {
-		drivetrain.twoJoysticksDriving(oi.leftDriver.getY(), oi.rightDriver.getY());
+		drivetrain.twoJoysticksDriving(-oi.leftDriver.getY(), -oi.rightDriver.getY());
 	}
 
 	protected boolean isFinished() {

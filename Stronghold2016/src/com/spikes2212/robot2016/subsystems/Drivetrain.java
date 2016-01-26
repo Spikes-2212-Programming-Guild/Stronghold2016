@@ -26,8 +26,12 @@ public class Drivetrain extends Subsystem {
 		left.set(speed);
 	}
 
-	public double getAngle() {
+	public double getYawAngle() {
 		return gyro.getAngle();
+	}
+	
+	public double getYawRate() {
+		return gyro.getRate();
 	}
 
 	// arcade

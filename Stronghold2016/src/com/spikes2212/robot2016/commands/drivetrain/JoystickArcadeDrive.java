@@ -14,7 +14,7 @@ public class JoystickArcadeDrive extends Command {
 	}
 
 	protected void execute() {
-		drivetrain.arcade(oi.rightDriver.getY(), oi.rightDriver.getX());
+		drivetrain.arcade(-oi.rightDriver.getY(), oi.rightDriver.getX());
 	}
 
 	protected boolean isFinished() {
