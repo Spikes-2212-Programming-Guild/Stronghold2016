@@ -13,10 +13,8 @@ public class Gearbox {
 		this.encoder = encoder;
 	}
 
-	public Gearbox(int frontPort, int rearPort, int encoderChannelA,
-			int encoderChannelB) {
-		this(new VictorSP(frontPort), new VictorSP(rearPort), new Encoder(
-				encoderChannelA, encoderChannelB));
+	public Gearbox(int frontPort, int rearPort, int encoderChannelA, int encoderChannelB) {
+		this(new VictorSP(frontPort), new VictorSP(rearPort), new Encoder(encoderChannelA, encoderChannelB));
 	}
 
 	public void set(double speed) {
@@ -30,5 +28,9 @@ public class Gearbox {
 
 	public double getRate() {
 		return encoder.getRate();
+	}
+
+	public void reset() {
+		encoder.reset();
 	}
 }
