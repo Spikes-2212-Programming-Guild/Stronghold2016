@@ -3,7 +3,6 @@ package com.spikes2212.robot2016.subsystems;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.hal.DIOJNI;
 
 /**
  *
@@ -39,6 +38,7 @@ public class Triz extends Subsystem {
 	public boolean isDown() {
 		return !downLimit.get();
 	}
+
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 

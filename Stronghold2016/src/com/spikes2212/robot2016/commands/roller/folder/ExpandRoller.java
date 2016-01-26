@@ -1,10 +1,10 @@
 package com.spikes2212.robot2016.commands.roller.folder;
 
-import edu.wpi.first.wpilibj.command.Command;
-import static com.spikes2212.robot2016.Robot.*;
+import static com.spikes2212.robot2016.Robot.folder;
 
 import com.spikes2212.robot2016.Permanents;
-import com.spikes2212.robot2016.RobotMap;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *

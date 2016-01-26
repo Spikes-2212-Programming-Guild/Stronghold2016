@@ -1,12 +1,10 @@
 package com.spikes2212.robot2016.commands.roller.picker;
 
-import edu.wpi.first.wpilibj.command.Command;
+import static com.spikes2212.robot2016.Robot.picker;
 
 import com.spikes2212.robot2016.Permanents;
-import com.spikes2212.robot2016.RobotMap;
-import com.spikes2212.robot2016.subsystems.roller.Picker;
 
-import static com.spikes2212.robot2016.Robot.*;
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *

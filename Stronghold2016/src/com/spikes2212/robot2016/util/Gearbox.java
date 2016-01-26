@@ -5,25 +5,30 @@ import edu.wpi.first.wpilibj.VictorSP;
 
 public class Gearbox {
 	private VictorSP front, rear;
-	private Encoder frontEncoder, rearEncoder;
+	private Encoder encoder;
 
-	public Gearbox(VictorSP front, VictorSP rear, Encoder frontEncoder, Encoder rearEncoder) {
+	public Gearbox(VictorSP front, VictorSP rear, Encoder encoder) {
 		this.front = front;
 		this.rear = rear;
-		this.frontEncoder = frontEncoder;
-		this.rearEncoder = rearEncoder;
+		this.encoder = encoder;
 	}
 
-	public Gearbox(int frontPort, int rearPort, int frontEncoderChannelA, int frontEncoderChannelB,
-			int rearEncoderChannelA, int rearEncoderChannelB) {
-		front = new VictorSP(frontPort);
-		rear = new VictorSP(rearPort);
-		frontEncoder = new Encoder(frontEncoderChannelA, frontEncoderChannelB);
-		rearEncoder = new Encoder(rearEncoderChannelA, rearEncoderChannelB);
+	public Gearbox(int frontPort, int rearPort, int encoderChannelA,
+			int encoderChannelB) {
+		this(new VictorSP(frontPort), new VictorSP(rearPort), new Encoder(
+				encoderChannelA, encoderChannelB));
 	}
 
 	public void set(double speed) {
 		front.set(speed);
 		rear.set(speed);
+	}
+
+	public double getDistance() {
+		return encoder.getDistance();
+	}
+
+	public double getRate() {
+		return encoder.getRate();
 	}
 }

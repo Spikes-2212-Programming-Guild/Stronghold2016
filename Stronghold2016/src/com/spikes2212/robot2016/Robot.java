@@ -1,4 +1,3 @@
-
 package com.spikes2212.robot2016;
 
 import com.spikes2212.robot2016.subsystems.Drivetrain;
@@ -40,14 +39,18 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 		gyro = new ADXRS450_Gyro();
-		left = new Gearbox(RobotMap.LEFT_FRONT_VICTOR_PORT, RobotMap.LEFT_REAR_VICTOR_PORT,
-				RobotMap.FRONT_LEFT_ENCODER_CHANNEL_A, RobotMap.FRONT_LEFT_ENCODER_CHANNEL_B,
-				RobotMap.REAR_LEFT_ENCODER_CHANNEL_A, RobotMap.REAR_LEFT_ENCODER_CHANNEL_B);
-		right = new Gearbox(RobotMap.RIGHT_FRONT_VICTOR_PORT, RobotMap.RIGHT_REAR_VICTOR_PORT,
-				RobotMap.FRONT_RIGHT_ENCODER_CHANNEL_A, RobotMap.FRONT_RIGHT_ENCODER_CHANNEL_B,
-				RobotMap.REAR_RIGHT_ENCODER_CHANNEL_A, RobotMap.REAR_RIGHT_ENCODER_CHANNEL_B);
+		left = new Gearbox(RobotMap.LEFT_FRONT_VICTOR_PORT,
+				RobotMap.LEFT_REAR_VICTOR_PORT,
+				RobotMap.LEFT_ENCODER_CHANNEL_A,
+				RobotMap.LEFT_ENCODER_CHANNEL_B);
+		right = new Gearbox(RobotMap.RIGHT_FRONT_VICTOR_PORT,
+				RobotMap.RIGHT_REAR_VICTOR_PORT,
+				RobotMap.RIGHT_ENCODER_CHANNEL_A,
+				RobotMap.RIGHT_ENCODER_CHANNEL_B);
 		drivetrain = new Drivetrain(gyro, left, right);
-		triz = new Triz(RobotMap.TRIZ_TALON_PORT, RobotMap.TRIZ_LIMITSWICH_UP_PORT, RobotMap.TRIZ_LIMITSWICH_DOWN_PORT);
+		triz = new Triz(RobotMap.TRIZ_TALON_PORT,
+				RobotMap.TRIZ_LIMITSWICH_UP_PORT,
+				RobotMap.TRIZ_LIMITSWICH_DOWN_PORT);
 		shooter = new Shooter(RobotMap.SHOOTER_TALON_PORT);
 		picker = new Picker(RobotMap.PICKER_TALON_PORT);
 		folder = new Folder(RobotMap.FOLDER_TALON_PORT);

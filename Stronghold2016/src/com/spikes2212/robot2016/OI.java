@@ -1,7 +1,6 @@
 package com.spikes2212.robot2016;
 
 import com.spikes2212.robot2016.commands.drivetrain.JoystickForwardDrive;
-import com.spikes2212.robot2016.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;

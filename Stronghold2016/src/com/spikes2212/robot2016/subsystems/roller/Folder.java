@@ -1,10 +1,7 @@
 package com.spikes2212.robot2016.subsystems.roller;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
-
-import com.spikes2212.robot2016.Permanents;
-
 import edu.wpi.first.wpilibj.TalonSRX;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
@@ -15,6 +12,7 @@ public class Folder extends Subsystem {
 	public Folder(TalonSRX folderTalon) {
 		this.folderTalon = folderTalon;
 	}
+
 	public Folder(int folderTalonPort) {
 		this(new TalonSRX(folderTalonPort));
 	}
