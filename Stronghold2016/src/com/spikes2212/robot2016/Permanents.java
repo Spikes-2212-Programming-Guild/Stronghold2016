@@ -5,9 +5,17 @@ public class Permanents {
 	// Limit Switches are normally open
 	// Conventions about units:
 	/*
-	 * Time - second Distance - centimeter Velocity - centimeter / second
-	 * "Speed" - pwm Acceleration - centimeter / second^2 Angle - degree Angular
-	 * Rate - degree / second
+	 * Time - second Distance - centimeter
+	 * 
+	 * Velocity - centimeter / second
+	 * 
+	 * "Speed" - pulse width
+	 * 
+	 * Acceleration - centimeter / second^2
+	 * 
+	 * Angle - degree
+	 * 
+	 * Angular Rate - degree / second
 	 * 
 	 */
 
