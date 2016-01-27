@@ -1,14 +1,16 @@
 package com.spikes2212.robot2016.commands.triz;
 
+import static com.spikes2212.robot2016.Robot.oi;
+import static com.spikes2212.robot2016.Robot.triz;
+
 import edu.wpi.first.wpilibj.command.Command;
-import static com.spikes2212.robot2016.Robot.*;
 
 /**
  *
  */
-public class JoustickMoveTriz extends Command {
+public class JoystickMoveTriz extends Command {
 
-	public JoustickMoveTriz() {
+	public JoystickMoveTriz() {
 		requires(triz);
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
