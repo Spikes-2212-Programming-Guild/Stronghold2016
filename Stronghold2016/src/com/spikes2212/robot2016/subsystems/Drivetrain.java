@@ -17,26 +17,24 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void forward(double speed) {
-		left.set(speed);
-		right.set(-speed);
+		setTwoSides(speed, speed);
 	}
 
 	public void turn(double speed) {
-		right.set(speed);
-		left.set(speed);
+		setTwoSides(speed, -speed);
 	}
 
 	public double getYawAngle() {
 		return gyro.getAngle();
 	}
-	
+
 	public double getYawRate() {
 		return gyro.getRate();
 	}
 
 	// arcade
 	public void stop() {
-		this.forward(0);
+		setTwoSides(0, 0);
 	}
 
 	public void twoJoysticksDriving(double leftSpeed, double rightSpeed) {
@@ -66,8 +64,7 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void setTwoSides(double leftSpeed, double rightSpeed) {
-		left.set(-leftSpeed);
-		right.set(rightSpeed);
+		setTwoSides(-leftSpeed, rightSpeed);
 	}
 
 	@Override
@@ -78,7 +75,7 @@ public class Drivetrain extends Subsystem {
 	public double getLeftDistance() {
 		return -left.getDistance();
 	}
-	
+
 	public double getRightDistance() {
 		return right.getDistance();
 	}
