@@ -3,14 +3,14 @@ package com.spikes2212.robot2016.commands.triz;
 import com.spikes2212.robot2016.Robot;
 import com.spikes2212.robot2016.pid.PIDCommand;
 
-public class LiftPortcullis extends PIDCommand {
+public class MoveTriz extends PIDCommand {
 	private double maximumOutput;
 
 	private static final double KD = 0;
 	private static final double KI = 0;
 	private static final double KP = 0;
 
-	public LiftPortcullis(double setpoint) {
+	public MoveTriz(double setpoint) {
 		super(KP, KI, KD, setpoint);
 		requires(Robot.triz);
 	}
@@ -37,8 +37,13 @@ public class LiftPortcullis extends PIDCommand {
 
 	@Override
 	public void usePIDOutput(double output) {
-		maximumOutput = Math.max(maximumOutput, Math.abs(output));
-		Robot.triz.moveTriz(output / maximumOutput);
+		if (output != 0) {
+			maximumOutput = Math.max(maximumOutput, Math.abs(output));
+			output /= maximumOutput;
+		}
+		if (!(output > 0 && Robot.triz.isUp() || output < 0 && Robot.triz.isDown())) {
+			Robot.triz.moveTriz(output);
+		}
 	}
 
 }

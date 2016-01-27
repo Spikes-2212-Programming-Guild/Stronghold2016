@@ -1,16 +1,17 @@
 package com.spikes2212.robot2016.commands.triz;
 
-import edu.wpi.first.wpilibj.command.Command;
-import static com.spikes2212.robot2016.Robot.*;
+import static com.spikes2212.robot2016.Robot.triz;
 
 import com.spikes2212.robot2016.Permanents;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class OpenTriz extends Command {
+public class MoveTrizDown extends Command {
 
-	public OpenTriz() {
+	public MoveTrizDown() {
 		requires(triz);
 	}
 
@@ -20,8 +21,9 @@ public class OpenTriz extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (!triz.isDown())
+		if (!triz.isDown()) {
 			triz.moveTriz(Permanents.TRIZ_SPEED);
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

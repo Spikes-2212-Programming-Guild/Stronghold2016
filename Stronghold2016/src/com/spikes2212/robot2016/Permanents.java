@@ -35,4 +35,7 @@ public class Permanents {
 	public static final double AFTER_LIFTING_PORTCULLIS_DISTANCE = 0;
 	public static final double MOAT_DISTANCE = 0;
 
+	public static final double LIFTER_UP_DISTANCE = 0;
+	public static final double LIFTER_DOWN_DISTANCE = 0;
+
 }
