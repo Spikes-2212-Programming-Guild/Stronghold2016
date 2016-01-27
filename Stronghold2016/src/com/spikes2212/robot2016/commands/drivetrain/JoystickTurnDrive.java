@@ -1,6 +1,6 @@
 package com.spikes2212.robot2016.commands.drivetrain;
 
-import static com.spikes2212.robot2016.Robot.*;
+import static com.spikes2212.robot2016.Robot.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -9,8 +9,11 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class JoystickTurnDrive extends Command {
 
-	public JoystickTurnDrive() {
+	private SpeedSupplier turnSpeed;
+
+	public JoystickTurnDrive(SpeedSupplier turnSpeed) {
 		requires(drivetrain);
+		this.turnSpeed = turnSpeed;
 	}
 
 	// Called just before this Command runs the first time
@@ -19,7 +22,7 @@ public class JoystickTurnDrive extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		drivetrain.turn(oi.rightDriver.getY());
+		drivetrain.turn(turnSpeed.getSpeed());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

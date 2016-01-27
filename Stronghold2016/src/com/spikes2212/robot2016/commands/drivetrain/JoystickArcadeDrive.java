@@ -1,20 +1,25 @@
 package com.spikes2212.robot2016.commands.drivetrain;
 
-import static com.spikes2212.robot2016.Robot.*;
+import static com.spikes2212.robot2016.Robot.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class JoystickArcadeDrive extends Command {
 
-	public JoystickArcadeDrive() {
+	private SpeedSupplier straightSpeed;
+	private SpeedSupplier turnSpeed;
+
+	public JoystickArcadeDrive(SpeedSupplier straightSpeed, SpeedSupplier turnSpeed) {
 		requires(drivetrain);
+		this.straightSpeed = straightSpeed;
+		this.turnSpeed = turnSpeed;
 	}
 
 	protected void initialize() {
 	}
 
 	protected void execute() {
-		drivetrain.arcade(-oi.rightDriver.getY(), oi.rightDriver.getX());
+		drivetrain.arcade(straightSpeed.getSpeed(), turnSpeed.getSpeed());
 	}
 
 	protected boolean isFinished() {

@@ -1,6 +1,6 @@
 package com.spikes2212.robot2016.commands.drivetrain;
 
-import static com.spikes2212.robot2016.Robot.*;
+import static com.spikes2212.robot2016.Robot.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -8,6 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class TwoJoysticksDrive extends Command {
+
+	private SpeedSupplier leftSpeed;
+	private SpeedSupplier rightSpeed;
 
 	public TwoJoysticksDrive() {
 		requires(drivetrain);
@@ -17,7 +20,7 @@ public class TwoJoysticksDrive extends Command {
 	}
 
 	protected void execute() {
-		drivetrain.twoJoysticksDriving(-oi.leftDriver.getY(), -oi.rightDriver.getY());
+		drivetrain.twoJoysticksDriving(leftSpeed.getSpeed(), rightSpeed.getSpeed());
 	}
 
 	protected boolean isFinished() {

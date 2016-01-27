@@ -1,7 +1,8 @@
 package com.spikes2212.robot2016.commands.triz;
 
-import static com.spikes2212.robot2016.Robot.oi;
 import static com.spikes2212.robot2016.Robot.triz;
+
+import com.spikes2212.robot2016.commands.drivetrain.SpeedSupplier;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -10,10 +11,11 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class JoystickMoveTriz extends Command {
 
-	public JoystickMoveTriz() {
+	private SpeedSupplier speed;
+
+	public JoystickMoveTriz(SpeedSupplier speed) {
 		requires(triz);
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
+		this.speed = speed;
 	}
 
 	// Called just before this Command runs the first time
@@ -22,12 +24,12 @@ public class JoystickMoveTriz extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		triz.moveTriz(oi.leftNavigator.getY());
+		triz.moveTriz(speed.getSpeed());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return (triz.isUp() || triz.isDown());
+		return triz.isUp() || triz.isDown();
 	}
 
 	// Called once after isFinished returns true

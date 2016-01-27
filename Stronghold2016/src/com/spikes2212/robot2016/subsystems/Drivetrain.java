@@ -1,5 +1,7 @@
 package com.spikes2212.robot2016.subsystems;
 
+import com.spikes2212.robot2016.Robot;
+import com.spikes2212.robot2016.commands.drivetrain.JoystickArcadeDrive;
 import com.spikes2212.robot2016.util.Gearbox;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -69,7 +71,7 @@ public class Drivetrain extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-
+		setDefaultCommand(new JoystickArcadeDrive(() -> -Robot.oi.driver.getY(), Robot.oi.driver::getTwist));
 	}
 
 	public double getLeftDistance() {

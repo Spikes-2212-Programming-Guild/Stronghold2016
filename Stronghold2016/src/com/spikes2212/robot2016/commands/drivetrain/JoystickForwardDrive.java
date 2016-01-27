@@ -1,14 +1,16 @@
 package com.spikes2212.robot2016.commands.drivetrain;
 
 import static com.spikes2212.robot2016.Robot.drivetrain;
-import static com.spikes2212.robot2016.Robot.oi;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class JoystickForwardDrive extends Command {
 
-	public JoystickForwardDrive() {
+	private SpeedSupplier forwardSpeed;
+
+	public JoystickForwardDrive(SpeedSupplier forwardSpeed) {
 		requires(drivetrain);
+		this.forwardSpeed = forwardSpeed;
 	}
 
 	protected void initialize() {
@@ -16,7 +18,7 @@ public class JoystickForwardDrive extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		drivetrain.forward(-oi.rightDriver.getY());
+		drivetrain.forward(forwardSpeed.getSpeed());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
