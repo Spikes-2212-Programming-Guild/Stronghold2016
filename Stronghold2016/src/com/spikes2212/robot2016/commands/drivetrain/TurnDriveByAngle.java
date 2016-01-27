@@ -11,8 +11,8 @@ public class TurnDriveByAngle extends PIDCommand {
 	private static final double KI = 0;
 	private static final double KD = 0;
 
-	public TurnDriveByAngle(double distance) {
-		super(KP, KI, KD, distance);
+	public TurnDriveByAngle(double angle) {
+		super(KP, KI, KD, angle);
 		requires(Robot.drivetrain);
 	}
 

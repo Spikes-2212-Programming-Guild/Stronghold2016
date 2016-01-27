@@ -1,4 +1,4 @@
-package com.spikes2212.robot2016.commands.Triz;
+package com.spikes2212.robot2016.commands.triz;
 
 import com.spikes2212.robot2016.Robot;
 import com.spikes2212.robot2016.pid.PIDCommand;

@@ -12,26 +12,23 @@ public class Cross extends CommandGroup {
 			public double getSpeedDirection() {
 				return 1;
 			}
-		}, BACKWARD {
+		},
+		BACKWARD {
 			@Override
 			public double getSpeedDirection() {
 				return -1;
 			}
 		};
-		
+
 		public abstract double getSpeedDirection();
 	}
 
 	public enum Defense {
 		LOW_BAR, PORTCULLIS, CHEVAL_DE_FRISE, MOAT, RAMPARTS, DRAWBRIDGE, SALLY_PORT, ROCK_WALL, ROUGH_TERRAIN
 	}
-	private Defense defense;
-	private Direction direction;
 
 	public Cross(Defense defense, Direction direction) {
-		this.defense = defense;
-		this.direction = direction;
-		switch(defense) {
+		switch (defense) {
 		case CHEVAL_DE_FRISE:
 			addSequential(new CrossChevalDeFrise(direction));
 			break;
@@ -42,7 +39,7 @@ public class Cross extends CommandGroup {
 			addSequential(new CrossMoat(direction));
 			break;
 		case PORTCULLIS:
-			addSequential(new CrossPortcullis());
+			addSequential(new CrossPortcullis(direction));
 			break;
 		case RAMPARTS:
 			addSequential(new CrossRamparts(direction));
