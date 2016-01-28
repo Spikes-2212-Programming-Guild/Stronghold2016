@@ -14,11 +14,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Folder extends Subsystem {
 	private SpeedController motor;
 	private DigitalInput up, down;
-	private double phase;
 	private Encoder encoder;
+	private double phase;
 
-	public Folder(SpeedController motor, DigitalInput up, DigitalInput down,
-			Encoder encoder) {
+	public Folder(SpeedController motor, DigitalInput up, DigitalInput down, Encoder encoder) {
 		this.motor = motor;
 		this.up = up;
 		this.down = down;
@@ -26,11 +25,9 @@ public class Folder extends Subsystem {
 
 	}
 
-	public Folder(int motorChannel, int upLimitSwitch, int downLimitSwitch,
-			int encoderAPort, int encoderBPort) {
-		this(new VictorSP(motorChannel), new DigitalInput(upLimitSwitch),
-				new DigitalInput(downLimitSwitch), new Encoder(encoderAPort,
-						encoderBPort));
+	public Folder(int motorChannel, int upLimitSwitch, int downLimitSwitch, int encoderAPort, int encoderBPort) {
+		this(new VictorSP(motorChannel), new DigitalInput(upLimitSwitch), new DigitalInput(downLimitSwitch),
+				new Encoder(encoderAPort, encoderBPort));
 
 	}
 
@@ -39,11 +36,11 @@ public class Folder extends Subsystem {
 	}
 
 	public boolean isUp() {
-		return up.get();
+		return !up.get();
 	}
 
 	public boolean isDown() {
-		return down.get();
+		return !down.get();
 	}
 
 	public void stop() {
@@ -59,6 +56,10 @@ public class Folder extends Subsystem {
 			phase = Permanents.FOLDER_DOWN_DISTANCE;
 			encoder.reset();
 		}
+	}
+
+	public double getDistance() {
+		return phase + encoder.getDistance();
 	}
 
 	// Put methods for controlling this subsystem

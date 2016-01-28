@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ExpandRoller extends Command {
+public class MoveFolderUp extends Command {
 
-	public ExpandRoller() {
+	public MoveFolderUp() {
 		requires(folder);
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
@@ -23,12 +23,14 @@ public class ExpandRoller extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		folder.moveFolder(Permanents.FOLDER_SPEED);
+		if (!isFinished()) {
+			folder.moveFolder(Permanents.FOLDER_UP_SPEED);
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return folder.isUp();
 	}
 
 	// Called once after isFinished returns true

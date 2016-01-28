@@ -8,9 +8,9 @@ import com.spikes2212.robot2016.Permanents;
 /**
  *
  */
-public class RetractRoller extends Command {
+public class MoveFolderDown extends Command {
 
-	public RetractRoller() {
+	public MoveFolderDown() {
 		requires(folder);
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
@@ -20,14 +20,14 @@ public class RetractRoller extends Command {
 	protected void initialize() {
 	}
 
-	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		folder.moveFolder(-Permanents.FOLDER_SPEED);
+		if (!isFinished()) {
+			folder.moveFolder(Permanents.FOLDER_DOWN_SPEED);
+		}
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return folder.isDown();
 	}
 
 	// Called once after isFinished returns true
