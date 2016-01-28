@@ -47,19 +47,31 @@ public class Robot extends IterativeRobot {
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
+	@Override
 	public void robotInit() {
 		oi = new OI();
 		gyro = new ADXRS450_Gyro();
-		left = new Gearbox(RobotMap.LEFT_FRONT_VICTOR_PORT, RobotMap.LEFT_REAR_VICTOR_PORT,
-				RobotMap.LEFT_ENCODER_CHANNEL_A, RobotMap.LEFT_ENCODER_CHANNEL_B);
-		right = new Gearbox(RobotMap.RIGHT_FRONT_VICTOR_PORT, RobotMap.RIGHT_REAR_VICTOR_PORT,
-				RobotMap.RIGHT_ENCODER_CHANNEL_A, RobotMap.RIGHT_ENCODER_CHANNEL_B);
+		left = new Gearbox(RobotMap.LEFT_FRONT_VICTOR_PORT,
+				RobotMap.LEFT_REAR_VICTOR_PORT,
+				RobotMap.LEFT_ENCODER_CHANNEL_A,
+				RobotMap.LEFT_ENCODER_CHANNEL_B);
+		right = new Gearbox(RobotMap.RIGHT_FRONT_VICTOR_PORT,
+				RobotMap.RIGHT_REAR_VICTOR_PORT,
+				RobotMap.RIGHT_ENCODER_CHANNEL_A,
+				RobotMap.RIGHT_ENCODER_CHANNEL_B);
 		drivetrain = new Drivetrain(gyro, left, right);
-		triz = new Triz(RobotMap.TRIZ_TALON_PORT, RobotMap.TRIZ_LIMITSWICH_UP_PORT, RobotMap.TRIZ_LIMITSWICH_DOWN_PORT,
-				RobotMap.TRIZ_UNDER_PORTCULLIS_PORT, RobotMap.TRIZ_ENCODER_CHANNEL_A, RobotMap.TRIZ_ENCODER_CHANNEL_B);
+		triz = new Triz(RobotMap.TRIZ_TALON_PORT,
+				RobotMap.TRIZ_LIMITSWICH_UP_PORT,
+				RobotMap.TRIZ_LIMITSWICH_DOWN_PORT,
+				RobotMap.TRIZ_UNDER_PORTCULLIS_PORT,
+				RobotMap.TRIZ_ENCODER_CHANNEL_A,
+				RobotMap.TRIZ_ENCODER_CHANNEL_B);
 		shooter = new Shooter(RobotMap.SHOOTER_TALON_PORT);
-		picker = new Picker(RobotMap.PICKER_TALON_PORT, RobotMap.BALL_LIMIT_SWITCH_CHANNEL);
-		folder = new Folder(RobotMap.FOLDER_TALON_PORT);
+		picker = new Picker(RobotMap.PICKER_TALON_PORT,
+				RobotMap.BALL_LIMIT_SWITCH_CHANNEL);
+		folder = new Folder(RobotMap.FOLDER_TALON_PORT,
+				RobotMap.FOLDER_LIMITSWICH_UP_PORT,
+				RobotMap.FOLDER_LIMITSWICH_DOWN_PORT);
 		defenseChooser = new SendableChooser();
 		defenseChooser.addDefault("Low Bar", Defense.LOW_BAR);
 		defenseChooser.addObject("Portcullis", Defense.PORTCULLIS);
@@ -79,10 +91,12 @@ public class Robot extends IterativeRobot {
 	 * You can use it to reset any subsystem information you want to clear when
 	 * the robot is disabled.
 	 */
+	@Override
 	public void disabledInit() {
 
 	}
 
+	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
@@ -98,6 +112,7 @@ public class Robot extends IterativeRobot {
 	 * chooser code above (like the commented example) or additional comparisons
 	 * to the switch structure below with additional strings & commands.
 	 */
+	@Override
 	public void autonomousInit() {
 		try {
 			Defense defense = (Defense) defenseChooser.getSelected();
@@ -122,16 +137,19 @@ public class Robot extends IterativeRobot {
 	/**
 	 * This function is called periodically during autonomous
 	 */
+	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 	}
 
+	@Override
 	public void teleopInit() {
 	}
 
 	/**
 	 * This function is called periodically during operator control
 	 */
+	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 	}
@@ -139,6 +157,7 @@ public class Robot extends IterativeRobot {
 	/**
 	 * This function is called periodically during test mode
 	 */
+	@Override
 	public void testPeriodic() {
 		LiveWindow.run();
 	}

@@ -10,17 +10,17 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Folder extends Subsystem {
 	private SpeedController motor;
-	DigitalInput open, closed;
+	private DigitalInput up, down;
 
-	public Folder(SpeedController motor, DigitalInput open, DigitalInput closed) {
+	public Folder(SpeedController motor, DigitalInput up, DigitalInput down) {
 		this.motor = motor;
-		this.open = open;
-		this.closed = closed;
+		this.up = up;
+		this.down = down;
 	}
 
-	public Folder(int motorChannel, int openLimitSwitch, int closedLimitSwitch) {
-		this(new VictorSP(motorChannel), new DigitalInput(openLimitSwitch),
-				new DigitalInput(closedLimitSwitch));
+	public Folder(int motorChannel, int upLimitSwitch, int downLimitSwitch) {
+		this(new VictorSP(motorChannel), new DigitalInput(upLimitSwitch),
+				new DigitalInput(downLimitSwitch));
 
 	}
 
@@ -28,12 +28,12 @@ public class Folder extends Subsystem {
 		motor.set(speed);
 	}
 
-	public boolean isOpen() {
-		return open.get();
+	public boolean isUp() {
+		return up.get();
 	}
 
-	public boolean isClose() {
-		return closed.get();
+	public boolean isDown() {
+		return down.get();
 	}
 
 	public void stop() {
