@@ -3,6 +3,7 @@ package com.spikes2212.robot2016.commands.roller.folder;
 import static com.spikes2212.robot2016.Robot.folder;
 
 import com.spikes2212.robot2016.pid.PIDCommand;
+import com.spikes2212.robot2016.pid.PIDCalculator.Tolerance;
 
 public class MoveFolder extends PIDCommand {
 	private double maximumOutput;
@@ -11,8 +12,8 @@ public class MoveFolder extends PIDCommand {
 	private static final double KI = 0;
 	private static final double KP = 0;
 
-	public MoveFolder(double setpoint) {
-		super(KP, KI, KD, setpoint);
+	public MoveFolder(double setpoint, Tolerance tolerance) {
+		super(KP, KI, KD, setpoint, tolerance);
 		requires(folder);
 	}
 

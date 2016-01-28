@@ -1,18 +1,20 @@
 package com.spikes2212.robot2016.commands.drivetrain;
 
 import com.spikes2212.robot2016.Robot;
+import com.spikes2212.robot2016.pid.PIDCalculator.AbsoluteTolerance;
 import com.spikes2212.robot2016.pid.PIDCommand;
 
 public class StraightDriveByDistance extends PIDCommand {
 
-	private double maximumOutput;
-
 	private static final double KP = 1;
 	private static final double KI = 0;
 	private static final double KD = 0;
+	private static final double ABSOLUTE_TOLERANCE = 1; // centimeter
 
+	private double maximumOutput;
+	
 	public StraightDriveByDistance(double distance) {
-		super(KP, KI, KD, distance);
+		super(KP, KI, KD, distance, new AbsoluteTolerance(ABSOLUTE_TOLERANCE));
 		requires(Robot.drivetrain);
 	}
 
@@ -29,13 +31,11 @@ public class StraightDriveByDistance extends PIDCommand {
 
 	@Override
 	protected void initialize() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	protected void end() {
-		// TODO Auto-generated method stub
 		
 	}
 	

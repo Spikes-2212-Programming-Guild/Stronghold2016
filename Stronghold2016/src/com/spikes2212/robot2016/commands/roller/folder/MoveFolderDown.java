@@ -22,7 +22,7 @@ public class MoveFolderDown extends Command {
 
 	protected void execute() {
 		if (!isFinished()) {
-			folder.moveFolder(Permanents.FOLDER_DOWN_SPEED);
+			folder.moveFolder(-Permanents.FOLDER_DOWN_SPEED);
 		}
 	}
 

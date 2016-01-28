@@ -3,12 +3,42 @@ package com.spikes2212.robot2016.pid;
 public class PIDCalculator {
 
 	public static final long DEFAULT_DT = 30;
+	
+	public interface Tolerance {
+		boolean hasReached(double setpoint, double error);
+	}
+
+	public static class AbsoluteTolerance implements Tolerance {
+		private double value;
+
+		public AbsoluteTolerance(double value) {
+			this.value = value;
+		}
+
+		@Override
+		public boolean hasReached(double setpoint, double error) {
+			return Math.abs(error) < value;
+		}
+	}
+
+	public static class RelativeTolerance implements Tolerance {
+		private double value;
+
+		public RelativeTolerance(double value) {
+			this.value = value;
+		}
+
+		@Override
+		public boolean hasReached(double setpoint, double error) {
+			return Math.abs(error / setpoint) < value;
+		}
+	}
 	private long lastTime = 0;
 	private double kp, ki, kd;
 	private double pValue, iValue, dValue;
 	private double setpoint;
 	private double error, prevError;
-	private double tolerance;
+	private Tolerance tolerance;
 
 	public PIDCalculator(double kp, double ki, double kd) {
 		this.kp = kp;
@@ -57,12 +87,12 @@ public class PIDCalculator {
 		this.error = setpoint;
 	}
 
-	public void setTolerance(double tolerance) {
+	public void setTolerance(Tolerance tolerance) {
 		this.tolerance = tolerance;
 	}
 
 	public boolean hasReached() {
-		return Math.abs(error) < tolerance;
+		return tolerance.hasReached(setpoint, error);
 	}
 
 }
