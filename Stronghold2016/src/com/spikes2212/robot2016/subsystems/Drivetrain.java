@@ -1,21 +1,24 @@
 package com.spikes2212.robot2016.subsystems;
 
+import com.spikes2212.robot2016.Constants;
 import com.spikes2212.robot2016.Robot;
 import com.spikes2212.robot2016.commands.drivetrain.JoystickArcadeDrive;
 import com.spikes2212.robot2016.util.Gearbox;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 public class Drivetrain extends Subsystem {
 	private Gearbox left, right;
-
 	private Gyro gyro;
+	private Accelerometer accelerometer;
 
-	public Drivetrain(Gyro gyro, Gearbox left, Gearbox right) {
+	public Drivetrain(Gearbox left, Gearbox right, Gyro gyro, Accelerometer accelerometer) {
 		this.left = left;
 		this.right = right;
 		this.gyro = gyro;
+		this.accelerometer = accelerometer;
 	}
 
 	public void forward(double speed) {
@@ -28,6 +31,15 @@ public class Drivetrain extends Subsystem {
 
 	public double getYawAngle() {
 		return gyro.getAngle();
+	}
+
+	public double getZAcceleration() {
+		return accelerometer.getZ();
+	}
+
+	public double getAngleWithFloorDegrees() {
+		return Math
+				.toDegrees(Math.acos(Math.max(-1, Math.min(1, getZAcceleration() / Constants.FREE_FALL_GRAVITY))));
 	}
 
 	public double getYawRate() {
@@ -81,4 +93,5 @@ public class Drivetrain extends Subsystem {
 	public double getRightDistance() {
 		return right.getDistance();
 	}
+	
 }

@@ -1,6 +1,6 @@
 package com.spikes2212.robot2016.subsystems.roller;
 
-import com.spikes2212.robot2016.Permanents;
+import com.spikes2212.robot2016.Constants;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
@@ -49,11 +49,11 @@ public class Folder extends Subsystem {
 
 	public void calibrate() {
 		if (isUp()) {
-			phase = Permanents.FOLDER_UP_DISTANCE;
+			phase = Constants.FOLDER_UP_DISTANCE;
 			encoder.reset();
 		}
 		if (isDown()) {
-			phase = Permanents.FOLDER_DOWN_DISTANCE;
+			phase = Constants.FOLDER_DOWN_DISTANCE;
 			encoder.reset();
 		}
 	}

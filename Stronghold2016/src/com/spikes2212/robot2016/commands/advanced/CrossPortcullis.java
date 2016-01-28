@@ -1,6 +1,6 @@
 package com.spikes2212.robot2016.commands.advanced;
 
-import com.spikes2212.robot2016.Permanents;
+import com.spikes2212.robot2016.Constants;
 import com.spikes2212.robot2016.commands.advanced.Cross.Direction;
 import com.spikes2212.robot2016.commands.drivetrain.StraightDriveByDistance;
 import com.spikes2212.robot2016.commands.drivetrain.StraightDriveToPortcullis;
@@ -20,8 +20,8 @@ public class CrossPortcullis extends CommandGroup {
 		if (direction == Direction.BACKWARD) {
 			addSequential(new TurnDriveByAngle(ROTATE_ANGLE));
 		}
-		addSequential(new StraightDriveToPortcullis(Permanents.DRIVE_TO_PORTCULLIS_VELOCITY));
-		addSequential(new MoveTriz(Permanents.LIFTING_PORTCULLIS_DISTANCE));
-		addSequential(new StraightDriveByDistance(Permanents.AFTER_LIFTING_PORTCULLIS_DISTANCE));
+		addSequential(new StraightDriveToPortcullis(Constants.DRIVE_TO_PORTCULLIS_VELOCITY));
+		addSequential(new MoveTriz(Constants.LIFTING_PORTCULLIS_DISTANCE));
+		addSequential(new StraightDriveByDistance(Constants.AFTER_LIFTING_PORTCULLIS_DISTANCE));
 	}
 }

@@ -3,7 +3,7 @@ package com.spikes2212.robot2016.commands.roller.folder;
 import edu.wpi.first.wpilibj.command.Command;
 import static com.spikes2212.robot2016.Robot.*;
 
-import com.spikes2212.robot2016.Permanents;
+import com.spikes2212.robot2016.Constants;
 
 /**
  *
@@ -22,7 +22,7 @@ public class MoveFolderDown extends Command {
 
 	protected void execute() {
 		if (!isFinished()) {
-			folder.moveFolder(-Permanents.FOLDER_DOWN_SPEED);
+			folder.moveFolder(-Constants.FOLDER_DOWN_SPEED);
 		}
 	}
 

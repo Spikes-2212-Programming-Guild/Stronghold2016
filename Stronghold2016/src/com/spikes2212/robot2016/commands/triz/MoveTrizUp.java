@@ -2,7 +2,7 @@ package com.spikes2212.robot2016.commands.triz;
 
 import static com.spikes2212.robot2016.Robot.triz;
 
-import com.spikes2212.robot2016.Permanents;
+import com.spikes2212.robot2016.Constants;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -23,7 +23,7 @@ public class MoveTrizUp extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		if (!triz.isUp()) {
-			triz.moveTriz(-Permanents.TRIZ_SPEED);
+			triz.moveTriz(-Constants.TRIZ_SPEED);
 		}
 	}
 

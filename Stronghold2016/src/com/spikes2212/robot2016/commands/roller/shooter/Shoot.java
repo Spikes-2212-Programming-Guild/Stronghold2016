@@ -2,7 +2,7 @@ package com.spikes2212.robot2016.commands.roller.shooter;
 
 import static com.spikes2212.robot2016.Robot.shooter;
 
-import com.spikes2212.robot2016.Permanents;
+import com.spikes2212.robot2016.Constants;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -24,7 +24,7 @@ public class Shoot extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		shooter.shoot(Permanents.SHOOT_SPEED);
+		shooter.shoot(Constants.SHOOT_SPEED);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

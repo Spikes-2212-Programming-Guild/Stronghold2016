@@ -1,6 +1,6 @@
 package com.spikes2212.robot2016.subsystems;
 
-import com.spikes2212.robot2016.Permanents;
+import com.spikes2212.robot2016.Constants;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
@@ -53,11 +53,11 @@ public class Triz extends Subsystem {
 
 	public void calibrate() {
 		if (isUp()) {
-			phase = Permanents.LIFTER_UP_DISTANCE;
+			phase = Constants.LIFTER_UP_DISTANCE;
 			encoder.reset();
 		}
 		if (isDown()) {
-			phase = Permanents.LIFTER_DOWN_DISTANCE;
+			phase = Constants.LIFTER_DOWN_DISTANCE;
 			encoder.reset();
 		}
 	}

@@ -1,6 +1,6 @@
 package com.spikes2212.robot2016;
 
-public class Permanents {
+public class Constants {
 
 	// Limit Switches are normally open
 	// Conventions about units:
@@ -39,4 +39,6 @@ public class Permanents {
 	public static final double LIFTER_DOWN_DISTANCE = 0;
 	public static final double FOLDER_UP_DISTANCE = 0;
 	public static final double FOLDER_DOWN_DISTANCE = 0;
+
+	public static final double FREE_FALL_GRAVITY = 0;
 }

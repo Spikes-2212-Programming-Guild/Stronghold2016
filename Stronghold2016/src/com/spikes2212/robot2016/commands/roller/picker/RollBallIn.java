@@ -2,7 +2,7 @@ package com.spikes2212.robot2016.commands.roller.picker;
 
 import static com.spikes2212.robot2016.Robot.picker;
 
-import com.spikes2212.robot2016.Permanents;
+import com.spikes2212.robot2016.Constants;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -20,7 +20,7 @@ public class RollBallIn extends Command {
 
 	protected void execute() {
 		if (!isFinished()) {
-			picker.roll(Permanents.PICKER_ROLL_IN_SPEED);
+			picker.roll(Constants.PICKER_ROLL_IN_SPEED);
 		}
 	}
 

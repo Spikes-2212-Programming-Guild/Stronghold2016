@@ -2,7 +2,7 @@ package com.spikes2212.robot2016.commands.roller.folder;
 
 import static com.spikes2212.robot2016.Robot.folder;
 
-import com.spikes2212.robot2016.Permanents;
+import com.spikes2212.robot2016.Constants;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -24,7 +24,7 @@ public class MoveFolderUp extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		if (!isFinished()) {
-			folder.moveFolder(Permanents.FOLDER_UP_SPEED);
+			folder.moveFolder(Constants.FOLDER_UP_SPEED);
 		}
 	}
 
