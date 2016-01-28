@@ -5,14 +5,14 @@ import static com.spikes2212.robot2016.Robot.folder;
 import com.spikes2212.robot2016.pid.PIDCommand;
 import com.spikes2212.robot2016.pid.PIDCalculator.Tolerance;
 
-public class MoveFolder extends PIDCommand {
+public class PIDMoveFolder extends PIDCommand {
 	private double maximumOutput;
 
 	private static final double KD = 0;
 	private static final double KI = 0;
 	private static final double KP = 0;
 
-	public MoveFolder(double setpoint, Tolerance tolerance) {
+	public PIDMoveFolder(double setpoint, Tolerance tolerance) {
 		super(KP, KI, KD, setpoint, tolerance);
 		requires(folder);
 	}

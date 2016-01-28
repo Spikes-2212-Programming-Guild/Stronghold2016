@@ -1,7 +1,7 @@
 package com.spikes2212.robot2016.commands.advanced;
 
 import com.spikes2212.robot2016.commands.advanced.Cross.Direction;
-import com.spikes2212.robot2016.commands.drivetrain.StraightDriveByDistance;
+import com.spikes2212.robot2016.commands.drivetrain.PIDStraightDriveByDistance;
 import com.spikes2212.robot2016.commands.roller.folder.MoveFolderUp;
 import com.spikes2212.robot2016.commands.triz.MoveTrizDown;
 
@@ -18,6 +18,6 @@ public class CrossLowBar extends CommandGroup {
     	//TODO: Make sure that MoveTrizDown is longer than ExpandRoller
     	addParallel(new MoveFolderUp());
     	addSequential(new MoveTrizDown());
-    	addSequential(new StraightDriveByDistance(direction.getSpeedDirection() * DISTANCE));
+    	addSequential(new PIDStraightDriveByDistance(direction.getSpeedDirection() * DISTANCE));
     }
 }

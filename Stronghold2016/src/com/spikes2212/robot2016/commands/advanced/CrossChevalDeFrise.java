@@ -1,7 +1,7 @@
 package com.spikes2212.robot2016.commands.advanced;
 
 import com.spikes2212.robot2016.commands.advanced.Cross.Direction;
-import com.spikes2212.robot2016.commands.drivetrain.StraightDriveByDistance;
+import com.spikes2212.robot2016.commands.drivetrain.PIDStraightDriveByDistance;
 import com.spikes2212.robot2016.commands.triz.MoveTrizDown;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -15,6 +15,6 @@ public class CrossChevalDeFrise extends CommandGroup {
 
 	public CrossChevalDeFrise(Direction direction) {
 		addSequential(new MoveTrizDown());
-		addSequential(new StraightDriveByDistance(direction.getSpeedDirection() * DISTANCE));
+		addSequential(new PIDStraightDriveByDistance(direction.getSpeedDirection() * DISTANCE));
 	}
 }
