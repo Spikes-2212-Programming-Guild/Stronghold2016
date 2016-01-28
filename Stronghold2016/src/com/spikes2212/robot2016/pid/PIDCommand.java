@@ -17,7 +17,7 @@ public abstract class PIDCommand extends Command {
 
 	@Override
 	protected void execute() {
-		usePIDOutput(getPIDInput());
+		usePIDOutput(calculator.calculate(getPIDInput()));
 	}
 
 	@Override
