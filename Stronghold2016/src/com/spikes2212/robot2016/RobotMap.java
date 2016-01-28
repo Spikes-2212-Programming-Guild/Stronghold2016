@@ -27,6 +27,8 @@ public class RobotMap {
 	public static final int FOLDER_TALON_PORT = 0;
 	public static final int FOLDER_LIMITSWICH_UP_PORT = 0;
 	public static final int FOLDER_LIMITSWICH_DOWN_PORT = 0;
+	public static final int FOLDER_ENCODER_DOWN_PORT_A = 0;
+	public static final int FOLDER_ENCODER_DOWN_PORT_B = 0;
 	public static final int PICKER_TALON_PORT = 0;
 	public static final int SHOOTER_TALON_PORT = 0;
 	public static final int BALL_LIMIT_SWITCH_CHANNEL = 0;

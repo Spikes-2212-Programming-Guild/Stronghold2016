@@ -71,7 +71,9 @@ public class Robot extends IterativeRobot {
 				RobotMap.BALL_LIMIT_SWITCH_CHANNEL);
 		folder = new Folder(RobotMap.FOLDER_TALON_PORT,
 				RobotMap.FOLDER_LIMITSWICH_UP_PORT,
-				RobotMap.FOLDER_LIMITSWICH_DOWN_PORT);
+				RobotMap.FOLDER_LIMITSWICH_DOWN_PORT,
+				RobotMap.FOLDER_ENCODER_DOWN_PORT_A,
+				RobotMap.FOLDER_ENCODER_DOWN_PORT_B);
 		defenseChooser = new SendableChooser();
 		defenseChooser.addDefault("Low Bar", Defense.LOW_BAR);
 		defenseChooser.addObject("Portcullis", Defense.PORTCULLIS);

@@ -16,7 +16,6 @@ public class Permanents {
 	 * Angle - degree
 	 * 
 	 * Angular Rate - degree / second
-	 * 
 	 */
 
 	public static final int TZOORS_CONSTANT = 4 - 1;
@@ -37,5 +36,6 @@ public class Permanents {
 
 	public static final double LIFTER_UP_DISTANCE = 0;
 	public static final double LIFTER_DOWN_DISTANCE = 0;
-
+	public static final double FOLDER_UP_DISTANCE = 0;
+	public static final double FOLDER_DOWN_DISTANCE = 0;
 }
