@@ -2,6 +2,8 @@ package com.spikes2212.robot2016;
 
 import java.util.Optional;
 
+import com.spikes2212.robot2016.RobotMap.DIO;
+import com.spikes2212.robot2016.RobotMap.PWM;
 import com.spikes2212.robot2016.commands.advanced.Cross.Defense;
 import com.spikes2212.robot2016.commands.advanced.CrossAndDropAndReturn;
 import com.spikes2212.robot2016.commands.advanced.CrossAndReturn;
@@ -51,29 +53,15 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 		gyro = new ADXRS450_Gyro();
-		left = new Gearbox(RobotMap.LEFT_FRONT_VICTOR_PORT,
-				RobotMap.LEFT_REAR_VICTOR_PORT,
-				RobotMap.LEFT_ENCODER_CHANNEL_A,
-				RobotMap.LEFT_ENCODER_CHANNEL_B);
-		right = new Gearbox(RobotMap.RIGHT_FRONT_VICTOR_PORT,
-				RobotMap.RIGHT_REAR_VICTOR_PORT,
-				RobotMap.RIGHT_ENCODER_CHANNEL_A,
-				RobotMap.RIGHT_ENCODER_CHANNEL_B);
+		left = new Gearbox(PWM.LEFT_FRONT_VICTOR, PWM.LEFT_REAR_VICTOR, DIO.LEFT_ENCODER_A, DIO.LEFT_ENCODER_B);
+		right = new Gearbox(PWM.RIGHT_FRONT_VICTOR, PWM.RIGHT_REAR_VICTOR, DIO.RIGHT_ENCODER_A, DIO.RIGHT_ENCODER_B);
 		drivetrain = new Drivetrain(gyro, left, right);
-		triz = new Triz(RobotMap.TRIZ_TALON_PORT,
-				RobotMap.TRIZ_LIMITSWICH_UP_PORT,
-				RobotMap.TRIZ_LIMITSWICH_DOWN_PORT,
-				RobotMap.TRIZ_UNDER_PORTCULLIS_PORT,
-				RobotMap.TRIZ_ENCODER_CHANNEL_A,
-				RobotMap.TRIZ_ENCODER_CHANNEL_B);
-		shooter = new Shooter(RobotMap.SHOOTER_TALON_PORT);
-		picker = new Picker(RobotMap.PICKER_TALON_PORT,
-				RobotMap.BALL_LIMIT_SWITCH_CHANNEL);
-		folder = new Folder(RobotMap.FOLDER_TALON_PORT,
-				RobotMap.FOLDER_LIMITSWICH_UP_PORT,
-				RobotMap.FOLDER_LIMITSWICH_DOWN_PORT,
-				RobotMap.FOLDER_ENCODER_DOWN_PORT_A,
-				RobotMap.FOLDER_ENCODER_DOWN_PORT_B);
+		triz = new Triz(PWM.TRIZ_MOTOR, DIO.TRIZ_UP, DIO.TRIZ_DOWN, DIO.TRIZ_UNDER_PORTCULLIS, DIO.TRIZ_ENCODER_A,
+				DIO.TRIZ_ENCODER_B);
+		shooter = new Shooter(PWM.SHOOTER_MOTOR);
+		picker = new Picker(PWM.PICKER_MOTOR, DIO.BALL_INSIDE);
+		folder = new Folder(PWM.FOLDER_MOTOR, DIO.FOLDER_UP, DIO.FOLDER_DOWN, DIO.FOLDER_ENCODER_A,
+				DIO.FOLDER_ENCODER_B);
 		defenseChooser = new SendableChooser();
 		defenseChooser.addDefault("Low Bar", Defense.LOW_BAR);
 		defenseChooser.addObject("Portcullis", Defense.PORTCULLIS);
