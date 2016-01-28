@@ -25,20 +25,21 @@ public class PIDTurnDriveByAngle extends PIDCommand {
 
 	@Override
 	public void usePIDOutput(double output) {
-		maximumOutput = Math.max(maximumOutput, Math.abs(output));
-		Robot.drivetrain.turn(output / maximumOutput);
+		if (output != 0) {
+			maximumOutput = Math.max(maximumOutput, Math.abs(output));
+			output /= maximumOutput;
+		}
+		Robot.drivetrain.turn(output);
 	}
 
 	@Override
 	protected void initialize() {
-		
+
 	}
 
 	@Override
 	protected void end() {
-		
+
 	}
-	
-	
 
 }

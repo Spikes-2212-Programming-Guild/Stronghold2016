@@ -25,8 +25,11 @@ public class PIDStraightDriveByDistance extends PIDCommand {
 
 	@Override
 	public void usePIDOutput(double output) {
-		maximumOutput = Math.max(maximumOutput, Math.abs(output));
-		Robot.drivetrain.forward(output / maximumOutput);
+		if (output != 0) {
+			maximumOutput = Math.max(maximumOutput, Math.abs(output));
+			output /= maximumOutput;
+		}
+		Robot.drivetrain.forward(output);
 	}
 
 	@Override
