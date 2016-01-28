@@ -1,6 +1,7 @@
 package com.spikes2212.robot2016.commands.triz;
 
-import com.spikes2212.robot2016.Robot;
+import static com.spikes2212.robot2016.Robot.triz;
+
 import com.spikes2212.robot2016.pid.PIDCommand;
 
 public class MoveTriz extends PIDCommand {
@@ -12,27 +13,22 @@ public class MoveTriz extends PIDCommand {
 
 	public MoveTriz(double setpoint) {
 		super(KP, KI, KD, setpoint);
-		requires(Robot.triz);
+		requires(triz);
 	}
 
 	@Override
 	protected void initialize() {
-
+		triz.calibrate();
 	}
 
 	@Override
 	protected void end() {
-		Robot.triz.stop();
-	}
-
-	@Override
-	protected void interrupted() {
-		end();
+		triz.stop();
 	}
 
 	@Override
 	public double getPIDInput() {
-		return Robot.triz.getDistance();
+		return triz.getDistance();
 	}
 
 	@Override
@@ -41,8 +37,8 @@ public class MoveTriz extends PIDCommand {
 			maximumOutput = Math.max(maximumOutput, Math.abs(output));
 			output /= maximumOutput;
 		}
-		if (!(output > 0 && Robot.triz.isUp() || output < 0 && Robot.triz.isDown())) {
-			Robot.triz.moveTriz(output);
+		if (!(output > 0 && triz.isUp() || output < 0 && triz.isDown())) {
+			triz.moveTriz(output);
 		}
 	}
 

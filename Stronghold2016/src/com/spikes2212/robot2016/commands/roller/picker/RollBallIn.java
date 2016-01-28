@@ -15,30 +15,23 @@ public class RollBallIn extends Command {
 		requires(picker);
 	}
 
-	// Called just before this Command runs the first time
 	protected void initialize() {
-		if (picker.isBallInside()) {
-			end();
+	}
+
+	protected void execute() {
+		if (!isFinished()) {
+			picker.roll(Permanents.PICKER_ROLL_IN_SPEED);
 		}
 	}
 
-	// Called repeatedly when this Command is scheduled to run
-	protected void execute() {
-		picker.roll(Permanents.PICKER_ROLL_IN_SPEED);
-	}
-
-	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		return picker.isBallInside();
 	}
 
-	// Called once after isFinished returns true
 	protected void end() {
 		picker.stop();
 	}
 
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
 	protected void interrupted() {
 		end();
 	}

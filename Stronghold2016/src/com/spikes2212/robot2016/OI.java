@@ -2,6 +2,8 @@ package com.spikes2212.robot2016;
 
 import com.spikes2212.robot2016.commands.drivetrain.JoystickForwardDrive;
 import com.spikes2212.robot2016.commands.drivetrain.JoystickTurnDrive;
+import com.spikes2212.robot2016.commands.roller.picker.RollBallIn;
+import com.spikes2212.robot2016.commands.roller.picker.RollOut;
 import com.spikes2212.robot2016.commands.triz.JoystickMoveTriz;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -17,9 +19,11 @@ public class OI {
 	public final Joystick leftNavigator = new Joystick(1);
 
 	public OI() {
-		new JoystickButton(driver, 1).whileHeld(new JoystickForwardDrive(() -> -driver.getY()));
-		new JoystickButton(driver, 3).whileHeld(new JoystickTurnDrive(() -> driver.getTwist()));
+		new JoystickButton(driver, 1).toggleWhenPressed(new JoystickForwardDrive(() -> -driver.getY()));
+		new JoystickButton(driver, 3).toggleWhenPressed(new JoystickTurnDrive(() -> driver.getTwist()));
 		new JoystickButton(rightNavigator, 6).whileHeld(new JoystickMoveTriz(() -> -rightNavigator.getY()));
+		new JoystickButton(rightNavigator, 1).toggleWhenPressed(new RollBallIn());
+		new JoystickButton(rightNavigator, 3).toggleWhenPressed(new RollOut());
 	}
 
 }

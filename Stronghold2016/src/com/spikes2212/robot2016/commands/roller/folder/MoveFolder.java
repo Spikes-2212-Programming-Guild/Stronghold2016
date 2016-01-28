@@ -1,6 +1,7 @@
 package com.spikes2212.robot2016.commands.roller.folder;
 
-import com.spikes2212.robot2016.Robot;
+import static com.spikes2212.robot2016.Robot.folder;
+
 import com.spikes2212.robot2016.pid.PIDCommand;
 
 public class MoveFolder extends PIDCommand {
@@ -12,27 +13,22 @@ public class MoveFolder extends PIDCommand {
 
 	public MoveFolder(double setpoint) {
 		super(KP, KI, KD, setpoint);
-		requires(Robot.triz);
+		requires(folder);
 	}
 
 	@Override
 	protected void initialize() {
-
+		folder.calibrate();
 	}
 
 	@Override
 	protected void end() {
-		Robot.triz.stop();
-	}
-
-	@Override
-	protected void interrupted() {
-		end();
+		folder.stop();
 	}
 
 	@Override
 	public double getPIDInput() {
-		return Robot.triz.getDistance();
+		return folder.getDistance();
 	}
 
 	@Override
@@ -41,8 +37,8 @@ public class MoveFolder extends PIDCommand {
 			maximumOutput = Math.max(maximumOutput, Math.abs(output));
 			output /= maximumOutput;
 		}
-		if (!(output > 0 && Robot.triz.isUp() || output < 0 && Robot.triz.isDown())) {
-			Robot.triz.moveTriz(output);
+		if (!(output > 0 && folder.isUp() || output < 0 && folder.isDown())) {
+			folder.moveFolder(output);
 		}
 	}
 
