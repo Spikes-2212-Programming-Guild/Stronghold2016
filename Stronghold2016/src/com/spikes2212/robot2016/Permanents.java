@@ -20,12 +20,12 @@ public class Permanents {
 
 	public static final int TZOORS_CONSTANT = 4 - 1;
 
-	public static final int TRIZ_SPEED = 0;
-	public static final int FOLDER_UP_SPEED = 0;
-	public static final int FOLDER_DOWN_SPEED = 0;
-	public static final int PICKER_ROLL_IN_SPEED = 0;
-	public static final int PICKER_ROLL_OUT_SPEED = 0;
-	public static final int SHOOT_SPEED = 0;
+	public static final double TRIZ_SPEED = 0;
+	public static final double FOLDER_UP_SPEED = 0;
+	public static final double FOLDER_DOWN_SPEED = 0;
+	public static final double PICKER_ROLL_IN_SPEED = 0;
+	public static final double PICKER_ROLL_OUT_SPEED = 0;
+	public static final double SHOOT_SPEED = 0;
 
 	public static final double DRIVE_TO_PORTCULLIS_VELOCITY = 0;
 
