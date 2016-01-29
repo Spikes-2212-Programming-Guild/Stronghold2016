@@ -1,7 +1,7 @@
-package com.spikes2212.robot2016.commands.advanced;
+package com.spikes2212.robot2016.commands.autonomous;
 
-import com.spikes2212.robot2016.commands.advanced.Field.Defense;
-import com.spikes2212.robot2016.commands.advanced.Field.Direction;
+import com.spikes2212.robot2016.Field.Defense;
+import com.spikes2212.robot2016.Field.Direction;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 

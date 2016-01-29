@@ -2,10 +2,16 @@ package com.spikes2212.robot2016;
 
 import java.util.Optional;
 
+import com.spikes2212.robot2016.Field.Defense;
+import com.spikes2212.robot2016.Field.DefenseLocation;
+import com.spikes2212.robot2016.Field.Direction;
 import com.spikes2212.robot2016.RobotMap.DIO;
 import com.spikes2212.robot2016.RobotMap.PWM;
-import com.spikes2212.robot2016.commands.advanced.Field.Defense;
-import com.spikes2212.robot2016.commands.advanced.Field.DefenseLocation;
+import com.spikes2212.robot2016.commands.SequentialCommandGroup;
+import com.spikes2212.robot2016.commands.autonomous.Cross;
+import com.spikes2212.robot2016.commands.autonomous.ReachDefense;
+import com.spikes2212.robot2016.commands.autonomous.ReachTowerFromDefense;
+import com.spikes2212.robot2016.commands.picker.RollOut;
 import com.spikes2212.robot2016.subsystems.Drivetrain;
 import com.spikes2212.robot2016.subsystems.Folder;
 import com.spikes2212.robot2016.subsystems.Picker;
@@ -44,6 +50,7 @@ public class Robot extends IterativeRobot {
 	public static Accelerometer accelerometer;
 
 	Optional<Command> autoCommand = Optional.empty();
+	Optional<Command> disabledCommand = Optional.empty();
 
 	SendableChooser defenseChooser;
 	SendableChooser locationChooser;
@@ -92,7 +99,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
 	}
 
 	@Override
@@ -105,10 +111,12 @@ public class Robot extends IterativeRobot {
 		try {
 			Defense defense = (Defense) defenseChooser.getSelected();
 			DefenseLocation location = (DefenseLocation) locationChooser.getSelected();
+			autoCommand = Optional.of(new SequentialCommandGroup(new ReachDefense(),
+					new Cross(defense, Direction.FORWARD), new ReachTowerFromDefense(location), new RollOut()));
+			autoCommand.ifPresent(Command::start);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		autoCommand.ifPresent(Command::start);
 	}
 
 	/**
@@ -138,4 +146,5 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 		LiveWindow.run();
 	}
+
 }

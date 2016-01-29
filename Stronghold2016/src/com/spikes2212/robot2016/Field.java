@@ -1,4 +1,4 @@
-package com.spikes2212.robot2016.commands.advanced;
+package com.spikes2212.robot2016;
 
 public class Field {
 	public enum Direction {
