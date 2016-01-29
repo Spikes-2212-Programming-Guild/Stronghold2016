@@ -9,7 +9,6 @@ import com.spikes2212.robot2016.RobotMap.DIO;
 import com.spikes2212.robot2016.RobotMap.PWM;
 import com.spikes2212.robot2016.commands.SequentialCommandGroup;
 import com.spikes2212.robot2016.commands.autonomous.Cross;
-import com.spikes2212.robot2016.commands.autonomous.ReachDefense;
 import com.spikes2212.robot2016.commands.autonomous.ReachTowerFromDefense;
 import com.spikes2212.robot2016.commands.picker.RollOut;
 import com.spikes2212.robot2016.subsystems.Drivetrain;
@@ -111,8 +110,8 @@ public class Robot extends IterativeRobot {
 		try {
 			Defense defense = (Defense) defenseChooser.getSelected();
 			DefenseLocation location = (DefenseLocation) locationChooser.getSelected();
-			autoCommand = Optional.of(new SequentialCommandGroup(new ReachDefense(),
-					new Cross(defense, Direction.FORWARD), new ReachTowerFromDefense(location), new RollOut()));
+			autoCommand = Optional.of(new SequentialCommandGroup(new Cross(defense, Direction.FORWARD),
+					new ReachTowerFromDefense(location), new RollOut()));
 			autoCommand.ifPresent(Command::start);
 		} catch (Exception e) {
 			e.printStackTrace();
