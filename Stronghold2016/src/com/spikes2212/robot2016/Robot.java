@@ -4,9 +4,8 @@ import java.util.Optional;
 
 import com.spikes2212.robot2016.RobotMap.DIO;
 import com.spikes2212.robot2016.RobotMap.PWM;
-import com.spikes2212.robot2016.commands.advanced.Cross.Defense;
-import com.spikes2212.robot2016.commands.advanced.CrossAndDropAndReturn;
-import com.spikes2212.robot2016.commands.advanced.CrossAndReturn;
+import com.spikes2212.robot2016.commands.advanced.Field.Defense;
+import com.spikes2212.robot2016.commands.advanced.Field.DefenseLocation;
 import com.spikes2212.robot2016.subsystems.Drivetrain;
 import com.spikes2212.robot2016.subsystems.Folder;
 import com.spikes2212.robot2016.subsystems.Picker;
@@ -44,9 +43,11 @@ public class Robot extends IterativeRobot {
 	public static Gyro gyro;
 	public static Accelerometer accelerometer;
 
-	SendableChooser defenseChooser;
-	SendableChooser autoChooser;
 	Optional<Command> autoCommand = Optional.empty();
+
+	SendableChooser defenseChooser;
+	SendableChooser locationChooser;
+	SendableChooser autoChooser;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -74,10 +75,14 @@ public class Robot extends IterativeRobot {
 		defenseChooser.addObject("Ramparts", Defense.RAMPARTS);
 		defenseChooser.addObject("Rough Terrain", Defense.ROUGH_TERRAIN);
 		defenseChooser.addObject("Rock Wall", Defense.ROCK_WALL);
+		locationChooser = new SendableChooser();
+		locationChooser.addDefault("1", DefenseLocation.k1);
+		locationChooser.addObject("2", DefenseLocation.k2);
+		locationChooser.addObject("3", DefenseLocation.k3);
+		locationChooser.addObject("4", DefenseLocation.k4);
+		locationChooser.addObject("5", DefenseLocation.k5);
 		autoChooser = new SendableChooser();
-		autoChooser.addDefault("Cross & Return", "CrossAndReturn");
-		autoChooser.addObject("Cross, Drop & Return", "CrossAndDropAndReturn");
-		autoChooser.addObject("Cross & Shoot", "CrossAndShoot");
+
 	}
 
 	/**
@@ -95,33 +100,11 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 	}
 
-	/**
-	 * This autonomous (along with the chooser code above) shows how to select
-	 * between different autonomous modes using the dashboard. The sendable
-	 * chooser code works with the Java SmartDashboard. If you prefer the
-	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
-	 * getString code to get the auto name from the text box below the Gyro
-	 *
-	 * You can add additional auto modes by adding additional commands to the
-	 * chooser code above (like the commented example) or additional comparisons
-	 * to the switch structure below with additional strings & commands.
-	 */
 	@Override
 	public void autonomousInit() {
 		try {
 			Defense defense = (Defense) defenseChooser.getSelected();
-			switch ((String) autoChooser.getSelected()) {
-			case "CrossAndReturn":
-				autoCommand = Optional.of(new CrossAndReturn(defense));
-				break;
-			case "CrossAndDropAndReturn":
-				autoCommand = Optional.of(new CrossAndDropAndReturn(defense));
-				break;
-			case "CrossAndShoot":
-				break;
-			default:
-				break;
-			}
+			DefenseLocation location = (DefenseLocation) locationChooser.getSelected();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

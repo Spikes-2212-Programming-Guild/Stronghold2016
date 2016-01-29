@@ -1,31 +1,14 @@
 package com.spikes2212.robot2016.commands.advanced;
 
+import com.spikes2212.robot2016.commands.advanced.Field.Defense;
+import com.spikes2212.robot2016.commands.advanced.Field.Direction;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
 public class Cross extends CommandGroup {
-	public enum Direction {
-		FORWARD {
-			@Override
-			public double getSpeedDirection() {
-				return 1;
-			}
-		},
-		BACKWARD {
-			@Override
-			public double getSpeedDirection() {
-				return -1;
-			}
-		};
-
-		public abstract double getSpeedDirection();
-	}
-
-	public enum Defense {
-		LOW_BAR, PORTCULLIS, CHEVAL_DE_FRISE, MOAT, RAMPARTS, DRAWBRIDGE, SALLY_PORT, ROCK_WALL, ROUGH_TERRAIN
-	}
 
 	public Cross(Defense defense, Direction direction) {
 		switch (defense) {

@@ -1,10 +1,10 @@
 package com.spikes2212.robot2016.commands.advanced;
 
 import com.spikes2212.robot2016.Constants;
-import com.spikes2212.robot2016.commands.advanced.Cross.Direction;
+import com.spikes2212.robot2016.commands.advanced.Field.Direction;
 import com.spikes2212.robot2016.commands.drivetrain.PIDStraightDriveByDistance;
-import com.spikes2212.robot2016.commands.drivetrain.StraightDriveToPortcullis;
 import com.spikes2212.robot2016.commands.drivetrain.PIDTurnDriveByAngle;
+import com.spikes2212.robot2016.commands.drivetrain.StraightDriveToPortcullis;
 import com.spikes2212.robot2016.commands.triz.PIDMoveTriz;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
