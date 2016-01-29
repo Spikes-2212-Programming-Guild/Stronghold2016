@@ -22,6 +22,10 @@ public class Gearbox {
 		rear.set(speed);
 	}
 
+	public void setDistancePerPulse(double distancePerPulse) {
+		encoder.setDistancePerPulse(distancePerPulse);
+	}
+
 	public double getDistance() {
 		return encoder.getDistance();
 	}

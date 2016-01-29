@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 public class Drivetrain extends Subsystem {
+
 	private Gearbox left, right;
 	private Gyro gyro;
 	private Accelerometer accelerometer;
@@ -19,6 +20,8 @@ public class Drivetrain extends Subsystem {
 		this.right = right;
 		this.gyro = gyro;
 		this.accelerometer = accelerometer;
+		left.setDistancePerPulse(Constants.LEFT_DISTANCE_PER_PULSE);
+		right.setDistancePerPulse(Constants.RIGHT_DISTANCE_PER_PULSE);
 	}
 
 	public void forward(double speed) {
@@ -38,8 +41,7 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public double getAngleWithFloorDegrees() {
-		return Math
-				.toDegrees(Math.acos(Math.max(-1, Math.min(1, getZAcceleration() / Constants.FREE_FALL_GRAVITY))));
+		return Math.toDegrees(Math.acos(Math.max(-1, Math.min(1, getZAcceleration() / Constants.FREE_FALL_GRAVITY))));
 	}
 
 	public double getYawRate() {
@@ -93,5 +95,5 @@ public class Drivetrain extends Subsystem {
 	public double getRightDistance() {
 		return right.getDistance();
 	}
-	
+
 }

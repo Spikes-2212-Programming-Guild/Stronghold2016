@@ -41,4 +41,8 @@ public class Constants {
 	public static final double FOLDER_DOWN_DISTANCE = 0;
 
 	public static final double FREE_FALL_GRAVITY = 0;
+
+	public static final double LEFT_DISTANCE_PER_PULSE = 0;
+	public static final double RIGHT_DISTANCE_PER_PULSE = 0;
+	public static final double TRIZ_DISTANCE_PER_PULSE = 0;
 }

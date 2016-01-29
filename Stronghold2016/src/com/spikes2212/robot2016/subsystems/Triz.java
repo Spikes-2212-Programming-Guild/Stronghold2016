@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Triz extends Subsystem {
+
 	private Talon motor;
 	private DigitalInput upLimit, downLimit, underPortcullis;
 	private Encoder encoder;
@@ -22,6 +23,7 @@ public class Triz extends Subsystem {
 		this.downLimit = down;
 		this.underPortcullis = underPortcullis;
 		this.encoder = encoder;
+		this.encoder.setDistancePerPulse(Constants.TRIZ_DISTANCE_PER_PULSE);
 		this.phase = 0;
 	}
 
