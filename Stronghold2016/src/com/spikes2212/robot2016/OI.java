@@ -2,8 +2,8 @@ package com.spikes2212.robot2016;
 
 import com.spikes2212.robot2016.commands.drivetrain.JoystickForwardDrive;
 import com.spikes2212.robot2016.commands.drivetrain.JoystickTurnDrive;
-import com.spikes2212.robot2016.commands.roller.picker.RollBallIn;
-import com.spikes2212.robot2016.commands.roller.picker.RollOut;
+import com.spikes2212.robot2016.commands.picker.RollBallIn;
+import com.spikes2212.robot2016.commands.picker.RollOut;
 import com.spikes2212.robot2016.commands.triz.JoystickMoveTriz;
 
 import edu.wpi.first.wpilibj.Joystick;

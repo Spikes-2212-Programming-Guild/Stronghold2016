@@ -1,6 +1,6 @@
-package com.spikes2212.robot2016.commands.roller.shooter;
+package com.spikes2212.robot2016.commands.folder;
 
-import static com.spikes2212.robot2016.Robot.shooter;
+import static com.spikes2212.robot2016.Robot.folder;
 
 import com.spikes2212.robot2016.Constants;
 
@@ -9,11 +9,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Shoot extends Command {
+public class MoveFolderUp extends Command {
 
-	public Shoot() {
-		requires(shooter);
-
+	public MoveFolderUp() {
+		requires(folder);
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 	}
@@ -24,21 +23,24 @@ public class Shoot extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		shooter.shoot(Constants.SHOOT_SPEED);
+		if (!isFinished()) {
+			folder.moveFolder(Constants.FOLDER_UP_SPEED);
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return folder.isUp();
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		shooter.stop();
+		folder.stop();
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
+		end();
 	}
 }

@@ -1,18 +1,17 @@
-package com.spikes2212.robot2016.commands.roller.picker;
-
-import static com.spikes2212.robot2016.Robot.picker;
-
-import com.spikes2212.robot2016.Constants;
+package com.spikes2212.robot2016.commands.folder;
 
 import edu.wpi.first.wpilibj.command.Command;
+import static com.spikes2212.robot2016.Robot.*;
+
+import com.spikes2212.robot2016.Constants;
 
 /**
  *
  */
-public class RollIn extends Command {
+public class MoveFolderDown extends Command {
 
-	public RollIn() {
-		requires(picker);
+	public MoveFolderDown() {
+		requires(folder);
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 	}
@@ -21,19 +20,19 @@ public class RollIn extends Command {
 	protected void initialize() {
 	}
 
-	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		picker.roll(Constants.PICKER_ROLL_IN_SPEED);
+		if (!isFinished()) {
+			folder.moveFolder(-Constants.FOLDER_DOWN_SPEED);
+		}
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return folder.isDown();
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		picker.stop();
+		folder.stop();
 	}
 
 	// Called when another command which requires one or more of the same

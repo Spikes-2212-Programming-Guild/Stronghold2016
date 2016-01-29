@@ -2,7 +2,7 @@ package com.spikes2212.robot2016.commands.advanced;
 
 import com.spikes2212.robot2016.commands.advanced.Cross.Direction;
 import com.spikes2212.robot2016.commands.drivetrain.PIDStraightDriveByDistance;
-import com.spikes2212.robot2016.commands.roller.folder.MoveFolderUp;
+import com.spikes2212.robot2016.commands.folder.MoveFolderUp;
 import com.spikes2212.robot2016.commands.triz.MoveTrizDown;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;

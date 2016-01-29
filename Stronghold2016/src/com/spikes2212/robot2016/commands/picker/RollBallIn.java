@@ -1,4 +1,4 @@
-package com.spikes2212.robot2016.commands.roller.picker;
+package com.spikes2212.robot2016.commands.picker;
 
 import static com.spikes2212.robot2016.Robot.picker;
 

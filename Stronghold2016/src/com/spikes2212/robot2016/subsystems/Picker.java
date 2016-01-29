@@ -1,4 +1,4 @@
-package com.spikes2212.robot2016.subsystems.roller;
+package com.spikes2212.robot2016.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedController;
