@@ -2,20 +2,19 @@ package com.spikes2212.robot2016.commands.shooter;
 
 import static com.spikes2212.robot2016.Robot.shooter;
 
-import com.spikes2212.robot2016.Constants;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class Shoot extends Command {
+public class RotateShooterBySpeedAndTime extends Command {
 
-	public Shoot() {
+	private double speed;
+
+	public RotateShooterBySpeedAndTime(double speed, double timeout) {
+		super(timeout);
 		requires(shooter);
-
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
+		this.speed = speed;
 	}
 
 	// Called just before this Command runs the first time
@@ -24,12 +23,12 @@ public class Shoot extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		shooter.shoot(Constants.SHOOT_SPEED);
+		shooter.shoot(speed);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return isTimedOut();
 	}
 
 	// Called once after isFinished returns true
@@ -40,5 +39,6 @@ public class Shoot extends Command {
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
+		end();
 	}
 }
