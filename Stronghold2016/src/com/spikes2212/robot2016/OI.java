@@ -20,7 +20,7 @@ public class OI {
 
 	public OI() {
 		new JoystickButton(driver, 1).toggleWhenPressed(new JoystickForwardDrive(() -> -driver.getY()));
-		new JoystickButton(driver, 3).toggleWhenPressed(new JoystickTurnDrive(() -> driver.getTwist()));
+		new JoystickButton(driver, 3).toggleWhenPressed(new JoystickTurnDrive(driver::getTwist));
 		new JoystickButton(rightNavigator, 6).whileHeld(new JoystickMoveTriz(() -> -rightNavigator.getY()));
 		new JoystickButton(rightNavigator, 1).toggleWhenPressed(new RollBallIn());
 		new JoystickButton(rightNavigator, 3).toggleWhenPressed(new RollOut());
