@@ -2,7 +2,7 @@ package com.spikes2212.robot2016.commands.triz;
 
 import static com.spikes2212.robot2016.Robot.triz;
 
-import com.spikes2212.robot2016.commands.drivetrain.SpeedSupplier;
+import com.spikes2212.robot2016.util.SpeedSupplier;
 
 import edu.wpi.first.wpilibj.command.Command;
 

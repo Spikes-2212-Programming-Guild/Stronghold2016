@@ -2,6 +2,8 @@ package com.spikes2212.robot2016.commands.drivetrain;
 
 import static com.spikes2212.robot2016.Robot.drivetrain;
 
+import com.spikes2212.robot2016.util.SpeedSupplier;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -10,11 +12,15 @@ import edu.wpi.first.wpilibj.command.Command;
 public class TwoJoysticksDrive extends Command {
 
 	private SpeedSupplier leftSpeed;
-	private SpeedSupplier rightSpeed;
-
-	public TwoJoysticksDrive() {
+	private SpeedSupplier rightSpeed;	
+	
+	public TwoJoysticksDrive(SpeedSupplier leftSpeed, SpeedSupplier rightSpeed) {
 		requires(drivetrain);
+		this.leftSpeed = leftSpeed;
+		this.rightSpeed = rightSpeed;
 	}
+
+
 
 	protected void initialize() {
 	}
