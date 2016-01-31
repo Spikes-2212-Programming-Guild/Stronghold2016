@@ -12,7 +12,7 @@ public class RotateShooterBySpeedAndTime extends Command {
 	private double speed;
 
 	public RotateShooterBySpeedAndTime(double speed, double timeout) {
-		setTimeout(timeout);
+		super(timeout);
 		requires(shooter);
 		this.speed = speed;
 	}

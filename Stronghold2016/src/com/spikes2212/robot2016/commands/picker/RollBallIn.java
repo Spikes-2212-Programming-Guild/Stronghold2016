@@ -19,7 +19,9 @@ public class RollBallIn extends Command {
 	}
 
 	protected void execute() {
+		if (!isFinished()) {
 			picker.roll(Constants.PICKER_ROLL_IN_SPEED);
+		}
 	}
 
 	protected boolean isFinished() {
