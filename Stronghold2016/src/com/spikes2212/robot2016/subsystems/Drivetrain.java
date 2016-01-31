@@ -97,4 +97,9 @@ public class Drivetrain extends Subsystem {
 		return right.getDistance();
 	}
 
+	public void reset() {
+		left.reset();
+		right.reset();
+	}
+
 }

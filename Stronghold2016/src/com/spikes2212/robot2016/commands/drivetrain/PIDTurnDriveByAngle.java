@@ -34,7 +34,7 @@ public class PIDTurnDriveByAngle extends PIDCommand {
 
 	@Override
 	protected void initialize() {
-
+		Robot.drivetrain.reset();
 	}
 
 	@Override
