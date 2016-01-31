@@ -56,18 +56,19 @@ public class Triz extends Subsystem {
 	public void calibrate() {
 		if (isUp()) {
 			phase = Constants.LIFTER_UP_DISTANCE;
-			encoder.reset();
-		}
-		if (isDown()) {
+		} else if (isDown()) {
 			phase = Constants.LIFTER_DOWN_DISTANCE;
-			encoder.reset();
+		} else {
+			phase = getPosition();
 		}
+		encoder.reset();
 	}
 
-	public double getDistance() {
+	public double getPosition() {
 		return phase + encoder.getDistance();
 	}
 
 	public void initDefaultCommand() {
 	}
+
 }

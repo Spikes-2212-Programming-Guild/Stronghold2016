@@ -50,15 +50,15 @@ public class Folder extends Subsystem {
 	public void calibrate() {
 		if (isUp()) {
 			phase = Constants.FOLDER_UP_DISTANCE;
-			encoder.reset();
-		}
-		if (isDown()) {
+		} else if (isDown()) {
 			phase = Constants.FOLDER_DOWN_DISTANCE;
-			encoder.reset();
+		} else {
+			phase = getPosition();
 		}
+		encoder.reset();
 	}
 
-	public double getDistance() {
+	public double getPosition() {
 		return phase + encoder.getDistance();
 	}
 
