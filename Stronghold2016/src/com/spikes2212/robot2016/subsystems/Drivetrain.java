@@ -40,7 +40,7 @@ public class Drivetrain extends Subsystem {
 		return accelerometer.getZ();
 	}
 
-	public double getAngleWithFloorDegrees() {
+	public double getAngleWithFloor() {
 		return Math.toDegrees(Math.acos(Math.max(-1, Math.min(1, getZAcceleration() / Constants.FREE_FALL_GRAVITY))));
 	}
 
