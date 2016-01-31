@@ -31,8 +31,14 @@ public class Folder extends Subsystem {
 
 	}
 
-	public void moveFolder(double speed) {
-		motor.set(speed);
+	public boolean canMove(double speed) {
+		return !(speed > 0 && isUp() || speed < 0 && isDown());
+	}
+
+	public void move(double speed) {
+		if (canMove(speed)) {
+			motor.set(speed);
+		}
 	}
 
 	public boolean isUp() {

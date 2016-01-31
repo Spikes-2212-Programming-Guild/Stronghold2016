@@ -43,7 +43,7 @@ public class PIDMoveFolder extends PIDCommand {
 			output /= maximumOutput;
 		}
 		if (!(output > 0 && folder.isUp() || output < 0 && folder.isDown())) {
-			folder.moveFolder(output);
+			folder.move(output);
 		}
 	}
 

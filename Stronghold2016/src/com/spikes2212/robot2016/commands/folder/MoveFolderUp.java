@@ -24,7 +24,7 @@ public class MoveFolderUp extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		if (!isFinished()) {
-			folder.moveFolder(Constants.FOLDER_UP_SPEED);
+			folder.move(Constants.FOLDER_UP_SPEED);
 		}
 	}
 

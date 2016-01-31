@@ -22,7 +22,7 @@ public class JoystickMoveFolder extends Command {
 	}
 
 	protected void execute() {
-		folder.moveFolder(speed.getSpeed());
+		folder.move(speed.getSpeed());
 	}
 
 	protected boolean isFinished() {

@@ -1,9 +1,10 @@
 package com.spikes2212.robot2016.commands.folder;
 
-import edu.wpi.first.wpilibj.command.Command;
-import static com.spikes2212.robot2016.Robot.*;
+import static com.spikes2212.robot2016.Robot.folder;
 
 import com.spikes2212.robot2016.Constants;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
@@ -22,7 +23,7 @@ public class MoveFolderDown extends Command {
 
 	protected void execute() {
 		if (!isFinished()) {
-			folder.moveFolder(-Constants.FOLDER_DOWN_SPEED);
+			folder.move(-Constants.FOLDER_DOWN_SPEED);
 		}
 	}
 
