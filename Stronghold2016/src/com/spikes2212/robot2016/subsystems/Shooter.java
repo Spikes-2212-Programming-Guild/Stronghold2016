@@ -20,12 +20,12 @@ public class Shooter extends Subsystem {
 		this(new CANTalon(motorChannel));
 	}
 
-	public void shoot(double voltage) {
-		this.motor.set(voltage);
+	public void shoot(double speed) {
+		this.motor.set(speed);
 	}
 
 	public void stop() {
-		shoot(0);
+		this.motor.set(0);
 	}
 
 	@Override
