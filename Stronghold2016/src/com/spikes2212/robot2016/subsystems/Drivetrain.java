@@ -80,7 +80,8 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void setTwoSides(double leftSpeed, double rightSpeed) {
-		setTwoSides(-leftSpeed, rightSpeed);
+		left.set(-leftSpeed);
+		right.set(rightSpeed);
 	}
 
 	@Override
