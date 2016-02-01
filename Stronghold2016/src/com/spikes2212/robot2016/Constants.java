@@ -45,4 +45,5 @@ public class Constants {
 	public static final double LEFT_DISTANCE_PER_PULSE = 0;
 	public static final double RIGHT_DISTANCE_PER_PULSE = 0;
 	public static final double TRIZ_DISTANCE_PER_PULSE = 0;
+	public static final double FOLDER_DISTANCE_PER_PULSE = 0;
 }

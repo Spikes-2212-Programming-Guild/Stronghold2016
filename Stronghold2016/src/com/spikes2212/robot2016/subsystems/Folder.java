@@ -22,6 +22,7 @@ public class Folder extends Subsystem {
 		this.up = up;
 		this.down = down;
 		this.encoder = encoder;
+		this.encoder.setDistancePerPulse(Constants.FOLDER_DISTANCE_PER_PULSE);
 
 	}
 
