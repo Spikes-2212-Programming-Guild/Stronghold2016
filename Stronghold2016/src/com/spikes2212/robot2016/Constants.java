@@ -25,7 +25,7 @@ public class Constants {
 	public static final double FOLDER_DOWN_SPEED = 0;
 	public static final double PICKER_ROLL_IN_SPEED = 0;
 	public static final double PICKER_ROLL_OUT_SPEED = 0;
-	public static final double SHOOT_SPEED = 0;
+	public static final double SHOOTING_VOLTAGE = 0;
 
 	public static final double DRIVE_TO_PORTCULLIS_VELOCITY = 0;
 
