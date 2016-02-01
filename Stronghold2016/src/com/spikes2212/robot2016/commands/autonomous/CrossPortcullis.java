@@ -20,7 +20,7 @@ public class CrossPortcullis extends CommandGroup {
 			addSequential(new PIDTurnDriveByAngle(ROTATE_ANGLE));
 		}
 		addSequential(new PIDStraightDriveByDistance(Constants.DRIVE_TO_PORTCULLIS_DISTANCE));
-		addSequential(new PIDMoveTriz(Constants.LIFTING_PORTCULLIS_DISTANCE));
+		addParallel(new PIDMoveTriz(Constants.LIFTING_PORTCULLIS_DISTANCE));
 		addSequential(new PIDStraightDriveByDistance(Constants.AFTER_LIFTING_PORTCULLIS_DISTANCE));
 	}
 }
