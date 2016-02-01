@@ -9,8 +9,8 @@ public class Shoot extends CommandGroup {
 	public static final double ACCELERATION_TIME = 0;
 	public static final double ROLL_IN_TIME = 0;
 
-	public Shoot(double speed) {
-		addSequential(new RotateShooterBySpeedAndTime(speed, ACCELERATION_TIME));
+	public Shoot(double voltage) {
+		addSequential(new RotateShooterByVoltageAndTime(voltage, ACCELERATION_TIME));
 		addSequential(new RollIn(ROLL_IN_TIME));
 	}
 
