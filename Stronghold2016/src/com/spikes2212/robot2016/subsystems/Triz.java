@@ -13,15 +13,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Triz extends Subsystem {
 
 	private Talon motor;
-	private DigitalInput upLimit, downLimit, underPortcullis;
+	private DigitalInput upLimit, downLimit;
 	private Encoder encoder;
 	private double phase;
 
-	public Triz(Talon motor, DigitalInput up, DigitalInput down, DigitalInput underPortcullis, Encoder encoder) {
+	public Triz(Talon motor, DigitalInput up, DigitalInput down, Encoder encoder) {
 		this.motor = motor;
 		this.upLimit = up;
 		this.downLimit = down;
-		this.underPortcullis = underPortcullis;
 		this.encoder = encoder;
 		this.encoder.setDistancePerPulse(Constants.TRIZ_DISTANCE_PER_PULSE);
 		this.phase = 0;
@@ -30,7 +29,7 @@ public class Triz extends Subsystem {
 	public Triz(int trizTalonPort, int upPort, int downPort, int underPortcullisChannel, int encoderChannelA,
 			int encoderChannelB) {
 		this(new Talon(trizTalonPort), new DigitalInput(upPort), new DigitalInput(downPort),
-				new DigitalInput(underPortcullisChannel), new Encoder(encoderChannelA, encoderChannelB));
+				new Encoder(encoderChannelA, encoderChannelB));
 	}
 
 	public boolean canMove(double speed) {
@@ -53,10 +52,6 @@ public class Triz extends Subsystem {
 
 	public boolean isDown() {
 		return !downLimit.get();
-	}
-
-	public boolean isUnderPortcullis() {
-		return !underPortcullis.get();
 	}
 
 	public void calibrate() {
