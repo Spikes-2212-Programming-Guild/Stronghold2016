@@ -14,6 +14,7 @@ public class CrossAndScoreGoal extends CommandGroup {
 	public CrossAndScoreGoal(Defense defense, DefenseLocation location, Goal goal) {
 		addSequential(new Cross(defense, Direction.FORWARD));
 		addSequential(new ReachGoalFromDefense(location, goal));
+		addSequential(new ScoreGoal(goal));
 	}
 
 }
