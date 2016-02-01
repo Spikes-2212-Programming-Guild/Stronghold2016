@@ -1,10 +1,10 @@
 package com.spikes2212.robot2016.commands.triz;
 
+import static com.spikes2212.robot2016.Robot.triz;
+
 import com.spikes2212.robot2016.Robot;
 import com.spikes2212.robot2016.pid.PIDCommand;
 import com.spikes2212.robot2016.pid.PIDCalculator.AbsoluteTolerance;
-
-import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
@@ -19,7 +19,7 @@ public class MoveTrizToPosition extends PIDCommand {
     public MoveTrizToPosition(double distance) {
     	super(KP, KI, KD, distance, new AbsoluteTolerance(ABSOLUTE_TOLERANCE));
     	startDistance=distance;
-    	requires(Robot.triz);
+    	requires(triz);
         
     }
 
@@ -56,6 +56,8 @@ public class MoveTrizToPosition extends PIDCommand {
 			maximumOutput= Math.max(maximumOutput, output);
 			output/=maximumOutput;
 		}
-		Robot.triz.move(output);
+		if (!(output > 0 && triz.isUp() || output < 0 && triz.isDown())) {
+			triz.move(output);
+		}
 	}
 }
