@@ -18,8 +18,6 @@ public class Constants {
 	 * Angular Rate - degree / second
 	 */
 
-	public static final int TZOORS_CONSTANT = 4 - 1;
-
 	public static final double TRIZ_SPEED = 0;
 	public static final double FOLDER_UP_SPEED = 0;
 	public static final double FOLDER_DOWN_SPEED = 0;
