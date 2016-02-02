@@ -25,6 +25,7 @@ public class SocreGoalFromLocation5 extends CommandGroup {
 		addSequential(new PIDTurnDriveByAngle(ANGLE));
 		addSequential(new WaitCommand(TIMEOUT));
 		addSequential(new PIDStraightDriveByDistance(FIRST_DISTANCE));
+		addSequential(new ScoreGoal(goal));
 	}
 
 }

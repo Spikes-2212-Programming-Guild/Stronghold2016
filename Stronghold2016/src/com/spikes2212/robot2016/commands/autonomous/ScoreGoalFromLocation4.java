@@ -15,7 +15,6 @@ public class ScoreGoalFromLocation4 extends CommandGroup {
 	public static final double SECOND_DISTANCE = 0;
 	public static final double TIMEOUT = 0.5;
 	private static final double ROTATE_ANGLE = 180;
-	
 
 	public ScoreGoalFromLocation4(Defense defense, Goal goal) {
 		if (defense == Defense.PORTCULLIS) {
@@ -26,6 +25,7 @@ public class ScoreGoalFromLocation4 extends CommandGroup {
 		addSequential(new PIDTurnDriveByAngle(ANGLE));
 		addSequential(new WaitCommand(TIMEOUT));
 		addSequential(new PIDStraightDriveByDistance(FIRST_DISTANCE));
+		addSequential(new ScoreGoal(goal));
 	}
 
 }
