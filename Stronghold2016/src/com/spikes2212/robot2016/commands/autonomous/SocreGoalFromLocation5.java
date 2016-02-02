@@ -8,16 +8,15 @@ import com.spikes2212.robot2016.commands.drivetrain.PIDTurnDriveByAngle;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
-public class ReachGoalFromDefense4 extends CommandGroup {
+public class SocreGoalFromLocation5 extends CommandGroup {
 
 	public static final double FIRST_DISTANCE = 0;
 	public static final double ANGLE = 0;
 	public static final double SECOND_DISTANCE = 0;
 	public static final double TIMEOUT = 0.5;
 	private static final double ROTATE_ANGLE = 180;
-	
 
-	public ReachGoalFromDefense4(Defense defense, Goal goal) {
+	public SocreGoalFromLocation5(Defense defense, Goal goal) {
 		if (defense == Defense.PORTCULLIS) {
 			addSequential(new PIDTurnDriveByAngle(ROTATE_ANGLE));
 		}

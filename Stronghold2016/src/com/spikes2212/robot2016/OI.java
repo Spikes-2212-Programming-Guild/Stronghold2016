@@ -2,7 +2,6 @@ package com.spikes2212.robot2016;
 
 import com.spikes2212.robot2016.commands.drivetrain.JoystickForwardDrive;
 import com.spikes2212.robot2016.commands.drivetrain.JoystickTurnDrive;
-import com.spikes2212.robot2016.commands.folder.PIDMoveFolder;
 import com.spikes2212.robot2016.commands.folder.PrepareShootPosition;
 import com.spikes2212.robot2016.commands.picker.RollBallIn;
 import com.spikes2212.robot2016.commands.picker.RollOut;
