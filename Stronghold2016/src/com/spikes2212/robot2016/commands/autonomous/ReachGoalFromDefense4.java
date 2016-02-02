@@ -1,5 +1,6 @@
 package com.spikes2212.robot2016.commands.autonomous;
 
+import com.spikes2212.robot2016.Field.Defense;
 import com.spikes2212.robot2016.Field.Goal;
 import com.spikes2212.robot2016.commands.drivetrain.PIDStraightDriveByDistance;
 import com.spikes2212.robot2016.commands.drivetrain.PIDTurnDriveByAngle;
@@ -13,8 +14,13 @@ public class ReachGoalFromDefense4 extends CommandGroup {
 	public static final double ANGLE = 0;
 	public static final double SECOND_DISTANCE = 0;
 	public static final double TIMEOUT = 0.5;
+	private static final double ROTATE_ANGLE = 180;
+	
 
-	public ReachGoalFromDefense4(Goal goal) {
+	public ReachGoalFromDefense4(Defense defense, Goal goal) {
+		if (defense == Defense.PORTCULLIS) {
+			addSequential(new PIDTurnDriveByAngle(ROTATE_ANGLE));
+		}
 		addSequential(new PIDStraightDriveByDistance(FIRST_DISTANCE));
 		addSequential(new WaitCommand(TIMEOUT));
 		addSequential(new PIDTurnDriveByAngle(ANGLE));
