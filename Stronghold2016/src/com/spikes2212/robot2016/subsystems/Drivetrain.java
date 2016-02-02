@@ -97,9 +97,13 @@ public class Drivetrain extends Subsystem {
 		return right.getDistance();
 	}
 
-	public void reset() {
+	public void resetEncoders() {
 		left.reset();
 		right.reset();
+	}
+	
+	public void resetGyro(){
+		this.gyro.reset();
 	}
 
 }

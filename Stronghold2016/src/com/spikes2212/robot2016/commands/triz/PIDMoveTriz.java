@@ -2,7 +2,6 @@ package com.spikes2212.robot2016.commands.triz;
 
 import static com.spikes2212.robot2016.Robot.triz;
 
-import com.spikes2212.robot2016.pid.PIDCalculator.AbsoluteTolerance;
 import com.spikes2212.robot2016.pid.PIDCommand;
 
 public class PIDMoveTriz extends PIDCommand {
@@ -11,12 +10,12 @@ public class PIDMoveTriz extends PIDCommand {
 	private static final double KD = 0;
 	private static final double KI = 0;
 	private static final double KP = 0;
-	private static final double ABSOLUTE_TOLERANCE = 1; // centimeter
+	private static final double ABSOLUTE_TOLERANCE = 0.01; // meter
 
 	private double firstPosition;
 
 	public PIDMoveTriz(double setpoint) {
-		super(KP, KI, KD, setpoint, new AbsoluteTolerance(ABSOLUTE_TOLERANCE));
+		super(KP, KI, KD, setpoint, ABSOLUTE_TOLERANCE);
 		requires(triz);
 	}
 

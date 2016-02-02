@@ -4,41 +4,13 @@ public class PIDCalculator {
 
 	public static final long DEFAULT_DT = 30;
 
-	public interface Tolerance {
-		boolean hasReached(double setpoint, double error);
-	}
-
-	public static class AbsoluteTolerance implements Tolerance {
-		private double value;
-
-		public AbsoluteTolerance(double value) {
-			this.value = value;
-		}
-
-		@Override
-		public boolean hasReached(double setpoint, double error) {
-			return Math.abs(error) < value;
-		}
-	}
-
-	public static class RelativeTolerance implements Tolerance {
-		private double value;
-
-		public RelativeTolerance(double value) {
-			this.value = value;
-		}
-
-		@Override
-		public boolean hasReached(double setpoint, double error) {
-			return Math.abs(error / setpoint) < value;
-		}
-	}
+	
 
 	private double kp, ki, kd;
 	private double pValue, iValue, dValue;
 	private double setpoint;
 	private double error, prevError;
-	private Tolerance tolerance;
+	private double tolerance;
 
 	public PIDCalculator(double kp, double ki, double kd) {
 		this.kp = kp;
@@ -82,12 +54,12 @@ public class PIDCalculator {
 		this.error = setpoint;
 	}
 
-	public void setTolerance(Tolerance tolerance) {
+	public void setTolerance(double tolerance) {
 		this.tolerance = tolerance;
 	}
 
 	public boolean hasReached() {
-		return tolerance.hasReached(setpoint, error);
+		return Math.abs(error) < tolerance;
 	}
 
 }

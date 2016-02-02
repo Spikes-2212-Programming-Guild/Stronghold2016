@@ -4,7 +4,6 @@ import static com.spikes2212.robot2016.Robot.triz;
 
 import com.spikes2212.robot2016.Robot;
 import com.spikes2212.robot2016.pid.PIDCommand;
-import com.spikes2212.robot2016.pid.PIDCalculator.AbsoluteTolerance;
 
 /**
  *
@@ -17,7 +16,7 @@ public class MoveTrizToPosition extends PIDCommand {
 	private final double startDistance;
 	private double maximumOutput;
     public MoveTrizToPosition(double distance) {
-    	super(KP, KI, KD, distance, new AbsoluteTolerance(ABSOLUTE_TOLERANCE));
+    	super(KP, KI, KD, distance, ABSOLUTE_TOLERANCE);
     	startDistance=distance;
     	requires(triz);
         
