@@ -15,7 +15,7 @@ public class ReachGoalFromDefense3 extends CommandGroup {
 	public static final double SECOND_DISTANCE = 0;
 	public static final double TIMEOUT = 0.5;
 	
-	public static final doouble ROTATE_ANGLE = 180;
+	public static final double ROTATE_ANGLE = 180;
 
 	public ReachGoalFromDefense3(Defense defense, Goal goal) {
 		if (defense == Defense.PORTCULLIS) {
