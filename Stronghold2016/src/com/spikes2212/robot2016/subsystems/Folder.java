@@ -35,7 +35,7 @@ public class Folder extends Subsystem {
 		return !(speed > 0 && isUp() || speed < 0 && isDown());
 	}
 
-	public void move(double speed) {
+	public void tryMove(double speed) {
 		if (canMove(speed)) {
 			motor.set(speed);
 		}

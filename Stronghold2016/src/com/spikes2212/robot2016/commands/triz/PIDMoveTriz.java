@@ -42,7 +42,7 @@ public class PIDMoveTriz extends PIDCommand {
 			output /= maximumOutput;
 		}
 		if (!(output > 0 && triz.isUp() || output < 0 && triz.isDown())) {
-			triz.move(output);
+			triz.tryMove(output);
 		}
 	}
 
