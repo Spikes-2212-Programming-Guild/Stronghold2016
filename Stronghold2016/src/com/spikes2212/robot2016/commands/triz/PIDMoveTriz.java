@@ -13,8 +13,6 @@ public class PIDMoveTriz extends PIDCommand {
 	private static final double KP = 0;
 	private static final double ABSOLUTE_TOLERANCE = 1; // centimeter
 
-	private double firstPosition;
-
 	public PIDMoveTriz(double setpoint) {
 		super(KP, KI, KD, setpoint, new AbsoluteTolerance(ABSOLUTE_TOLERANCE));
 		requires(triz);
@@ -23,7 +21,6 @@ public class PIDMoveTriz extends PIDCommand {
 	@Override
 	protected void initialize() {
 		triz.calibrate();
-		firstPosition = triz.getPosition();
 	}
 
 	@Override
@@ -33,7 +30,7 @@ public class PIDMoveTriz extends PIDCommand {
 
 	@Override
 	public double getPIDInput() {
-		return triz.getPosition() - firstPosition;
+		return triz.getPosition();
 	}
 
 	@Override

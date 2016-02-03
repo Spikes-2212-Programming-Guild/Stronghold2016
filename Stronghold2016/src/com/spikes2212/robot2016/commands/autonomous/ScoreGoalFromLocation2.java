@@ -24,8 +24,7 @@ public class ScoreGoalFromLocation2 extends CommandGroup {
 		addSequential(new WaitCommand(TIMEOUT));
 		addSequential(new PIDTurnDriveByAngle(ANGLE));
 		addSequential(new WaitCommand(TIMEOUT));
-		addSequential(new PIDStraightDriveByDistance(FIRST_DISTANCE));
+		addSequential(new PIDStraightDriveByDistance(SECOND_DISTANCE));
 		addSequential(new ScoreGoal(goal));
 	}
-
 }

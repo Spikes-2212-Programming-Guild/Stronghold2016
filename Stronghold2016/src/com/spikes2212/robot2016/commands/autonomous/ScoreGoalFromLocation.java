@@ -23,7 +23,7 @@ public class ScoreGoalFromLocation extends CommandGroup {
 			addSequential(new ScoreGoalFromLocation4(defense, goal));
 			break;
 		case k5:
-			addSequential(new SocreGoalFromLocation5(defense, goal));
+			addSequential(new ScoreGoalFromLocation5(defense, goal));
 			break;
 		default:
 			break;
