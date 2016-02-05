@@ -33,8 +33,14 @@ public class Triz extends Subsystem {
 				new DigitalInput(underPortcullisChannel), new Encoder(encoderChannelA, encoderChannelB));
 	}
 
-	public void moveTriz(double speed) {
-		motor.set(speed);
+	public boolean canMove(double speed) {
+		return !(speed > 0 && isUp() || speed < 0 && isDown());
+	}
+
+	public void tryMove(double speed) {
+		if (canMove(speed)) {
+			motor.set(speed);
+		}
 	}
 
 	public void stop() {
@@ -56,18 +62,19 @@ public class Triz extends Subsystem {
 	public void calibrate() {
 		if (isUp()) {
 			phase = Constants.LIFTER_UP_DISTANCE;
-			encoder.reset();
-		}
-		if (isDown()) {
+		} else if (isDown()) {
 			phase = Constants.LIFTER_DOWN_DISTANCE;
-			encoder.reset();
+		} else {
+			phase = getPosition();
 		}
+		encoder.reset();
 	}
 
-	public double getDistance() {
+	public double getPosition() {
 		return phase + encoder.getDistance();
 	}
 
 	public void initDefaultCommand() {
 	}
+
 }

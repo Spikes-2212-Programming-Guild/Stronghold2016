@@ -1,7 +1,6 @@
 package com.spikes2212.robot2016.commands.drivetrain;
 
 import com.spikes2212.robot2016.Robot;
-import com.spikes2212.robot2016.pid.PIDCalculator.AbsoluteTolerance;
 import com.spikes2212.robot2016.pid.PIDCommand;
 
 public class PIDStraightDriveByDistance extends PIDCommand {
@@ -12,19 +11,21 @@ public class PIDStraightDriveByDistance extends PIDCommand {
 	private static final double ABSOLUTE_TOLERANCE = 1; // centimeter
 
 	private double maximumOutput;
-	
+
 	public PIDStraightDriveByDistance(double distance) {
-		super(KP, KI, KD, distance, new AbsoluteTolerance(ABSOLUTE_TOLERANCE));
+		super(KP, KI, KD, distance, ABSOLUTE_TOLERANCE);
+		Robot.drivetrain.resetEncoders();
 		requires(Robot.drivetrain);
 	}
 
 	@Override
 	public double getPIDInput() {
-		return 0.5 * (Robot.drivetrain.getLeftDistance() + Robot.drivetrain.getRightDistance());
+		return (Robot.drivetrain.getLeftDistance() + Robot.drivetrain.getRightDistance()) / 2;
 	}
 
 	@Override
 	public void usePIDOutput(double output) {
+		
 		if (output != 0) {
 			maximumOutput = Math.max(maximumOutput, Math.abs(output));
 			output /= maximumOutput;
@@ -34,14 +35,12 @@ public class PIDStraightDriveByDistance extends PIDCommand {
 
 	@Override
 	protected void initialize() {
-		
+		Robot.drivetrain.resetEncoders();
 	}
 
 	@Override
 	protected void end() {
-		
+
 	}
-	
-	
 
 }

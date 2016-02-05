@@ -9,10 +9,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Picker extends Subsystem {
-	private VictorSP motor;
+	private SpeedController motor;
 	private DigitalInput ballLimit;
 
-	public Picker(VictorSP motor, DigitalInput ballLimit) {
+	public Picker(SpeedController motor, DigitalInput ballLimit) {
 		this.motor = motor;
 		this.ballLimit = ballLimit;
 	}
