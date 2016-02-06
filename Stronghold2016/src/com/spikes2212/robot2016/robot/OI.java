@@ -15,9 +15,9 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 	public final Joystick leftDriver = new Joystick(0);
-	public final Joystick rightDriver = new Joystick(0);
+	public final Joystick rightDriver = new Joystick(1);
 	public final Joystick rightNavigator = new Joystick(2);
-	public final Joystick leftNavigator = new Joystick(1);
+	public final Joystick leftNavigator = new Joystick(3);
 
 	public OI() {
 		new JoystickButton(leftDriver, 1).toggleWhenPressed(new JoystickForwardDrive(() -> -leftDriver.getY()));
