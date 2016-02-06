@@ -23,6 +23,7 @@ public class Folder extends Subsystem {
 		this.down = down;
 		this.encoder = encoder;
 		this.encoder.setDistancePerPulse(Constants.FOLDER_DISTANCE_PER_PULSE);
+		this.phase = Constants.FOLDER_UP_POSITION;
 
 	}
 
@@ -56,9 +57,9 @@ public class Folder extends Subsystem {
 
 	public void calibrate() {
 		if (isUp()) {
-			phase = Constants.FOLDER_UP_DISTANCE;
+			phase = Constants.FOLDER_UP_POSITION;
 		} else if (isDown()) {
-			phase = Constants.FOLDER_DOWN_DISTANCE;
+			phase = Constants.FOLDER_DOWN_POSITION;
 		} else {
 			phase = getPosition();
 		}
