@@ -23,7 +23,7 @@ public class Vision {
 			new ParticleFilterCriteria2(MeasurementType.MT_AREA_BY_IMAGE_AREA, AREA_MIN, 100, 0, 0) };
 	NIVision.ParticleFilterOptions2 options = new NIVision.ParticleFilterOptions2(0, 0, 1, 1);
 
-	public List<Reflective> getDafners(Image image) {
+	public List<Reflective> getReflectives(Image image) {
 		Image binary = NIVision.imaqCreateImage(ImageType.IMAGE_U8, 0);
 		NIVision.imaqColorThreshold(binary, image, 255, ColorMode.HSV, hRange, sRange, vRange);
 		NIVision.imaqParticleFilter4(binary, binary, criteria, options, null);
