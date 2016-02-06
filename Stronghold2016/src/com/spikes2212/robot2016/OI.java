@@ -25,18 +25,18 @@ public class OI {
 	public final Joystick rightNavigator = new Joystick(2);
 
 	public OI() {
-		new JoystickButton(rightDriver, 1).toggleWhenPressed(new JoystickForwardDrive(() -> -leftDriver.getY()));
-		new JoystickButton(rightDriver, 3).toggleWhenPressed(new JoystickTurnDrive(leftDriver::getTwist));
+//		new JoystickButton(rightDriver, 1).toggleWhenPressed(new JoystickForwardDrive(() -> -leftDriver.getY()));
+//		new JoystickButton(rightDriver, 3).toggleWhenPressed(new JoystickTurnDrive(leftDriver::getTwist));
 		new JoystickButton(rightDriver, 7)
 				.whenPressed(new UseFrontImage(image -> CameraServer.getInstance().setImage(image)));
 		new JoystickButton(rightDriver, 8)
 				.whenPressed(new UseRearImage(image -> CameraServer.getInstance().setImage(image)));
 		new JoystickButton(rightDriver, 9).whenPressed(new StopCameras());
-		new JoystickButton(rightNavigator, 6).whileHeld(new JoystickMoveTriz(() -> -rightNavigator.getY()));
-		new JoystickButton(rightNavigator, 1).toggleWhenPressed(new RollBallIn());
-		new JoystickButton(rightNavigator, 3).toggleWhenPressed(new RollOut());
-		new JoystickButton(rightNavigator, 4).whenPressed(new ShootByVoltage(Constants.SHOOTING_VOLTAGE));
-		new JoystickButton(rightNavigator, 5).whenPressed(new MoveFolderToShoot());
+//		new JoystickButton(rightNavigator, 6).whileHeld(new JoystickMoveTriz(() -> -rightNavigator.getY()));
+//		new JoystickButton(rightNavigator, 1).toggleWhenPressed(new RollBallIn());
+//		new JoystickButton(rightNavigator, 3).toggleWhenPressed(new RollOut());
+//		new JoystickButton(rightNavigator, 4).whenPressed(new ShootByVoltage(Constants.SHOOTING_VOLTAGE));
+//		new JoystickButton(rightNavigator, 5).whenPressed(new MoveFolderToShoot());
 	}
 
 }
