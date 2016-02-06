@@ -2,31 +2,34 @@ package com.spikes2212.robot2016.commands.camera;
 
 import static com.spikes2212.robot2016.Robot.cameras;
 
+import java.util.function.Consumer;
+
 import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.Image;
 import com.ni.vision.NIVision.ImageType;
 
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class FrontStream extends Command {
+public class UseRearImage extends Command {
 
 	private Image image;
+	private Consumer<Image> consumer;
 
-	public FrontStream() {
+	public UseRearImage(Consumer<Image> consumer) {
 		requires(cameras);
 		image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
+		this.consumer = consumer;
 	}
 
 	@Override
 	protected void initialize() {
-		cameras.startFront();
+		cameras.startRear();
 	}
 
 	@Override
 	protected void execute() {
 		cameras.getImage(image);
-		CameraServer.getInstance().setImage(image);
+		consumer.accept(image);
 	}
 
 	@Override

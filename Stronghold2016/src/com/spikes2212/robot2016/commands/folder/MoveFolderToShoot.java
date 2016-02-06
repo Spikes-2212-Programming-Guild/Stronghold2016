@@ -9,13 +9,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 
 public class MoveFolderToShoot extends CommandGroup {
-	
+
 	public static final double POSITION = 0; // FIXME
-	public static final double ABSOLUTE = 0; // FIXME
-	
-	
+
 	public MoveFolderToShoot() {
-		addSequential(new PIDMoveFolder(POSITION, ABSOLUTE ));
+		addSequential(new PIDMoveFolder(POSITION));
 	}
 
 }

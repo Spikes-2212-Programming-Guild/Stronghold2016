@@ -2,6 +2,7 @@ package com.spikes2212.robot2016.vision;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.ColorMode;
@@ -14,6 +15,8 @@ import com.spikes2212.robot2016.vision.Reflective.Orientation;
 
 public class Vision {
 
+	public static final double VIEW_ANGLE = 59;
+
 	public static final double AREA_MIN = 60;
 	public static Range hRange = new Range(0, 255);
 	public static Range sRange = new Range(0, 255);
@@ -22,6 +25,11 @@ public class Vision {
 	public static ParticleFilterCriteria2[] criteria = {
 			new ParticleFilterCriteria2(MeasurementType.MT_AREA_BY_IMAGE_AREA, AREA_MIN, 100, 0, 0) };
 	public static NIVision.ParticleFilterOptions2 options = new NIVision.ParticleFilterOptions2(0, 0, 1, 1);
+
+	public static Optional<Double> getDistanceFrom(Image image) {
+		List<Reflective> reflectives = getReflectives(image);
+		return reflectives.isEmpty() ? Optional.empty() : Optional.of(reflectives.get(0).getWidth());
+	}
 
 	public static List<Reflective> getReflectives(Image image) {
 		Image binary = NIVision.imaqCreateImage(ImageType.IMAGE_U8, 0);
