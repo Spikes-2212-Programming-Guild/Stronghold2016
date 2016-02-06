@@ -6,9 +6,9 @@ import com.spikes2212.robot2016.commands.folder.MoveFolderToShoot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class PrepareToGoal extends CommandGroup {
+public class MoveFolderToGoal extends CommandGroup {
 
-	public PrepareToGoal(Goal goal) {
+	public MoveFolderToGoal(Goal goal) {
 		switch (goal) {
 		case LOW:
 			addSequential(new MoveFolderDown());
