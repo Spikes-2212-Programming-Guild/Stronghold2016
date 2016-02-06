@@ -31,14 +31,14 @@ public class Cameras extends Subsystem {
 		rear.stopCapture();
 		front.startCapture();
 		frontOn = true;
-                rearOn = false;
+		rearOn = false;
 	}
 
 	public void startRear() {
 		front.stopCapture();
 		rear.startCapture();
 		rearOn = true;
-                frontOn = false;
+		frontOn = false;
 	}
 
 	public void stop() {
