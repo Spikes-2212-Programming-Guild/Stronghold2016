@@ -101,9 +101,9 @@ public class Drivetrain extends Subsystem {
 		left.reset();
 		right.reset();
 	}
-	
-	public void resetGyro(){
-		this.gyro.reset();
+
+	public void resetGyro() {
+		gyro.reset();
 	}
 
 }

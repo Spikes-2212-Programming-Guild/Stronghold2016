@@ -10,15 +10,16 @@ public class PIDTurnDriveByAngle extends PIDCommand {
 	private static final double KD = 0;
 	private static final double ABSOLUTE_TOLERANCE = 2; // degree
 
+	private double initialAngle;
+
 	public PIDTurnDriveByAngle(double angle) {
 		super(KP, KI, KD, angle, ABSOLUTE_TOLERANCE);
 		requires(Robot.drivetrain);
-		Robot.drivetrain.resetGyro();
 	}
 
 	@Override
 	public double getPIDInput() {
-		return Robot.drivetrain.getYawAngle();
+		return Robot.drivetrain.getYawAngle() - initialAngle;
 	}
 
 	@Override
@@ -28,7 +29,7 @@ public class PIDTurnDriveByAngle extends PIDCommand {
 
 	@Override
 	protected void initialize() {
-		Robot.drivetrain.resetEncoders();
+		initialAngle = Robot.drivetrain.getYawAngle();
 	}
 
 	@Override
