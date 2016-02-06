@@ -1,6 +1,10 @@
 package com.spikes2212.robot2016.vision;
 
-public class Dafner {
+/**
+ * @author 
+ */
+
+public class Reflective {
 	
 	public enum Orientation {
 		VERTICAL, HORIZONTAL
@@ -13,7 +17,7 @@ public class Dafner {
 	private double bottom;
 	private double area;
 	
-	public Dafner(Orientation orientation, double left, double right, double top, double bottom, double area) {
+	public Reflective(Orientation orientation, double left, double right, double top, double bottom, double area) {
 		this.orientation = orientation;
 		this.left = left;
 		this.right = right;

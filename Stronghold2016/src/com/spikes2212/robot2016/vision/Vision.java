@@ -10,7 +10,7 @@ import com.ni.vision.NIVision.ImageType;
 import com.ni.vision.NIVision.MeasurementType;
 import com.ni.vision.NIVision.ParticleFilterCriteria2;
 import com.ni.vision.NIVision.Range;
-import com.spikes2212.robot2016.vision.Dafner.Orientation;
+import com.spikes2212.robot2016.vision.Reflective.Orientation;
 
 public class Vision {
 
@@ -23,12 +23,12 @@ public class Vision {
 			new ParticleFilterCriteria2(MeasurementType.MT_AREA_BY_IMAGE_AREA, AREA_MIN, 100, 0, 0) };
 	NIVision.ParticleFilterOptions2 options = new NIVision.ParticleFilterOptions2(0, 0, 1, 1);
 
-	public List<Dafner> getDafners(Image image) {
+	public List<Reflective> getDafners(Image image) {
 		Image binary = NIVision.imaqCreateImage(ImageType.IMAGE_U8, 0);
 		NIVision.imaqColorThreshold(binary, image, 255, ColorMode.HSV, hRange, sRange, vRange);
 		NIVision.imaqParticleFilter4(binary, binary, criteria, options, null);
 		int count = NIVision.imaqCountParticles(binary, 1);
-		List<Dafner> dafners = new ArrayList<>();
+		List<Reflective> reflectives = new ArrayList<>();
 		for (int index = 0; index < count; index++) {
 			double area = NIVision.imaqMeasureParticle(image, index, 0, MeasurementType.MT_AREA_BY_IMAGE_AREA);
 			double left = NIVision.imaqMeasureParticle(image, index, 0, MeasurementType.MT_BOUNDING_RECT_LEFT);
@@ -42,10 +42,10 @@ public class Vision {
 				orientation = Orientation.VERTICAL;
 			}
 			if (orientation == Orientation.HORIZONTAL) {
-				dafners.add(new Dafner(orientation, left, right, top, bottom, area));
+				reflectives.add(new Reflective(orientation, left, right, top, bottom, area));
 			}
 		}
-		dafners.sort((a, b) -> (int) (-a.getArea() + b.getArea()));
-		return dafners;
+		reflectives.sort((a, b) -> (int) (-a.getArea() + b.getArea()));
+		return reflectives;
 	}
 }
