@@ -18,11 +18,11 @@ public class Cameras extends Subsystem {
     private final double CAMERA_RESOLUTION_Y = 480;
     private final double Y_ANGLE_PER_PIXEL = VIEW_ANGLE_UP / CAMERA_RESOLUTION_Y;
     public final double AREA_MIN = 60;
-    
+
     public final NIVision.Range hRange = new NIVision.Range(0, 255);
     public final NIVision.Range sRange = new NIVision.Range(0, 255);
     public final NIVision.Range vRange = new NIVision.Range(0, 255);
-    
+
     public final NIVision.ParticleFilterOptions2 options = new NIVision.ParticleFilterOptions2(0, 0, 1, 1);
     public final NIVision.ParticleFilterCriteria2[] criteria = {
         new NIVision.ParticleFilterCriteria2(NIVision.MeasurementType.MT_AREA_BY_IMAGE_AREA, AREA_MIN, 100, 0, 0)};
@@ -91,6 +91,11 @@ public class Cameras extends Subsystem {
             return CAMERA_ANGLE + Y_ANGLE_PER_PIXEL * height;
         }
         return 50;//TODO: find what to return here
+    }
+
+    public double getDistance() {
+        double angleUp = getAngleUp();
+        return TARGET_HEIGHT / Math.tan(Math.toRadians(angleUp + CAMERA_ANGLE));
     }
 
     @Override
