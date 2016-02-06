@@ -24,7 +24,7 @@ public class Triz extends Subsystem {
 		this.downLimit = down;
 		this.encoder = encoder;
 		this.encoder.setDistancePerPulse(Constants.TRIZ_DISTANCE_PER_PULSE);
-		this.phase = 0;
+		this.phase = Constants.TRIZ_UP_POSITION;
 	}
 
 	public Triz(int trizTalonPort, int upPort, int downPort,
@@ -58,9 +58,9 @@ public class Triz extends Subsystem {
 
 	public void calibrate() {
 		if (isUp()) {
-			phase = Constants.LIFTER_UP_DISTANCE;
+			phase = Constants.TRIZ_UP_POSITION;
 		} else if (isDown()) {
-			phase = Constants.LIFTER_DOWN_DISTANCE;
+			phase = Constants.TRIZ_DOWN_POSITION;
 		} else {
 			phase = getPosition();
 		}

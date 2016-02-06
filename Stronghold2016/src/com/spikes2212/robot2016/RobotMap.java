@@ -8,6 +8,11 @@ package com.spikes2212.robot2016;
  */
 public class RobotMap {
 
+	public interface USB {
+		public static final String FRONT_CAMERA = "cam0";
+		public static final String REAR_CAMERA = "cam1";
+	}
+
 	public interface PWM {
 		public static final int LEFT_FRONT_VICTOR = 3;
 		public static final int LEFT_REAR_VICTOR = 2;
