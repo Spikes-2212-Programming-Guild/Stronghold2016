@@ -2,6 +2,7 @@ package com.spikes2212.robot2016;
 
 import com.spikes2212.robot2016.commands.drivetrain.JoystickForwardDrive;
 import com.spikes2212.robot2016.commands.drivetrain.JoystickTurnDrive;
+import com.spikes2212.robot2016.commands.roller.folder.JoystickMoveFolder;
 import com.spikes2212.robot2016.commands.triz.JoystickMoveTriz;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -14,12 +15,15 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 	public final Joystick driver = new Joystick(0);
 	public final Joystick rightNavigator = new Joystick(2);
-	public final Joystick leftNavigator = new Joystick(1);
 
 	public OI() {
-		new JoystickButton(driver, 1).whileHeld(new JoystickForwardDrive(() -> -driver.getY()));
-		new JoystickButton(driver, 3).whileHeld(new JoystickTurnDrive(() -> driver.getTwist()));
-		new JoystickButton(rightNavigator, 6).whileHeld(new JoystickMoveTriz(() -> -rightNavigator.getY()));
+		new JoystickButton(driver, 1).whileHeld(new JoystickForwardDrive(
+				() -> -driver.getY()));
+		new JoystickButton(driver, 3).whileHeld(new JoystickTurnDrive(
+				() -> driver.getTwist()));
+		new JoystickButton(rightNavigator, 6).whileHeld(new JoystickMoveTriz(
+				() -> -rightNavigator.getY()));
+		new JoystickButton(rightNavigator, 7).whileHeld(new JoystickMoveFolder(
+				() -> -rightNavigator.getY()));
 	}
-
 }

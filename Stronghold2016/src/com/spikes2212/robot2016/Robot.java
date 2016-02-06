@@ -49,7 +49,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		oi = new OI();
 		gyro = new ADXRS450_Gyro();
 		left = new Gearbox(RobotMap.LEFT_FRONT_VICTOR_PORT,
 				RobotMap.LEFT_REAR_VICTOR_PORT,
@@ -86,6 +85,7 @@ public class Robot extends IterativeRobot {
 		autoChooser.addDefault("Cross & Return", "CrossAndReturn");
 		autoChooser.addObject("Cross, Drop & Return", "CrossAndDropAndReturn");
 		autoChooser.addObject("Cross & Shoot", "CrossAndShoot");
+		oi = new OI();
 	}
 
 	/**
