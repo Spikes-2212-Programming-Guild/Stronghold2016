@@ -2,10 +2,14 @@ package com.spikes2212.robot2016;
 
 import com.spikes2212.robot2016.commands.drivetrain.JoystickForwardDrive;
 import com.spikes2212.robot2016.commands.drivetrain.JoystickTurnDrive;
+<<<<<<< HEAD
+import com.spikes2212.robot2016.commands.roller.folder.JoystickMoveFolder;
+=======
 import com.spikes2212.robot2016.commands.folder.MoveFolderToShoot;
 import com.spikes2212.robot2016.commands.picker.RollBallIn;
 import com.spikes2212.robot2016.commands.picker.RollOut;
 import com.spikes2212.robot2016.commands.shooter.Shoot;
+>>>>>>> refs/heads/master
 import com.spikes2212.robot2016.commands.triz.JoystickMoveTriz;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -19,8 +23,22 @@ public class OI {
 	public final Joystick leftDriver = new Joystick(0);
 	public final Joystick rightDriver = new Joystick(1);
 	public final Joystick rightNavigator = new Joystick(2);
+<<<<<<< HEAD
+
+=======
 	
+>>>>>>> refs/heads/master
 	public OI() {
+<<<<<<< HEAD
+		new JoystickButton(driver, 1).whileHeld(new JoystickForwardDrive(
+				() -> -driver.getY()));
+		new JoystickButton(driver, 3).whileHeld(new JoystickTurnDrive(
+				() -> driver.getTwist()));
+		new JoystickButton(rightNavigator, 6).whileHeld(new JoystickMoveTriz(
+				() -> -rightNavigator.getY()));
+		new JoystickButton(rightNavigator, 7).whileHeld(new JoystickMoveFolder(
+				() -> -rightNavigator.getY()));
+=======
 		new JoystickButton(rightDriver, 1).toggleWhenPressed(new JoystickForwardDrive(() -> -leftDriver.getY()));
 		new JoystickButton(rightDriver, 3).toggleWhenPressed(new JoystickTurnDrive(leftDriver::getTwist));
 		new JoystickButton(rightNavigator, 6).whileHeld(new JoystickMoveTriz(() -> -rightNavigator.getY()));
@@ -28,6 +46,6 @@ public class OI {
 		new JoystickButton(rightNavigator, 3).toggleWhenPressed(new RollOut());
 		new JoystickButton(rightNavigator, 4).whenPressed(new Shoot(Constants.SHOOTING_VOLTAGE));
 		new JoystickButton(rightNavigator, 5).whenPressed(new MoveFolderToShoot());
+>>>>>>> refs/heads/master
 	}
-
 }

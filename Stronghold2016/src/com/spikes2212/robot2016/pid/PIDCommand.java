@@ -6,9 +6,10 @@ public abstract class PIDCommand extends Command {
 
 	private PIDCalculator calculator;
 
-	public PIDCommand(double kp, double ki, double kd, double setpoint) {
+	public PIDCommand(double kp, double ki, double kd, double setpoint, double tolerance) {
 		calculator = new PIDCalculator(kp, ki, kd);
 		calculator.setSetpoint(setpoint);
+		calculator.setTolerance(tolerance);
 	}
 
 	public abstract double getPIDInput();

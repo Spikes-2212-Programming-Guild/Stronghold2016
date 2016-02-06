@@ -1,6 +1,6 @@
-package com.spikes2212.robot2016.commands.triz;
+package com.spikes2212.robot2016.commands.folder;
 
-import static com.spikes2212.robot2016.Robot.triz;
+import static com.spikes2212.robot2016.Robot.folder;
 
 import com.spikes2212.robot2016.commands.drivetrain.SpeedSupplier;
 
@@ -9,12 +9,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class JoystickMoveTriz extends Command {
+public class JoystickMoveFolder extends Command {
 
 	private SpeedSupplier speed;
 
-	public JoystickMoveTriz(SpeedSupplier speed) {
-		requires(triz);
+	public JoystickMoveFolder(SpeedSupplier speed) {
+		requires(folder);
 		this.speed = speed;
 	}
 
@@ -23,9 +23,7 @@ public class JoystickMoveTriz extends Command {
 
 	protected void execute() {
 		double speed = this.speed.getSpeed();
-		if (triz.canMove(speed)) {
-			triz.tryMove(speed);
-		}
+		folder.tryMove(speed);
 	}
 
 	protected boolean isFinished() {
@@ -33,7 +31,7 @@ public class JoystickMoveTriz extends Command {
 	}
 
 	protected void end() {
-		triz.stop();
+		folder.stop();
 	}
 
 	protected void interrupted() {

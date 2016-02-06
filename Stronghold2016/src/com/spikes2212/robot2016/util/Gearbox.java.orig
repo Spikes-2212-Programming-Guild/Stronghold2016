@@ -1,0 +1,70 @@
+<<<<<<< HEAD
+package com.spikes2212.robot2016.util;
+
+import edu.wpi.first.wpilibj.Talon;
+
+public class Gearbox {
+	private Talon rear, front;
+
+	public Gearbox(Talon rear, Talon right) {
+		this.rear = rear;
+		this.front = right;
+	}
+
+	public Gearbox(int rearPort, int frontPort) {
+		super();
+		front = new Talon(frontPort);
+		rear = new Talon(rearPort);
+	}
+
+	public void set(double speed) {
+		front.set(speed);
+		rear.set(speed);
+	}
+
+	public double getSpeed() {
+		return front.getSpeed();
+	}
+}
+=======
+package com.spikes2212.robot2016.util;
+
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.VictorSP;
+
+public class Gearbox {
+	private VictorSP front, rear;
+	private Encoder encoder;
+
+	public Gearbox(VictorSP front, VictorSP rear, Encoder encoder) {
+		this.front = front;
+		this.rear = rear;
+		this.encoder = encoder;
+	}
+
+	public Gearbox(int frontPort, int rearPort, int encoderChannelA, int encoderChannelB) {
+		this(new VictorSP(frontPort), new VictorSP(rearPort), new Encoder(encoderChannelA, encoderChannelB));
+	}
+
+	public void set(double speed) {
+		front.set(speed);
+		rear.set(speed);
+	}
+
+	public void setDistancePerPulse(double distancePerPulse) {
+		encoder.setDistancePerPulse(distancePerPulse);
+	}
+
+	public double getDistance() {
+		return encoder.getDistance();
+	}
+
+	public double getRate() {
+		return encoder.getRate();
+	}
+
+	public void reset() {
+		encoder.reset();
+	}
+}
+>>>>>>> subsystems_sensors

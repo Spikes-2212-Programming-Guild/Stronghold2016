@@ -1,17 +1,18 @@
-package com.spikes2212.robot2016;
+package com.spikes2212.robot2016.robot;
+
+import com.spikes2212.robot2016.subsystems.Drivetrain;
+
+import java.util.Optional;
 
 import com.spikes2212.robot2016.Field.Defense;
 import com.spikes2212.robot2016.Field.DefenseLocation;
-import com.spikes2212.robot2016.Field.Goal;
+import com.spikes2212.robot2016.Field.Direction;
 import com.spikes2212.robot2016.RobotMap.DIO;
 import com.spikes2212.robot2016.RobotMap.PWM;
-import com.spikes2212.robot2016.commands.autonomous.CrossAndDropAndReturn;
-import com.spikes2212.robot2016.commands.autonomous.CrossAndReturn;
-import com.spikes2212.robot2016.commands.autonomous.CrossAndScoreGoal;
 import com.spikes2212.robot2016.commands.SequentialCommandGroup;
 import com.spikes2212.robot2016.commands.autonomous.Cross;
+import com.spikes2212.robot2016.commands.autonomous.ReachTowerFromDefense;
 import com.spikes2212.robot2016.commands.picker.RollOut;
-import com.spikes2212.robot2016.robot.OI;
 import com.spikes2212.robot2016.subsystems.Drivetrain;
 import com.spikes2212.robot2016.subsystems.Folder;
 import com.spikes2212.robot2016.subsystems.Picker;
@@ -23,23 +24,18 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 
-/**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
- */
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
+<<<<<<< HEAD:Stronghold2016/src/com/spikes2212/robot2016/robot/Robot.java
+	public static Drivetrain drivetrain;
+=======
 	public static Gearbox right;
 	public static Gearbox left;
 	public static Drivetrain drivetrain;
@@ -50,11 +46,13 @@ public class Robot extends IterativeRobot {
 	public static Gyro gyro;
 	public static Accelerometer accelerometer;
 
-	Command autoCommand;
+	Optional<Command> autoCommand = Optional.empty();
+	Optional<Command> disabledCommand = Optional.empty();
 
 	SendableChooser defenseChooser;
 	SendableChooser locationChooser;
 	SendableChooser autoChooser;
+>>>>>>> subsystems_sensors:Stronghold2016/src/com/spikes2212/robot2016/Robot.java
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -62,6 +60,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		oi = new OI();
 		gyro = new ADXRS450_Gyro();
 		accelerometer = new BuiltInAccelerometer();
 		left = new Gearbox(PWM.LEFT_FRONT_VICTOR, PWM.LEFT_REAR_VICTOR, DIO.LEFT_ENCODER_A, DIO.LEFT_ENCODER_B);
@@ -88,18 +87,17 @@ public class Robot extends IterativeRobot {
 		locationChooser.addObject("4", DefenseLocation.k4);
 		locationChooser.addObject("5", DefenseLocation.k5);
 		autoChooser = new SendableChooser();
-		autoChooser.addDefault("Cross & Return", "CrossAndReturn");
-		autoChooser.addObject("Cross, drop & Return", "CrossAndDropAndReturn");
-		autoChooser.addObject("Cross & score low", "CrossAndScoreLow");
-		autoChooser.addObject("Cross & score high", "CrossAndScoreHigh");
-		oi = new OI();
+
 	}
 
+<<<<<<< HEAD:Stronghold2016/src/com/spikes2212/robot2016/robot/Robot.java
+=======
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
 	 * You can use it to reset any subsystem information you want to clear when
 	 * the robot is disabled.
 	 */
+>>>>>>> subsystems_sensors:Stronghold2016/src/com/spikes2212/robot2016/Robot.java
 	@Override
 	public void disabledInit() {
 	}
@@ -109,29 +107,28 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 	}
 
+<<<<<<< HEAD:Stronghold2016/src/com/spikes2212/robot2016/robot/Robot.java
+	/**
+	 * This autonomous (along with the chooser code above) shows how to select
+	 * between different autonomous modes using the dashboard. The sendable
+	 * chooser code works with the Java SmartDashboard. If you prefer the
+	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
+	 * getString code to get the auto name from the text box below the Gyro
+	 *
+	 * You can add additional auto modes by adding additional commands to the
+	 * chooser code above (like the commented example) or additional comparisons
+	 * to the switch structure below with additional strings & commands.
+	 */
+=======
+>>>>>>> subsystems_sensors:Stronghold2016/src/com/spikes2212/robot2016/Robot.java
 	@Override
 	public void autonomousInit() {
 		try {
 			Defense defense = (Defense) defenseChooser.getSelected();
 			DefenseLocation location = (DefenseLocation) locationChooser.getSelected();
-			switch ((String) autoChooser.getSelected()) {
-			case "CrossAndReturn":
-				autoCommand = new CrossAndReturn(defense);
-				break;
-			case "CrossAndDropAndReturn":
-				autoCommand = new CrossAndDropAndReturn(defense);
-				break;
-			case "CrossAndScoreLow":
-				autoCommand = new CrossAndScoreGoal(defense, location, Goal.LOW);
-				break;
-			case "CrossAndScoreHigh":
-				autoCommand = new CrossAndScoreGoal(defense, location, Goal.HIGH);
-				break;
-			default:
-				autoCommand = new CommandGroup();
-				break;
-			}
-			autoCommand.start();
+			autoCommand = Optional.of(new SequentialCommandGroup(new Cross(defense, Direction.FORWARD),
+					new ReachTowerFromDefense(location), new RollOut()));
+			autoCommand.ifPresent(Command::start);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

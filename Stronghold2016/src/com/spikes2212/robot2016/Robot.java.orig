@@ -89,10 +89,15 @@ public class Robot extends IterativeRobot {
 		locationChooser.addObject("5", DefenseLocation.k5);
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("Cross & Return", "CrossAndReturn");
+<<<<<<< HEAD
+		autoChooser.addObject("Cross, Drop & Return", "CrossAndDropAndReturn");
+		autoChooser.addObject("Cross & Shoot", "CrossAndShoot");
+		oi = new OI();
+=======
 		autoChooser.addObject("Cross, drop & Return", "CrossAndDropAndReturn");
 		autoChooser.addObject("Cross & score low", "CrossAndScoreLow");
 		autoChooser.addObject("Cross & score high", "CrossAndScoreHigh");
-		oi = new OI();
+>>>>>>> refs/heads/master
 	}
 
 	/**
