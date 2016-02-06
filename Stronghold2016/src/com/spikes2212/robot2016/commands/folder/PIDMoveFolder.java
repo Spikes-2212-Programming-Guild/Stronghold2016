@@ -32,7 +32,7 @@ public class PIDMoveFolder extends PIDCommand {
 
 	@Override
 	public void usePIDOutput(double output) {
-			folder.tryMove(output);
+		folder.tryMove(output);
 	}
 
 }

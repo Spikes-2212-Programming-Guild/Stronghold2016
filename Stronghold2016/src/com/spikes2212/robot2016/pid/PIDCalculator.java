@@ -2,10 +2,6 @@ package com.spikes2212.robot2016.pid;
 
 public class PIDCalculator {
 
-	public static final long DEFAULT_DT = 30;
-
-	
-
 	private double kp, ki, kd;
 	private double pValue, iValue, dValue;
 	private double setpoint;

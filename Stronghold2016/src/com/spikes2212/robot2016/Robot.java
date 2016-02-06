@@ -5,13 +5,11 @@ import com.spikes2212.robot2016.Field.DefenseLocation;
 import com.spikes2212.robot2016.Field.Goal;
 import com.spikes2212.robot2016.RobotMap.DIO;
 import com.spikes2212.robot2016.RobotMap.PWM;
+import com.spikes2212.robot2016.RobotMap.USB;
 import com.spikes2212.robot2016.commands.autonomous.CrossAndDropAndReturn;
 import com.spikes2212.robot2016.commands.autonomous.CrossAndReturn;
 import com.spikes2212.robot2016.commands.autonomous.CrossAndScoreGoal;
-import com.spikes2212.robot2016.commands.SequentialCommandGroup;
-import com.spikes2212.robot2016.commands.autonomous.Cross;
-import com.spikes2212.robot2016.commands.picker.RollOut;
-import com.spikes2212.robot2016.robot.OI;
+import com.spikes2212.robot2016.subsystems.Cameras;
 import com.spikes2212.robot2016.subsystems.Drivetrain;
 import com.spikes2212.robot2016.subsystems.Folder;
 import com.spikes2212.robot2016.subsystems.Picker;
@@ -49,6 +47,7 @@ public class Robot extends IterativeRobot {
 	public static Shooter shooter;
 	public static Gyro gyro;
 	public static Accelerometer accelerometer;
+	public static Cameras cameras;
 
 	Command autoCommand;
 
@@ -74,6 +73,7 @@ public class Robot extends IterativeRobot {
 		picker = new Picker(PWM.PICKER_MOTOR, DIO.BALL_INSIDE);
 		folder = new Folder(PWM.FOLDER_MOTOR, DIO.FOLDER_UP, DIO.FOLDER_DOWN, DIO.FOLDER_ENCODER_A,
 				DIO.FOLDER_ENCODER_B);
+		cameras = new Cameras(USB.FRONT_CAMERA, USB.REAR_CAMERA);
 		defenseChooser = new SendableChooser();
 		defenseChooser.addDefault("Low Bar", Defense.LOW_BAR);
 		defenseChooser.addObject("Portcullis", Defense.PORTCULLIS);
