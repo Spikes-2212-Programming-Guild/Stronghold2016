@@ -11,8 +11,6 @@ public class PIDStraightDriveByDistance extends PIDCommand {
 	private static final double KD = 0;
 	private static final double ABSOLUTE_TOLERANCE = 1; // centimeter
 
-	private double maximumOutput;
-
 	public PIDStraightDriveByDistance(double distance) {
 		super(KP, KI, KD, distance, new AbsoluteTolerance(ABSOLUTE_TOLERANCE));
 		requires(Robot.drivetrain);
@@ -25,10 +23,6 @@ public class PIDStraightDriveByDistance extends PIDCommand {
 
 	@Override
 	public void usePIDOutput(double output) {
-		if (output != 0) {
-			maximumOutput = Math.max(maximumOutput, Math.abs(output));
-			output /= maximumOutput;
-		}
 		Robot.drivetrain.forward(output);
 	}
 

@@ -24,7 +24,7 @@ public class JoystickMoveTriz extends Command {
 	protected void execute() {
 		double speed = this.speed.getSpeed();
 		if (triz.canMove(speed)) {
-			triz.move(speed);
+			triz.tryMove(speed);
 		}
 	}
 

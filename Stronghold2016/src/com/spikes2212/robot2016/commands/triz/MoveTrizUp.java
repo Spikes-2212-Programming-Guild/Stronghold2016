@@ -23,7 +23,7 @@ public class MoveTrizUp extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		if (!triz.isUp()) {
-			triz.move(-Constants.TRIZ_SPEED);
+			triz.tryMove(-Constants.TRIZ_SPEED);
 		}
 	}
 
