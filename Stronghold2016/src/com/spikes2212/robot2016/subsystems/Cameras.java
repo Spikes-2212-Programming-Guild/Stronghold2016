@@ -2,7 +2,6 @@ package com.spikes2212.robot2016.subsystems;
 
 import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.Image;
-import static com.spikes2212.robot2016.vision.Vision.AREA_MIN;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.vision.USBCamera;

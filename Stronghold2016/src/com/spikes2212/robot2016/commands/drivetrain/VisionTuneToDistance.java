@@ -7,7 +7,6 @@ import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.Image;
 import com.ni.vision.NIVision.ImageType;
 import com.spikes2212.robot2016.pid.PIDCalculator;
-import com.spikes2212.robot2016.vision.Vision;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -35,7 +34,7 @@ public class VisionTuneToDistance extends Command {
 	protected void initialize() {
 		cameras.getImage(image);
 		drivetrain.resetEncoders();
-		calculator.setSetpoint(Vision.getDistanceFrom(image).orElse(0d) - wantedDistance);
+		calculator.setSetpoint(cameras.getDistance() - wantedDistance);
 	}
 
 	@Override
