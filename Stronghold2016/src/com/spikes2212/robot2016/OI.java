@@ -8,7 +8,7 @@ import com.spikes2212.robot2016.commands.drivetrain.JoystickTurnDrive;
 import com.spikes2212.robot2016.commands.folder.MoveFolderToShoot;
 import com.spikes2212.robot2016.commands.picker.RollBallIn;
 import com.spikes2212.robot2016.commands.picker.RollOut;
-import com.spikes2212.robot2016.commands.shooter.Shoot;
+import com.spikes2212.robot2016.commands.shooter.ShootByVoltage;
 import com.spikes2212.robot2016.commands.triz.JoystickMoveTriz;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -32,7 +32,7 @@ public class OI {
 		new JoystickButton(rightNavigator, 6).whileHeld(new JoystickMoveTriz(() -> -rightNavigator.getY()));
 		new JoystickButton(rightNavigator, 1).toggleWhenPressed(new RollBallIn());
 		new JoystickButton(rightNavigator, 3).toggleWhenPressed(new RollOut());
-		new JoystickButton(rightNavigator, 4).whenPressed(new Shoot(Constants.SHOOTING_VOLTAGE));
+		new JoystickButton(rightNavigator, 4).whenPressed(new ShootByVoltage(Constants.SHOOTING_VOLTAGE));
 		new JoystickButton(rightNavigator, 5).whenPressed(new MoveFolderToShoot());
 	}
 
