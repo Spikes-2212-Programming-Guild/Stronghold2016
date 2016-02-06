@@ -12,7 +12,7 @@ public class TwoJoysticksDrive extends Command {
 	private SpeedSupplier leftSpeed;
 	private SpeedSupplier rightSpeed;
 
-	public TwoJoysticksDrive() {
+	public TwoJoysticksDrive(SpeedSupplier leftSpeed, SpeedSupplier rightSpeed) {
 		requires(drivetrain);
 	}
 

@@ -7,31 +7,27 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RotateShooterBySpeedAndTime extends Command {
+public class RotateShooterByVoltageAndTime extends Command {
 
-	private double speed;
+	private double voltage;
 
-	public RotateShooterBySpeedAndTime(double speed, double timeout) {
+	public RotateShooterByVoltageAndTime(double voltage, double timeout) {
 		super(timeout);
 		requires(shooter);
-		this.speed = speed;
+		this.voltage = voltage;
 	}
 
-	// Called just before this Command runs the first time
 	protected void initialize() {
 	}
 
-	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		shooter.shoot(speed);
+		shooter.shoot(voltage);
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		return isTimedOut();
 	}
 
-	// Called once after isFinished returns true
 	protected void end() {
 		shooter.stop();
 	}

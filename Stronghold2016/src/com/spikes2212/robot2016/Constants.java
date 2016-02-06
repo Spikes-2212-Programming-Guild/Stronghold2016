@@ -18,16 +18,14 @@ public class Constants {
 	 * Angular Rate - degree / second
 	 */
 
-	public static final int TZOORS_CONSTANT = 4 - 1;
-
 	public static final double TRIZ_SPEED = 0;
 	public static final double FOLDER_UP_SPEED = 0;
 	public static final double FOLDER_DOWN_SPEED = 0;
 	public static final double PICKER_ROLL_IN_SPEED = 0;
 	public static final double PICKER_ROLL_OUT_SPEED = 0;
-	public static final double SHOOT_SPEED = 0;
+	public static final double SHOOTING_VOLTAGE = 0;
 
-	public static final double DRIVE_TO_PORTCULLIS_VELOCITY = 0;
+	public static final double DRIVE_TO_PORTCULLIS_DISTANCE = 0;
 
 	public static final double LIFTING_PORTCULLIS_DISTANCE = 0;
 
@@ -45,4 +43,5 @@ public class Constants {
 	public static final double LEFT_DISTANCE_PER_PULSE = 0;
 	public static final double RIGHT_DISTANCE_PER_PULSE = 0;
 	public static final double TRIZ_DISTANCE_PER_PULSE = 0;
+	public static final double FOLDER_DISTANCE_PER_PULSE = 0;
 }

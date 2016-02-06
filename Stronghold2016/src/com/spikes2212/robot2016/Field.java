@@ -24,5 +24,10 @@ public class Field {
 
 	public enum DefenseLocation {
 		k1, k2, k3, k4, k5
+
+	}
+
+	public enum Goal {
+		LOW, HIGH
 	}
 }

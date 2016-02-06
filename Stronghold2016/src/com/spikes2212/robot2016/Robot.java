@@ -1,15 +1,15 @@
 package com.spikes2212.robot2016;
 
-import java.util.Optional;
-
 import com.spikes2212.robot2016.Field.Defense;
 import com.spikes2212.robot2016.Field.DefenseLocation;
-import com.spikes2212.robot2016.Field.Direction;
+import com.spikes2212.robot2016.Field.Goal;
 import com.spikes2212.robot2016.RobotMap.DIO;
 import com.spikes2212.robot2016.RobotMap.PWM;
+import com.spikes2212.robot2016.commands.autonomous.CrossAndDropAndReturn;
+import com.spikes2212.robot2016.commands.autonomous.CrossAndReturn;
+import com.spikes2212.robot2016.commands.autonomous.CrossAndScoreGoal;
 import com.spikes2212.robot2016.commands.SequentialCommandGroup;
 import com.spikes2212.robot2016.commands.autonomous.Cross;
-import com.spikes2212.robot2016.commands.autonomous.ReachTowerFromDefense;
 import com.spikes2212.robot2016.commands.picker.RollOut;
 import com.spikes2212.robot2016.robot.OI;
 import com.spikes2212.robot2016.subsystems.Drivetrain;
@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
@@ -49,8 +50,7 @@ public class Robot extends IterativeRobot {
 	public static Gyro gyro;
 	public static Accelerometer accelerometer;
 
-	Optional<Command> autoCommand = Optional.empty();
-	Optional<Command> disabledCommand = Optional.empty();
+	Command autoCommand;
 
 	SendableChooser defenseChooser;
 	SendableChooser locationChooser;
@@ -89,7 +89,10 @@ public class Robot extends IterativeRobot {
 		locationChooser.addObject("4", DefenseLocation.k4);
 		locationChooser.addObject("5", DefenseLocation.k5);
 		autoChooser = new SendableChooser();
-
+		autoChooser.addDefault("Cross & Return", "CrossAndReturn");
+		autoChooser.addObject("Cross, drop & Return", "CrossAndDropAndReturn");
+		autoChooser.addObject("Cross & score low", "CrossAndScoreLow");
+		autoChooser.addObject("Cross & score high", "CrossAndScoreHigh");
 	}
 
 	/**
@@ -111,9 +114,24 @@ public class Robot extends IterativeRobot {
 		try {
 			Defense defense = (Defense) defenseChooser.getSelected();
 			DefenseLocation location = (DefenseLocation) locationChooser.getSelected();
-			autoCommand = Optional.of(new SequentialCommandGroup(new Cross(defense, Direction.FORWARD),
-					new ReachTowerFromDefense(location), new RollOut()));
-			autoCommand.ifPresent(Command::start);
+			switch ((String) autoChooser.getSelected()) {
+			case "CrossAndReturn":
+				autoCommand = new CrossAndReturn(defense);
+				break;
+			case "CrossAndDropAndReturn":
+				autoCommand = new CrossAndDropAndReturn(defense);
+				break;
+			case "CrossAndScoreLow":
+				autoCommand = new CrossAndScoreGoal(defense, location, Goal.LOW);
+				break;
+			case "CrossAndScoreHigh":
+				autoCommand = new CrossAndScoreGoal(defense, location, Goal.HIGH);
+				break;
+			default:
+				autoCommand = new CommandGroup();
+				break;
+			}
+			autoCommand.start();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

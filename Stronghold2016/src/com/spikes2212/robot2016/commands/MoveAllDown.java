@@ -5,9 +5,9 @@ import com.spikes2212.robot2016.commands.triz.MoveTrizDown;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class FoldAll extends CommandGroup {
+public class MoveAllDown extends CommandGroup {
 
-	public FoldAll() {
+	public MoveAllDown() {
 		addParallel(new MoveTrizDown());
 		addParallel(new MoveFolderDown());
 	}
