@@ -4,6 +4,7 @@ import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.Image;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.vision.USBCamera;
 import java.util.List;
 
@@ -87,6 +88,8 @@ public class Cameras extends Subsystem {
         }
         if (count != 0) {
             double height = NIVision.imaqMeasureParticle(image, maxIndex, 0, NIVision.MeasurementType.MT_FIRST_PIXEL_Y);
+            SmartDashboard.putNumber("height (PX)", height);
+            SmartDashboard.putNumber("angle", CAMERA_ANGLE + Y_ANGLE_PER_PIXEL * height);
             return CAMERA_ANGLE + Y_ANGLE_PER_PIXEL * height;
         }
         return 50;//TODO: find what to return here
@@ -94,6 +97,7 @@ public class Cameras extends Subsystem {
 
     public double getDistance() {
         double angleUp = getAngleUp();
+        SmartDashboard.putNumber("distance", TARGET_HEIGHT / Math.tan(Math.toRadians(angleUp + CAMERA_ANGLE)));
         return TARGET_HEIGHT / Math.tan(Math.toRadians(angleUp + CAMERA_ANGLE));
     }
 

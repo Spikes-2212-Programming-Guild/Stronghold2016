@@ -27,6 +27,7 @@ import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -37,132 +38,133 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
  */
 public class Robot extends IterativeRobot {
 
-	public static OI oi;
-	public static Gearbox right;
-	public static Gearbox left;
-	public static Drivetrain drivetrain;
-	public static Triz triz;
-	public static Folder folder;
-	public static Picker picker;
-	public static Shooter shooter;
-	public static Gyro gyro;
-	public static Accelerometer accelerometer;
-	public static Cameras cameras;
+    public static OI oi;
+    public static Gearbox right;
+    public static Gearbox left;
+    public static Drivetrain drivetrain;
+    public static Triz triz;
+    public static Folder folder;
+    public static Picker picker;
+    public static Shooter shooter;
+    public static Gyro gyro;
+    public static Accelerometer accelerometer;
+    public static Cameras cameras;
 
-	Command autoCommand;
+    Command autoCommand;
 
-	SendableChooser defenseChooser;
-	SendableChooser locationChooser;
-	SendableChooser autoChooser;
+    SendableChooser defenseChooser;
+    SendableChooser locationChooser;
+    SendableChooser autoChooser;
 
-	/**
-	 * This function is run when the robot is first started up and should be
-	 * used for any initialization code.
-	 */
-	@Override
-	public void robotInit() {
-		gyro = new ADXRS450_Gyro();
-		accelerometer = new BuiltInAccelerometer();
-		left = new Gearbox(PWM.LEFT_FRONT_VICTOR, PWM.LEFT_REAR_VICTOR, DIO.LEFT_ENCODER_A, DIO.LEFT_ENCODER_B);
-		right = new Gearbox(PWM.RIGHT_FRONT_VICTOR, PWM.RIGHT_REAR_VICTOR, DIO.RIGHT_ENCODER_A, DIO.RIGHT_ENCODER_B);
-		drivetrain = new Drivetrain(left, right, gyro, accelerometer);
-		triz = new Triz(PWM.TRIZ_MOTOR, DIO.TRIZ_UP, DIO.TRIZ_DOWN, DIO.TRIZ_UNDER_PORTCULLIS, DIO.TRIZ_ENCODER_A,
-				DIO.TRIZ_ENCODER_B);
-		shooter = new Shooter(PWM.SHOOTER_MOTOR);
-		picker = new Picker(PWM.PICKER_MOTOR, DIO.BALL_INSIDE);
-		folder = new Folder(PWM.FOLDER_MOTOR, DIO.FOLDER_UP, DIO.FOLDER_DOWN, DIO.FOLDER_ENCODER_A,
-				DIO.FOLDER_ENCODER_B);
-		cameras = new Cameras(USB.FRONT_CAMERA, USB.REAR_CAMERA);
-		defenseChooser = new SendableChooser();
-		defenseChooser.addDefault("Low Bar", Defense.LOW_BAR);
-		defenseChooser.addObject("Portcullis", Defense.PORTCULLIS);
-		defenseChooser.addObject("Cheval de Frise", Defense.CHEVAL_DE_FRISE);
-		defenseChooser.addObject("Moat", Defense.MOAT);
-		defenseChooser.addObject("Ramparts", Defense.RAMPARTS);
-		defenseChooser.addObject("Rough Terrain", Defense.ROUGH_TERRAIN);
-		defenseChooser.addObject("Rock Wall", Defense.ROCK_WALL);
-		locationChooser = new SendableChooser();
-		locationChooser.addDefault("1", DefenseLocation.k1);
-		locationChooser.addObject("2", DefenseLocation.k2);
-		locationChooser.addObject("3", DefenseLocation.k3);
-		locationChooser.addObject("4", DefenseLocation.k4);
-		locationChooser.addObject("5", DefenseLocation.k5);
-		autoChooser = new SendableChooser();
-		autoChooser.addDefault("Cross & Return", "CrossAndReturn");
-		autoChooser.addObject("Cross, drop & Return", "CrossAndDropAndReturn");
-		autoChooser.addObject("Cross & score low", "CrossAndScoreLow");
-		autoChooser.addObject("Cross & score high", "CrossAndScoreHigh");
-		oi = new OI();
-	}
+    /**
+     * This function is run when the robot is first started up and should be
+     * used for any initialization code.
+     */
+    @Override
+    public void robotInit() {
+        gyro = new ADXRS450_Gyro();
+        accelerometer = new BuiltInAccelerometer();
+        left = new Gearbox(PWM.LEFT_FRONT_VICTOR, PWM.LEFT_REAR_VICTOR, DIO.LEFT_ENCODER_A, DIO.LEFT_ENCODER_B);
+        right = new Gearbox(PWM.RIGHT_FRONT_VICTOR, PWM.RIGHT_REAR_VICTOR, DIO.RIGHT_ENCODER_A, DIO.RIGHT_ENCODER_B);
+        drivetrain = new Drivetrain(left, right, gyro, accelerometer);
+        triz = new Triz(PWM.TRIZ_MOTOR, DIO.TRIZ_UP, DIO.TRIZ_DOWN, DIO.TRIZ_UNDER_PORTCULLIS, DIO.TRIZ_ENCODER_A,
+                DIO.TRIZ_ENCODER_B);
+        shooter = new Shooter(PWM.SHOOTER_MOTOR);
+        picker = new Picker(PWM.PICKER_MOTOR, DIO.BALL_INSIDE);
+        folder = new Folder(PWM.FOLDER_MOTOR, DIO.FOLDER_UP, DIO.FOLDER_DOWN, DIO.FOLDER_ENCODER_A,
+                DIO.FOLDER_ENCODER_B);
+        cameras = new Cameras(USB.FRONT_CAMERA, USB.REAR_CAMERA);
+        defenseChooser = new SendableChooser();
+        defenseChooser.addDefault("Low Bar", Defense.LOW_BAR);
+        defenseChooser.addObject("Portcullis", Defense.PORTCULLIS);
+        defenseChooser.addObject("Cheval de Frise", Defense.CHEVAL_DE_FRISE);
+        defenseChooser.addObject("Moat", Defense.MOAT);
+        defenseChooser.addObject("Ramparts", Defense.RAMPARTS);
+        defenseChooser.addObject("Rough Terrain", Defense.ROUGH_TERRAIN);
+        defenseChooser.addObject("Rock Wall", Defense.ROCK_WALL);
+        locationChooser = new SendableChooser();
+        locationChooser.addDefault("1", DefenseLocation.k1);
+        locationChooser.addObject("2", DefenseLocation.k2);
+        locationChooser.addObject("3", DefenseLocation.k3);
+        locationChooser.addObject("4", DefenseLocation.k4);
+        locationChooser.addObject("5", DefenseLocation.k5);
+        autoChooser = new SendableChooser();
+        autoChooser.addDefault("Cross & Return", "CrossAndReturn");
+        autoChooser.addObject("Cross, drop & Return", "CrossAndDropAndReturn");
+        autoChooser.addObject("Cross & score low", "CrossAndScoreLow");
+        autoChooser.addObject("Cross & score high", "CrossAndScoreHigh");
+        oi = new OI();
+    }
 
-	/**
-	 * This function is called once each time the robot enters Disabled mode.
-	 * You can use it to reset any subsystem information you want to clear when
-	 * the robot is disabled.
-	 */
-	@Override
-	public void disabledInit() {
-	}
+    /**
+     * This function is called once each time the robot enters Disabled mode.
+     * You can use it to reset any subsystem information you want to clear when
+     * the robot is disabled.
+     */
+    @Override
+    public void disabledInit() {
+    }
 
-	@Override
-	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
-	}
+    @Override
+    public void disabledPeriodic() {
+        Scheduler.getInstance().run();
+    }
 
-	@Override
-	public void autonomousInit() {
-		try {
-			Defense defense = (Defense) defenseChooser.getSelected();
-			DefenseLocation location = (DefenseLocation) locationChooser.getSelected();
-			switch ((String) autoChooser.getSelected()) {
-			case "CrossAndReturn":
-				autoCommand = new CrossAndReturn(defense);
-				break;
-			case "CrossAndDropAndReturn":
-				autoCommand = new CrossAndDropAndReturn(defense);
-				break;
-			case "CrossAndScoreLow":
-				autoCommand = new CrossAndScoreGoal(defense, location, Goal.LOW);
-				break;
-			case "CrossAndScoreHigh":
-				autoCommand = new CrossAndScoreGoal(defense, location, Goal.HIGH);
-				break;
-			default:
-				autoCommand = new CommandGroup();
-				break;
-			}
-			autoCommand.start();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    @Override
+    public void autonomousInit() {
+        try {
+            Defense defense = (Defense) defenseChooser.getSelected();
+            DefenseLocation location = (DefenseLocation) locationChooser.getSelected();
+            switch ((String) autoChooser.getSelected()) {
+                case "CrossAndReturn":
+                    autoCommand = new CrossAndReturn(defense);
+                    break;
+                case "CrossAndDropAndReturn":
+                    autoCommand = new CrossAndDropAndReturn(defense);
+                    break;
+                case "CrossAndScoreLow":
+                    autoCommand = new CrossAndScoreGoal(defense, location, Goal.LOW);
+                    break;
+                case "CrossAndScoreHigh":
+                    autoCommand = new CrossAndScoreGoal(defense, location, Goal.HIGH);
+                    break;
+                default:
+                    autoCommand = new CommandGroup();
+                    break;
+            }
+            autoCommand.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-	/**
-	 * This function is called periodically during autonomous
-	 */
-	@Override
-	public void autonomousPeriodic() {
-		Scheduler.getInstance().run();
-	}
+    /**
+     * This function is called periodically during autonomous
+     */
+    @Override
+    public void autonomousPeriodic() {
+        Scheduler.getInstance().run();
+    }
 
-	@Override
-	public void teleopInit() {
-	}
+    @Override
+    public void teleopInit() {
+    }
 
-	/**
-	 * This function is called periodically during operator control
-	 */
-	@Override
-	public void teleopPeriodic() {
-		Scheduler.getInstance().run();
-	}
+    /**
+     * This function is called periodically during operator control
+     */
+    @Override
+    public void teleopPeriodic() {
+        SmartDashboard.putNumber("distance", cameras.getDistance());
+        Scheduler.getInstance().run();
+    }
 
-	/**
-	 * This function is called periodically during test mode
-	 */
-	@Override
-	public void testPeriodic() {
-		LiveWindow.run();
-	}
+    /**
+     * This function is called periodically during test mode
+     */
+    @Override
+    public void testPeriodic() {
+        LiveWindow.run();
+    }
 
 }
