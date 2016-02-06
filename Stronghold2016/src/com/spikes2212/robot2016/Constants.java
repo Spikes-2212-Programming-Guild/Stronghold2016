@@ -33,10 +33,10 @@ public class Constants {
 	public static final double AFTER_LIFTING_PORTCULLIS_DISTANCE = 0;
 	public static final double MOAT_DISTANCE = 0;
 
-	public static final double LIFTER_UP_DISTANCE = 0;
-	public static final double LIFTER_DOWN_DISTANCE = 0;
-	public static final double FOLDER_UP_DISTANCE = 0;
-	public static final double FOLDER_DOWN_DISTANCE = 0;
+	public static final double TRIZ_UP_POSITION = 0;
+	public static final double TRIZ_DOWN_POSITION = 0;
+	public static final double FOLDER_UP_POSITION = 0;
+	public static final double FOLDER_DOWN_POSITION = 0;
 
 	public static final double FREE_FALL_GRAVITY = 0;
 
