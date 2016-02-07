@@ -5,19 +5,17 @@ import com.ni.vision.NIVision.Image;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.vision.USBCamera;
+import java.util.List;
 
 public class Cameras extends Subsystem {
 
     private USBCamera front, rear;
     private boolean frontOn, rearOn;
     private final double VIEW_ANGLE_UP = 59;
-    private final double VIEW_ANGLE_SIDE = 37;
     private final double CAMERA_ANGLE = 59;
     private final double TARGET_HEIGHT = 59;
     private final double CAMERA_RESOLUTION_Y = 480;
-    private final double CAMERA_RESOLUTION_X = 640;
     private final double Y_ANGLE_PER_PIXEL = VIEW_ANGLE_UP / CAMERA_RESOLUTION_Y;
-    private final double X_ANGLE_PER_PIXEL = VIEW_ANGLE_SIDE / CAMERA_RESOLUTION_X;
     public final double AREA_MIN = 60;
 
     public final NIVision.Range hRange = new NIVision.Range(0, 255);
@@ -91,26 +89,7 @@ public class Cameras extends Subsystem {
             double height = NIVision.imaqMeasureParticle(image, maxIndex, 0, NIVision.MeasurementType.MT_FIRST_PIXEL_Y);
             return CAMERA_ANGLE + Y_ANGLE_PER_PIXEL * height;
         }
-        return -1;
-    }
-    public double getAngleHorizontal() {
-    	Image image = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
-        getImage(image);
-        Image binary = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_U8, 0);
-        NIVision.imaqColorThreshold(binary, image, 255, NIVision.ColorMode.HSV, hRange, sRange, vRange);
-        NIVision.imaqParticleFilter4(binary, binary, criteria, options, null);
-        int count = NIVision.imaqCountParticles(binary, 1);
-        double maxArea = 0;
-        int maxIndex = 0;
-        for (int index = 0; index < count; index++) {
-            double area = NIVision.imaqMeasureParticle(image, index, 0, NIVision.MeasurementType.MT_AREA_BY_IMAGE_AREA);
-            maxIndex = area > maxArea ? index : maxIndex;
-        }
-        if (count != 0) {
-            double width = NIVision.imaqMeasureParticle(image, maxIndex, 0, NIVision.MeasurementType.MT_FIRST_PIXEL_X);
-            return X_ANGLE_PER_PIXEL * width;
-        }
-        return -1;
+        return 50;//TODO: find what to return here
     }
 
     public double getDistance() {
