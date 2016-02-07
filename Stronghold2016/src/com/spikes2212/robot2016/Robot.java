@@ -155,6 +155,7 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void teleopPeriodic() {
+    	cameras.startRear();
         SmartDashboard.putNumber("distance", cameras.getDistance());
         Scheduler.getInstance().run();
     }

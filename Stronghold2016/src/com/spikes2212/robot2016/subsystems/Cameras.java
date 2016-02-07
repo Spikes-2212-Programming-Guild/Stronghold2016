@@ -72,10 +72,10 @@ public class Cameras extends Subsystem {
 		}
 	}
 
+	private Image image = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
+	private Image binary = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_U8, 0);
 	public double getAngleUp() {
-		Image image = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
 		getImage(image);
-		Image binary = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_U8, 0);
 		NIVision.imaqColorThreshold(binary, image, 255, NIVision.ColorMode.RGB, rRange, gRange, bRange);
 		NIVision.imaqParticleFilter4(binary, binary, criteria, options, null);
 		int count = NIVision.imaqCountParticles(binary, 1);
