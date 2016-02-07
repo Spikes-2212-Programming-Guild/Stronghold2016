@@ -40,8 +40,11 @@ public class TuneToTower extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		drivetrain
-				.turn(calculator.calculate(Math.abs(drivetrain.getLeftDistance() - drivetrain.getRightDistance() / 2)));
+		if (tower)
+			drivetrain.turn(
+					calculator.calculate(Math.abs(drivetrain.getLeftDistance() - drivetrain.getRightDistance() / 2)));
+		else
+			end();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
