@@ -2,8 +2,10 @@ package com.spikes2212.robot2016.commands.triz;
 
 import static com.spikes2212.robot2016.Robot.triz;
 
+import com.spikes2212.robot2016.Calibrate;
 import com.spikes2212.robot2016.pid.PIDCommand;
 
+@Calibrate(desc = "Calibrate all p, i, d", unit = "pid")
 public class PIDMoveTriz extends PIDCommand {
 
 	private static final double KD = 0;
