@@ -25,7 +25,7 @@ public class OI {
 
 	public OI() {
 		new JoystickButton(rightDriver, 1).toggleWhenPressed(new JoystickForwardDrive(() -> -rightDriver.getY()));
-		new JoystickButton(rightDriver, 3).toggleWhenPressed(new JoystickTurnDrive(rightDriver::getTwist));
+		new JoystickButton(rightDriver, 3).toggleWhenPressed(new JoystickTurnDrive(() -> rightDriver.getTwist()));
 		new JoystickButton(rightDriver, 7).whenPressed(new FrontStream());
 		new JoystickButton(rightDriver, 8).whenPressed(new RearStream());
 		new JoystickButton(rightDriver, 9).whenPressed(new StopStream());
