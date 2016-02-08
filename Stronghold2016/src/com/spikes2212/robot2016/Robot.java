@@ -88,7 +88,7 @@ public class Robot extends IterativeRobot {
 	SendableChooser defenseChooser;
 	SendableChooser locationChooser;
 	SendableChooser autoChooser;
-	
+
 	public void initConstantsFromConstantsClass() {
 		SmartDashboard.putNumber("TRIZ_SPEED", Constants.TRIZ_SPEED);
 		SmartDashboard.putNumber("FOLDER_UP_SPEED", Constants.FOLDER_UP_SPEED);
@@ -118,7 +118,7 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putNumber("FOLDER_DISTANCE_PER_PULSE", Constants.FOLDER_DISTANCE_PER_PULSE);
 	}
-	
+
 	public void getConstantsFromConstantsClass() {
 		TRIZ_SPEED = SmartDashboard.getNumber("TRIZ_SPEED", Constants.TRIZ_SPEED);
 		FOLDER_UP_SPEED = SmartDashboard.getNumber("FOLDER_UP_SPEED", Constants.FOLDER_UP_SPEED);
@@ -155,50 +155,79 @@ public class Robot extends IterativeRobot {
 				Constants.FOLDER_DISTANCE_PER_PULSE);
 
 	}
-	
+
 	public void initConstantsFromAutonomousPackage() {
-		CrossAndDropAndReturn.WAIT_TIME = SmartDashboard.getNumber("CrossAndDropAndReturn.WAIT_TIME", CrossAndDropAndReturn.WAIT_TIME);
+		CrossAndDropAndReturn.WAIT_TIME = SmartDashboard.getNumber("CrossAndDropAndReturn.WAIT_TIME",
+				CrossAndDropAndReturn.WAIT_TIME);
 		CrossAndReturn.WAIT_TIME = SmartDashboard.getNumber("CrossAndReturn.WAIT_TIME", CrossAndReturn.WAIT_TIME);
-		CrossAndScoreGoal.WAIT_TIME = SmartDashboard.getNumber("CrossAndScoreGoal.WAIT_TIME", CrossAndScoreGoal.WAIT_TIME);
-		CrossChevalDeFrise.DISTANCE = SmartDashboard.getNumber("CrossChevalDeFrise.DISTANCE", CrossChevalDeFrise.DISTANCE);
+		CrossAndScoreGoal.WAIT_TIME = SmartDashboard.getNumber("CrossAndScoreGoal.WAIT_TIME",
+				CrossAndScoreGoal.WAIT_TIME);
+		CrossChevalDeFrise.DISTANCE = SmartDashboard.getNumber("CrossChevalDeFrise.DISTANCE",
+				CrossChevalDeFrise.DISTANCE);
 		CrossLowBar.DISTANCE = SmartDashboard.getNumber("CrossLowBar.DISTANCE", CrossLowBar.DISTANCE);
 		CrossMoat.DISTANCE = SmartDashboard.getNumber("CrossMoat.DISTANCE", CrossMoat.DISTANCE);
-		CrossPortcullis.ROTATE_ANGLE = SmartDashboard.getNumber("CrossPortcullis.ROTATE_ANGLE", CrossPortcullis.ROTATE_ANGLE);
+		CrossPortcullis.ROTATE_ANGLE = SmartDashboard.getNumber("CrossPortcullis.ROTATE_ANGLE",
+				CrossPortcullis.ROTATE_ANGLE);
 		CrossRamparts.DISTANCE = SmartDashboard.getNumber("CrossRamparts.DISTANCE", CrossRamparts.DISTANCE);
 		CrossRockWall.DISTANCE = SmartDashboard.getNumber("CrossRockWall.DISTANCE", CrossRockWall.DISTANCE);
 		CrossRoughTerrain.DISTANCE = SmartDashboard.getNumber("CrossRoughTerrain.DISTANCE", CrossRoughTerrain.DISTANCE);
-		
-		ScoreGoalFromLocation1.ANGLE = SmartDashboard.getNumber("ScoreGoalFromLocation1.ANGLE", ScoreGoalFromLocation1.ANGLE);
-		ScoreGoalFromLocation1.ROTATE_ANGLE = SmartDashboard.getNumber("ScoreGoalFromLocation1.ROTATE_ANGLE", ScoreGoalFromLocation1.ROTATE_ANGLE);
-		ScoreGoalFromLocation1.FIRST_DISTANCE = SmartDashboard.getNumber("ScoreGoalFromLocation1.FIRST_DISTANCE", ScoreGoalFromLocation1.FIRST_DISTANCE);
-		ScoreGoalFromLocation1.SECOND_DISTANCE = SmartDashboard.getNumber("ScoreGoalFromLocation1.SECOND_DISTANCE", ScoreGoalFromLocation1.SECOND_DISTANCE);
-		ScoreGoalFromLocation1.TIMEOUT = SmartDashboard.getNumber("ScoreGoalFromLocation1.TIMEOUT", ScoreGoalFromLocation1.TIMEOUT);
 
-		ScoreGoalFromLocation2.ANGLE = SmartDashboard.getNumber("ScoreGoalFromLocation2.ANGLE", ScoreGoalFromLocation2.ANGLE);
-		ScoreGoalFromLocation2.ROTATE_ANGLE = SmartDashboard.getNumber("ScoreGoalFromLocation2.ROTATE_ANGLE", ScoreGoalFromLocation2.ROTATE_ANGLE);
-		ScoreGoalFromLocation2.FIRST_DISTANCE = SmartDashboard.getNumber("ScoreGoalFromLocation2.FIRST_DISTANCE", ScoreGoalFromLocation2.FIRST_DISTANCE);
-		ScoreGoalFromLocation2.SECOND_DISTANCE = SmartDashboard.getNumber("ScoreGoalFromLocation2.SECOND_DISTANCE", ScoreGoalFromLocation2.SECOND_DISTANCE);
-		ScoreGoalFromLocation2.TIMEOUT = SmartDashboard.getNumber("ScoreGoalFromLocation2.TIMEOUT", ScoreGoalFromLocation2.TIMEOUT);
-		
-		ScoreGoalFromLocation3.ANGLE = SmartDashboard.getNumber("ScoreGoalFromLocation3.ANGLE", ScoreGoalFromLocation3.ANGLE);
-		ScoreGoalFromLocation3.ROTATE_ANGLE = SmartDashboard.getNumber("ScoreGoalFromLocation3.ROTATE_ANGLE", ScoreGoalFromLocation3.ROTATE_ANGLE);
-		ScoreGoalFromLocation3.FIRST_DISTANCE = SmartDashboard.getNumber("ScoreGoalFromLocation3.FIRST_DISTANCE", ScoreGoalFromLocation3.FIRST_DISTANCE);
-		ScoreGoalFromLocation3.SECOND_DISTANCE = SmartDashboard.getNumber("ScoreGoalFromLocation3.SECOND_DISTANCE", ScoreGoalFromLocation3.SECOND_DISTANCE);
-		ScoreGoalFromLocation3.TIMEOUT = SmartDashboard.getNumber("ScoreGoalFromLocation3.TIMEOUT", ScoreGoalFromLocation3.TIMEOUT);
-		
-		ScoreGoalFromLocation4.ANGLE = SmartDashboard.getNumber("ScoreGoalFromLocation4.ANGLE", ScoreGoalFromLocation4.ANGLE);
-		ScoreGoalFromLocation4.ROTATE_ANGLE = SmartDashboard.getNumber("ScoreGoalFromLocation4.ROTATE_ANGLE", ScoreGoalFromLocation4.ROTATE_ANGLE);
-		ScoreGoalFromLocation4.FIRST_DISTANCE = SmartDashboard.getNumber("ScoreGoalFromLocation4.FIRST_DISTANCE", ScoreGoalFromLocation4.FIRST_DISTANCE);
-		ScoreGoalFromLocation4.SECOND_DISTANCE = SmartDashboard.getNumber("ScoreGoalFromLocation4.SECOND_DISTANCE", ScoreGoalFromLocation4.SECOND_DISTANCE);
-		ScoreGoalFromLocation4.TIMEOUT = SmartDashboard.getNumber("ScoreGoalFromLocation4.TIMEOUT", ScoreGoalFromLocation4.TIMEOUT);
-		
-		ScoreGoalFromLocation5.ANGLE = SmartDashboard.getNumber("ScoreGoalFromLocation5.ANGLE", ScoreGoalFromLocation5.ANGLE);
-		ScoreGoalFromLocation5.ROTATE_ANGLE = SmartDashboard.getNumber("ScoreGoalFromLocation5.ROTATE_ANGLE", ScoreGoalFromLocation5.ROTATE_ANGLE);
-		ScoreGoalFromLocation5.FIRST_DISTANCE = SmartDashboard.getNumber("ScoreGoalFromLocation5.FIRST_DISTANCE", ScoreGoalFromLocation5.FIRST_DISTANCE);
-		ScoreGoalFromLocation5.SECOND_DISTANCE = SmartDashboard.getNumber("ScoreGoalFromLocation5.SECOND_DISTANCE", ScoreGoalFromLocation5.SECOND_DISTANCE);
-		ScoreGoalFromLocation5.TIMEOUT = SmartDashboard.getNumber("ScoreGoalFromLocation5.TIMEOUT", ScoreGoalFromLocation5.TIMEOUT);
+		ScoreGoalFromLocation1.ANGLE = SmartDashboard.getNumber("ScoreGoalFromLocation1.ANGLE",
+				ScoreGoalFromLocation1.ANGLE);
+		ScoreGoalFromLocation1.ROTATE_ANGLE = SmartDashboard.getNumber("ScoreGoalFromLocation1.ROTATE_ANGLE",
+				ScoreGoalFromLocation1.ROTATE_ANGLE);
+		ScoreGoalFromLocation1.FIRST_DISTANCE = SmartDashboard.getNumber("ScoreGoalFromLocation1.FIRST_DISTANCE",
+				ScoreGoalFromLocation1.FIRST_DISTANCE);
+		ScoreGoalFromLocation1.SECOND_DISTANCE = SmartDashboard.getNumber("ScoreGoalFromLocation1.SECOND_DISTANCE",
+				ScoreGoalFromLocation1.SECOND_DISTANCE);
+		ScoreGoalFromLocation1.TIMEOUT = SmartDashboard.getNumber("ScoreGoalFromLocation1.TIMEOUT",
+				ScoreGoalFromLocation1.TIMEOUT);
+
+		ScoreGoalFromLocation2.ANGLE = SmartDashboard.getNumber("ScoreGoalFromLocation2.ANGLE",
+				ScoreGoalFromLocation2.ANGLE);
+		ScoreGoalFromLocation2.ROTATE_ANGLE = SmartDashboard.getNumber("ScoreGoalFromLocation2.ROTATE_ANGLE",
+				ScoreGoalFromLocation2.ROTATE_ANGLE);
+		ScoreGoalFromLocation2.FIRST_DISTANCE = SmartDashboard.getNumber("ScoreGoalFromLocation2.FIRST_DISTANCE",
+				ScoreGoalFromLocation2.FIRST_DISTANCE);
+		ScoreGoalFromLocation2.SECOND_DISTANCE = SmartDashboard.getNumber("ScoreGoalFromLocation2.SECOND_DISTANCE",
+				ScoreGoalFromLocation2.SECOND_DISTANCE);
+		ScoreGoalFromLocation2.TIMEOUT = SmartDashboard.getNumber("ScoreGoalFromLocation2.TIMEOUT",
+				ScoreGoalFromLocation2.TIMEOUT);
+
+		ScoreGoalFromLocation3.ANGLE = SmartDashboard.getNumber("ScoreGoalFromLocation3.ANGLE",
+				ScoreGoalFromLocation3.ANGLE);
+		ScoreGoalFromLocation3.ROTATE_ANGLE = SmartDashboard.getNumber("ScoreGoalFromLocation3.ROTATE_ANGLE",
+				ScoreGoalFromLocation3.ROTATE_ANGLE);
+		ScoreGoalFromLocation3.FIRST_DISTANCE = SmartDashboard.getNumber("ScoreGoalFromLocation3.FIRST_DISTANCE",
+				ScoreGoalFromLocation3.FIRST_DISTANCE);
+		ScoreGoalFromLocation3.SECOND_DISTANCE = SmartDashboard.getNumber("ScoreGoalFromLocation3.SECOND_DISTANCE",
+				ScoreGoalFromLocation3.SECOND_DISTANCE);
+		ScoreGoalFromLocation3.TIMEOUT = SmartDashboard.getNumber("ScoreGoalFromLocation3.TIMEOUT",
+				ScoreGoalFromLocation3.TIMEOUT);
+
+		ScoreGoalFromLocation4.ANGLE = SmartDashboard.getNumber("ScoreGoalFromLocation4.ANGLE",
+				ScoreGoalFromLocation4.ANGLE);
+		ScoreGoalFromLocation4.ROTATE_ANGLE = SmartDashboard.getNumber("ScoreGoalFromLocation4.ROTATE_ANGLE",
+				ScoreGoalFromLocation4.ROTATE_ANGLE);
+		ScoreGoalFromLocation4.FIRST_DISTANCE = SmartDashboard.getNumber("ScoreGoalFromLocation4.FIRST_DISTANCE",
+				ScoreGoalFromLocation4.FIRST_DISTANCE);
+		ScoreGoalFromLocation4.SECOND_DISTANCE = SmartDashboard.getNumber("ScoreGoalFromLocation4.SECOND_DISTANCE",
+				ScoreGoalFromLocation4.SECOND_DISTANCE);
+		ScoreGoalFromLocation4.TIMEOUT = SmartDashboard.getNumber("ScoreGoalFromLocation4.TIMEOUT",
+				ScoreGoalFromLocation4.TIMEOUT);
+
+		ScoreGoalFromLocation5.ANGLE = SmartDashboard.getNumber("ScoreGoalFromLocation5.ANGLE",
+				ScoreGoalFromLocation5.ANGLE);
+		ScoreGoalFromLocation5.ROTATE_ANGLE = SmartDashboard.getNumber("ScoreGoalFromLocation5.ROTATE_ANGLE",
+				ScoreGoalFromLocation5.ROTATE_ANGLE);
+		ScoreGoalFromLocation5.FIRST_DISTANCE = SmartDashboard.getNumber("ScoreGoalFromLocation5.FIRST_DISTANCE",
+				ScoreGoalFromLocation5.FIRST_DISTANCE);
+		ScoreGoalFromLocation5.SECOND_DISTANCE = SmartDashboard.getNumber("ScoreGoalFromLocation5.SECOND_DISTANCE",
+				ScoreGoalFromLocation5.SECOND_DISTANCE);
+		ScoreGoalFromLocation5.TIMEOUT = SmartDashboard.getNumber("ScoreGoalFromLocation5.TIMEOUT",
+				ScoreGoalFromLocation5.TIMEOUT);
 	}
-	
+
 	public void getConstantsFromAutonomousPackage() {
 		SmartDashboard.getNumber("CrossAndDropAndReturn.WAIT_TIME", CrossAndDropAndReturn.WAIT_TIME);
 		SmartDashboard.getNumber("CrossAndReturn.WAIT_TIME", CrossAndReturn.WAIT_TIME);
@@ -221,26 +250,26 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.getNumber("ScoreGoalFromLocation2.FIRST_DISTANCE", ScoreGoalFromLocation2.FIRST_DISTANCE);
 		SmartDashboard.getNumber("ScoreGoalFromLocation2.SECOND_DISTANCE", ScoreGoalFromLocation2.SECOND_DISTANCE);
 		SmartDashboard.getNumber("ScoreGoalFromLocation2.TIMEOUT", ScoreGoalFromLocation2.TIMEOUT);
-		
+
 		SmartDashboard.getNumber("ScoreGoalFromLocation3.ANGLE", ScoreGoalFromLocation3.ANGLE);
 		SmartDashboard.getNumber("ScoreGoalFromLocation3.ROTATE_ANGLE", ScoreGoalFromLocation3.ROTATE_ANGLE);
 		SmartDashboard.getNumber("ScoreGoalFromLocation3.FIRST_DISTANCE", ScoreGoalFromLocation3.FIRST_DISTANCE);
 		SmartDashboard.getNumber("ScoreGoalFromLocation3.SECOND_DISTANCE", ScoreGoalFromLocation3.SECOND_DISTANCE);
 		SmartDashboard.getNumber("ScoreGoalFromLocation3.TIMEOUT", ScoreGoalFromLocation3.TIMEOUT);
-		
+
 		SmartDashboard.getNumber("ScoreGoalFromLocation4.ANGLE", ScoreGoalFromLocation4.ANGLE);
 		SmartDashboard.getNumber("ScoreGoalFromLocation4.ROTATE_ANGLE", ScoreGoalFromLocation4.ROTATE_ANGLE);
 		SmartDashboard.getNumber("ScoreGoalFromLocation4.FIRST_DISTANCE", ScoreGoalFromLocation4.FIRST_DISTANCE);
 		SmartDashboard.getNumber("ScoreGoalFromLocation4.SECOND_DISTANCE", ScoreGoalFromLocation4.SECOND_DISTANCE);
 		SmartDashboard.getNumber("ScoreGoalFromLocation4.TIMEOUT", ScoreGoalFromLocation4.TIMEOUT);
-		
+
 		SmartDashboard.getNumber("ScoreGoalFromLocation5.ANGLE", ScoreGoalFromLocation5.ANGLE);
 		SmartDashboard.getNumber("ScoreGoalFromLocation5.ROTATE_ANGLE", ScoreGoalFromLocation5.ROTATE_ANGLE);
 		SmartDashboard.getNumber("ScoreGoalFromLocation5.FIRST_DISTANCE", ScoreGoalFromLocation5.FIRST_DISTANCE);
 		SmartDashboard.getNumber("ScoreGoalFromLocation5.SECOND_DISTANCE", ScoreGoalFromLocation5.SECOND_DISTANCE);
 		SmartDashboard.getNumber("ScoreGoalFromLocation5.TIMEOUT", ScoreGoalFromLocation5.TIMEOUT);
 	}
-	
+
 	public void initConstantsfromFolderPackage() {
 		SmartDashboard.putNumber("MoveFolderToShoot.POSITION", MoveFolderToShoot.POSITION);
 		SmartDashboard.putNumber("MoveFolderToShoot.ABSOLUTE", MoveFolderToShoot.ABSOLUTE);
@@ -248,9 +277,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("PIDMoveFolder.KI", PIDMoveFolder.KI);
 		SmartDashboard.putNumber("PIDMoveFolder.KD", PIDMoveFolder.KD);
 	}
-	
+
 	public void getConstantsfromFolderPackage() {
-		
+
 	}
 
 	/**
@@ -259,7 +288,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		oi = new OI();
 		gyro = new ADXRS450_Gyro();
 		accelerometer = new BuiltInAccelerometer();
 		left = new Gearbox(PWM.LEFT_FRONT_VICTOR, PWM.LEFT_REAR_VICTOR, DIO.LEFT_ENCODER_A, DIO.LEFT_ENCODER_B);
@@ -272,6 +300,7 @@ public class Robot extends IterativeRobot {
 		folder = new Folder(PWM.FOLDER_MOTOR, DIO.FOLDER_UP, DIO.FOLDER_DOWN, DIO.FOLDER_ENCODER_A,
 				DIO.FOLDER_ENCODER_B);
 		cameras = new Cameras(USB.FRONT_CAMERA, USB.REAR_CAMERA);
+		oi = new OI();
 		defenseChooser = new SendableChooser();
 		defenseChooser.addDefault("Low Bar", Defense.LOW_BAR);
 		defenseChooser.addObject("Portcullis", Defense.PORTCULLIS);
@@ -298,9 +327,9 @@ public class Robot extends IterativeRobot {
 		 * from this function, nor from teleop. Comment them out.
 		 */
 		/*
-		 * Change this line of code and re-upload the code
-		 * every time you want to calibrate a different set of constants.
-		 * Don't forget to change the equivalent line in teleopPeriodic!!
+		 * Change this line of code and re-upload the code every time you want
+		 * to calibrate a different set of constants. Don't forget to change the
+		 * equivalent line in teleopPeriodic!!
 		 */
 		initConstantsFromConstantsClass();
 	}
@@ -365,9 +394,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		/*
-		 * Change this line of code and re-upload the code
-		 * every time you want to calibrate a different set of constants.
-		 * Don't forget to change the equivalent line in robotInit!!
+		 * Change this line of code and re-upload the code every time you want
+		 * to calibrate a different set of constants. Don't forget to change the
+		 * equivalent line in robotInit!!
 		 */
 		getConstantsFromConstantsClass();
 		Scheduler.getInstance().run();
