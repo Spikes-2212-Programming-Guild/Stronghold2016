@@ -19,13 +19,13 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	public /*final*/ Joystick leftDriver = new Joystick(0);
-	public /*final*/ Joystick rightDriver = new Joystick(1);
-	public /*final*/ Joystick rightNavigator = new Joystick(2);
+	public /* final */ Joystick leftDriver = new Joystick(0);
+	public /* final */ Joystick rightDriver = new Joystick(1);
+	public /* final */ Joystick rightNavigator = new Joystick(2);
 
 	public OI() {
-		new JoystickButton(rightDriver, 1).toggleWhenPressed(new JoystickForwardDrive(() -> -leftDriver.getY()));
-		new JoystickButton(rightDriver, 3).toggleWhenPressed(new JoystickTurnDrive(leftDriver::getTwist));
+		new JoystickButton(rightDriver, 1).toggleWhenPressed(new JoystickForwardDrive(() -> -rightDriver.getY()));
+		new JoystickButton(rightDriver, 3).toggleWhenPressed(new JoystickTurnDrive(rightDriver::getTwist));
 		new JoystickButton(rightDriver, 7).whenPressed(new FrontStream());
 		new JoystickButton(rightDriver, 8).whenPressed(new RearStream());
 		new JoystickButton(rightDriver, 9).whenPressed(new StopStream());

@@ -1,20 +1,21 @@
 package com.spikes2212.robot2016.util;
 
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Talon;
 
 public class Gearbox {
-	private VictorSP front, rear;
+	private SpeedController front, rear;
 	private Encoder encoder;
 
-	public Gearbox(VictorSP front, VictorSP rear, Encoder encoder) {
+	public Gearbox(SpeedController front, SpeedController rear, Encoder encoder) {
 		this.front = front;
 		this.rear = rear;
 		this.encoder = encoder;
 	}
 
 	public Gearbox(int frontPort, int rearPort, int encoderChannelA, int encoderChannelB) {
-		this(new VictorSP(frontPort), new VictorSP(rearPort), new Encoder(encoderChannelA, encoderChannelB));
+		this(new Talon(frontPort), new Talon(rearPort), new Encoder(encoderChannelA, encoderChannelB));
 	}
 
 	public void set(double speed) {
