@@ -5,10 +5,10 @@ import com.spikes2212.robot2016.pid.PIDCommand;
 
 public class PIDTurnDriveByAngle extends PIDCommand {
 
-	private static final double KP = 1;
-	private static final double KI = 0;
-	private static final double KD = 0;
-	private static final double ABSOLUTE_TOLERANCE = 2; // degree
+	private static /*final*/ double KP = 1;
+	private static /*final*/ double KI = 0;
+	private static /*final*/ double KD = 0;
+	private static /*final*/ double ABSOLUTE_TOLERANCE = 2; // degree
 
 	private double initialAngle;
 

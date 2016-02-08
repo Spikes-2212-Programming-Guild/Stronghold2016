@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class CrossAndScoreGoal extends CommandGroup {
 
-	public static final double WAIT_TIME = 0;
+	public static /*final*/ double WAIT_TIME = 0;
 
 	public CrossAndScoreGoal(Defense defense, DefenseLocation location, Goal goal) {
 		addSequential(new Cross(defense, Direction.FORWARD));

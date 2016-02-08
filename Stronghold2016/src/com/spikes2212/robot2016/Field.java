@@ -31,7 +31,7 @@ public class Field {
 		LOW, HIGH
 	}
 	
-	public static final double FIELD_WIDTH = 8.1026,
+	public static /*final*/ double FIELD_WIDTH = 8.1026,
 			HORIZONTAL_DISTANCED_BETWEEN_OUTWER_WORKS_AND_TOWER = 2.258,
 			OUTER_WORKS_TOTAL_LENGTH = 6.752,
 			SINGLE_DEFNSE_LENGTH = OUTER_WORKS_TOTAL_LENGTH / 5;

@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 
 public class CrossAndReturn extends CommandGroup {
 
-	public static final double WAIT_TIME = 0;
+	public static /*final*/ double WAIT_TIME = 0;
 
 	public CrossAndReturn(Defense defense) {
 		addSequential(new Cross(defense, Direction.FORWARD));

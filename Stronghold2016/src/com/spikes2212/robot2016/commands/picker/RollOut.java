@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class RollOut extends Command {
 
-	public static final double TIMEOUT = 2;
+	public static /*final*/ double TIMEOUT = 2;
 
 	public RollOut() {
 		super(TIMEOUT);

@@ -13,7 +13,8 @@ public class DriveFromDefenseToTower extends CommandGroup {
     
 	private int slot;
 	private double turningAngle, drivingDistance;
-    public  DriveFromDefenseToTower(int slot) {
+	
+    public DriveFromDefenseToTower(int slot) {
     	initSlot(slot);
     }
     

@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class CrossPortcullis extends CommandGroup {
 
-	public static final double ROTATE_ANGLE = 180;
+	public static /*final*/ double ROTATE_ANGLE = 180;
 	
 	public CrossPortcullis(Direction direction) {
 		if (direction == Direction.BACKWARD) {

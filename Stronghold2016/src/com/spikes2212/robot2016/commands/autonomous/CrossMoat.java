@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class CrossMoat extends CommandGroup {
 
-	public static final double DISTANCE = 0;
+	public static /*final*/ double DISTANCE = 0;
 
 	public CrossMoat(Direction direction) {
 		addSequential(new PIDStraightDriveByDistance(direction.getSpeedDirection() * DISTANCE));

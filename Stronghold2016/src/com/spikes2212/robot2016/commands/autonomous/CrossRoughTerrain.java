@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class CrossRoughTerrain extends CommandGroup {
 
-	public static final double DISTANCE = 0;
+	public static /*final*/ double DISTANCE = 0;
 
 	public CrossRoughTerrain(Direction direction) {
 		addSequential(new PIDStraightDriveByDistance(direction.getSpeedDirection() * DISTANCE));

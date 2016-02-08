@@ -5,10 +5,10 @@ import com.spikes2212.robot2016.pid.PIDCommand;
 
 public class PIDStraightDriveByDistance extends PIDCommand {
 
-	private static final double KP = 1;
-	private static final double KI = 0;
-	private static final double KD = 0;
-	private static final double ABSOLUTE_TOLERANCE = 1; // centimeter
+	private static /*final*/ double KP = 1;
+	private static /*final*/ double KI = 0;
+	private static /*final*/ double KD = 0;
+	private static /*final*/ double ABSOLUTE_TOLERANCE = 1; // centimeter
 
 	public PIDStraightDriveByDistance(double distance) {
 		super(KP, KI, KD, distance, ABSOLUTE_TOLERANCE);

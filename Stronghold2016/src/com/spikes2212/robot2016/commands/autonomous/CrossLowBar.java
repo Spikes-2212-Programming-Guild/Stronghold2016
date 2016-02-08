@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class CrossLowBar extends CommandGroup {
 
-	public static final double DISTANCE = 0;
+	public static /*final*/ double DISTANCE = 0;
 
 	public CrossLowBar(Direction direction) {
 		addSequential(new MoveAllDown());
