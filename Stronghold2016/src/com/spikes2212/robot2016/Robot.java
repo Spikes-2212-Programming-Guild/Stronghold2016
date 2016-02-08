@@ -279,7 +279,11 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void getConstantsfromFolderPackage() {
-
+		MoveFolderToShoot.POSITION = SmartDashboard.getNumber("MoveFolderToShoot.POSITION", MoveFolderToShoot.POSITION);
+		MoveFolderToShoot.ABSOLUTE = SmartDashboard.getNumber("MoveFolderToShoot.ABSOLUTE", MoveFolderToShoot.ABSOLUTE);
+		PIDMoveFolder.KP = SmartDashboard.getNumber("PIDMoveFolder.KP", PIDMoveFolder.KP);
+		PIDMoveFolder.KI = SmartDashboard.getNumber("PIDMoveFolder.KI", PIDMoveFolder.KI);
+		PIDMoveFolder.KD = SmartDashboard.getNumber("PIDMoveFolder.KD", PIDMoveFolder.KD);
 	}
 
 	/**
