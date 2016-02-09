@@ -6,14 +6,14 @@ import com.spikes2212.robot2016.pid.DoublePIDCommand;
 
 public class FixedPIDStraightDriveDistanceWithTwoEncoders extends DoublePIDCommand {
 
-	private static final double KP_LEFT = 1;
-	private static final double KI_LEFT = 0;
-	private static final double KD_LEFT = 0;
-	private static final double KP_RIGHT = 1;
-	private static final double KI_RIGHT = 0;
-	private static final double KD_RIGHT = 0;
-	private static final double TOLERANCE_LEFT = 1;
-	private static final double TOLERANCE_RIGHT = 0;
+	public static /*final*/ double KP_LEFT = 1;
+	public static /*final*/ double KI_LEFT = 0;
+	public static /*final*/ double KD_LEFT = 0;
+	public static /*final*/ double KP_RIGHT = 1;
+	public static /*final*/ double KI_RIGHT = 0;
+	public static /*final*/ double KD_RIGHT = 0;
+	public static /*final*/ double TOLERANCE_LEFT = 1;
+	public static /*final*/ double TOLERANCE_RIGHT = 0;
 
 	public FixedPIDStraightDriveDistanceWithTwoEncoders(double distance) {
 		super(KP_LEFT, KI_LEFT, KD_LEFT, distance, TOLERANCE_LEFT, KP_RIGHT, KI_RIGHT, KD_RIGHT, distance,
