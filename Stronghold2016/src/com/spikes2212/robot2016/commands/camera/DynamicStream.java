@@ -9,18 +9,18 @@ import com.ni.vision.NIVision.ImageType;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class RearStream extends Command {
+public class DynamicStream extends Command {
 
 	private Image image;
 
-	public RearStream() {
+	public DynamicStream() {
 		requires(cameras);
 		image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
 	}
 
 	@Override
 	protected void initialize() {
-		cameras.startRear();
+		cameras.startDynamic();
 	}
 
 	@Override

@@ -9,18 +9,18 @@ import com.ni.vision.NIVision.ImageType;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class FrontStream extends Command {
+public class ImageProcessingStream extends Command {
 
 	private Image image;
 
-	public FrontStream() {
+	public ImageProcessingStream() {
 		requires(cameras);
 		image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
 	}
 
 	@Override
 	protected void initialize() {
-		cameras.startFront();
+		cameras.startImageProcessing();
 	}
 
 	@Override
