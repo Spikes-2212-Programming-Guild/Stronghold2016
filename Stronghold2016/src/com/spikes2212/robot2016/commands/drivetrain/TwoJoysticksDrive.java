@@ -13,6 +13,8 @@ public class TwoJoysticksDrive extends Command {
 	private SpeedSupplier rightSpeed;
 
 	public TwoJoysticksDrive(SpeedSupplier leftSpeed, SpeedSupplier rightSpeed) {
+		this.leftSpeed= leftSpeed;
+		this.rightSpeed = rightSpeed;
 		requires(drivetrain);
 	}
 
@@ -20,7 +22,9 @@ public class TwoJoysticksDrive extends Command {
 	}
 
 	protected void execute() {
-		drivetrain.twoJoysticksDriving(leftSpeed.getSpeed(), rightSpeed.getSpeed());
+		drivetrain.twoJoysticksDriving(
+				leftSpeed.getSpeed(), 
+				rightSpeed.getSpeed());
 	}
 
 	protected boolean isFinished() {

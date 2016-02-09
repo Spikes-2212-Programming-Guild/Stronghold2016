@@ -61,7 +61,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		oi = new OI();
 		gyro = new ADXRS450_Gyro();
 		accelerometer = new BuiltInAccelerometer();
 		left = new Gearbox(PWM.LEFT_FRONT_VICTOR, PWM.LEFT_REAR_VICTOR, DIO.LEFT_ENCODER_A, DIO.LEFT_ENCODER_B);
@@ -93,6 +92,7 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Cross, drop & Return", "CrossAndDropAndReturn");
 		autoChooser.addObject("Cross & score low", "CrossAndScoreLow");
 		autoChooser.addObject("Cross & score high", "CrossAndScoreHigh");
+		oi = new OI();
 	}
 
 	/**
