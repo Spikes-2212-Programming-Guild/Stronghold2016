@@ -31,8 +31,10 @@ public class Field {
 		LOW, HIGH
 	}
 
-	public static final double FIELD_LENGTH = 7.94258, HORIZONTAL_DISTANCED_BETWEEN_OUTWER_WORKS_AND_TOWER = 2.258,
-			OUTER_WORKS_TOTAL_LENGTH = 6.752, SINGLE_DEFNSE_LENGTH = OUTER_WORKS_TOTAL_LENGTH / 5;
+	public static final double FIELD_LENGTH = 7.94258;
+	public static final double HORIZONTAL_DISTANCED_BETWEEN_OUTWER_WORKS_AND_TOWER = 2.258;
+	public static final double OUTER_WORKS_TOTAL_LENGTH = 6.752;
+	public static final double SINGLE_DEFNSE_LENGTH = OUTER_WORKS_TOTAL_LENGTH / 5;
 
 	public static double getDistanceFromDefenseToTower(int slot) {
 		double horizontalDistance = FIELD_LENGTH / 2 // location of tower
