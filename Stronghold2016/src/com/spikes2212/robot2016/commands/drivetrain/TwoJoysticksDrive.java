@@ -14,6 +14,8 @@ public class TwoJoysticksDrive extends Command {
 
 	public TwoJoysticksDrive(SpeedSupplier leftSpeed, SpeedSupplier rightSpeed) {
 		requires(drivetrain);
+		this.leftSpeed = leftSpeed;
+		this.rightSpeed = rightSpeed;
 	}
 
 	protected void initialize() {

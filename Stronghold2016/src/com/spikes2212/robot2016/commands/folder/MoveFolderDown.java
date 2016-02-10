@@ -19,6 +19,7 @@ public class MoveFolderDown extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+	folder.calibrate();	
 	}
 
 	protected void execute() {

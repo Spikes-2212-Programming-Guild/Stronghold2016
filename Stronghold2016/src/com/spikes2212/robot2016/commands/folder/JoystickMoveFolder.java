@@ -19,6 +19,7 @@ public class JoystickMoveFolder extends Command {
 	}
 
 	protected void initialize() {
+		folder.calibrate();
 	}
 
 	protected void execute() {
