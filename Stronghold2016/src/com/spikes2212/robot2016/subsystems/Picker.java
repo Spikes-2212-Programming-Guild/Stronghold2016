@@ -10,15 +10,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Picker extends Subsystem {
 	private SpeedController motor;
-	private DigitalInput ballLimit;
+	private DigitalInput ballDetector;
 
-	public Picker(SpeedController motor, DigitalInput ballLimit) {
+	public Picker(SpeedController motor, DigitalInput ballDetector) {
 		this.motor = motor;
-		this.ballLimit = ballLimit;
+		this.ballDetector = ballDetector;
 	}
 
-	public Picker(int motorChannel, int ballLimitChannel) {
-		this(new VictorSP(motorChannel), new DigitalInput(ballLimitChannel));
+	public Picker(int motorChannel, int ballDetectorChannel) {
+		this(new VictorSP(motorChannel), new DigitalInput(ballDetectorChannel));
 	}
 
 	public void roll(double speed) {
@@ -30,7 +30,7 @@ public class Picker extends Subsystem {
 	}
 
 	public boolean isBallInside() {
-		return !ballLimit.get();
+		return !ballDetector.get();
 	}
 
 	// Put methods for controlling this subsystem
