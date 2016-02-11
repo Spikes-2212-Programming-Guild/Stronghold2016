@@ -28,7 +28,7 @@ public class PIDMoveTriz extends PIDCommand {
 
 	@Override
 	public double getPIDInput() {
-		return triz.getPosition();
+		return triz.getAngle();
 	}
 
 	@Override

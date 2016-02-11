@@ -33,15 +33,15 @@ public class Constants {
 	public static final double AFTER_LIFTING_PORTCULLIS_DISTANCE = 0;
 	public static final double MOAT_DISTANCE = 0;
 
-	public static final double TRIZ_UP_POSITION = 0;
+	public static final double TRIZ_UP_ANGLE = 0;
 	public static final double TRIZ_DOWN_POSITION = 0;
-	public static final double FOLDER_UP_POSITION = 0;
-	public static final double FOLDER_DOWN_POSITION = 0;
+	public static final double FOLDER_UP_ANGLE = 0;
+	public static final double FOLDER_DOWN_ANGLE = 0;
 
 	public static final double FREE_FALL_GRAVITY = 9.8;
 
 	public static final double LEFT_DISTANCE_PER_PULSE = 0;
 	public static final double RIGHT_DISTANCE_PER_PULSE = 0;
-	public static final double TRIZ_DISTANCE_PER_PULSE = 0;
-	public static final double FOLDER_DISTANCE_PER_PULSE = 0;
+	public static final double TRIZ_ANGLE_PER_PULSE = 0;
+	public static final double FOLDER_ANGLE_PER_PULSE = 0;
 }

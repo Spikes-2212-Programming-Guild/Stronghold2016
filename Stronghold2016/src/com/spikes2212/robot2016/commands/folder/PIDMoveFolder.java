@@ -27,7 +27,7 @@ public class PIDMoveFolder extends PIDCommand {
 
 	@Override
 	public double getPIDInput() {
-		return folder.getPosition();
+		return folder.getAngle();
 	}
 
 	@Override

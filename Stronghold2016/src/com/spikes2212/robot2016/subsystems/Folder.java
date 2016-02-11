@@ -22,8 +22,8 @@ public class Folder extends Subsystem {
 		this.up = up;
 		this.down = down;
 		this.encoder = encoder;
-		this.encoder.setDistancePerPulse(Constants.FOLDER_DISTANCE_PER_PULSE);
-		this.phase = Constants.FOLDER_UP_POSITION;
+		this.encoder.setDistancePerPulse(Constants.FOLDER_ANGLE_PER_PULSE);
+		this.phase = Constants.FOLDER_UP_ANGLE;
 
 	}
 
@@ -57,25 +57,20 @@ public class Folder extends Subsystem {
 
 	public void calibrate() {
 		if (isUp()) {
-			phase = Constants.FOLDER_UP_POSITION;
+			phase = Constants.FOLDER_UP_ANGLE;
 		} else if (isDown()) {
-			phase = Constants.FOLDER_DOWN_POSITION;
+			phase = Constants.FOLDER_DOWN_ANGLE;
 		} else {
-			phase = getPosition();
+			phase = getAngle();
 		}
 		encoder.reset();
 	}
 
-	public double getPosition() {
+	public double getAngle() {
 		return phase + encoder.getDistance();
 	}
 
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
-
 	@Override
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
 	}
 }
