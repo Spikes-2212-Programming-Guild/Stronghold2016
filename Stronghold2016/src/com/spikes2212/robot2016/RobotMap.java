@@ -13,15 +13,18 @@ public class RobotMap {
 		public static final String REAR_CAMERA = "cam1";
 	}
 
-	public interface PWM {
-		public static final int LEFT_FRONT_VICTOR = 0;
-		public static final int LEFT_REAR_VICTOR = 0;
-		public static final int RIGHT_FRONT_VICTOR = 0;
-		public static final int RIGHT_REAR_VICTOR = 0;
-		public static final int TRIZ_MOTOR = 0;
-		public static final int FOLDER_MOTOR = 0;
-		public static final int PICKER_MOTOR = 0;
+	public interface CAN {
 		public static final int SHOOTER_MOTOR = 0;
+	}
+
+	public interface PWM {
+		public static final int LEFT_FRONT_VICTOR = 8;
+		public static final int LEFT_REAR_VICTOR = 9;
+		public static final int RIGHT_FRONT_VICTOR = 0;
+		public static final int RIGHT_REAR_VICTOR = 1;
+		public static final int TRIZ_MOTOR = 4;
+		public static final int FOLDER_MOTOR = 5;
+		public static final int PICKER_MOTOR = 3;
 	}
 
 	public interface DIO {

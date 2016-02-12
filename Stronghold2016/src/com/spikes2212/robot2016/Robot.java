@@ -3,6 +3,7 @@ package com.spikes2212.robot2016;
 import com.spikes2212.robot2016.Field.Defense;
 import com.spikes2212.robot2016.Field.DefenseLocation;
 import com.spikes2212.robot2016.Field.Goal;
+import com.spikes2212.robot2016.RobotMap.CAN;
 import com.spikes2212.robot2016.RobotMap.DIO;
 import com.spikes2212.robot2016.RobotMap.PWM;
 import com.spikes2212.robot2016.RobotMap.USB;
@@ -68,7 +69,7 @@ public class Robot extends IterativeRobot {
 		drivetrain = new Drivetrain(left, right, gyro, accelerometer);
 		triz = new Triz(PWM.TRIZ_MOTOR, DIO.TRIZ_UP, DIO.TRIZ_DOWN, DIO.TRIZ_UNDER_PORTCULLIS, DIO.TRIZ_ENCODER_A,
 				DIO.TRIZ_ENCODER_B);
-		shooter = new Shooter(PWM.SHOOTER_MOTOR);
+		shooter = new Shooter(CAN.SHOOTER_MOTOR);
 		picker = new Picker(PWM.PICKER_MOTOR, DIO.BALL_INSIDE);
 		folder = new Folder(PWM.FOLDER_MOTOR, DIO.FOLDER_UP, DIO.FOLDER_DOWN, DIO.FOLDER_ENCODER_A,
 				DIO.FOLDER_ENCODER_B);
