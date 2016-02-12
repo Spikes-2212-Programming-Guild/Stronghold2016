@@ -3,55 +3,43 @@ package com.spikes2212.robot2016.subsystems;
 import com.ni.vision.NIVision.Image;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.vision.USBCamera;
 
 public class Cameras extends Subsystem {
 
-	private USBCamera front, rear;
-	private boolean frontOn, rearOn;
-
-	public Cameras(USBCamera front, USBCamera rear) {
-		this.front = front;
-		this.rear = rear;
-	}
+	private CameraController front, rear;
 
 	public Cameras(String frontName, String rearName) {
-		this(new USBCamera(frontName), new USBCamera(rearName));
+		this.front = new CameraController(frontName);
+		this.rear = new CameraController(rearName);
 	}
 
 	public boolean isFrontOn() {
-		return frontOn;
+		return front.isOn();
 	}
 
 	public boolean isRearOn() {
-		return rearOn;
+		return rear.isOn();
 	}
 
 	public void startFront() {
-		rear.stopCapture();
-		front.startCapture();
-		frontOn = true;
-		rearOn = false;
+		rear.stop();
+		front.start();
 	}
 
 	public void startRear() {
-		front.stopCapture();
-		rear.startCapture();
-		rearOn = true;
-		frontOn = false;
+		front.stop();
+		rear.start();
 	}
 
 	public void stop() {
-		front.stopCapture();
-		rear.stopCapture();
-		frontOn = false;
-		rearOn = false;
+		front.stop();
+		rear.stop();
 	}
 
 	public void getImage(Image image) {
-		if (frontOn) {
+		if (front.isOn()) {
 			front.getImage(image);
-		} else if (rearOn) {
+		} else if (rear.isOn()) {
 			rear.getImage(image);
 		}
 	}
