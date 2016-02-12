@@ -5,6 +5,7 @@ import com.spikes2212.robot2016.commands.camera.RearStream;
 import com.spikes2212.robot2016.commands.camera.StopStream;
 import com.spikes2212.robot2016.commands.drivetrain.JoystickForwardDrive;
 import com.spikes2212.robot2016.commands.drivetrain.JoystickTurnDrive;
+import com.spikes2212.robot2016.commands.folder.JoystickMoveFolder;
 import com.spikes2212.robot2016.commands.folder.MoveFolderToShoot;
 import com.spikes2212.robot2016.commands.picker.RollBallIn;
 import com.spikes2212.robot2016.commands.picker.RollOut;
@@ -34,6 +35,7 @@ public class OI /* GEVALD */ {
 		new JoystickButton(rightNavigator, 3).toggleWhenPressed(new RollOut());
 		new JoystickButton(rightNavigator, 4).whenPressed(new ShootByVoltage(Constants.SHOOTING_VOLTAGE));
 		new JoystickButton(rightNavigator, 5).whenPressed(new MoveFolderToShoot());
+		new JoystickButton(rightNavigator, 9).toggleWhenPressed(new JoystickMoveFolder(() -> -rightNavigator.getY()));
 	}
 
 }

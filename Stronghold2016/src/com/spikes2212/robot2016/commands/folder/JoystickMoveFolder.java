@@ -24,9 +24,7 @@ public class JoystickMoveFolder extends Command {
 
 	protected void execute() {
 		double speed = this.speed.getSpeed();
-		if (folder.canMove(speed)) {
-			folder.tryMove(speed);
-		}
+		folder.tryMove(speed);
 	}
 
 	protected boolean isFinished() {
