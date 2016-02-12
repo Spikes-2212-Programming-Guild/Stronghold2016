@@ -27,6 +27,7 @@ import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -61,7 +62,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		gyro = new ADXRS450_Gyro();
+		//gyro = new ADXRS450_Gyro();
 		accelerometer = new BuiltInAccelerometer();
 		left = new Gearbox(PWM.LEFT_FRONT_VICTOR, PWM.LEFT_REAR_VICTOR, DIO.LEFT_ENCODER_A, DIO.LEFT_ENCODER_B);
 		right = new Gearbox(PWM.RIGHT_FRONT_VICTOR, PWM.RIGHT_REAR_VICTOR, DIO.RIGHT_ENCODER_A, DIO.RIGHT_ENCODER_B);
@@ -93,6 +94,7 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Cross & score low", "CrossAndScoreLow");
 		autoChooser.addObject("Cross & score high", "CrossAndScoreHigh");
 		oi = new OI();
+		SmartDashboard.putBoolean("bla", picker.isBallInside());
 	}
 
 	/**
@@ -155,6 +157,11 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("triz", triz.getPosition());
+		SmartDashboard.putBoolean("limitsDown", triz.isDown());
+		SmartDashboard.putBoolean("limitsUp", triz.isUp());
+		SmartDashboard.putBoolean("bla", picker.isBallInside());
+		
 	}
 
 	/**
