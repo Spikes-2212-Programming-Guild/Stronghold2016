@@ -14,7 +14,7 @@ public class RobotMap {
 	}
 
 	public interface CAN {
-		public static final int SHOOTER_MOTOR = 0;
+		public static final int SHOOTER_MOTOR = 1;
 	}
 
 	public interface PWM {
@@ -36,12 +36,12 @@ public class RobotMap {
 		public static final int TRIZ_ENCODER_B = 6;
 		public static final int FOLDER_ENCODER_A = 7;
 		public static final int FOLDER_ENCODER_B = 8;
-		public static final int TRIZ_UP = 9;
+		public static final int TRIZ_UP = 14;
 		public static final int TRIZ_DOWN = 10;
 		public static final int TRIZ_UNDER_PORTCULLIS = 11;
 		public static final int FOLDER_UP = 12;
 		public static final int FOLDER_DOWN = 13;
-		public static final int BALL_INSIDE = 14;
+		public static final int BALL_INSIDE = 9;
 	}
 
 	public interface AnalogInput {
