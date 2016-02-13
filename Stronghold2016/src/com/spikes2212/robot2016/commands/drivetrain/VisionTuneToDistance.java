@@ -20,6 +20,7 @@ public class VisionTuneToDistance extends Command {
 	private PIDCalculator calculator;
 	private double wantedDistance;
 	private Image image;
+	private Image binary;
 
 	public VisionTuneToDistance(double wantedDistance) {
 		requires(drivetrain);
@@ -28,13 +29,14 @@ public class VisionTuneToDistance extends Command {
 		calculator = new PIDCalculator(P, I, D);
 		calculator.setTolerance(TOLERANCE);
 		image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
+		binary = NIVision.imaqCreateImage(ImageType.IMAGE_U8, 0);
 	}
 
 	@Override
 	protected void initialize() {
 		drivetrain.resetEncoders();
 		cameras.getImage(image);
-		calculator.setSetpoint(cameras.getDistanceFromTower(image) - wantedDistance);
+		calculator.setSetpoint(cameras.getDistanceFromTower(image, binary).orElse(wantedDistance) - wantedDistance);
 	}
 
 	@Override
