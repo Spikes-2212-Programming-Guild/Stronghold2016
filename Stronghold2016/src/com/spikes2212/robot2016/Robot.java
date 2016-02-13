@@ -21,10 +21,12 @@ import static com.spikes2212.robot2016.Constants.TRIZ_UP_POSITION;
 
 import com.spikes2212.robot2016.Field.Defense;
 import com.spikes2212.robot2016.Field.DefenseLocation;
+import com.spikes2212.robot2016.Field.Direction;
 import com.spikes2212.robot2016.Field.Goal;
 import com.spikes2212.robot2016.RobotMap.DIO;
 import com.spikes2212.robot2016.RobotMap.PWM;
 import com.spikes2212.robot2016.RobotMap.USB;
+import com.spikes2212.robot2016.commands.autonomous.Cross;
 import com.spikes2212.robot2016.commands.autonomous.CrossAndDropAndReturn;
 import com.spikes2212.robot2016.commands.autonomous.CrossAndReturn;
 import com.spikes2212.robot2016.commands.autonomous.CrossAndScoreGoal;
@@ -96,7 +98,8 @@ public class Robot extends IterativeRobot {
 	SendableChooser defenseChooser;
 	SendableChooser locationChooser;
 	SendableChooser autoChooser;
-
+	SendableChooser goalChooser;
+	
 	public void initConstantsFromConstantsClass() {
 		SmartDashboard.putNumber("TRIZ_SPEED", Constants.TRIZ_SPEED);
 		SmartDashboard.putNumber("FOLDER_UP_SPEED", Constants.FOLDER_UP_SPEED);
@@ -397,7 +400,7 @@ public class Robot extends IterativeRobot {
 		FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_RIGHT=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_RIGHT",FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_RIGHT );
 	
 	}
-
+	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -436,7 +439,34 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Cross, drop & Return", "CrossAndDropAndReturn");
 		autoChooser.addObject("Cross & score low", "CrossAndScoreLow");
 		autoChooser.addObject("Cross & score high", "CrossAndScoreHigh");
-
+		goalChooser = new SendableChooser();
+		goalChooser.addObject("High", Goal.HIGH);
+		goalChooser.addObject("Low", Goal.LOW);
+		
+		SmartDashboard.putData(new Cross((Defense) defenseChooser.getSelected(), (Direction) locationChooser.getSelected()));
+		SmartDashboard.putData(new CrossAndDropAndReturn((Defense) defenseChooser.getSelected()));
+		SmartDashboard.putData(new CrossAndReturn((Defense) defenseChooser.getSelected()));
+		SmartDashboard.putData(new CrossAndScoreGoal((Defense) defenseChooser.getSelected(),
+				(DefenseLocation) locationChooser.getSelected(),
+				(Goal) goalChooser.getSelected()));
+		SmartDashboard.putData(new CrossChevalDeFrise((Direction) locationChooser.getSelected()));
+		SmartDashboard.putData(new CrossLowBar((Direction) locationChooser.getSelected()));
+		SmartDashboard.putData(new CrossMoat((Direction) locationChooser.getSelected()));
+		SmartDashboard.putData(new CrossPortcullis((Direction) locationChooser.getSelected()));
+		SmartDashboard.putData(new CrossRamparts((Direction) locationChooser.getSelected()));
+		SmartDashboard.putData(new CrossRockWall((Direction) locationChooser.getSelected()));
+		SmartDashboard.putData(new CrossRoughTerrain((Direction) locationChooser.getSelected()));
+		SmartDashboard.putData(new ScoreGoalFromLocation1((Defense) defenseChooser.getSelected(),
+				(Goal)goalChooser.getSelected()));
+		SmartDashboard.putData(new ScoreGoalFromLocation2((Defense) defenseChooser.getSelected(),
+				(Goal)goalChooser.getSelected()));
+		SmartDashboard.putData(new ScoreGoalFromLocation3((Defense) defenseChooser.getSelected(),
+				(Goal)goalChooser.getSelected()));
+		SmartDashboard.putData(new ScoreGoalFromLocation4((Defense) defenseChooser.getSelected(),
+				(Goal)goalChooser.getSelected()));
+		SmartDashboard.putData(new ScoreGoalFromLocation5((Defense) defenseChooser.getSelected(),
+				(Goal)goalChooser.getSelected()));
+		
 		/*
 		 * The values that were added here, are here thanks to tedious and
 		 * tiring work of Saar. Jesus, please, do NOT remove any of them. Not
