@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class ScoreGoal extends CommandGroup {
 
 	public ScoreGoal(Goal goal) {
+		addSequential(new MoveFolderToGoal(goal));
 		switch (goal) {
 		case LOW:
 			addSequential(new RollOut());
