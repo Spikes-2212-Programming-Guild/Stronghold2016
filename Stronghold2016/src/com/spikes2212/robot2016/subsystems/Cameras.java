@@ -2,23 +2,18 @@ package com.spikes2212.robot2016.subsystems;
 
 import java.util.Optional;
 
-import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.Image;
-import com.ni.vision.NIVision.ImageType;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Cameras extends Subsystem {
 
-	private Image image;
-
 	private CameraController front, rear;
 
 	public Cameras(String frontName, String rearName) {
 		this.front = new CameraController(frontName);
 		this.rear = new CameraController(rearName);
-		image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
 	}
 
 	public boolean isFrontOn() {
@@ -44,7 +39,7 @@ public class Cameras extends Subsystem {
 		rear.stop();
 	}
 
-	public void getImage() {
+	public void getImage(Image image) {
 		if (front.isOn()) {
 			front.getImage(image);
 		} else if (rear.isOn()) {
@@ -52,7 +47,7 @@ public class Cameras extends Subsystem {
 		}
 	}
 
-	public void stream() {
+	public void stream(Image image) {
 		CameraServer.getInstance().setImage(image);
 	}
 
