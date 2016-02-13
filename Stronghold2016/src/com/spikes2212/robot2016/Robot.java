@@ -44,6 +44,8 @@ import com.spikes2212.robot2016.commands.autonomous.ScoreGoalFromLocation4;
 import com.spikes2212.robot2016.commands.autonomous.ScoreGoalFromLocation5;
 import com.spikes2212.robot2016.commands.drivetrain.PIDStraightDriveByDistance;
 import com.spikes2212.robot2016.commands.drivetrain.PIDTurnDriveByAngle;
+import com.spikes2212.robot2016.commands.drivetrain.StraightDriveBySpeedAndTime;
+import com.spikes2212.robot2016.commands.drivetrain.TurnDriveBySpeedAndTime;
 import com.spikes2212.robot2016.commands.drivetrain.fixed.FixedPIDStraightDriveDistanceWithEncoderDifference;
 import com.spikes2212.robot2016.commands.drivetrain.fixed.FixedPIDStraightDriveDistanceWithGyro;
 import com.spikes2212.robot2016.commands.drivetrain.fixed.FixedPIDStraightDriveDistanceWithTwoEncoders;
@@ -91,7 +93,7 @@ public class Robot extends IterativeRobot {
 	public static Shooter shooter;
 	public static Gyro gyro;
 	public static Accelerometer accelerometer;
-	public static Cameras cameras;
+//	public static Cameras cameras;
 
 	Command autoCommand;
 
@@ -99,7 +101,7 @@ public class Robot extends IterativeRobot {
 	SendableChooser locationChooser;
 	SendableChooser autoChooser;
 	SendableChooser goalChooser;
-	
+
 	public void initConstantsFromConstantsClass() {
 		SmartDashboard.putNumber("TRIZ_SPEED", Constants.TRIZ_SPEED);
 		SmartDashboard.putNumber("FOLDER_UP_SPEED", Constants.FOLDER_UP_SPEED);
@@ -296,111 +298,249 @@ public class Robot extends IterativeRobot {
 		PIDMoveFolder.KI = SmartDashboard.getNumber("PIDMoveFolder.KI", PIDMoveFolder.KI);
 		PIDMoveFolder.KD = SmartDashboard.getNumber("PIDMoveFolder.KD", PIDMoveFolder.KD);
 	}
+
 	public void initConstantsfromPickerPackage() {
 		SmartDashboard.putNumber("RollOut.TIMEOUT", RollOut.TIMEOUT);
 	}
+
 	public void getConstantsfromPickerPackage() {
-		RollOut.TIMEOUT=SmartDashboard.getNumber("RollOut.TIMEOUT",RollOut.TIMEOUT);
+		RollOut.TIMEOUT = SmartDashboard.getNumber("RollOut.TIMEOUT", RollOut.TIMEOUT);
 	}
-	public void initConstantsFromShooterPackage(){
+
+	public void initConstantsFromShooterPackage() {
 		SmartDashboard.putNumber("ShootByVoltage.ACCELERATION_TIME", ShootByVoltage.ACCELERATION_TIME);
 		SmartDashboard.putNumber("ShootByVoltage.ROLL_IN_TIME", ShootByVoltage.ROLL_IN_TIME);
 	}
-	public void getConstantsFromShooterPackage(){
-		ShootByVoltage.ACCELERATION_TIME=SmartDashboard.getNumber("ShootByVoltage.ACCELERATION_TIME", ShootByVoltage.ACCELERATION_TIME);
-		ShootByVoltage.ROLL_IN_TIME=SmartDashboard.getNumber("ShootByVoltage.ROLL_IN_TIME", ShootByVoltage.ROLL_IN_TIME);
+
+	public void getConstantsFromShooterPackage() {
+		ShootByVoltage.ACCELERATION_TIME = SmartDashboard.getNumber("ShootByVoltage.ACCELERATION_TIME",
+				ShootByVoltage.ACCELERATION_TIME);
+		ShootByVoltage.ROLL_IN_TIME = SmartDashboard.getNumber("ShootByVoltage.ROLL_IN_TIME",
+				ShootByVoltage.ROLL_IN_TIME);
 	}
-	public void initConstantsFromTrizPackage(){
+
+	public void initConstantsFromTrizPackage() {
 		SmartDashboard.putNumber("PIDMoveTriz.KP", PIDMoveTriz.KP);
 		SmartDashboard.putNumber("PIDMoveTriz.KI", PIDMoveTriz.KI);
 		SmartDashboard.putNumber("PIDMoveTriz.KD", PIDMoveTriz.KD);
 		SmartDashboard.putNumber("PIDMoveTriz.ABSOLUTE_TOLERANCE", PIDMoveTriz.ABSOLUTE_TOLERANCE);
 	}
-	public void getConstantsFromTrizPackage(){
-		PIDMoveTriz.KP=SmartDashboard.getNumber("PIDMoveTriz.KP", PIDMoveTriz.KP);
-		PIDMoveTriz.KI=SmartDashboard.getNumber("PIDMoveTriz.KI", PIDMoveTriz.KI);
-		PIDMoveTriz.KD=SmartDashboard.getNumber("PIDMoveTriz.KD", PIDMoveTriz.KD);
-		PIDMoveTriz.ABSOLUTE_TOLERANCE=SmartDashboard.getNumber("PIDMoveTriz.ABSOLUTE_TOLERANCE", PIDMoveTriz.ABSOLUTE_TOLERANCE);
+
+	public void getConstantsFromTrizPackage() {
+		PIDMoveTriz.KP = SmartDashboard.getNumber("PIDMoveTriz.KP", PIDMoveTriz.KP);
+		PIDMoveTriz.KI = SmartDashboard.getNumber("PIDMoveTriz.KI", PIDMoveTriz.KI);
+		PIDMoveTriz.KD = SmartDashboard.getNumber("PIDMoveTriz.KD", PIDMoveTriz.KD);
+		PIDMoveTriz.ABSOLUTE_TOLERANCE = SmartDashboard.getNumber("PIDMoveTriz.ABSOLUTE_TOLERANCE",
+				PIDMoveTriz.ABSOLUTE_TOLERANCE);
 	}
-	public void initConstantsFromDeivetrainPackage(){
+
+	public void initConstantsFromDeivetrainPackage() {
 		SmartDashboard.putNumber("PIDStraightDriveByDistance.KP", PIDStraightDriveByDistance.KP);
 		SmartDashboard.putNumber("PIDStraightDriveByDistance.KI", PIDStraightDriveByDistance.KI);
 		SmartDashboard.putNumber("PIDStraightDriveByDistance.KD", PIDStraightDriveByDistance.KD);
-		SmartDashboard.putNumber("PIDStraightDriveByDistance.ABSOLUTE_TOLERANCE", PIDStraightDriveByDistance.ABSOLUTE_TOLERANCE);
+		SmartDashboard.putNumber("PIDStraightDriveByDistance.ABSOLUTE_TOLERANCE",
+				PIDStraightDriveByDistance.ABSOLUTE_TOLERANCE);
 		SmartDashboard.putNumber("PIDTurnDriveByAngle.KP", PIDTurnDriveByAngle.KP);
 		SmartDashboard.putNumber("PIDTurnDriveByAngle.KI", PIDTurnDriveByAngle.KI);
 		SmartDashboard.putNumber("PIDTurnDriveByAngle.KD", PIDTurnDriveByAngle.KD);
 		SmartDashboard.putNumber("PIDTurnDriveByAngle.ABSOLUTE_TOLERANCE", PIDTurnDriveByAngle.ABSOLUTE_TOLERANCE);
-	}
-	public void getConstantsFromDeivetrainPackage(){
-		PIDStraightDriveByDistance.KP=SmartDashboard.getNumber("PIDStraightDriveByDistance.KP", PIDStraightDriveByDistance.KP);
-		PIDStraightDriveByDistance.KI=SmartDashboard.getNumber("PIDStraightDriveByDistance.KI", PIDStraightDriveByDistance.KI);
-		PIDStraightDriveByDistance.KD=SmartDashboard.getNumber("PIDStraightDriveByDistance.KD", PIDStraightDriveByDistance.KD);
-		PIDStraightDriveByDistance.ABSOLUTE_TOLERANCE=SmartDashboard.getNumber("PIDStraightDriveByDistance.ABSOLUTE_TOLERANCE", PIDStraightDriveByDistance.ABSOLUTE_TOLERANCE);
-		PIDTurnDriveByAngle.KP=SmartDashboard.getNumber("PIDTurnDriveByAngle.KP", PIDTurnDriveByAngle.KP);
-		PIDTurnDriveByAngle.KI=SmartDashboard.getNumber("PIDTurnDriveByAngle.KI", PIDTurnDriveByAngle.KI);
-		PIDTurnDriveByAngle.KD=SmartDashboard.getNumber("PIDTurnDriveByAngle.KD", PIDTurnDriveByAngle.KD);
-		PIDTurnDriveByAngle.ABSOLUTE_TOLERANCE=SmartDashboard.getNumber("PIDTurnDriveByAngle.ABSOLUTE_TOLERANCE", PIDTurnDriveByAngle.ABSOLUTE_TOLERANCE);
-	}
-	public void initConstantsFromFixedDeivetrainPackage(){
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.KP_STRAIGHT",FixedPIDStraightDriveDistanceWithEncoderDifference.KP_STRAIGHT );
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.KI_STRAIGHT",FixedPIDStraightDriveDistanceWithEncoderDifference.KI_STRAIGHT );
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.KD_STRAIGHT",FixedPIDStraightDriveDistanceWithEncoderDifference.KD_STRAIGHT );
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.KP_TURN",FixedPIDStraightDriveDistanceWithEncoderDifference.KP_TURN );
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.KI_TURN",FixedPIDStraightDriveDistanceWithEncoderDifference.KI_TURN );
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.KD_TURN",FixedPIDStraightDriveDistanceWithEncoderDifference.KD_TURN );
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.TOLERANCE_STRAIGHT",FixedPIDStraightDriveDistanceWithEncoderDifference.TOLERANCE_STRAIGHT );
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.TOLERANCE_TURN",FixedPIDStraightDriveDistanceWithEncoderDifference.TOLERANCE_TURN );
-		
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithGyro.KP_STRAIGHT",FixedPIDStraightDriveDistanceWithGyro.KP_STRAIGHT );
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithGyro.KI_STRAIGHT",FixedPIDStraightDriveDistanceWithGyro.KI_STRAIGHT );
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithGyro.KD_STRAIGHT",FixedPIDStraightDriveDistanceWithGyro.KD_STRAIGHT );
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithGyro.KP_TURN",FixedPIDStraightDriveDistanceWithGyro.KP_TURN );
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithGyro.KI_TURN",FixedPIDStraightDriveDistanceWithGyro.KI_TURN );
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithGyro.KD_TURN",FixedPIDStraightDriveDistanceWithGyro.KD_TURN );
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithGyro.TOLERANCE_STRAIGHT",FixedPIDStraightDriveDistanceWithGyro.TOLERANCE_STRAIGHT );
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithGyro.TOLERANCE_TURN",FixedPIDStraightDriveDistanceWithGyro.TOLERANCE_TURN );
-		
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.KP_LEFT",FixedPIDStraightDriveDistanceWithTwoEncoders.KP_LEFT );
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.KI_LEFT",FixedPIDStraightDriveDistanceWithTwoEncoders.KI_LEFT );
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.KD_LEFT",FixedPIDStraightDriveDistanceWithTwoEncoders.KD_LEFT );
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.KP_RIGHT",FixedPIDStraightDriveDistanceWithTwoEncoders.KP_RIGHT );
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.KI_RIGHT",FixedPIDStraightDriveDistanceWithTwoEncoders.KI_RIGHT );
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.KD_RIGHT",FixedPIDStraightDriveDistanceWithTwoEncoders.KD_RIGHT );
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_LEFT",FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_LEFT );
-		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_RIGHT",FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_RIGHT );
-		
-	}
-	public void getConstantsFromFixedDeivetrainPackage(){
-		FixedPIDStraightDriveDistanceWithEncoderDifference.KP_STRAIGHT=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.KP_STRAIGHT",FixedPIDStraightDriveDistanceWithEncoderDifference.KP_STRAIGHT );
-		FixedPIDStraightDriveDistanceWithEncoderDifference.KI_STRAIGHT=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.KI_STRAIGHT",FixedPIDStraightDriveDistanceWithEncoderDifference.KI_STRAIGHT );
-		FixedPIDStraightDriveDistanceWithEncoderDifference.KD_STRAIGHT=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.KD_STRAIGHT",FixedPIDStraightDriveDistanceWithEncoderDifference.KD_STRAIGHT );
-		FixedPIDStraightDriveDistanceWithEncoderDifference.KP_TURN=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.KP_TURN",FixedPIDStraightDriveDistanceWithEncoderDifference.KP_TURN );
-		FixedPIDStraightDriveDistanceWithEncoderDifference.KI_TURN=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.KI_TURN",FixedPIDStraightDriveDistanceWithEncoderDifference.KI_TURN );
-		FixedPIDStraightDriveDistanceWithEncoderDifference.KD_TURN=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.KD_TURN",FixedPIDStraightDriveDistanceWithEncoderDifference.KD_TURN );
-		FixedPIDStraightDriveDistanceWithEncoderDifference.TOLERANCE_STRAIGHT=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.TOLERANCE_STRAIGHT",FixedPIDStraightDriveDistanceWithEncoderDifference.TOLERANCE_STRAIGHT );
-		FixedPIDStraightDriveDistanceWithEncoderDifference.TOLERANCE_TURN=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.TOLERANCE_TURN",FixedPIDStraightDriveDistanceWithEncoderDifference.TOLERANCE_TURN );
 
-		FixedPIDStraightDriveDistanceWithGyro.KP_STRAIGHT=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithGyro.KP_STRAIGHT",FixedPIDStraightDriveDistanceWithGyro.KP_STRAIGHT );
-		FixedPIDStraightDriveDistanceWithGyro.KI_STRAIGHT=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithGyro.KI_STRAIGHT",FixedPIDStraightDriveDistanceWithGyro.KI_STRAIGHT );
-		FixedPIDStraightDriveDistanceWithGyro.KD_STRAIGHT=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithGyro.KD_STRAIGHT",FixedPIDStraightDriveDistanceWithGyro.KD_STRAIGHT );
-		FixedPIDStraightDriveDistanceWithGyro.KP_TURN=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithGyro.KP_TURN",FixedPIDStraightDriveDistanceWithGyro.KP_TURN );
-		FixedPIDStraightDriveDistanceWithGyro.KI_TURN=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithGyro.KI_TURN",FixedPIDStraightDriveDistanceWithGyro.KI_TURN );
-		FixedPIDStraightDriveDistanceWithGyro.KD_TURN=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithGyro.KD_TURN",FixedPIDStraightDriveDistanceWithGyro.KD_TURN );
-		FixedPIDStraightDriveDistanceWithGyro.TOLERANCE_STRAIGHT=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithGyro.TOLERANCE_STRAIGHT",FixedPIDStraightDriveDistanceWithGyro.TOLERANCE_STRAIGHT );
-		FixedPIDStraightDriveDistanceWithGyro.TOLERANCE_TURN=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithGyro.TOLERANCE_TURN",FixedPIDStraightDriveDistanceWithGyro.TOLERANCE_TURN );
-	
-		FixedPIDStraightDriveDistanceWithTwoEncoders.KP_LEFT=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.KP_LEFT",FixedPIDStraightDriveDistanceWithTwoEncoders.KP_LEFT );
-		FixedPIDStraightDriveDistanceWithTwoEncoders.KI_LEFT=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.KI_LEFT",FixedPIDStraightDriveDistanceWithTwoEncoders.KI_LEFT );
-		FixedPIDStraightDriveDistanceWithTwoEncoders.KD_LEFT=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.KD_LEFT",FixedPIDStraightDriveDistanceWithTwoEncoders.KD_LEFT );
-		FixedPIDStraightDriveDistanceWithTwoEncoders.KP_RIGHT=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.KP_RIGHT",FixedPIDStraightDriveDistanceWithTwoEncoders.KP_RIGHT );
-		FixedPIDStraightDriveDistanceWithTwoEncoders.KI_RIGHT=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.KI_RIGHT",FixedPIDStraightDriveDistanceWithTwoEncoders.KI_RIGHT );
-		FixedPIDStraightDriveDistanceWithTwoEncoders.KD_RIGHT=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.KD_RIGHT",FixedPIDStraightDriveDistanceWithTwoEncoders.KD_RIGHT );
-		FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_LEFT=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_LEFT",FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_LEFT );
-		FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_RIGHT=SmartDashboard.getNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_RIGHT",FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_RIGHT );
-	
 	}
-	
+
+	public void getConstantsFromDeivetrainPackage() {
+		PIDStraightDriveByDistance.KP = SmartDashboard.getNumber("PIDStraightDriveByDistance.KP",
+				PIDStraightDriveByDistance.KP);
+		PIDStraightDriveByDistance.KI = SmartDashboard.getNumber("PIDStraightDriveByDistance.KI",
+				PIDStraightDriveByDistance.KI);
+		PIDStraightDriveByDistance.KD = SmartDashboard.getNumber("PIDStraightDriveByDistance.KD",
+				PIDStraightDriveByDistance.KD);
+		PIDStraightDriveByDistance.ABSOLUTE_TOLERANCE = SmartDashboard.getNumber(
+				"PIDStraightDriveByDistance.ABSOLUTE_TOLERANCE", PIDStraightDriveByDistance.ABSOLUTE_TOLERANCE);
+		PIDTurnDriveByAngle.KP = SmartDashboard.getNumber("PIDTurnDriveByAngle.KP", PIDTurnDriveByAngle.KP);
+		PIDTurnDriveByAngle.KI = SmartDashboard.getNumber("PIDTurnDriveByAngle.KI", PIDTurnDriveByAngle.KI);
+		PIDTurnDriveByAngle.KD = SmartDashboard.getNumber("PIDTurnDriveByAngle.KD", PIDTurnDriveByAngle.KD);
+		PIDTurnDriveByAngle.ABSOLUTE_TOLERANCE = SmartDashboard.getNumber("PIDTurnDriveByAngle.ABSOLUTE_TOLERANCE",
+				PIDTurnDriveByAngle.ABSOLUTE_TOLERANCE);
+	}
+
+	public void initConstantsFromFixedDrivetrainPackage() {
+		SmartDashboard.putNumber("PIDStraightDriveByDistance.DISTANCE",
+				PIDStraightDriveByDistance.DISTANCE);
+		SmartDashboard.putNumber("PIDTurnDriveByAngle.ANGLE",
+				PIDTurnDriveByAngle.ANGLE);
+		SmartDashboard.putNumber("StraightDriveBySpeedAndTime.speed",
+				StraightDriveBySpeedAndTime.speed);
+		SmartDashboard.putNumber("StraightDriveBySpeedAndTime.time",
+				StraightDriveBySpeedAndTime.time);
+		SmartDashboard.putNumber("TurnDriveBySpeedAndTime.spee",
+				TurnDriveBySpeedAndTime.speed);
+		SmartDashboard.putNumber("TurnDriveBySpeedAndTime.time",
+				TurnDriveBySpeedAndTime.time);
+		
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.KP_STRAIGHT",
+				FixedPIDStraightDriveDistanceWithEncoderDifference.KP_STRAIGHT);
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.KI_STRAIGHT",
+				FixedPIDStraightDriveDistanceWithEncoderDifference.KI_STRAIGHT);
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.KD_STRAIGHT",
+				FixedPIDStraightDriveDistanceWithEncoderDifference.KD_STRAIGHT);
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.KP_TURN",
+				FixedPIDStraightDriveDistanceWithEncoderDifference.KP_TURN);
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.KI_TURN",
+				FixedPIDStraightDriveDistanceWithEncoderDifference.KI_TURN);
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.KD_TURN",
+				FixedPIDStraightDriveDistanceWithEncoderDifference.KD_TURN);
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.TOLERANCE_STRAIGHT",
+				FixedPIDStraightDriveDistanceWithEncoderDifference.TOLERANCE_STRAIGHT);
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.TOLERANCE_TURN",
+				FixedPIDStraightDriveDistanceWithEncoderDifference.TOLERANCE_TURN);
+
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithGyro.KP_STRAIGHT",
+				FixedPIDStraightDriveDistanceWithGyro.KP_STRAIGHT);
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithGyro.KI_STRAIGHT",
+				FixedPIDStraightDriveDistanceWithGyro.KI_STRAIGHT);
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithGyro.KD_STRAIGHT",
+				FixedPIDStraightDriveDistanceWithGyro.KD_STRAIGHT);
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithGyro.KP_TURN",
+				FixedPIDStraightDriveDistanceWithGyro.KP_TURN);
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithGyro.KI_TURN",
+				FixedPIDStraightDriveDistanceWithGyro.KI_TURN);
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithGyro.KD_TURN",
+				FixedPIDStraightDriveDistanceWithGyro.KD_TURN);
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithGyro.TOLERANCE_STRAIGHT",
+				FixedPIDStraightDriveDistanceWithGyro.TOLERANCE_STRAIGHT);
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithGyro.TOLERANCE_TURN",
+				FixedPIDStraightDriveDistanceWithGyro.TOLERANCE_TURN);
+
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.KP_LEFT",
+				FixedPIDStraightDriveDistanceWithTwoEncoders.KP_LEFT);
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.KI_LEFT",
+				FixedPIDStraightDriveDistanceWithTwoEncoders.KI_LEFT);
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.KD_LEFT",
+				FixedPIDStraightDriveDistanceWithTwoEncoders.KD_LEFT);
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.KP_RIGHT",
+				FixedPIDStraightDriveDistanceWithTwoEncoders.KP_RIGHT);
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.KI_RIGHT",
+				FixedPIDStraightDriveDistanceWithTwoEncoders.KI_RIGHT);
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.KD_RIGHT",
+				FixedPIDStraightDriveDistanceWithTwoEncoders.KD_RIGHT);
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_LEFT",
+				FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_LEFT);
+		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_RIGHT",
+				FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_RIGHT);
+		
+	}
+
+	public void getConstantsFromFixedDrivetrainPackage() {
+		PIDStraightDriveByDistance.DISTANCE = 
+				SmartDashboard.getNumber("PIDStraightDriveByDistance.DISTANCE");
+		PIDTurnDriveByAngle.ANGLE = SmartDashboard.getNumber("PIDTurnDriveByAngle.ANGLE");
+		TurnDriveBySpeedAndTime.speed = SmartDashboard.getNumber("TurnDriveBySpeedAndTime.speed");
+		TurnDriveBySpeedAndTime.time = SmartDashboard.getNumber("TurnDriveBySpeedAndTime.time");
+		
+		FixedPIDStraightDriveDistanceWithEncoderDifference.KP_STRAIGHT = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithEncoderDifference.KP_STRAIGHT",
+				FixedPIDStraightDriveDistanceWithEncoderDifference.KP_STRAIGHT);
+		FixedPIDStraightDriveDistanceWithEncoderDifference.KI_STRAIGHT = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithEncoderDifference.KI_STRAIGHT",
+				FixedPIDStraightDriveDistanceWithEncoderDifference.KI_STRAIGHT);
+		FixedPIDStraightDriveDistanceWithEncoderDifference.KD_STRAIGHT = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithEncoderDifference.KD_STRAIGHT",
+				FixedPIDStraightDriveDistanceWithEncoderDifference.KD_STRAIGHT);
+		FixedPIDStraightDriveDistanceWithEncoderDifference.KP_TURN = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithEncoderDifference.KP_TURN",
+				FixedPIDStraightDriveDistanceWithEncoderDifference.KP_TURN);
+		FixedPIDStraightDriveDistanceWithEncoderDifference.KI_TURN = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithEncoderDifference.KI_TURN",
+				FixedPIDStraightDriveDistanceWithEncoderDifference.KI_TURN);
+		FixedPIDStraightDriveDistanceWithEncoderDifference.KD_TURN = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithEncoderDifference.KD_TURN",
+				FixedPIDStraightDriveDistanceWithEncoderDifference.KD_TURN);
+		FixedPIDStraightDriveDistanceWithEncoderDifference.TOLERANCE_STRAIGHT = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithEncoderDifference.TOLERANCE_STRAIGHT",
+				FixedPIDStraightDriveDistanceWithEncoderDifference.TOLERANCE_STRAIGHT);
+		FixedPIDStraightDriveDistanceWithEncoderDifference.TOLERANCE_TURN = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithEncoderDifference.TOLERANCE_TURN",
+				FixedPIDStraightDriveDistanceWithEncoderDifference.TOLERANCE_TURN);
+
+		FixedPIDStraightDriveDistanceWithGyro.KP_STRAIGHT = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithGyro.KP_STRAIGHT", FixedPIDStraightDriveDistanceWithGyro.KP_STRAIGHT);
+		FixedPIDStraightDriveDistanceWithGyro.KI_STRAIGHT = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithGyro.KI_STRAIGHT", FixedPIDStraightDriveDistanceWithGyro.KI_STRAIGHT);
+		FixedPIDStraightDriveDistanceWithGyro.KD_STRAIGHT = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithGyro.KD_STRAIGHT", FixedPIDStraightDriveDistanceWithGyro.KD_STRAIGHT);
+		FixedPIDStraightDriveDistanceWithGyro.KP_TURN = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithGyro.KP_TURN", FixedPIDStraightDriveDistanceWithGyro.KP_TURN);
+		FixedPIDStraightDriveDistanceWithGyro.KI_TURN = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithGyro.KI_TURN", FixedPIDStraightDriveDistanceWithGyro.KI_TURN);
+		FixedPIDStraightDriveDistanceWithGyro.KD_TURN = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithGyro.KD_TURN", FixedPIDStraightDriveDistanceWithGyro.KD_TURN);
+		FixedPIDStraightDriveDistanceWithGyro.TOLERANCE_STRAIGHT = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithGyro.TOLERANCE_STRAIGHT",
+				FixedPIDStraightDriveDistanceWithGyro.TOLERANCE_STRAIGHT);
+		FixedPIDStraightDriveDistanceWithGyro.TOLERANCE_TURN = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithGyro.TOLERANCE_TURN",
+				FixedPIDStraightDriveDistanceWithGyro.TOLERANCE_TURN);
+
+		FixedPIDStraightDriveDistanceWithTwoEncoders.KP_LEFT = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithTwoEncoders.KP_LEFT",
+				FixedPIDStraightDriveDistanceWithTwoEncoders.KP_LEFT);
+		FixedPIDStraightDriveDistanceWithTwoEncoders.KI_LEFT = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithTwoEncoders.KI_LEFT",
+				FixedPIDStraightDriveDistanceWithTwoEncoders.KI_LEFT);
+		FixedPIDStraightDriveDistanceWithTwoEncoders.KD_LEFT = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithTwoEncoders.KD_LEFT",
+				FixedPIDStraightDriveDistanceWithTwoEncoders.KD_LEFT);
+		FixedPIDStraightDriveDistanceWithTwoEncoders.KP_RIGHT = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithTwoEncoders.KP_RIGHT",
+				FixedPIDStraightDriveDistanceWithTwoEncoders.KP_RIGHT);
+		FixedPIDStraightDriveDistanceWithTwoEncoders.KI_RIGHT = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithTwoEncoders.KI_RIGHT",
+				FixedPIDStraightDriveDistanceWithTwoEncoders.KI_RIGHT);
+		FixedPIDStraightDriveDistanceWithTwoEncoders.KD_RIGHT = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithTwoEncoders.KD_RIGHT",
+				FixedPIDStraightDriveDistanceWithTwoEncoders.KD_RIGHT);
+		FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_LEFT = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_LEFT",
+				FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_LEFT);
+		FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_RIGHT = SmartDashboard.getNumber(
+				"FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_RIGHT",
+				FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_RIGHT);
+
+	}
+
+	public void testAutonomousCommands() {
+		SmartDashboard
+				.putData(new Cross((Defense) defenseChooser.getSelected(), (Direction) locationChooser.getSelected()));
+		SmartDashboard.putData(new CrossAndDropAndReturn((Defense) defenseChooser.getSelected()));
+		SmartDashboard.putData(new CrossAndReturn((Defense) defenseChooser.getSelected()));
+		SmartDashboard.putData(new CrossAndScoreGoal((Defense) defenseChooser.getSelected(),
+				(DefenseLocation) locationChooser.getSelected(), (Goal) goalChooser.getSelected()));
+		SmartDashboard.putData(new CrossChevalDeFrise((Direction) locationChooser.getSelected()));
+		SmartDashboard.putData(new CrossLowBar((Direction) locationChooser.getSelected()));
+		SmartDashboard.putData(new CrossMoat((Direction) locationChooser.getSelected()));
+		SmartDashboard.putData(new CrossPortcullis((Direction) locationChooser.getSelected()));
+		SmartDashboard.putData(new CrossRamparts((Direction) locationChooser.getSelected()));
+		SmartDashboard.putData(new CrossRockWall((Direction) locationChooser.getSelected()));
+		SmartDashboard.putData(new CrossRoughTerrain((Direction) locationChooser.getSelected()));
+		SmartDashboard.putData(
+				new ScoreGoalFromLocation1((Defense) defenseChooser.getSelected(), (Goal) goalChooser.getSelected()));
+		SmartDashboard.putData(
+				new ScoreGoalFromLocation2((Defense) defenseChooser.getSelected(), (Goal) goalChooser.getSelected()));
+		SmartDashboard.putData(
+				new ScoreGoalFromLocation3((Defense) defenseChooser.getSelected(), (Goal) goalChooser.getSelected()));
+		SmartDashboard.putData(
+				new ScoreGoalFromLocation4((Defense) defenseChooser.getSelected(), (Goal) goalChooser.getSelected()));
+		SmartDashboard.putData(
+				new ScoreGoalFromLocation5((Defense) defenseChooser.getSelected(), (Goal) goalChooser.getSelected()));
+	}
+
+	public void testDriveTrainCommands() {
+		SmartDashboard.putData(new PIDStraightDriveByDistance());
+		SmartDashboard.putData(new PIDTurnDriveByAngle());
+		SmartDashboard.putData(new StraightDriveBySpeedAndTime());
+		SmartDashboard.putData(new TurnDriveBySpeedAndTime());
+	}
+
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -418,7 +558,7 @@ public class Robot extends IterativeRobot {
 		picker = new Picker(PWM.PICKER_MOTOR, DIO.BALL_INSIDE);
 		folder = new Folder(PWM.FOLDER_MOTOR, DIO.FOLDER_UP, DIO.FOLDER_DOWN, DIO.FOLDER_ENCODER_A,
 				DIO.FOLDER_ENCODER_B);
-		cameras = new Cameras(USB.FRONT_CAMERA, USB.REAR_CAMERA);
+//		cameras = new Cameras(USB.FRONT_CAMERA, USB.REAR_CAMERA);
 		oi = new OI();
 		defenseChooser = new SendableChooser();
 		defenseChooser.addDefault("Low Bar", Defense.LOW_BAR);
@@ -442,31 +582,7 @@ public class Robot extends IterativeRobot {
 		goalChooser = new SendableChooser();
 		goalChooser.addObject("High", Goal.HIGH);
 		goalChooser.addObject("Low", Goal.LOW);
-		
-		SmartDashboard.putData(new Cross((Defense) defenseChooser.getSelected(), (Direction) locationChooser.getSelected()));
-		SmartDashboard.putData(new CrossAndDropAndReturn((Defense) defenseChooser.getSelected()));
-		SmartDashboard.putData(new CrossAndReturn((Defense) defenseChooser.getSelected()));
-		SmartDashboard.putData(new CrossAndScoreGoal((Defense) defenseChooser.getSelected(),
-				(DefenseLocation) locationChooser.getSelected(),
-				(Goal) goalChooser.getSelected()));
-		SmartDashboard.putData(new CrossChevalDeFrise((Direction) locationChooser.getSelected()));
-		SmartDashboard.putData(new CrossLowBar((Direction) locationChooser.getSelected()));
-		SmartDashboard.putData(new CrossMoat((Direction) locationChooser.getSelected()));
-		SmartDashboard.putData(new CrossPortcullis((Direction) locationChooser.getSelected()));
-		SmartDashboard.putData(new CrossRamparts((Direction) locationChooser.getSelected()));
-		SmartDashboard.putData(new CrossRockWall((Direction) locationChooser.getSelected()));
-		SmartDashboard.putData(new CrossRoughTerrain((Direction) locationChooser.getSelected()));
-		SmartDashboard.putData(new ScoreGoalFromLocation1((Defense) defenseChooser.getSelected(),
-				(Goal)goalChooser.getSelected()));
-		SmartDashboard.putData(new ScoreGoalFromLocation2((Defense) defenseChooser.getSelected(),
-				(Goal)goalChooser.getSelected()));
-		SmartDashboard.putData(new ScoreGoalFromLocation3((Defense) defenseChooser.getSelected(),
-				(Goal)goalChooser.getSelected()));
-		SmartDashboard.putData(new ScoreGoalFromLocation4((Defense) defenseChooser.getSelected(),
-				(Goal)goalChooser.getSelected()));
-		SmartDashboard.putData(new ScoreGoalFromLocation5((Defense) defenseChooser.getSelected(),
-				(Goal)goalChooser.getSelected()));
-		
+
 		/*
 		 * The values that were added here, are here thanks to tedious and
 		 * tiring work of Saar. Jesus, please, do NOT remove any of them. Not
@@ -478,6 +594,8 @@ public class Robot extends IterativeRobot {
 		 * equivalent line in teleopPeriodic!!
 		 */
 		initConstantsFromConstantsClass();
+		initConstantsFromFixedDrivetrainPackage();
+		testDriveTrainCommands();
 	}
 
 	/**

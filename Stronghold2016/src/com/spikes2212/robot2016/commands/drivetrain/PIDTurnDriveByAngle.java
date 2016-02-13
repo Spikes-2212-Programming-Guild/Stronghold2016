@@ -9,11 +9,13 @@ public class PIDTurnDriveByAngle extends PIDCommand {
 	public static /*final*/ double KI = 0;
 	public static /*final*/ double KD = 0;
 	public static /*final*/ double ABSOLUTE_TOLERANCE = 2; // degree
-
+	
+	public static /*final*/ double ANGLE = 0;
+	
 	private double initialAngle;
-
-	public PIDTurnDriveByAngle(double angle) {
-		super(KP, KI, KD, angle, ABSOLUTE_TOLERANCE);
+	
+	public PIDTurnDriveByAngle() {
+		super(KP, KI, KD, ANGLE, ABSOLUTE_TOLERANCE);
 		requires(Robot.drivetrain);
 	}
 

@@ -6,12 +6,12 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class TurnDriveBySpeedAndTime extends Command {
 
-	private double speed;
-
-	public TurnDriveBySpeedAndTime(double speed, double time) {
+	public static double speed = 0;
+	public static double time = 0;
+	
+	public TurnDriveBySpeedAndTime() {
 		super(time);
 		requires(Robot.drivetrain);
-		this.speed = speed;
 	}
 
 	@Override

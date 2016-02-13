@@ -9,9 +9,11 @@ public class PIDStraightDriveByDistance extends PIDCommand {
 	public static /*final*/ double KI = 0;
 	public static /*final*/ double KD = 0;
 	public static /*final*/ double ABSOLUTE_TOLERANCE = 1; // centimeter
+	
+	public static /*final*/ double DISTANCE = 0;
 
-	public PIDStraightDriveByDistance(double distance) {
-		super(KP, KI, KD, distance, ABSOLUTE_TOLERANCE);
+	public PIDStraightDriveByDistance() {
+		super(KP, KI, KD, DISTANCE, ABSOLUTE_TOLERANCE);
 		Robot.drivetrain.resetEncoders();
 		requires(Robot.drivetrain);
 	}

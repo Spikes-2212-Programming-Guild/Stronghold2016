@@ -18,10 +18,10 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
-public class OI {
-	public /* final */ Joystick leftDriver = new Joystick(0);
-	public /* final */ Joystick rightDriver = new Joystick(1);
-	public /* final */ Joystick rightNavigator = new Joystick(2);
+public class OI /*GEVALD*/{
+	public final Joystick leftDriver = new Joystick(0);
+	public final Joystick rightDriver = new Joystick(1);
+	public final Joystick rightNavigator = new Joystick(2);
 
 	public OI() {
 		new JoystickButton(rightDriver, 1).toggleWhenPressed(new JoystickForwardDrive(() -> -rightDriver.getY()));
