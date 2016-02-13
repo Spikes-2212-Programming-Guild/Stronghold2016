@@ -1,7 +1,5 @@
 package com.spikes2212.robot2016.subsystems;
 
-import java.util.Optional;
-
 import com.ni.vision.NIVision.Image;
 
 import edu.wpi.first.wpilibj.CameraServer;
@@ -14,6 +12,7 @@ public class Cameras extends Subsystem {
 	public Cameras(String frontName, String rearName) {
 		this.front = new CameraController(frontName);
 		this.rear = new CameraController(rearName);
+
 	}
 
 	public boolean isFrontOn() {
@@ -51,12 +50,17 @@ public class Cameras extends Subsystem {
 		CameraServer.getInstance().setImage(image);
 	}
 
-	public Optional<Double> getDistanceFromTower() {
-		return Optional.empty();
-	}
-
 	@Override
 	protected void initDefaultCommand() {
+	}
+
+	public double getAngleUp(Image image) {
+		return 0;
+	}
+
+	public double getDistanceFromTower(Image image) {
+		double angleUp = getAngleUp(image);
+		return 0;
 	}
 
 }

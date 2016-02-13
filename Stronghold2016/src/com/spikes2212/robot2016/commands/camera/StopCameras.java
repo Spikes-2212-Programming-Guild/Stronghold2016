@@ -4,9 +4,9 @@ import static com.spikes2212.robot2016.Robot.cameras;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class StopStream extends Command {
+public class StopCameras extends Command {
 
-	public StopStream() {
+	public StopCameras() {
 		requires(cameras);
 	}
 

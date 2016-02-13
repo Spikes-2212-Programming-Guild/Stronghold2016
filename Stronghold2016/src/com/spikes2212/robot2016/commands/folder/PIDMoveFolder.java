@@ -10,8 +10,10 @@ public class PIDMoveFolder extends PIDCommand {
 	private static final double KI = 0;
 	private static final double KP = 0;
 
-	public PIDMoveFolder(double setpoint, double tolerance) {
-		super(KP, KI, KD, setpoint, tolerance);
+	private static final double TOLERANCE = 0;
+
+	public PIDMoveFolder(double setpoint) {
+		super(KP, KI, KD, setpoint, TOLERANCE);
 		requires(folder);
 	}
 
