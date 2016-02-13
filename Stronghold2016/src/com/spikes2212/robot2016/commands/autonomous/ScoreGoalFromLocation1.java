@@ -10,12 +10,12 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 
 public class ScoreGoalFromLocation1 extends CommandGroup {
 
-	public static /*final*/ double ROTATE_ANGLE = 180;
+	public static /* final */ double ROTATE_ANGLE = 180;
 
-	public static /*final*/ double FIRST_DISTANCE = 0; // FIXME
-	public static /*final*/ double ANGLE = 0; // FIXME
-	public static /*final*/ double SECOND_DISTANCE = 0; // FIXME
-	public static /*final*/ double TIMEOUT = 0.5; // FIXME
+	public static /* final */ double FIRST_DISTANCE = 0; // FIXME
+	public static /* final */ double ANGLE = 0; // FIXME
+	public static /* final */ double SECOND_DISTANCE = 0; // FIXME
+	public static /* final */ double TIMEOUT = 0.5; // FIXME
 
 	public ScoreGoalFromLocation1(Defense defense, Goal goal) {
 		if (defense == Defense.PORTCULLIS) {

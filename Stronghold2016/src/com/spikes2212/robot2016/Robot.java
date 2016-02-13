@@ -25,7 +25,6 @@ import com.spikes2212.robot2016.Field.Direction;
 import com.spikes2212.robot2016.Field.Goal;
 import com.spikes2212.robot2016.RobotMap.DIO;
 import com.spikes2212.robot2016.RobotMap.PWM;
-import com.spikes2212.robot2016.RobotMap.USB;
 import com.spikes2212.robot2016.commands.autonomous.Cross;
 import com.spikes2212.robot2016.commands.autonomous.CrossAndDropAndReturn;
 import com.spikes2212.robot2016.commands.autonomous.CrossAndReturn;
@@ -93,7 +92,7 @@ public class Robot extends IterativeRobot {
 	public static Shooter shooter;
 	public static Gyro gyro;
 	public static Accelerometer accelerometer;
-//	public static Cameras cameras;
+	public static Cameras cameras;
 
 	Command autoCommand;
 
@@ -364,19 +363,13 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void initConstantsFromFixedDrivetrainPackage() {
-		SmartDashboard.putNumber("PIDStraightDriveByDistance.DISTANCE",
-				PIDStraightDriveByDistance.DISTANCE);
-		SmartDashboard.putNumber("PIDTurnDriveByAngle.ANGLE",
-				PIDTurnDriveByAngle.ANGLE);
-		SmartDashboard.putNumber("StraightDriveBySpeedAndTime.speed",
-				StraightDriveBySpeedAndTime.speed);
-		SmartDashboard.putNumber("StraightDriveBySpeedAndTime.time",
-				StraightDriveBySpeedAndTime.time);
-		SmartDashboard.putNumber("TurnDriveBySpeedAndTime.spee",
-				TurnDriveBySpeedAndTime.speed);
-		SmartDashboard.putNumber("TurnDriveBySpeedAndTime.time",
-				TurnDriveBySpeedAndTime.time);
-		
+		SmartDashboard.putNumber("PIDStraightDriveByDistance.DISTANCE", PIDStraightDriveByDistance.DISTANCE);
+		SmartDashboard.putNumber("PIDTurnDriveByAngle.ANGLE", PIDTurnDriveByAngle.ANGLE);
+		SmartDashboard.putNumber("StraightDriveBySpeedAndTime.speed", StraightDriveBySpeedAndTime.speed);
+		SmartDashboard.putNumber("StraightDriveBySpeedAndTime.time", StraightDriveBySpeedAndTime.time);
+		SmartDashboard.putNumber("TurnDriveBySpeedAndTime.spee", TurnDriveBySpeedAndTime.speed);
+		SmartDashboard.putNumber("TurnDriveBySpeedAndTime.time", TurnDriveBySpeedAndTime.time);
+
 		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.KP_STRAIGHT",
 				FixedPIDStraightDriveDistanceWithEncoderDifference.KP_STRAIGHT);
 		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithEncoderDifference.KI_STRAIGHT",
@@ -427,16 +420,15 @@ public class Robot extends IterativeRobot {
 				FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_LEFT);
 		SmartDashboard.putNumber("FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_RIGHT",
 				FixedPIDStraightDriveDistanceWithTwoEncoders.TOLERANCE_RIGHT);
-		
+
 	}
 
 	public void getConstantsFromFixedDrivetrainPackage() {
-		PIDStraightDriveByDistance.DISTANCE = 
-				SmartDashboard.getNumber("PIDStraightDriveByDistance.DISTANCE");
+		PIDStraightDriveByDistance.DISTANCE = SmartDashboard.getNumber("PIDStraightDriveByDistance.DISTANCE");
 		PIDTurnDriveByAngle.ANGLE = SmartDashboard.getNumber("PIDTurnDriveByAngle.ANGLE");
 		TurnDriveBySpeedAndTime.speed = SmartDashboard.getNumber("TurnDriveBySpeedAndTime.speed");
 		TurnDriveBySpeedAndTime.time = SmartDashboard.getNumber("TurnDriveBySpeedAndTime.time");
-		
+
 		FixedPIDStraightDriveDistanceWithEncoderDifference.KP_STRAIGHT = SmartDashboard.getNumber(
 				"FixedPIDStraightDriveDistanceWithEncoderDifference.KP_STRAIGHT",
 				FixedPIDStraightDriveDistanceWithEncoderDifference.KP_STRAIGHT);
@@ -558,7 +550,7 @@ public class Robot extends IterativeRobot {
 		picker = new Picker(PWM.PICKER_MOTOR, DIO.BALL_INSIDE);
 		folder = new Folder(PWM.FOLDER_MOTOR, DIO.FOLDER_UP, DIO.FOLDER_DOWN, DIO.FOLDER_ENCODER_A,
 				DIO.FOLDER_ENCODER_B);
-//		cameras = new Cameras(USB.FRONT_CAMERA, USB.REAR_CAMERA);
+		// cameras = new Cameras(USB.FRONT_CAMERA, USB.REAR_CAMERA);
 		oi = new OI();
 		defenseChooser = new SendableChooser();
 		defenseChooser.addDefault("Low Bar", Defense.LOW_BAR);
