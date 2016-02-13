@@ -39,9 +39,9 @@ public class RobotMap {
 		public static final int TRIZ_UP = 14;
 		public static final int TRIZ_DOWN = 10;
 		public static final int TRIZ_UNDER_PORTCULLIS = 11;
-		public static final int FOLDER_UP = 0;
+		public static final int FOLDER_UP = 9;
 		public static final int FOLDER_DOWN = 1;
-		public static final int BALL_INSIDE = 9;
+		public static final int BALL_INSIDE = 0;
 	}
 
 	public interface AnalogInput {

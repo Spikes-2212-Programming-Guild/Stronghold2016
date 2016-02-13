@@ -5,8 +5,9 @@ import com.spikes2212.robot2016.commands.drivetrain.JoystickTurnDrive;
 import com.spikes2212.robot2016.commands.folder.JoystickMoveFolder;
 import com.spikes2212.robot2016.commands.folder.MoveFolderToShoot;
 import com.spikes2212.robot2016.commands.picker.RollBallIn;
+import com.spikes2212.robot2016.commands.picker.RollIn;
 import com.spikes2212.robot2016.commands.picker.RollOut;
-import com.spikes2212.robot2016.commands.shooter.ShootByVoltage;
+import com.spikes2212.robot2016.commands.shooter.JoystickRotateShooter;
 import com.spikes2212.robot2016.commands.triz.JoystickMoveTriz;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -27,11 +28,13 @@ public class OI /* GEVALD */ {
 		// new JoystickButton(rightDriver, 7).whenPressed(new FrontStream());
 		// new JoystickButton(rightDriver, 8).whenPressed(new RearStream());
 		// new JoystickButton(rightDriver, 9).whenPressed(new StopCameras());
-		new JoystickButton(rightNavigator, 6).whileHeld(new JoystickMoveTriz(() -> -rightNavigator.getY()));
+		new JoystickButton(rightNavigator, 5).whileHeld(new JoystickMoveTriz(() -> -rightNavigator.getY()));
 		new JoystickButton(rightNavigator, 1).toggleWhenPressed(new RollBallIn());
+		new JoystickButton(rightNavigator, 7).toggleWhenPressed(new RollIn(3));
 		new JoystickButton(rightNavigator, 3).toggleWhenPressed(new RollOut());
-		new JoystickButton(rightNavigator, 4).whenPressed(new ShootByVoltage(Constants.SHOOTING_VOLTAGE));
-		new JoystickButton(rightNavigator, 5).whenPressed(new MoveFolderToShoot());
+		new JoystickButton(rightNavigator, 6).toggleWhenPressed(new JoystickMoveFolder(() -> -rightNavigator.getY()));
+		new JoystickButton(rightNavigator, 4).whenPressed(new JoystickRotateShooter(() -> -rightNavigator.getY()));
+		new JoystickButton(rightNavigator, 2).whenPressed(new MoveFolderToShoot());
 		new JoystickButton(rightNavigator, 9).toggleWhenPressed(new JoystickMoveFolder(() -> -rightNavigator.getY()));
 	}
 

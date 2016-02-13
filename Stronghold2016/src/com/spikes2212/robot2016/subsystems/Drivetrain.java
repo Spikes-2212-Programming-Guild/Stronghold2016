@@ -80,8 +80,8 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void setTwoSides(double leftSpeed, double rightSpeed) {
-		left.set(-leftSpeed);
-		right.set(rightSpeed);
+		left.set(leftSpeed);
+		right.set(-rightSpeed);
 	}
 
 	@Override
@@ -90,11 +90,11 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public double getLeftDistance() {
-		return -left.getDistance();
+		return left.getDistance();
 	}
 
 	public double getRightDistance() {
-		return right.getDistance();
+		return -right.getDistance();
 	}
 
 	public void resetEncoders() {
@@ -104,6 +104,14 @@ public class Drivetrain extends Subsystem {
 
 	public void resetGyro() {
 		gyro.reset();
+	}
+
+	public double getLeftVelocity() {
+		return left.getRate();
+	}
+
+	public double getRightVelocity() {
+		return right.getRate();
 	}
 
 }
