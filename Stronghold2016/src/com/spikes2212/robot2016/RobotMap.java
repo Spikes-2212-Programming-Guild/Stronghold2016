@@ -18,8 +18,8 @@ public class RobotMap {
 	}
 
 	public interface PWM {
-		public static final int LEFT_FRONT_MOTOR = 8;
-		public static final int LEFT_REAR_MOTOR = 9;
+		public static final int LEFT_FRONT_MOTOR = 2;
+		public static final int LEFT_REAR_MOTOR = 1;
 		public static final int RIGHT_FRONT_MOTOR = 0;
 		public static final int RIGHT_REAR_MOTOR = 1;
 		public static final int TRIZ_MOTOR = 4;
