@@ -1,8 +1,5 @@
 package com.spikes2212.robot2016;
 
-import com.spikes2212.robot2016.commands.camera.FrontStream;
-import com.spikes2212.robot2016.commands.camera.RearStream;
-import com.spikes2212.robot2016.commands.camera.StopCameras;
 import com.spikes2212.robot2016.commands.drivetrain.JoystickForwardDrive;
 import com.spikes2212.robot2016.commands.drivetrain.JoystickTurnDrive;
 import com.spikes2212.robot2016.commands.folder.JoystickMoveFolder;
@@ -27,9 +24,9 @@ public class OI /* GEVALD */ {
 	public OI() {
 		new JoystickButton(rightDriver, 1).toggleWhenPressed(new JoystickForwardDrive(() -> -rightDriver.getY()));
 		new JoystickButton(rightDriver, 3).toggleWhenPressed(new JoystickTurnDrive(() -> rightDriver.getTwist()));
-		new JoystickButton(rightDriver, 7).whenPressed(new FrontStream());
-		new JoystickButton(rightDriver, 8).whenPressed(new RearStream());
-		new JoystickButton(rightDriver, 9).whenPressed(new StopCameras());
+		// new JoystickButton(rightDriver, 7).whenPressed(new FrontStream());
+		// new JoystickButton(rightDriver, 8).whenPressed(new RearStream());
+		// new JoystickButton(rightDriver, 9).whenPressed(new StopCameras());
 		new JoystickButton(rightNavigator, 6).whileHeld(new JoystickMoveTriz(() -> -rightNavigator.getY()));
 		new JoystickButton(rightNavigator, 1).toggleWhenPressed(new RollBallIn());
 		new JoystickButton(rightNavigator, 3).toggleWhenPressed(new RollOut());

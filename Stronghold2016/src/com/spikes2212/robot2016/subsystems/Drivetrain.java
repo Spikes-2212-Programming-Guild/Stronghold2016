@@ -1,6 +1,8 @@
 package com.spikes2212.robot2016.subsystems;
 
 import com.spikes2212.robot2016.Constants;
+import com.spikes2212.robot2016.Robot;
+import com.spikes2212.robot2016.commands.drivetrain.TwoJoysticksDrive;
 import com.spikes2212.robot2016.util.Gearbox;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -84,8 +86,7 @@ public class Drivetrain extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		// setDefaultCommand(new TwoJoysticksDrive(() ->
-		// -Robot.oi.leftDriver.getY(), () -> -Robot.oi.rightDriver.getY()));
+		setDefaultCommand(new TwoJoysticksDrive(() -> -Robot.oi.leftDriver.getY(), () -> -Robot.oi.rightDriver.getY()));
 	}
 
 	public double getLeftDistance() {
