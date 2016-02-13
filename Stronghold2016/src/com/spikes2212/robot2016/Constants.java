@@ -51,16 +51,17 @@ public class Constants {
 	public static final double FOLDER_ANGLE_PER_PULSE = 0;
 
 	public interface Vision {
-		public static final Range rRange = new Range(254, 255);
-		public static final Range gRange = new Range(254, 255);
-		public static final Range bRange = new Range(254, 255);
+		public static final Range rRange = new Range(0, 255);
+		public static final Range gRange = new Range(250, 255);
+		public static final Range bRange = new Range(250, 255);
 
 		public static final ParticleFilterOptions2 options = new NIVision.ParticleFilterOptions2(0, 0, 1, 1);
-		public static final double AREA_MIN = 50;
+		public static final double MIN_WIDTH_PIXELS = 40;
 		public static final ParticleFilterCriteria2[] criteria = { new NIVision.ParticleFilterCriteria2(
-				NIVision.MeasurementType.MT_AREA_BY_IMAGE_AREA, AREA_MIN, 100, 0, 0) };
-		public static final double REFLECTIVE_WIDTH = 1;
-		public static final int RESOLUTION_WIDTH = 640;
-		public static final double VIEW_HORIZONTAL_ANGLE = 51;
+				NIVision.MeasurementType.MT_BOUNDING_RECT_WIDTH, MIN_WIDTH_PIXELS, 100, 0, 0) };
+		public static final double REFLECTIVE_WIDTH = 0.73;
+		public static final int RESOLUTION_WIDTH = 320;
+		public static final double TARGET_HEIGHT = 0.68;
+		public static final double VIEW_HORIZONTAL_ANGLE = 53;
 	}
 }

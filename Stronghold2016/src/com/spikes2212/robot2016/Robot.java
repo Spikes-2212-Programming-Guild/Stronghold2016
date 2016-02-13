@@ -1,5 +1,9 @@
 package com.spikes2212.robot2016;
 
+import com.ni.vision.NIVision;
+import com.ni.vision.NIVision.Image;
+import com.ni.vision.NIVision.ImageType;
+import com.spikes2212.robot2016.Constants.Vision;
 import com.spikes2212.robot2016.Field.Defense;
 import com.spikes2212.robot2016.Field.DefenseLocation;
 import com.spikes2212.robot2016.Field.Goal;
@@ -28,6 +32,7 @@ import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -55,6 +60,8 @@ public class Robot extends IterativeRobot {
 	SendableChooser defenseChooser;
 	SendableChooser locationChooser;
 	SendableChooser autoChooser;
+
+	Image image, binary;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -94,6 +101,8 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Cross, drop & Return", "CrossAndDropAndReturn");
 		autoChooser.addObject("Cross & score low", "CrossAndScoreLow");
 		autoChooser.addObject("Cross & score high", "CrossAndScoreHigh");
+		image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
+		binary = NIVision.imaqCreateImage(ImageType.IMAGE_U8, 0);
 	}
 
 	/**
@@ -148,6 +157,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
+		cameras.startFront();
 	}
 
 	/**
@@ -156,6 +166,16 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		Vision.rRange.minValue = (int) SmartDashboard.getNumber("r-min", 0);
+		Vision.gRange.minValue = (int) SmartDashboard.getNumber("g-min", 0);
+		Vision.bRange.minValue = (int) SmartDashboard.getNumber("b-min", 0);
+		Vision.rRange.maxValue = (int) SmartDashboard.getNumber("r-max", 0);
+		Vision.gRange.maxValue = (int) SmartDashboard.getNumber("g-max", 0);
+		Vision.bRange.maxValue = (int) SmartDashboard.getNumber("b-max", 0);
+		cameras.getImage(image);
+		double distance = cameras.getDistanceFromTower(image, binary).orElse(Double.NEGATIVE_INFINITY);
+		SmartDashboard.putNumber("distance", distance);
+
 	}
 
 	/**
