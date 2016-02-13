@@ -30,6 +30,7 @@ import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -163,6 +164,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		writeSensorData();
 
 	}
 
@@ -172,6 +174,18 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 		LiveWindow.run();
+	}
+
+	private void writeSensorData() {
+		SmartDashboard.putNumber("left distance", drivetrain.getLeftDistance());
+		SmartDashboard.putNumber("right distance", drivetrain.getRightDistance());
+		SmartDashboard.putBoolean("triz up", triz.isUp());
+		SmartDashboard.putBoolean("triz down", triz.isDown());
+		SmartDashboard.putNumber("triz distance", triz.getAngle());
+		SmartDashboard.putBoolean("folder up", folder.isUp());
+		SmartDashboard.putBoolean("folder down", folder.isDown());
+		SmartDashboard.putNumber("folder distance", folder.getAngle());
+		SmartDashboard.putBoolean("ball in", picker.isBallInside());
 	}
 
 }
