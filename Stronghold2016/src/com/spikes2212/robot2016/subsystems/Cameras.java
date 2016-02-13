@@ -57,7 +57,7 @@ public class Cameras extends Subsystem {
 	}
 
 	public Optional<Double> getDistanceFromTower() {
-
+		return Optional.empty();
 	}
 
 	@Override

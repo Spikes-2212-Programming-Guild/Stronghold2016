@@ -10,37 +10,21 @@ public class CameraController {
 	private boolean on;
 
 	public CameraController(String name) {
-		try {
-			this.camera = new USBCamera(name);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		this.camera = new USBCamera(name);
 	}
 
 	public void start() {
-		try {
-			camera.startCapture();
-			on = true;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		camera.startCapture();
+		on = true;
 	}
 
 	public void stop() {
 		on = false;
-		try {
-			camera.stopCapture();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		camera.stopCapture();
 	}
 
 	public void getImage(Image image) {
-		try {
-			camera.getImage(image);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		camera.getImage(image);
 	}
 
 	public boolean isOn() {

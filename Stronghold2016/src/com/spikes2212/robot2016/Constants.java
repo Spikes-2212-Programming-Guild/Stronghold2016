@@ -1,5 +1,7 @@
 package com.spikes2212.robot2016;
 
+import com.ni.vision.NIVision.Range;
+
 public class Constants {
 
 	// Limit Switches are normally open
@@ -44,4 +46,8 @@ public class Constants {
 	public static final double RIGHT_DISTANCE_PER_PULSE = 0;
 	public static final double TRIZ_ANGLE_PER_PULSE = 0;
 	public static final double FOLDER_ANGLE_PER_PULSE = 0;
+
+	public static final Range rRange = new Range(254, 255);
+	public static final Range gRange = new Range(254, 255);
+	public static final Range bRange = new Range(254, 255);
 }
