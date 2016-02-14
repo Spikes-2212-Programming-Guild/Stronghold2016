@@ -99,6 +99,9 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Cross, drop & Return", "CrossAndDropAndReturn");
 		autoChooser.addObject("Cross & score low", "CrossAndScoreLow");
 		autoChooser.addObject("Cross & score high", "CrossAndScoreHigh");
+		SmartDashboard.putData("Defense", defenseChooser);
+		SmartDashboard.putData("Location", locationChooser);
+		SmartDashboard.putData("Auto", autoChooser);
 		image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
 		binary = NIVision.imaqCreateImage(ImageType.IMAGE_U8, 0);
 	}
@@ -151,6 +154,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		writeSensorData();
 	}
 
 	@Override

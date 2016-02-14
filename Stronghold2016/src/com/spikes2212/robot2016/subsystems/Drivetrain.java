@@ -90,11 +90,11 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public double getLeftDistance() {
-		return left.getDistance();
+		return -left.getDistance();
 	}
 
 	public double getRightDistance() {
-		return -right.getDistance();
+		return right.getDistance();
 	}
 
 	public void resetEncoders() {

@@ -2,18 +2,19 @@ package com.spikes2212.robot2016.commands.drivetrain.fixed;
 
 import static com.spikes2212.robot2016.Robot.drivetrain;
 
+import com.spikes2212.robot2016.Constants;
 import com.spikes2212.robot2016.pid.DoublePIDCommand;
 
 public class FixedPIDStraightDriveDistanceWithTwoEncoders extends DoublePIDCommand {
 
 	private static final double KP_LEFT = 1;
 	private static final double KI_LEFT = 0;
-	private static final double KD_LEFT = 0;
+	private static final double KD_LEFT = 9;
 	private static final double KP_RIGHT = 1;
 	private static final double KI_RIGHT = 0;
-	private static final double KD_RIGHT = 0;
-	private static final double TOLERANCE_LEFT = 1;
-	private static final double TOLERANCE_RIGHT = 0;
+	private static final double KD_RIGHT = 9;
+	private static final double TOLERANCE_LEFT = 0.01;
+	private static final double TOLERANCE_RIGHT = 0.01;
 
 	public FixedPIDStraightDriveDistanceWithTwoEncoders(double distance) {
 		super(KP_LEFT, KI_LEFT, KD_LEFT, distance, TOLERANCE_LEFT, KP_RIGHT, KI_RIGHT, KD_RIGHT, distance,
@@ -33,7 +34,7 @@ public class FixedPIDStraightDriveDistanceWithTwoEncoders extends DoublePIDComma
 
 	@Override
 	public void usePIDOutput(double output1, double output2) {
-		drivetrain.setTwoSides(output1, output2);
+		drivetrain.setTwoSides(output1 / Constants.MAX_VELOCITY, Constants.MAX_VELOCITY);
 	}
 
 	@Override
