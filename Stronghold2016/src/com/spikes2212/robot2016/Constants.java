@@ -45,8 +45,8 @@ public class Constants {
 
 	public static final double FREE_FALL_GRAVITY = 9.8;
 
-	public static final double LEFT_DISTANCE_PER_PULSE = 0;
-	public static final double RIGHT_DISTANCE_PER_PULSE = 0;
+	public static final double LEFT_DISTANCE_PER_PULSE = 1;
+	public static final double RIGHT_DISTANCE_PER_PULSE = 1;
 	public static final double TRIZ_ANGLE_PER_PULSE = 0;
 	public static final double FOLDER_ANGLE_PER_PULSE = 0;
 	public static final double MAX_LEFT_VELOCITY = 0;

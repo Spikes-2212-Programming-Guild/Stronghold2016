@@ -28,18 +28,18 @@ public class RobotMap {
 	}
 
 	public interface DIO {
-		public static final int LEFT_ENCODER_A = 13;
-		public static final int LEFT_ENCODER_B = 12;
-		public static final int RIGHT_ENCODER_A = 3;
-		public static final int RIGHT_ENCODER_B = 4;
-		public static final int TRIZ_ENCODER_A = 5;
-		public static final int TRIZ_ENCODER_B = 6;
-		public static final int FOLDER_ENCODER_A = 7;
-		public static final int FOLDER_ENCODER_B = 8;
+		public static final int LEFT_ENCODER_A = 9;
+		public static final int LEFT_ENCODER_B = 8;
+		public static final int RIGHT_ENCODER_A = 7;
+		public static final int RIGHT_ENCODER_B = 6;
+		public static final int TRIZ_ENCODER_A = 16;
+		public static final int TRIZ_ENCODER_B = 19;
+		public static final int FOLDER_ENCODER_A = 18;
+		public static final int FOLDER_ENCODER_B = 17;
 		public static final int TRIZ_UP = 14;
 		public static final int TRIZ_DOWN = 10;
 		public static final int TRIZ_UNDER_PORTCULLIS = 11;
-		public static final int FOLDER_UP = 9;
+		public static final int FOLDER_UP = 5;
 		public static final int FOLDER_DOWN = 1;
 		public static final int BALL_INSIDE = 0;
 	}
