@@ -107,7 +107,7 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public double getLeftVelocity() {
-		return left.getRate();
+		return -left.getRate();
 	}
 
 	public double getRightVelocity() {
