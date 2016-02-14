@@ -1,39 +1,13 @@
 package com.spikes2212.robot2016.commands.drivetrain;
 
-import com.spikes2212.robot2016.Robot;
-import com.spikes2212.robot2016.pid.PIDCommand;
+import com.spikes2212.robot2016.commands.drivetrain.fixed.FixedPIDStraightDriveDistanceWithTwoEncoders;
 
-public class PIDStraightDriveByDistance extends PIDCommand {
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
-	private static final double KP = 1;
-	private static final double KI = 0;
-	private static final double KD = 0;
-	private static final double ABSOLUTE_TOLERANCE = 1; // centimeter
+public class PIDStraightDriveByDistance extends CommandGroup {
 
 	public PIDStraightDriveByDistance(double distance) {
-		super(KP, KI, KD, distance, ABSOLUTE_TOLERANCE);
-		Robot.drivetrain.resetEncoders();
-		requires(Robot.drivetrain);
-	}
-
-	@Override
-	public double getPIDInput() {
-		return (Robot.drivetrain.getLeftDistance() + Robot.drivetrain.getRightDistance()) / 2;
-	}
-
-	@Override
-	public void usePIDOutput(double output) {
-		Robot.drivetrain.forward(output);
-	}
-
-	@Override
-	protected void initialize() {
-		Robot.drivetrain.resetEncoders();
-	}
-
-	@Override
-	protected void end() {
-
+		addSequential(new FixedPIDStraightDriveDistanceWithTwoEncoders(distance));
 	}
 
 }
