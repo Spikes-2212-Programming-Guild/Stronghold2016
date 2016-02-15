@@ -8,10 +8,7 @@ public class PIDCalculator {
 	private double error, prevError;
 	private double tolerance;
 
-	public PIDCalculator(double kp, double ki, double kd) {
-		this.kp = kp;
-		this.ki = ki;
-		this.kd = kd;
+	public PIDCalculator() {
 	}
 
 	public double calculate(double input) {

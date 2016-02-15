@@ -6,14 +6,28 @@ public abstract class DoublePIDCommand extends Command {
 
 	private PIDCalculator calculator1, calculator2;
 
+	public DoublePIDCommand() {
+		calculator1 = new PIDCalculator();
+		calculator2 = new PIDCalculator();
+	}
+
 	public DoublePIDCommand(double kp1, double ki1, double kd1, double setpoint1, double tolerance1, double kp2,
 			double ki2, double kd2, double setpoint2, double tolerance2) {
-		calculator1 = new PIDCalculator(kp1, ki1, kd1);
+		this();
+		calculator1.setPID(kp1, ki1, kd1);
 		calculator1.setSetpoint(setpoint1);
 		calculator1.setTolerance(tolerance1);
-		calculator2 = new PIDCalculator(kp2, ki2, kd2);
+		calculator2.setPID(kp2, ki2, kd2);
 		calculator2.setSetpoint(setpoint2);
 		calculator2.setTolerance(tolerance2);
+	}
+
+	protected PIDCalculator getCalculator1() {
+		return calculator1;
+	}
+
+	protected PIDCalculator getCalculator2() {
+		return calculator2;
 	}
 
 	public abstract double getPIDInput1();

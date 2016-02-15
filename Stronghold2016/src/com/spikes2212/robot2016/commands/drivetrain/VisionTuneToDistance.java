@@ -6,18 +6,16 @@ import static com.spikes2212.robot2016.Robot.drivetrain;
 import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.Image;
 import com.ni.vision.NIVision.ImageType;
-import com.spikes2212.robot2016.pid.PIDCalculator;
+import com.spikes2212.robot2016.Constants;
+import com.spikes2212.robot2016.pid.DoublePIDCommand;
 
-import edu.wpi.first.wpilibj.command.Command;
+public class VisionTuneToDistance extends DoublePIDCommand {
 
-public class VisionTuneToDistance extends Command {
-
-	private static final double P = 1;
-	private static final double I = 0;
-	private static final double D = 0;
+	private static final double KP = 1.0;
+	private static final double KI = 0;
+	private static final double KD = 9.0;
 	private static final double TOLERANCE = 0.05; // meter
 
-	private PIDCalculator calculator;
 	private double wantedDistance;
 	private Image image;
 	private Image binary;
@@ -26,8 +24,10 @@ public class VisionTuneToDistance extends Command {
 		requires(drivetrain);
 		requires(cameras);
 		this.wantedDistance = wantedDistance;
-		calculator = new PIDCalculator(P, I, D);
-		calculator.setTolerance(TOLERANCE);
+		getCalculator1().setPID(KP, KI, KD);
+		getCalculator1().setTolerance(TOLERANCE);
+		getCalculator2().setPID(KP, KI, KD);
+		getCalculator2().setTolerance(TOLERANCE);
 		image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
 		binary = NIVision.imaqCreateImage(ImageType.IMAGE_U8, 0);
 	}
@@ -36,17 +36,20 @@ public class VisionTuneToDistance extends Command {
 	protected void initialize() {
 		drivetrain.resetEncoders();
 		cameras.getImage(image);
-		calculator.setSetpoint(cameras.getDistanceFromTower(image, binary).orElse(wantedDistance) - wantedDistance);
+		getCalculator1()
+				.setSetpoint(cameras.getDistanceFromTower(image, binary).orElse(wantedDistance) - wantedDistance);
+		getCalculator2()
+				.setSetpoint(cameras.getDistanceFromTower(image, binary).orElse(wantedDistance) - wantedDistance);
 	}
 
 	@Override
-	protected void execute() {
-		drivetrain.forward(calculator.calculate((drivetrain.getLeftDistance() + drivetrain.getRightDistance()) / 2));
+	public double getPIDInput1() {
+		return drivetrain.getLeftDistance();
 	}
 
 	@Override
-	protected boolean isFinished() {
-		return calculator.hasReached();
+	public double getPIDInput2() {
+		return drivetrain.getRightDistance();
 	}
 
 	@Override
@@ -55,8 +58,8 @@ public class VisionTuneToDistance extends Command {
 	}
 
 	@Override
-	protected void interrupted() {
-		end();
+	public void usePIDOutput(double output1, double output2) {
+		drivetrain.setTwoSides(output1 / Constants.MAX_LEFT_VELOCITY, output2 / Constants.MAX_RIGHT_VELOCITY);
 	}
 
 }
