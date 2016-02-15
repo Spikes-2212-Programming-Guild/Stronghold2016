@@ -88,7 +88,7 @@ public class Drivetrain extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new TwoJoysticksDrive(() -> -Robot.oi.leftDriver.getY(), () -> -Robot.oi.rightDriver.getY()));
+		setDefaultCommand(new TwoJoysticksDrive(Robot.oi::getLeftStraight, Robot.oi::getRightStraight));
 	}
 
 	public double getLeftDistance() {
