@@ -5,10 +5,12 @@ import com.ni.vision.NIVision.Image;
 import com.ni.vision.NIVision.ImageType;
 import com.spikes2212.robot2016.Field.Defense;
 import com.spikes2212.robot2016.Field.DefenseLocation;
+import com.spikes2212.robot2016.Field.Direction;
 import com.spikes2212.robot2016.Field.Goal;
 import com.spikes2212.robot2016.RobotMap.CAN;
 import com.spikes2212.robot2016.RobotMap.DIO;
 import com.spikes2212.robot2016.RobotMap.PWM;
+import com.spikes2212.robot2016.commands.autonomous.Cross;
 import com.spikes2212.robot2016.commands.autonomous.CrossAndDropAndReturn;
 import com.spikes2212.robot2016.commands.autonomous.CrossAndReturn;
 import com.spikes2212.robot2016.commands.autonomous.CrossAndScoreGoal;
@@ -95,7 +97,8 @@ public class Robot extends IterativeRobot {
 		locationChooser.addObject("4", DefenseLocation.k4);
 		locationChooser.addObject("5", DefenseLocation.k5);
 		autoChooser = new SendableChooser();
-		autoChooser.addDefault("Cross & Return", "CrossAndReturn");
+		autoChooser.addDefault("Cross", "Cross");
+		autoChooser.addObject("Cross & Return", "CrossAndReturn");
 		autoChooser.addObject("Cross, drop & Return", "CrossAndDropAndReturn");
 		autoChooser.addObject("Cross & score low", "CrossAndScoreLow");
 		autoChooser.addObject("Cross & score high", "CrossAndScoreHigh");
@@ -126,6 +129,9 @@ public class Robot extends IterativeRobot {
 			Defense defense = (Defense) defenseChooser.getSelected();
 			DefenseLocation location = (DefenseLocation) locationChooser.getSelected();
 			switch ((String) autoChooser.getSelected()) {
+			case "Cross":
+				autoCommand = new Cross(defense, Direction.FORWARD);
+				break;
 			case "CrossAndReturn":
 				autoCommand = new CrossAndReturn(defense);
 				break;
