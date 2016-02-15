@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class MoveFolderDown extends Command {
+public class RetractFolder extends Command {
 
-	public MoveFolderDown() {
+	public RetractFolder() {
 		requires(folder);
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
@@ -19,17 +19,19 @@ public class MoveFolderDown extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-	folder.calibrate();	
+		folder.calibrate();
 	}
 
+	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		if (!isFinished()) {
-			folder.tryMove(-Constants.FOLDER_DOWN_SPEED);
+			folder.tryMove(Constants.FOLDER_UP_SPEED);
 		}
 	}
 
+	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return folder.isDown();
+		return folder.isUp();
 	}
 
 	// Called once after isFinished returns true

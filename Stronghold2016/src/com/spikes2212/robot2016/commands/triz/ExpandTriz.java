@@ -1,6 +1,6 @@
-package com.spikes2212.robot2016.commands.folder;
+package com.spikes2212.robot2016.commands.triz;
 
-import static com.spikes2212.robot2016.Robot.folder;
+import static com.spikes2212.robot2016.Robot.triz;
 
 import com.spikes2212.robot2016.Constants;
 
@@ -9,34 +9,31 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class MoveFolderUp extends Command {
+public class ExpandTriz extends Command {
 
-	public MoveFolderUp() {
-		requires(folder);
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
+	public ExpandTriz() {
+		requires(triz);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		folder.calibrate();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (!isFinished()) {
-			folder.tryMove(Constants.FOLDER_UP_SPEED);
+		if (!triz.isDown()) {
+			triz.tryMove(Constants.TRIZ_SPEED);
 		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return folder.isUp();
+		return triz.isDown();
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		folder.stop();
+		triz.stop();
 	}
 
 	// Called when another command which requires one or more of the same

@@ -9,10 +9,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class MoveTrizDown extends Command {
+public class RetractTriz extends Command {
 
-	public MoveTrizDown() {
+	public RetractTriz() {
 		requires(triz);
+		// Use requires() here to declare subsystem dependencies
 	}
 
 	// Called just before this Command runs the first time
@@ -21,14 +22,14 @@ public class MoveTrizDown extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (!triz.isDown()) {
-			triz.tryMove(Constants.TRIZ_SPEED);
+		if (!triz.isUp()) {
+			triz.tryMove(-Constants.TRIZ_SPEED);
 		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return triz.isDown();
+		return triz.isUp();
 	}
 
 	// Called once after isFinished returns true
