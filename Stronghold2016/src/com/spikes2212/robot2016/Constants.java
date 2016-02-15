@@ -30,30 +30,22 @@ public class Constants {
 	public static final double PICKER_ROLL_OUT_SPEED = 1;
 	public static final double SHOOTING_VOLTAGE = 0.9 * 12;
 
-	public static final double DRIVE_TO_PORTCULLIS_DISTANCE = 0;
-
-	public static final double LIFTING_PORTCULLIS_DISTANCE = 0;
-
-	public static final double LOW_BAR_DISTANCE = 0;
-	public static final double AFTER_LIFTING_PORTCULLIS_DISTANCE = 0;
-	public static final double MOAT_DISTANCE = 0;
-
 	public static final double TRIZ_UP_ANGLE = 0;
 	public static final double TRIZ_DOWN_POSITION = 0;
 	public static final double FOLDER_UP_ANGLE = 0;
 	public static final double FOLDER_DOWN_ANGLE = 0;
 
-	public static final double FREE_FALL_GRAVITY = 9.8;
-
-	public static final double MAX_VELOCITY = 4;
-	public static final double MAX_LEFT_VELOCITY = 0;
-	public static final double MAX_RIGHT_VELOCITY = 0;
-
-	public static final double WHEEL_PERIMETER = 0.203 * Math.PI;
-	public static final double LEFT_DISTANCE_PER_PULSE = WHEEL_PERIMETER / 360;
-	public static final double RIGHT_DISTANCE_PER_PULSE = WHEEL_PERIMETER / 360;
 	public static final double TRIZ_ANGLE_PER_PULSE = 1;
 	public static final double FOLDER_ANGLE_PER_PULSE = 1;
+
+	public static final double DRIVETRAIN_WHEEL_PERIMETER = 0.203 * Math.PI;
+	public static final double LEFT_DISTANCE_PER_PULSE = DRIVETRAIN_WHEEL_PERIMETER / 360;
+	public static final double RIGHT_DISTANCE_PER_PULSE = DRIVETRAIN_WHEEL_PERIMETER / 360;
+	public static final double FREE_FALL_GRAVITY = 9.8;
+	public static final double MAX_LEFT_VELOCITY = 4;
+	public static final double MAX_RIGHT_VELOCITY = 4;
+	public static final double MAX_LEFT_SPEED = 0.8;
+	public static final double MAX_RIGHT_SPEED = 0.8;
 
 	public interface Vision {
 		public static final Range rRange = new Range(0, 255);

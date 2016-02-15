@@ -34,7 +34,7 @@ public class FixedPIDStraightDriveDistanceWithTwoEncoders extends DoublePIDComma
 
 	@Override
 	public void usePIDOutput(double output1, double output2) {
-		drivetrain.setTwoSides(output1 / Constants.MAX_VELOCITY, Constants.MAX_VELOCITY);
+		drivetrain.setTwoSides(output1 / Constants.MAX_LEFT_VELOCITY, output2 / Constants.MAX_RIGHT_VELOCITY);
 	}
 
 	@Override

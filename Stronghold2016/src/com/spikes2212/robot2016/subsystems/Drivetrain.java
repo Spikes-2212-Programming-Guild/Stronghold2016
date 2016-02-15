@@ -4,10 +4,12 @@ import com.spikes2212.robot2016.Constants;
 import com.spikes2212.robot2016.Robot;
 import com.spikes2212.robot2016.commands.drivetrain.TwoJoysticksDrive;
 import com.spikes2212.robot2016.util.Gearbox;
+import com.spikes2212.robot2016.util.Util;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drivetrain extends Subsystem {
 
@@ -80,8 +82,8 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void setTwoSides(double leftSpeed, double rightSpeed) {
-		left.set(leftSpeed);
-		right.set(-rightSpeed);
+		left.set(Util.limitAbs(leftSpeed, SmartDashboard.getNumber("MAX_LEFT_SPEED", Constants.MAX_LEFT_SPEED)));
+		right.set(Util.limitAbs(-rightSpeed, SmartDashboard.getNumber("MAX_RIGHT_SPEED", Constants.MAX_RIGHT_SPEED)));
 	}
 
 	@Override
