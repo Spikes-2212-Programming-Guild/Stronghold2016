@@ -13,17 +13,17 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Folder extends Subsystem {
 	private SpeedController motor;
-	private DigitalInput up, down;
+	private DigitalInput contracted, expanded;
 	private Encoder encoder;
 	private double phase;
 
-	public Folder(SpeedController motor, DigitalInput up, DigitalInput down, Encoder encoder) {
+	public Folder(SpeedController motor, DigitalInput contracted, DigitalInput expanded, Encoder encoder) {
 		this.motor = motor;
-		this.up = up;
-		this.down = down;
+		this.contracted = contracted;
+		this.expanded = expanded;
 		this.encoder = encoder;
 		this.encoder.setDistancePerPulse(Constants.FOLDER_ANGLE_PER_PULSE);
-		this.phase = Constants.FOLDER_UP_ANGLE;
+		this.phase = Constants.FOLDER_CONTRACTED_ANGLE;
 
 	}
 
@@ -34,7 +34,7 @@ public class Folder extends Subsystem {
 	}
 
 	public boolean canMove(double speed) {
-		return !(speed > 0 && isUp() || speed < 0 && isDown());
+		return !(speed > 0 && isContracted() || speed < 0 && isExpanded());
 	}
 
 	public void tryMove(double speed) {
@@ -43,12 +43,12 @@ public class Folder extends Subsystem {
 		}
 	}
 
-	public boolean isUp() {
-		return !up.get();
+	public boolean isContracted() {
+		return !contracted.get();
 	}
 
-	public boolean isDown() {
-		return !down.get();
+	public boolean isExpanded() {
+		return !expanded.get();
 	}
 
 	public void stop() {
@@ -56,10 +56,10 @@ public class Folder extends Subsystem {
 	}
 
 	public void calibrate() {
-		if (isUp()) {
-			phase = Constants.FOLDER_UP_ANGLE;
-		} else if (isDown()) {
-			phase = Constants.FOLDER_DOWN_ANGLE;
+		if (isContracted()) {
+			phase = Constants.FOLDER_CONTRACTED_ANGLE;
+		} else if (isExpanded()) {
+			phase = Constants.FOLDER_EXPANDED_ANGLE;
 		} else {
 			phase = getAngle();
 		}

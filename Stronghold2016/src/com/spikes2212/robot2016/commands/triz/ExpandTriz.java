@@ -21,14 +21,14 @@ public class ExpandTriz extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (!triz.isDown()) {
+		if (!triz.isExpanded()) {
 			triz.tryMove(Constants.TRIZ_SPEED);
 		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return triz.isDown();
+		return triz.isExpanded();
 	}
 
 	// Called once after isFinished returns true

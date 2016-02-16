@@ -13,17 +13,17 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Triz extends Subsystem {
 
 	private Talon motor;
-	private DigitalInput upLimit, downLimit;
+	private DigitalInput contracted, expanded;
 	private Encoder encoder;
 	private double phase;
 
-	public Triz(Talon motor, DigitalInput up, DigitalInput down, Encoder encoder) {
+	public Triz(Talon motor, DigitalInput contracted, DigitalInput expanded, Encoder encoder) {
 		this.motor = motor;
-		this.upLimit = up;
-		this.downLimit = down;
+		this.contracted = contracted;
+		this.expanded = expanded;
 		this.encoder = encoder;
 		this.encoder.setDistancePerPulse(Constants.TRIZ_ANGLE_PER_PULSE);
-		this.phase = Constants.TRIZ_UP_ANGLE;
+		this.phase = Constants.TRIZ_CONTRACTED_ANGLE;
 	}
 
 	public Triz(int trizTalonPort, int upPort, int downPort, int underPortcullisChannel, int encoderChannelA,
@@ -33,7 +33,7 @@ public class Triz extends Subsystem {
 	}
 
 	public boolean canMove(double speed) {
-		return !(speed > 0 && isUp() || speed < 0 && isDown());
+		return !(speed > 0 && isContracted() || speed < 0 && isExpanded());
 	}
 
 	public void tryMove(double speed) {
@@ -46,19 +46,19 @@ public class Triz extends Subsystem {
 		motor.set(0);
 	}
 
-	public boolean isUp() {
-		return !upLimit.get();
+	public boolean isContracted() {
+		return !contracted.get();
 	}
 
-	public boolean isDown() {
-		return !downLimit.get();
+	public boolean isExpanded() {
+		return !expanded.get();
 	}
 
 	public void calibrate() {
-		if (isUp()) {
-			phase = Constants.TRIZ_UP_ANGLE;
-		} else if (isDown()) {
-			phase = Constants.TRIZ_DOWN_POSITION;
+		if (isContracted()) {
+			phase = Constants.TRIZ_CONTRACTED_ANGLE;
+		} else if (isExpanded()) {
+			phase = Constants.TRIZ_EXPANDED_POSITION;
 		} else {
 			phase = getAngle();
 		}

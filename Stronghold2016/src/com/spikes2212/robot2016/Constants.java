@@ -30,10 +30,10 @@ public class Constants {
 	public static final double PICKER_ROLL_OUT_SPEED = 1;
 	public static final double SHOOTING_VOLTAGE = 0.9 * 12;
 
-	public static final double TRIZ_UP_ANGLE = 0;
-	public static final double TRIZ_DOWN_POSITION = 0;
-	public static final double FOLDER_UP_ANGLE = 0;
-	public static final double FOLDER_DOWN_ANGLE = 0;
+	public static final double TRIZ_CONTRACTED_ANGLE = 0;
+	public static final double TRIZ_EXPANDED_POSITION = 0;
+	public static final double FOLDER_CONTRACTED_ANGLE = 0;
+	public static final double FOLDER_EXPANDED_ANGLE = 0;
 
 	public static final double TRIZ_ANGLE_PER_PULSE = 1;
 	public static final double FOLDER_ANGLE_PER_PULSE = 1;

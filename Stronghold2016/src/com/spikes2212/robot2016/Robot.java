@@ -74,11 +74,11 @@ public class Robot extends IterativeRobot {
 		left = new Gearbox(PWM.LEFT_FRONT_MOTOR, PWM.LEFT_REAR_MOTOR, DIO.LEFT_ENCODER_A, DIO.LEFT_ENCODER_B);
 		right = new Gearbox(PWM.RIGHT_FRONT_MOTOR, PWM.RIGHT_REAR_MOTOR, DIO.RIGHT_ENCODER_A, DIO.RIGHT_ENCODER_B);
 		drivetrain = new Drivetrain(left, right, gyro, accelerometer);
-		triz = new Triz(PWM.TRIZ_MOTOR, DIO.TRIZ_UP, DIO.TRIZ_DOWN, DIO.TRIZ_UNDER_PORTCULLIS, DIO.TRIZ_ENCODER_A,
+		triz = new Triz(PWM.TRIZ_MOTOR, DIO.TRIZ_RETRACTED, DIO.TRIZ_EXPANDED, DIO.TRIZ_UNDER_PORTCULLIS, DIO.TRIZ_ENCODER_A,
 				DIO.TRIZ_ENCODER_B);
 		shooter = new Shooter(CAN.SHOOTER_MOTOR);
 		picker = new Picker(PWM.PICKER_MOTOR, DIO.BALL_INSIDE);
-		folder = new Folder(PWM.FOLDER_MOTOR, DIO.FOLDER_UP, DIO.FOLDER_DOWN, DIO.FOLDER_ENCODER_A,
+		folder = new Folder(PWM.FOLDER_MOTOR, DIO.FOLDER_RETRACTED, DIO.FOLDER_EXPANDED, DIO.FOLDER_ENCODER_A,
 				DIO.FOLDER_ENCODER_B);
 		// cameras = new Cameras(USB.FRONT_CAMERA, USB.REAR_CAMERA);
 		oi = new OI();
@@ -189,11 +189,11 @@ public class Robot extends IterativeRobot {
 	private void writeSensorData() {
 		SmartDashboard.putNumber("left distance", drivetrain.getLeftDistance());
 		SmartDashboard.putNumber("right distance", drivetrain.getRightDistance());
-		SmartDashboard.putBoolean("triz up", triz.isUp());
-		SmartDashboard.putBoolean("triz down", triz.isDown());
+		SmartDashboard.putBoolean("triz up", triz.isContracted());
+		SmartDashboard.putBoolean("triz down", triz.isExpanded());
 		SmartDashboard.putNumber("triz distance", triz.getAngle());
-		SmartDashboard.putBoolean("folder up", folder.isUp());
-		SmartDashboard.putBoolean("folder down", folder.isDown());
+		SmartDashboard.putBoolean("folder up", folder.isContracted());
+		SmartDashboard.putBoolean("folder down", folder.isExpanded());
 		SmartDashboard.putNumber("folder distance", folder.getAngle());
 		SmartDashboard.putBoolean("ball in", picker.isBallInside());
 	}

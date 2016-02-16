@@ -29,7 +29,7 @@ public class ExpandFolder extends Command {
 	}
 
 	protected boolean isFinished() {
-		return folder.isDown();
+		return folder.isExpanded();
 	}
 
 	// Called once after isFinished returns true

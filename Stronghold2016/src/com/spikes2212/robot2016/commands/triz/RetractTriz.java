@@ -22,14 +22,14 @@ public class RetractTriz extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (!triz.isUp()) {
+		if (!triz.isContracted()) {
 			triz.tryMove(-Constants.TRIZ_SPEED);
 		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return triz.isUp();
+		return triz.isContracted();
 	}
 
 	// Called once after isFinished returns true
