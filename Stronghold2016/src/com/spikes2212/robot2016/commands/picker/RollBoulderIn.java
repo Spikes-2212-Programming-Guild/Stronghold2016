@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RollBallIn extends Command {
+public class RollBoulderIn extends Command {
 
-	public RollBallIn() {
+	public RollBoulderIn() {
 		requires(picker);
 	}
 
@@ -25,7 +25,7 @@ public class RollBallIn extends Command {
 	}
 
 	protected boolean isFinished() {
-		return picker.isBallInside();
+		return picker.isBoulderInside();
 	}
 
 	protected void end() {

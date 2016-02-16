@@ -4,7 +4,7 @@ import com.spikes2212.robot2016.commands.drivetrain.JoystickForwardDrive;
 import com.spikes2212.robot2016.commands.drivetrain.JoystickTurnDrive;
 import com.spikes2212.robot2016.commands.folder.JoystickMoveFolder;
 import com.spikes2212.robot2016.commands.folder.MoveFolderToShoot;
-import com.spikes2212.robot2016.commands.picker.RollBallIn;
+import com.spikes2212.robot2016.commands.picker.RollBoulderIn;
 import com.spikes2212.robot2016.commands.picker.RollIn;
 import com.spikes2212.robot2016.commands.picker.RollOut;
 import com.spikes2212.robot2016.commands.shooter.JoystickRotateShooter;
@@ -29,7 +29,7 @@ public class OI /* GEVALD */ {
 		// new JoystickButton(rightDriver, 8).whenPressed(new RearStream());
 		// new JoystickButton(rightDriver, 9).whenPressed(new StopCameras());
 		new JoystickButton(rightNavigator, 5).toggleWhenPressed(new JoystickMoveTriz(this::getNavigatorStraight));
-		new JoystickButton(rightNavigator, 1).toggleWhenPressed(new RollBallIn());
+		new JoystickButton(rightNavigator, 1).toggleWhenPressed(new RollBoulderIn());
 		new JoystickButton(rightNavigator, 7).toggleWhenPressed(new RollIn(3));
 		new JoystickButton(rightNavigator, 3).toggleWhenPressed(new RollOut());
 		new JoystickButton(rightNavigator, 6).toggleWhenPressed(new JoystickMoveFolder(this::getNavigatorStraight));

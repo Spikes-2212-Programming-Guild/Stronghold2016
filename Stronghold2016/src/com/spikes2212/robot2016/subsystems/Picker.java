@@ -29,7 +29,7 @@ public class Picker extends Subsystem {
 		motor.set(0);
 	}
 
-	public boolean isBallInside() {
+	public boolean isBoulderInside() {
 		return !ballDetector.get();
 	}
 

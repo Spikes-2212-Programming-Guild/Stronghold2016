@@ -195,7 +195,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("folder up", folder.isContracted());
 		SmartDashboard.putBoolean("folder down", folder.isExpanded());
 		SmartDashboard.putNumber("folder distance", folder.getAngle());
-		SmartDashboard.putBoolean("ball in", picker.isBallInside());
+		SmartDashboard.putBoolean("ball in", picker.isBoulderInside());
 	}
 
 }

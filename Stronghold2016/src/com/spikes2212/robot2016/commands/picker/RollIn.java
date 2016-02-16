@@ -16,6 +16,10 @@ public class RollIn extends Command {
 		requires(picker);
 	}
 
+	public RollIn() {
+		requires(picker);
+	}
+
 	protected void initialize() {
 	}
 
