@@ -28,7 +28,7 @@ public class UseFrontImage extends Command {
 
 	@Override
 	protected void execute() {
-		cameras.getImage(image);
+		cameras.getImage(/*image*/);
 		consumer.accept(image);
 	}
 

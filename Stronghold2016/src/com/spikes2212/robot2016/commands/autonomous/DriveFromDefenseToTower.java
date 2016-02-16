@@ -19,8 +19,8 @@ public class DriveFromDefenseToTower extends CommandGroup {
     
     private void initSlot(int slot){
     	this.slot = slot;
-    	this.turningAngle = Field.getAngleToTurnFromDefenseTowardsTower(slot);
-    	this.drivingDistance = Field.getDistanceFromDefenseToTower(slot);
+    	this.turningAngle = Field.getAngleToTurnFromDefenseTowardsTower(this.slot);
+    	this.drivingDistance = Field.getDistanceFromDefenseToTower(this.slot);
     	addSequential(new PIDTurnDriveByAngle(turningAngle));
     	addSequential(new PIDStraightDriveByDistance(drivingDistance));
     	addSequential(new PIDTurnDriveByAngle(-turningAngle));
