@@ -35,7 +35,6 @@ public class OI /* GEVALD */ {
 		new JoystickButton(rightNavigator, 6).toggleWhenPressed(new JoystickMoveFolder(this::getNavigatorStraight));
 		new JoystickButton(rightNavigator, 4).toggleWhenPressed(new JoystickRotateShooter(this::getNavigatorStraight));
 		new JoystickButton(rightNavigator, 2).whenPressed(new MoveFolderToShoot());
-		new JoystickButton(rightNavigator, 9).toggleWhenPressed(new JoystickMoveFolder(this::getNavigatorStraight));
 	}
 
 	private double squareInput(double input) {
