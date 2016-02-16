@@ -28,12 +28,12 @@ public class OI /* GEVALD */ {
 		// new JoystickButton(rightDriver, 7).whenPressed(new FrontStream());
 		// new JoystickButton(rightDriver, 8).whenPressed(new RearStream());
 		// new JoystickButton(rightDriver, 9).whenPressed(new StopCameras());
-		new JoystickButton(rightNavigator, 5).whileHeld(new JoystickMoveTriz(this::getNavigatorStraight));
+		new JoystickButton(rightNavigator, 5).toggleWhenPressed(new JoystickMoveTriz(this::getNavigatorStraight));
 		new JoystickButton(rightNavigator, 1).toggleWhenPressed(new RollBallIn());
 		new JoystickButton(rightNavigator, 7).toggleWhenPressed(new RollIn(3));
 		new JoystickButton(rightNavigator, 3).toggleWhenPressed(new RollOut());
 		new JoystickButton(rightNavigator, 6).toggleWhenPressed(new JoystickMoveFolder(this::getNavigatorStraight));
-		new JoystickButton(rightNavigator, 4).whenPressed(new JoystickRotateShooter(this::getNavigatorStraight));
+		new JoystickButton(rightNavigator, 4).toggleWhenPressed(new JoystickRotateShooter(this::getNavigatorStraight));
 		new JoystickButton(rightNavigator, 2).whenPressed(new MoveFolderToShoot());
 		new JoystickButton(rightNavigator, 9).toggleWhenPressed(new JoystickMoveFolder(this::getNavigatorStraight));
 	}
