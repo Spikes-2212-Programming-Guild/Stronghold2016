@@ -1,6 +1,6 @@
 package com.spikes2212.robot2016.commands.shooter;
 
-import com.spikes2212.robot2016.commands.picker.RollIn;
+import com.spikes2212.robot2016.commands.picker.RollInALittle;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
@@ -14,7 +14,7 @@ public class ShootByVoltage extends CommandGroup {
 	public ShootByVoltage(double voltage) {
 		addParallel(new RotateShooterByVoltageAndTime(voltage, ACCELERATION_TIME));
 		addSequential(new WaitCommand(WAIT_TIME_BEFORE_ROLLING));
-		addParallel(new RollIn(ROLL_IN_TIME));
+		addParallel(new RollInALittle());
 	}
 
 }
