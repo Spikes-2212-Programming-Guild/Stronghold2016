@@ -15,30 +15,30 @@ public class RobotMap {
 
 	public interface PWM {
 		public static final int LEFT_FRONT_VICTOR = 0;
-		public static final int LEFT_REAR_VICTOR = 0;
-		public static final int RIGHT_FRONT_VICTOR = 0;
-		public static final int RIGHT_REAR_VICTOR = 0;
-		public static final int TRIZ_MOTOR = 0;
-		public static final int FOLDER_MOTOR = 0;
-		public static final int PICKER_MOTOR = 0;
-		public static final int SHOOTER_MOTOR = 0;
+		public static final int LEFT_REAR_VICTOR = 1;
+		public static final int RIGHT_FRONT_VICTOR = 2;
+		public static final int RIGHT_REAR_VICTOR = 3;
+		public static final int TRIZ_MOTOR = 4;
+		public static final int FOLDER_MOTOR = 5;
+		public static final int PICKER_MOTOR = 6;
+		public static final int SHOOTER_MOTOR = 7;
 	}
 
 	public interface DIO {
 		public static final int LEFT_ENCODER_A = 0;
-		public static final int LEFT_ENCODER_B = 0;
-		public static final int RIGHT_ENCODER_A = 0;
-		public static final int RIGHT_ENCODER_B = 0;
-		public static final int TRIZ_ENCODER_A = 0;
-		public static final int TRIZ_ENCODER_B = 0;
-		public static final int FOLDER_ENCODER_A = 0;
-		public static final int FOLDER_ENCODER_B = 0;
-		public static final int TRIZ_UP = 0;
-		public static final int TRIZ_DOWN = 0;
-		public static final int TRIZ_UNDER_PORTCULLIS = 0;
-		public static final int FOLDER_UP = 0;
-		public static final int FOLDER_DOWN = 0;
-		public static final int BALL_INSIDE = 0;
+		public static final int LEFT_ENCODER_B = 1;
+		public static final int RIGHT_ENCODER_A = 2;
+		public static final int RIGHT_ENCODER_B = 3;
+		public static final int TRIZ_ENCODER_A = 4;
+		public static final int TRIZ_ENCODER_B = 5;
+		public static final int FOLDER_ENCODER_A = 6;
+		public static final int FOLDER_ENCODER_B = 7;
+		public static final int TRIZ_UP = 8;
+		public static final int TRIZ_DOWN = 9;
+		public static final int TRIZ_UNDER_PORTCULLIS = 10;
+		public static final int FOLDER_UP = 11;
+		public static final int FOLDER_DOWN = 12;
+		public static final int BALL_INSIDE = 13;
 	}
 
 	public interface AnalogInput {
