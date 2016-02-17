@@ -27,6 +27,7 @@ import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -147,6 +148,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
+		cameras.startFront();
 	}
 
 	/**
@@ -155,6 +157,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("angle-horizontal", cameras.getAngleHorizontal());
 	}
 
 	/**
