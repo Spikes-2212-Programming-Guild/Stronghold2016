@@ -39,7 +39,7 @@ public class RobotMap {
 		public static final int TRIZ_RETRACTED = 14;
 		public static final int TRIZ_EXPANDED = 10;
 		public static final int TRIZ_UNDER_PORTCULLIS = 11;
-		public static final int FOLDER_RETRACTED = 5;
+		public static final int FOLDER_RETRACTED = 15;
 		public static final int FOLDER_EXPANDED = 1;
 		public static final int BALL_INSIDE = 0;
 	}
