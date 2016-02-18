@@ -10,13 +10,15 @@ public class Constants {
 	// Limit Switches are normally open
 	// Conventions about units:
 	/*
-	 * Time - second Distance - centimeter
+	 * Time - second
 	 * 
-	 * Velocity - centimeter / second
+	 * Distance - meter
+	 * 
+	 * Velocity - meter / second
 	 * 
 	 * "Speed" - pulse width
 	 * 
-	 * Acceleration - centimeter / second^2
+	 * Acceleration - meter / second^2
 	 * 
 	 * Angle - degree
 	 * 
