@@ -2,7 +2,6 @@ package com.spikes2212.robot2016.commands.drivetrain;
 
 import static com.spikes2212.robot2016.Robot.drivetrain;
 import static edu.wpi.first.wpilibj.smartdashboard.SmartDashboard.getNumber;
-import static edu.wpi.first.wpilibj.smartdashboard.SmartDashboard.putNumber;
 
 import com.spikes2212.robot2016.Constants;
 import com.spikes2212.robot2016.pid.DoublePIDCommand;
@@ -21,15 +20,17 @@ public class PIDStraightDriveByDistance extends DoublePIDCommand {
 	private double distance;
 
 	public PIDStraightDriveByDistance(double distance) {
-		putNumber("PIDStraightDriveByDistance.KP_LEFT", KP_LEFT);
-		putNumber("PIDStraightDriveByDistance.KI_LEFT", KI_LEFT);
-		putNumber("PIDStraightDriveByDistance.KD_LEFT", KD_LEFT);
-		putNumber("PIDStraightDriveByDistance.TOLERANCE_LEFT", TOLERANCE_LEFT);
-		putNumber("PIDStraightDriveByDistance.KP_RIGHT", KP_RIGHT);
-		putNumber("PIDStraightDriveByDistance.KI_RIGHT", KI_RIGHT);
-		putNumber("PIDStraightDriveByDistance.KD_RIGHT", KD_RIGHT);
-		putNumber("PIDStraightDriveByDistance.TOLERANCE_RIGHT", TOLERANCE_RIGHT);
-		putNumber("PIDStraightDriveByDistance.DISTANCE", distance);
+		// putNumber("PIDStraightDriveByDistance.KP_LEFT", KP_LEFT);
+		// putNumber("PIDStraightDriveByDistance.KI_LEFT", KI_LEFT);
+		// putNumber("PIDStraightDriveByDistance.KD_LEFT", KD_LEFT);
+		// putNumber("PIDStraightDriveByDistance.TOLERANCE_LEFT",
+		// TOLERANCE_LEFT);
+		// putNumber("PIDStraightDriveByDistance.KP_RIGHT", KP_RIGHT);
+		// putNumber("PIDStraightDriveByDistance.KI_RIGHT", KI_RIGHT);
+		// putNumber("PIDStraightDriveByDistance.KD_RIGHT", KD_RIGHT);
+		// putNumber("PIDStraightDriveByDistance.TOLERANCE_RIGHT",
+		// TOLERANCE_RIGHT);
+		// putNumber("PIDStraightDriveByDistance.DISTANCE", distance);
 		this.distance = distance;
 		requires(drivetrain);
 	}

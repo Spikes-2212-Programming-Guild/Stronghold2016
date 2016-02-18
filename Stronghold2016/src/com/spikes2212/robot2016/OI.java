@@ -36,7 +36,6 @@ public class OI /* GEVALD */ {
 		new JoystickButton(rightDriver, 7).whenPressed(new FrontStream());
 		new JoystickButton(rightDriver, 8).whenPressed(new RearStream());
 		new JoystickButton(rightDriver, 9).whenPressed(new StopCameras());
-		new JoystickButton(rightDriver, 6).whenPressed(Robot.autoCommand);
 		new JoystickButton(rightNavigator, 2).whileHeld(new MoveTrizDown());
 		new JoystickButton(rightNavigator, 4).whileHeld(new MoveTrizUp());
 		new JoystickButton(rightNavigator, 1).whileHeld(new MoveFolderUp());

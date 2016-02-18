@@ -23,6 +23,10 @@ public class Constants {
 	 * Angular Rate - degree / second
 	 */
 
+	public static final double METER = 1;
+	public static final double FEET = 0.3048;
+	public static final double INCH = FEET / 12;
+
 	public static final double TRIZ_UP_SPEED = 0.4;
 	public static final double TRIZ_DOWN_SPEED = 0.3;
 	public static final double FOLDER_UP_SPEED = 0.45;
@@ -38,7 +42,7 @@ public class Constants {
 	public static final double TRIZ_ANGLE_PER_PULSE = 1;
 	public static final double FOLDER_ANGLE_PER_PULSE = 1;
 
-	public static final double DRIVETRAIN_WHEEL_PERIMETER = 0.203 * Math.PI;
+	public static final double DRIVETRAIN_WHEEL_PERIMETER = 0.203 * Math.PI * METER;
 	public static final double LEFT_DISTANCE_PER_PULSE = DRIVETRAIN_WHEEL_PERIMETER / 360;
 	public static final double RIGHT_DISTANCE_PER_PULSE = DRIVETRAIN_WHEEL_PERIMETER / 360;
 	public static final double FREE_FALL_GRAVITY = 1.024;

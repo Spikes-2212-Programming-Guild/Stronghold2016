@@ -13,6 +13,7 @@ import com.spikes2212.robot2016.RobotMap.USB;
 import com.spikes2212.robot2016.commands.autonomous.Cross;
 import com.spikes2212.robot2016.commands.autonomous.CrossAndDropAndReturn;
 import com.spikes2212.robot2016.commands.autonomous.CrossAndReturn;
+import com.spikes2212.robot2016.commands.drivetrain.PIDTurnDriveByAngleush;
 import com.spikes2212.robot2016.subsystems.Cameras;
 import com.spikes2212.robot2016.subsystems.Drivetrain;
 import com.spikes2212.robot2016.subsystems.Folder;
@@ -151,6 +152,8 @@ public class Robot extends IterativeRobot {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		SmartDashboard.putData(autoCommand);
+		SmartDashboard.putData(new PIDTurnDriveByAngleush(0));
 	}
 
 	/**
@@ -190,6 +193,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("folder down", folder.isDown());
 		SmartDashboard.putNumber("folder distance", folder.getAngle());
 		SmartDashboard.putBoolean("boulder inside", picker.isBoulderInside());
+		SmartDashboard.putNumber("yaw angle", drivetrain.getYawAngle());
 		SmartDashboard.putNumber("angle with floor", drivetrain.getAngleWithFloor());
 	}
 
