@@ -4,13 +4,11 @@ import com.spikes2212.robot2016.Field.Goal;
 import com.spikes2212.robot2016.commands.autonomous.ScoreGoal;
 import com.spikes2212.robot2016.commands.drivetrain.JoystickArcadeDrive;
 import com.spikes2212.robot2016.commands.drivetrain.SetDrivetrainMaximumSpeed;
-import com.spikes2212.robot2016.commands.folder.ExpandFolder;
-import com.spikes2212.robot2016.commands.folder.RetractFolder;
+import com.spikes2212.robot2016.commands.folder.JoystickMoveFolder;
 import com.spikes2212.robot2016.commands.picker.RollBoulderIn;
 import com.spikes2212.robot2016.commands.picker.RollOut;
 import com.spikes2212.robot2016.commands.shooter.ShootByVoltage;
-import com.spikes2212.robot2016.commands.triz.MoveTrizDown;
-import com.spikes2212.robot2016.commands.triz.MoveTrizUp;
+import com.spikes2212.robot2016.commands.triz.JoystickMoveTriz;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -34,10 +32,8 @@ public class OI /* GEVALD */ {
 		// new JoystickButton(rightDriver, 7).whenPressed(new FrontStream());
 		// new JoystickButton(rightDriver, 8).whenPressed(new RearStream());
 		// new JoystickButton(rightDriver, 9).whenPressed(new StopCameras());
-		new JoystickButton(rightNavigator, 1).whileHeld(new MoveTrizDown());
-		new JoystickButton(rightNavigator, 3).whileHeld(new MoveTrizUp());
-		new JoystickButton(rightNavigator, 0).whileHeld(new ExpandFolder());
-		new JoystickButton(rightNavigator, 2).whileHeld(new RetractFolder());
+		new JoystickButton(rightNavigator, 1).whileHeld(new JoystickMoveTriz(this::getNavigatorStraight));
+		new JoystickButton(rightNavigator, 2).whileHeld(new JoystickMoveFolder(this::getNavigatorStraight));
 		new JoystickButton(rightNavigator, 5).whenPressed(new RollOut());
 		new JoystickButton(rightNavigator, 7).whenPressed(new RollBoulderIn());
 		new JoystickButton(rightNavigator, 6).whenPressed(new ScoreGoal(Goal.HIGH));
