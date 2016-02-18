@@ -34,7 +34,7 @@ public class Folder extends Subsystem {
 	}
 
 	public boolean canMove(double speed) {
-		return !(speed > 0 && isContracted() || speed < 0 && isExpanded());
+		return !(speed < 0 && isContracted() || speed > 0 && isExpanded());
 	}
 
 	public void tryMove(double speed) {

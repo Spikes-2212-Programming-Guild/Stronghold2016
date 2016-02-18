@@ -34,7 +34,7 @@ public class Triz extends Subsystem {
 	}
 
 	public boolean canMove(double speed) {
-		return !(speed > 0 && isUp() || speed < 0 && isDown());
+		return !(speed < 0 && isUp() || speed > 0 && isDown());
 	}
 
 	public void tryMove(double speed) {
