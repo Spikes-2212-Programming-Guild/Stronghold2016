@@ -38,6 +38,7 @@ public class RobotMap {
 		public static final int FOLDER_ENCODER_B = 13;
 		public static final int TRIZ_UP = 14;
 		public static final int TRIZ_DOWN = 10;
+		public static final int TRIZ_BUMP= 15;
 		public static final int TRIZ_UNDER_PORTCULLIS = 11;
 		public static final int FOLDER_UP = 5;
 		public static final int FOLDER_DOWN = 1;
