@@ -16,9 +16,9 @@ public class CrossChevalDeFrise extends CommandGroup {
 	public static final double DISTANCE = 1;
 	public static final double SPEED = 0.3;
 
-	public CrossChevalDeFrise(Direction direction) {
+	public CrossChevalDeFrise(/*Direction direction*/) {
 		addSequential(new MoveTrizDown());
-		addSequential(new DriveUntilBump(direction.getSpeedDirection()*SPEED ));
+		addSequential(new DriveUntilBump(/*direction.getSpeedDirection()**/SPEED ));
 		addParallel(new MoveTrizUp());
 		addSequential(new PIDStraightDriveByDistance(DISTANCE));
 	}
