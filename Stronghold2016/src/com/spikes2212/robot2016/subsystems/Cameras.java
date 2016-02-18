@@ -19,12 +19,14 @@ public class Cameras extends Subsystem {
 	
 	double MIN_WIDTH=0;
 	int CAMERA_Y_ANGLE=59;
+	int CAMERA_X_ANGLE=59;
 	int CAMERA_ANGLE=0;
 	int Y_RESOLUTION=480;
 	int TARGET_HIGHT=0;
 	int rMin, gMin,bMin,rMax,gMax,bMax;
-	double Y_ANGLE_PER_PIXEL=CAMERA_ANGLE/Y_RESOLUTION;
-	
+	double Y_ANGLE_PER_PIXEL=CAMERA_Y_ANGLE/Y_RESOLUTION;
+	int X_RESOLUTION=0;
+	int X_ANGLE_PER_PIXEL=CAMERA_X_ANGLE/X_RESOLUTION;
 	NIVision.ParticleFilterCriteria2 [] criteria=new NIVision.ParticleFilterCriteria2[1];
 	NIVision.ParticleFilterOptions2 option=new NIVision.ParticleFilterOptions2(0,0,0,100);
 	
@@ -34,7 +36,7 @@ public class Cameras extends Subsystem {
 		this.rear = new CameraController(rearName);
 		image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
 		binary = NIVision.imaqCreateImage(ImageType.IMAGE_U8, 0);
-		criteria[0]= new NIVision.ParticleFilterCriteria2(MeasurementType.MT_BOUNDING_RECT_WIDTH,MIN_WIDTH,480,0,0);
+		criteria[0]= new NIVision.ParticleFilterCriteria2(MeasurementType.MT_BOUNDING_RECT_WIDTH,MIN_WIDTH,X_RESOLUTION,0,0);
 		rMin=0;
 		gMin=0;
 		bMin=0;
@@ -104,7 +106,6 @@ public class Cameras extends Subsystem {
 		}
 		return 0;
 	}
-
 	public double getDistanceFromTower() {
 		double angleUp = getAngleUp();
 		double distance= TARGET_HIGHT/Math.tan(Math.toRadians(angleUp));
