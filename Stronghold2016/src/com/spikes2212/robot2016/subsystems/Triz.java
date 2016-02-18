@@ -58,7 +58,7 @@ public class Triz extends Subsystem {
 		if (isContracted()) {
 			phase = Constants.TRIZ_CONTRACTED_ANGLE;
 		} else if (isExpanded()) {
-			phase = Constants.TRIZ_EXPANDED_POSITION;
+			phase = Constants.TRIZ_EXPANDED_ANGLE;
 		} else {
 			phase = getAngle();
 		}

@@ -31,7 +31,7 @@ public class Constants {
 	public static final double PICKER_ROLL_OUT_SPEED = 1;
 
 	public static final double TRIZ_CONTRACTED_ANGLE = 0;
-	public static final double TRIZ_EXPANDED_POSITION = 0;
+	public static final double TRIZ_EXPANDED_ANGLE = 0;
 	public static final double FOLDER_CONTRACTED_ANGLE = 0;
 	public static final double FOLDER_EXPANDED_ANGLE = 0;
 
@@ -41,7 +41,7 @@ public class Constants {
 	public static final double DRIVETRAIN_WHEEL_PERIMETER = 0.203 * Math.PI;
 	public static final double LEFT_DISTANCE_PER_PULSE = DRIVETRAIN_WHEEL_PERIMETER / 360;
 	public static final double RIGHT_DISTANCE_PER_PULSE = DRIVETRAIN_WHEEL_PERIMETER / 360;
-	public static final double FREE_FALL_GRAVITY = 9.8;
+	public static final double FREE_FALL_GRAVITY = 1.024;
 	public static final double MAX_LEFT_VELOCITY = 4;
 	public static final double MAX_RIGHT_VELOCITY = 4;
 	public static final double HIGH_MAX_SPEED = 0.8;
