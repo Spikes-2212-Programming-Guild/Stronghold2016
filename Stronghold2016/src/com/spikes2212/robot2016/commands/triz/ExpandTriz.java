@@ -22,7 +22,7 @@ public class ExpandTriz extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		if (!triz.isExpanded()) {
-			triz.tryMove(Constants.TRIZ_SPEED);
+			triz.tryMove(Constants.TRIZ_DOWN_SPEED);
 		}
 	}
 

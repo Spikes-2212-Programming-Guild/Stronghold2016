@@ -23,7 +23,8 @@ public class Constants {
 	 * Angular Rate - degree / second
 	 */
 
-	public static final double TRIZ_SPEED = 0.5;
+	public static final double TRIZ_UP_SPEED = 0.5;
+	public static final double TRIZ_DOWN_SPEED = 0.5;
 	public static final double FOLDER_UP_SPEED = 0.5;
 	public static final double FOLDER_DOWN_SPEED = 0.5;
 	public static final double PICKER_ROLL_IN_SPEED = 0.4;

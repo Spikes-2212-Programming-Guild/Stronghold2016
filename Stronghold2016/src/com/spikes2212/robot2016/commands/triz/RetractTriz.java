@@ -23,7 +23,7 @@ public class RetractTriz extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		if (!triz.isContracted()) {
-			triz.tryMove(-Constants.TRIZ_SPEED);
+			triz.tryMove(-Constants.TRIZ_UP_SPEED);
 		}
 	}
 
