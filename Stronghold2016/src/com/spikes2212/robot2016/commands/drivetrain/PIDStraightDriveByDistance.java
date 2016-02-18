@@ -30,7 +30,8 @@ public class PIDStraightDriveByDistance extends DoublePIDCommand {
 		// putNumber("PIDStraightDriveByDistance.KD_RIGHT", KD_RIGHT);
 		// putNumber("PIDStraightDriveByDistance.TOLERANCE_RIGHT",
 		// TOLERANCE_RIGHT);
-		// putNumber("PIDStraightDriveByDistance.DISTANCE", distance);
+		// SmartDashboard.putNumber("PIDStraightDriveByDistance.DISTANCE",
+		// distance);
 		this.distance = distance;
 		requires(drivetrain);
 	}
@@ -57,12 +58,12 @@ public class PIDStraightDriveByDistance extends DoublePIDCommand {
 				getNumber("PIDStraightDriveByDistance.KI_LEFT", KI_LEFT),
 				getNumber("PIDStraightDriveByDistance.KD_LEFT", KD_LEFT));
 		getCalculator1().setTolerance(getNumber("PIDStraightDriveByDistance.TOLERANCE_LEFT", TOLERANCE_LEFT));
-		getCalculator1().setSetpoint(getNumber("PIDStraightDriveByDistance.DISTANCE", distance));
+		getCalculator1().setSetpoint(distance);
 		getCalculator2().setPID(getNumber("PIDStraightDriveByDistance.KP_RIGHT", KP_RIGHT),
 				getNumber("PIDStraightDriveByDistance.KI_RIGHT", KI_RIGHT),
 				getNumber("PIDStraightDriveByDistance.KD_RIGHT", KD_RIGHT));
 		getCalculator2().setTolerance(getNumber("PIDStraightDriveByDistance.TOLERANCE_RIGHT", TOLERANCE_RIGHT));
-		getCalculator2().setSetpoint(getNumber("PIDStraightDriveByDistance.DISTANCE", distance));
+		getCalculator2().setSetpoint(distance);
 	}
 
 	@Override
