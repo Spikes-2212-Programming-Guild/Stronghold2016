@@ -22,7 +22,7 @@ public class MoveTrizDown extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		if (!triz.isDown()) {
-			triz.tryMove(-Constants.TRIZ_DOWN_SPEED);
+			triz.tryMove(Constants.TRIZ_DOWN_SPEED);
 		}
 	}
 
