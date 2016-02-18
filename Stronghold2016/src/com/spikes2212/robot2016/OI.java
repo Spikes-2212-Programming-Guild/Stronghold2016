@@ -8,8 +8,8 @@ import com.spikes2212.robot2016.commands.folder.ExpandFolder;
 import com.spikes2212.robot2016.commands.folder.RetractFolder;
 import com.spikes2212.robot2016.commands.picker.RollOut;
 import com.spikes2212.robot2016.commands.shooter.ShootByVoltage;
-import com.spikes2212.robot2016.commands.triz.ExpandTriz;
-import com.spikes2212.robot2016.commands.triz.RetractTriz;
+import com.spikes2212.robot2016.commands.triz.MoveTrizDown;
+import com.spikes2212.robot2016.commands.triz.MoveTrizUp;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -33,8 +33,8 @@ public class OI /* GEVALD */ {
 		// new JoystickButton(rightDriver, 7).whenPressed(new FrontStream());
 		// new JoystickButton(rightDriver, 8).whenPressed(new RearStream());
 		// new JoystickButton(rightDriver, 9).whenPressed(new StopCameras());
-		new JoystickButton(rightNavigator, 1).whileHeld(new ExpandTriz());
-		new JoystickButton(rightNavigator, 3).whileHeld(new RetractTriz());
+		new JoystickButton(rightNavigator, 1).whileHeld(new MoveTrizDown());
+		new JoystickButton(rightNavigator, 3).whileHeld(new MoveTrizUp());
 		new JoystickButton(rightNavigator, 0).whileHeld(new ExpandFolder());
 		new JoystickButton(rightNavigator, 2).whileHeld(new RetractFolder());
 		new JoystickButton(rightNavigator, 5).whenPressed(new RollOut());

@@ -4,7 +4,8 @@ import com.spikes2212.robot2016.Constants;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -12,12 +13,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Triz extends Subsystem {
 
-	private Talon motor;
+	private SpeedController motor;
 	private DigitalInput contracted, expanded;
 	private Encoder encoder;
 	private double phase;
 
-	public Triz(Talon motor, DigitalInput contracted, DigitalInput expanded, Encoder encoder) {
+	public Triz(SpeedController motor, DigitalInput contracted, DigitalInput expanded, Encoder encoder) {
 		this.motor = motor;
 		this.contracted = contracted;
 		this.expanded = expanded;
@@ -26,14 +27,14 @@ public class Triz extends Subsystem {
 		this.phase = Constants.TRIZ_CONTRACTED_ANGLE;
 	}
 
-	public Triz(int trizTalonPort, int upPort, int downPort, int underPortcullisChannel, int encoderChannelA,
+	public Triz(int trizVictorPort, int upPort, int downPort, int underPortcullisChannel, int encoderChannelA,
 			int encoderChannelB) {
-		this(new Talon(trizTalonPort), new DigitalInput(upPort), new DigitalInput(downPort),
+		this(new VictorSP(trizVictorPort), new DigitalInput(upPort), new DigitalInput(downPort),
 				new Encoder(encoderChannelA, encoderChannelB));
 	}
 
 	public boolean canMove(double speed) {
-		return !(speed > 0 && isContracted() || speed < 0 && isExpanded());
+		return !(speed > 0 && isUp() || speed < 0 && isDown());
 	}
 
 	public void tryMove(double speed) {
@@ -46,18 +47,18 @@ public class Triz extends Subsystem {
 		motor.set(0);
 	}
 
-	public boolean isContracted() {
+	public boolean isUp() {
 		return !contracted.get();
 	}
 
-	public boolean isExpanded() {
+	public boolean isDown() {
 		return !expanded.get();
 	}
 
 	public void calibrate() {
-		if (isContracted()) {
+		if (isUp()) {
 			phase = Constants.TRIZ_CONTRACTED_ANGLE;
-		} else if (isExpanded()) {
+		} else if (isDown()) {
 			phase = Constants.TRIZ_EXPANDED_ANGLE;
 		} else {
 			phase = getAngle();

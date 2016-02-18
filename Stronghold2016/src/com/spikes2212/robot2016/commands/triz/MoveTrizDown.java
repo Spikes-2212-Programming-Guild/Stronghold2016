@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ExpandTriz extends Command {
+public class MoveTrizDown extends Command {
 
-	public ExpandTriz() {
+	public MoveTrizDown() {
 		requires(triz);
 	}
 
@@ -21,14 +21,14 @@ public class ExpandTriz extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (!triz.isExpanded()) {
+		if (!triz.isDown()) {
 			triz.tryMove(Constants.TRIZ_DOWN_SPEED);
 		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return triz.isExpanded();
+		return triz.isDown();
 	}
 
 	// Called once after isFinished returns true
