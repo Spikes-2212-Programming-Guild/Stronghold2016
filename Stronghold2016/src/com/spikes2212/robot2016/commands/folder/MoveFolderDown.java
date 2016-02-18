@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RetractFolder extends Command {
+public class MoveFolderDown extends Command {
 
-	public RetractFolder() {
+	public MoveFolderDown() {
 		requires(folder);
 	}
 
@@ -21,12 +21,12 @@ public class RetractFolder extends Command {
 
 	protected void execute() {
 		if (!isFinished()) {
-			folder.tryMove(Constants.FOLDER_UP_SPEED);
+			folder.tryMove(Constants.FOLDER_DOWN_SPEED);
 		}
 	}
 
 	protected boolean isFinished() {
-		return folder.isContracted();
+		return folder.isDown();
 	}
 
 	protected void end() {

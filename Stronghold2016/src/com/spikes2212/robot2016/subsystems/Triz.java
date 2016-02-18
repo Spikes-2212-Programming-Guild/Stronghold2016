@@ -14,14 +14,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Triz extends Subsystem {
 
 	private SpeedController motor;
-	private DigitalInput contracted, expanded;
+	private DigitalInput up, down;
 	private Encoder encoder;
 	private double phase;
 
-	public Triz(SpeedController motor, DigitalInput contracted, DigitalInput expanded, Encoder encoder) {
+	public Triz(SpeedController motor, DigitalInput up, DigitalInput down, Encoder encoder) {
 		this.motor = motor;
-		this.contracted = contracted;
-		this.expanded = expanded;
+		this.up = up;
+		this.down = down;
 		this.encoder = encoder;
 		this.encoder.setDistancePerPulse(Constants.TRIZ_ANGLE_PER_PULSE);
 		this.phase = Constants.TRIZ_CONTRACTED_ANGLE;
@@ -48,11 +48,11 @@ public class Triz extends Subsystem {
 	}
 
 	public boolean isUp() {
-		return !contracted.get();
+		return !up.get();
 	}
 
 	public boolean isDown() {
-		return !expanded.get();
+		return !down.get();
 	}
 
 	public void calibrate() {

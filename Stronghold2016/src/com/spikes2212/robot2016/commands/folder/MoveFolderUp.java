@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ExpandFolder extends Command {
+public class MoveFolderUp extends Command {
 
-	public ExpandFolder() {
+	public MoveFolderUp() {
 		requires(folder);
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
@@ -19,17 +19,17 @@ public class ExpandFolder extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-	folder.calibrate();	
+		folder.calibrate();
 	}
 
 	protected void execute() {
 		if (!isFinished()) {
-			folder.tryMove(-Constants.FOLDER_DOWN_SPEED);
+			folder.tryMove(-Constants.FOLDER_UP_SPEED);
 		}
 	}
 
 	protected boolean isFinished() {
-		return folder.isExpanded();
+		return folder.isUp();
 	}
 
 	// Called once after isFinished returns true

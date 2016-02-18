@@ -16,7 +16,7 @@ public class Cameras extends Subsystem {
 
 	public Cameras(String frontName, String rearName) {
 		this.front = new CameraController(frontName);
-		// this.rear = new CameraController(rearName);
+		this.rear = new CameraController(rearName);
 
 	}
 
@@ -29,7 +29,7 @@ public class Cameras extends Subsystem {
 	}
 
 	public void startFront() {
-		// rear.stop();
+		rear.stop();
 		front.start();
 	}
 
@@ -40,14 +40,14 @@ public class Cameras extends Subsystem {
 
 	public void stop() {
 		front.stop();
-		// rear.stop();
+		rear.stop();
 	}
 
 	public void getImage(Image image) {
 		if (front.isOn()) {
 			front.getImage(image);
 		} else if (rear.isOn()) {
-			// rear.getImage(image);
+			rear.getImage(image);
 		}
 	}
 

@@ -1,14 +1,18 @@
 package com.spikes2212.robot2016;
 
-import com.spikes2212.robot2016.Field.Goal;
-import com.spikes2212.robot2016.commands.autonomous.ScoreGoal;
+import com.spikes2212.robot2016.commands.camera.FrontStream;
+import com.spikes2212.robot2016.commands.camera.RearStream;
+import com.spikes2212.robot2016.commands.camera.StopCameras;
 import com.spikes2212.robot2016.commands.drivetrain.JoystickArcadeDrive;
 import com.spikes2212.robot2016.commands.drivetrain.SetDrivetrainMaximumSpeed;
-import com.spikes2212.robot2016.commands.folder.JoystickMoveFolder;
+import com.spikes2212.robot2016.commands.folder.MoveFolderDown;
+import com.spikes2212.robot2016.commands.folder.MoveFolderUp;
 import com.spikes2212.robot2016.commands.picker.RollBoulderIn;
+import com.spikes2212.robot2016.commands.picker.RollInALittle;
 import com.spikes2212.robot2016.commands.picker.RollOut;
-import com.spikes2212.robot2016.commands.shooter.ShootByVoltage;
-import com.spikes2212.robot2016.commands.triz.JoystickMoveTriz;
+import com.spikes2212.robot2016.commands.shooter.RotateShooterByVoltageAndTime;
+import com.spikes2212.robot2016.commands.triz.MoveTrizDown;
+import com.spikes2212.robot2016.commands.triz.MoveTrizUp;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -27,17 +31,23 @@ public class OI /* GEVALD */ {
 	public OI() {
 		new JoystickButton(rightDriver, 1)
 				.whileHeld(new JoystickArcadeDrive(this::getRightStraight, this::getLeftTurn));
-		slowerButton.whenPressed(new SetDrivetrainMaximumSpeed(Constants.HIGH_MAX_SPEED));
 		slowerButton.whenPressed(new SetDrivetrainMaximumSpeed(Constants.LOW_MAX_SPEED));
-		// new JoystickButton(rightDriver, 7).whenPressed(new FrontStream());
-		// new JoystickButton(rightDriver, 8).whenPressed(new RearStream());
-		// new JoystickButton(rightDriver, 9).whenPressed(new StopCameras());
-		new JoystickButton(rightNavigator, 1).whileHeld(new JoystickMoveTriz(this::getNavigatorStraight));
-		new JoystickButton(rightNavigator, 2).whileHeld(new JoystickMoveFolder(this::getNavigatorStraight));
-		new JoystickButton(rightNavigator, 5).whenPressed(new RollOut());
-		new JoystickButton(rightNavigator, 7).whenPressed(new RollBoulderIn());
-		new JoystickButton(rightNavigator, 6).whenPressed(new ScoreGoal(Goal.HIGH));
-		new JoystickButton(rightNavigator, 4).whenPressed(new ShootByVoltage(Constants.SHOOTING_LOW_VOLTAGE));
+		slowerButton.whenReleased(new SetDrivetrainMaximumSpeed(Constants.HIGH_MAX_SPEED));
+		new JoystickButton(rightDriver, 7).whenPressed(new FrontStream());
+		new JoystickButton(rightDriver, 8).whenPressed(new RearStream());
+		new JoystickButton(rightDriver, 9).whenPressed(new StopCameras());
+		new JoystickButton(rightDriver, 6).whenPressed(Robot.autoCommand);
+		new JoystickButton(rightNavigator, 2).whileHeld(new MoveTrizDown());
+		new JoystickButton(rightNavigator, 4).whileHeld(new MoveTrizUp());
+		new JoystickButton(rightNavigator, 1).whileHeld(new MoveFolderUp());
+		new JoystickButton(rightNavigator, 3).whileHeld(new MoveFolderDown());
+		new JoystickButton(rightNavigator, 8).whileHeld(new RollBoulderIn());
+		new JoystickButton(rightNavigator, 6).whileHeld(new RollOut());
+		new JoystickButton(rightNavigator, 7)
+				.whileHeld(new RotateShooterByVoltageAndTime(Constants.SHOOTING_HIGH_VOLTAGE, 6));
+		new JoystickButton(rightNavigator, 5)
+				.whileHeld(new RotateShooterByVoltageAndTime(Constants.SHOOTING_LOW_VOLTAGE, 6));
+		new JoystickButton(rightNavigator, 9).whenPressed(new RollInALittle());
 	}
 
 	private double adjustInput(double input) {

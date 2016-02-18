@@ -6,7 +6,6 @@ import com.ni.vision.NIVision.ImageType;
 import com.spikes2212.robot2016.Field.Defense;
 import com.spikes2212.robot2016.Field.DefenseLocation;
 import com.spikes2212.robot2016.Field.Direction;
-import com.spikes2212.robot2016.Field.Goal;
 import com.spikes2212.robot2016.RobotMap.CAN;
 import com.spikes2212.robot2016.RobotMap.DIO;
 import com.spikes2212.robot2016.RobotMap.PWM;
@@ -14,7 +13,6 @@ import com.spikes2212.robot2016.RobotMap.USB;
 import com.spikes2212.robot2016.commands.autonomous.Cross;
 import com.spikes2212.robot2016.commands.autonomous.CrossAndDropAndReturn;
 import com.spikes2212.robot2016.commands.autonomous.CrossAndReturn;
-import com.spikes2212.robot2016.commands.autonomous.CrossAndScoreGoal;
 import com.spikes2212.robot2016.subsystems.Cameras;
 import com.spikes2212.robot2016.subsystems.Drivetrain;
 import com.spikes2212.robot2016.subsystems.Folder;
@@ -56,7 +54,7 @@ public class Robot extends IterativeRobot {
 	public static Accelerometer accelerometer;
 	public static Cameras cameras;
 
-	Command autoCommand;
+	public static Command autoCommand;
 
 	SendableChooser defenseChooser;
 	SendableChooser locationChooser;
@@ -75,11 +73,11 @@ public class Robot extends IterativeRobot {
 		left = new Gearbox(PWM.LEFT_FRONT_MOTOR, PWM.LEFT_REAR_MOTOR, DIO.LEFT_ENCODER_A, DIO.LEFT_ENCODER_B);
 		right = new Gearbox(PWM.RIGHT_FRONT_MOTOR, PWM.RIGHT_REAR_MOTOR, DIO.RIGHT_ENCODER_A, DIO.RIGHT_ENCODER_B);
 		drivetrain = new Drivetrain(left, right, gyro, accelerometer);
-		triz = new Triz(PWM.TRIZ_MOTOR, DIO.TRIZ_UP, DIO.TRIZ_DOWN, DIO.TRIZ_UNDER_PORTCULLIS,
-				DIO.TRIZ_ENCODER_A, DIO.TRIZ_ENCODER_B);
+		triz = new Triz(PWM.TRIZ_MOTOR, DIO.TRIZ_UP, DIO.TRIZ_DOWN, DIO.TRIZ_UNDER_PORTCULLIS, DIO.TRIZ_ENCODER_A,
+				DIO.TRIZ_ENCODER_B);
 		shooter = new Shooter(CAN.SHOOTER_MOTOR);
 		picker = new Picker(PWM.PICKER_MOTOR, DIO.BALL_INSIDE);
-		folder = new Folder(PWM.FOLDER_MOTOR, DIO.FOLDER_RETRACTED, DIO.FOLDER_EXPANDED, DIO.FOLDER_ENCODER_A,
+		folder = new Folder(PWM.FOLDER_MOTOR, DIO.FOLDER_UP, DIO.FOLDER_DOWN, DIO.FOLDER_ENCODER_A,
 				DIO.FOLDER_ENCODER_B);
 		cameras = new Cameras(USB.FRONT_CAMERA, USB.REAR_CAMERA);
 		oi = new OI();
@@ -125,7 +123,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	@Override
-	public void autonomousInit() {
+	public void teleopInit() {
 		try {
 			Defense defense = (Defense) defenseChooser.getSelected();
 			DefenseLocation location = (DefenseLocation) locationChooser.getSelected();
@@ -139,17 +137,17 @@ public class Robot extends IterativeRobot {
 			case "CrossAndDropAndReturn":
 				autoCommand = new CrossAndDropAndReturn(defense);
 				break;
-			case "CrossAndScoreLow":
-				autoCommand = new CrossAndScoreGoal(defense, location, Goal.LOW);
-				break;
-			case "CrossAndScoreHigh":
-				autoCommand = new CrossAndScoreGoal(defense, location, Goal.HIGH);
-				break;
+			// case "CrossAndScoreLow":
+			// autoCommand = new CrossAndScoreGoal(defense, location, Goal.LOW);
+			// break;
+			// case "CrossAndScoreHigh":
+			// autoCommand = new CrossAndScoreGoal(defense, location,
+			// Goal.HIGH);
+			// break;
 			default:
 				autoCommand = new CommandGroup();
 				break;
 			}
-			autoCommand.start();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -162,11 +160,6 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 		writeSensorData();
-	}
-
-	@Override
-	public void teleopInit() {
-		// cameras.startFront();
 	}
 
 	/**
@@ -193,10 +186,11 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("triz up", triz.isUp());
 		SmartDashboard.putBoolean("triz down", triz.isDown());
 		SmartDashboard.putNumber("triz distance", triz.getAngle());
-		SmartDashboard.putBoolean("folder up", folder.isContracted());
-		SmartDashboard.putBoolean("folder down", folder.isExpanded());
+		SmartDashboard.putBoolean("folder up", folder.isUp());
+		SmartDashboard.putBoolean("folder down", folder.isDown());
 		SmartDashboard.putNumber("folder distance", folder.getAngle());
 		SmartDashboard.putBoolean("boulder inside", picker.isBoulderInside());
+		SmartDashboard.putNumber("angle with floor", drivetrain.getAngleWithFloor());
 	}
 
 }
