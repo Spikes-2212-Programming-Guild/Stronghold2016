@@ -17,21 +17,20 @@ public class Triz extends Subsystem {
 	private Encoder encoder;
 	private double phase;
 	
-	private DigitalInput bumpLimit;
+	
 
-	public Triz(Talon motor, DigitalInput up, DigitalInput down, DigitalInput bumpLimit, Encoder encoder) {
+	public Triz(Talon motor, DigitalInput up, DigitalInput down, Encoder encoder) {
 		this.motor = motor;
 		this.upLimit = up;
 		this.downLimit = down;
-		this.bumpLimit=bumpLimit;
 		this.encoder = encoder;
 		this.encoder.setDistancePerPulse(Constants.TRIZ_ANGLE_PER_PULSE);
 		this.phase = Constants.TRIZ_UP_ANGLE;
 	}
 
-	public Triz(int trizTalonPort, int upPort, int downPort,int bumpPort, int underPortcullisChannel, int encoderChannelA,
+	public Triz(int trizTalonPort, int upPort, int downPort, int underPortcullisChannel, int encoderChannelA,
 			int encoderChannelB) {
-		this(new Talon(trizTalonPort), new DigitalInput(upPort), new DigitalInput(downPort),new DigitalInput(bumpPort),
+		this(new Talon(trizTalonPort), new DigitalInput(upPort), new DigitalInput(downPort),
 				new Encoder(encoderChannelA, encoderChannelB));
 	}
 
@@ -56,9 +55,7 @@ public class Triz extends Subsystem {
 	public boolean isDown() {
 		return !downLimit.get();
 	}
-	public boolean isBump() {
-		return !bumpLimit.get();
-	}
+	
 	
 
 	public void calibrate() {
