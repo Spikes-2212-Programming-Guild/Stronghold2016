@@ -28,7 +28,6 @@ public class Constants {
 	public static final double FOLDER_DOWN_SPEED = 0.5;
 	public static final double PICKER_ROLL_IN_SPEED = 0.4;
 	public static final double PICKER_ROLL_OUT_SPEED = 1;
-	public static final double SHOOTING_VOLTAGE = 0.9 * 12;
 
 	public static final double TRIZ_CONTRACTED_ANGLE = 0;
 	public static final double TRIZ_EXPANDED_POSITION = 0;
@@ -44,8 +43,11 @@ public class Constants {
 	public static final double FREE_FALL_GRAVITY = 9.8;
 	public static final double MAX_LEFT_VELOCITY = 4;
 	public static final double MAX_RIGHT_VELOCITY = 4;
-	public static final double MAX_LEFT_SPEED = 0.8;
-	public static final double MAX_RIGHT_SPEED = 0.8;
+	public static final double HIGH_MAX_SPEED = 0.8;
+	public static final double LOW_MAX_SPEED = 0.4;
+
+	public static final double SHOOTING_HIGH_VOLTAGE = 0.9 * 12;
+	public static final double SHOOTING_LOW_VOLTAGE = 0.3 * 12;
 
 	public interface Vision {
 		public static final Range rRange = new Range(0, 255);

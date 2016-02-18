@@ -1,5 +1,7 @@
 package com.spikes2212.robot2016.subsystems;
 
+import static edu.wpi.first.wpilibj.smartdashboard.SmartDashboard.getNumber;
+
 import com.spikes2212.robot2016.Constants;
 import com.spikes2212.robot2016.Robot;
 import com.spikes2212.robot2016.commands.drivetrain.TwoJoysticksDrive;
@@ -9,13 +11,13 @@ import com.spikes2212.robot2016.util.Util;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drivetrain extends Subsystem {
 
 	private Gearbox left, right;
 	private Gyro gyro;
 	private Accelerometer accelerometer;
+	private double maxSpeed = Constants.HIGH_MAX_SPEED;
 
 	public Drivetrain(Gearbox left, Gearbox right, Gyro gyro, Accelerometer accelerometer) {
 		this.left = left;
@@ -82,8 +84,8 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void setTwoSides(double leftSpeed, double rightSpeed) {
-		left.set(Util.limitAbs(leftSpeed, SmartDashboard.getNumber("MAX_LEFT_SPEED", Constants.MAX_LEFT_SPEED)));
-		right.set(Util.limitAbs(-rightSpeed, SmartDashboard.getNumber("MAX_RIGHT_SPEED", Constants.MAX_RIGHT_SPEED)));
+		left.set(maxSpeed * Util.limitAbs(leftSpeed, getNumber("MAX_LEFT_SPEED", 1)));
+		right.set(maxSpeed * Util.limitAbs(-rightSpeed, getNumber("MAX_RIGHT_SPEED", 1)));
 	}
 
 	@Override
@@ -114,6 +116,10 @@ public class Drivetrain extends Subsystem {
 
 	public double getRightVelocity() {
 		return right.getRate();
+	}
+
+	public void setMaximumSpeed(double maxSpeed) {
+		this.maxSpeed = maxSpeed;
 	}
 
 }

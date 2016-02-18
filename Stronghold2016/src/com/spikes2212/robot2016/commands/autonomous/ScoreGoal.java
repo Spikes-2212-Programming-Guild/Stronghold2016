@@ -16,7 +16,7 @@ public class ScoreGoal extends CommandGroup {
 			addSequential(new RollOut());
 			break;
 		case HIGH:
-			addSequential(new ShootByVoltage(Constants.SHOOTING_VOLTAGE));
+			addSequential(new ShootByVoltage(Constants.SHOOTING_HIGH_VOLTAGE));
 			break;
 		}
 	}

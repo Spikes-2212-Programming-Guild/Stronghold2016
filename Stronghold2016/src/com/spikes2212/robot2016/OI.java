@@ -1,13 +1,15 @@
 package com.spikes2212.robot2016;
 
-import com.spikes2212.robot2016.commands.drivetrain.JoystickForwardDrive;
-import com.spikes2212.robot2016.commands.drivetrain.JoystickTurnDrive;
-import com.spikes2212.robot2016.commands.folder.JoystickMoveFolder;
-import com.spikes2212.robot2016.commands.folder.MoveFolderToShoot;
-import com.spikes2212.robot2016.commands.picker.RollBoulderIn;
+import com.spikes2212.robot2016.Field.Goal;
+import com.spikes2212.robot2016.commands.autonomous.ScoreGoal;
+import com.spikes2212.robot2016.commands.drivetrain.JoystickArcadeDrive;
+import com.spikes2212.robot2016.commands.drivetrain.SetDrivetrainMaximumSpeed;
+import com.spikes2212.robot2016.commands.folder.ExpandFolder;
+import com.spikes2212.robot2016.commands.folder.RetractFolder;
 import com.spikes2212.robot2016.commands.picker.RollOut;
-import com.spikes2212.robot2016.commands.shooter.JoystickRotateShooter;
-import com.spikes2212.robot2016.commands.triz.JoystickMoveTriz;
+import com.spikes2212.robot2016.commands.shooter.ShootByVoltage;
+import com.spikes2212.robot2016.commands.triz.ExpandTriz;
+import com.spikes2212.robot2016.commands.triz.RetractTriz;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -21,34 +23,43 @@ public class OI /* GEVALD */ {
 	private final Joystick rightDriver = new Joystick(1);
 	private final Joystick rightNavigator = new Joystick(2);
 
+	private JoystickButton slowerButton = new JoystickButton(leftDriver, 1);
+
 	public OI() {
-		new JoystickButton(rightDriver, 1).toggleWhenPressed(new JoystickForwardDrive(this::getRightStraight));
-		new JoystickButton(rightDriver, 2).toggleWhenPressed(new JoystickTurnDrive(this::getRightTurn));
+		new JoystickButton(rightDriver, 1)
+				.whileHeld(new JoystickArcadeDrive(this::getRightStraight, this::getLeftTurn));
+		slowerButton.whenPressed(new SetDrivetrainMaximumSpeed(Constants.HIGH_MAX_SPEED));
+		slowerButton.whenPressed(new SetDrivetrainMaximumSpeed(Constants.LOW_MAX_SPEED));
 		// new JoystickButton(rightDriver, 7).whenPressed(new FrontStream());
 		// new JoystickButton(rightDriver, 8).whenPressed(new RearStream());
 		// new JoystickButton(rightDriver, 9).whenPressed(new StopCameras());
-		new JoystickButton(rightNavigator, 5).toggleWhenPressed(new JoystickMoveTriz(this::getNavigatorStraight));
-		new JoystickButton(rightNavigator, 1).toggleWhenPressed(new RollBoulderIn());
-		new JoystickButton(rightNavigator, 3).toggleWhenPressed(new RollOut());
-		new JoystickButton(rightNavigator, 6).toggleWhenPressed(new JoystickMoveFolder(this::getNavigatorStraight));
-		new JoystickButton(rightNavigator, 4).toggleWhenPressed(new JoystickRotateShooter(this::getNavigatorStraight));
-		new JoystickButton(rightNavigator, 2).whenPressed(new MoveFolderToShoot());
+		new JoystickButton(rightNavigator, 1).whileHeld(new ExpandTriz());
+		new JoystickButton(rightNavigator, 3).whileHeld(new RetractTriz());
+		new JoystickButton(rightNavigator, 0).whileHeld(new ExpandFolder());
+		new JoystickButton(rightNavigator, 2).whileHeld(new RetractFolder());
+		new JoystickButton(rightNavigator, 5).whenPressed(new RollOut());
+		new JoystickButton(rightNavigator, 6).whenPressed(new ScoreGoal(Goal.HIGH));
+		new JoystickButton(rightNavigator, 4).whenPressed(new ShootByVoltage(Constants.SHOOTING_LOW_VOLTAGE));
 	}
 
-	private double squareInput(double input) {
+	private double adjustInput(double input) {
 		return input * Math.abs(input);
 	}
 
 	public double getLeftStraight() {
-		return squareInput(-leftDriver.getY());
+		return adjustInput(-leftDriver.getY());
+	}
+
+	public double getLeftTurn() {
+		return adjustInput(leftDriver.getX());
 	}
 
 	public double getRightStraight() {
-		return squareInput(-rightDriver.getY());
+		return adjustInput(-rightDriver.getY());
 	}
 
 	public double getRightTurn() {
-		return squareInput(rightDriver.getX());
+		return adjustInput(rightDriver.getX());
 	}
 
 	public double getNavigatorStraight() {
