@@ -10,6 +10,7 @@ import com.spikes2212.robot2016.RobotMap.CAN;
 import com.spikes2212.robot2016.RobotMap.DIO;
 import com.spikes2212.robot2016.RobotMap.PWM;
 import com.spikes2212.robot2016.RobotMap.USB;
+import com.spikes2212.robot2016.commands.RetractAll;
 import com.spikes2212.robot2016.commands.autonomous.Cross;
 import com.spikes2212.robot2016.commands.autonomous.CrossAndDropAndReturn;
 import com.spikes2212.robot2016.commands.autonomous.CrossAndReturn;
@@ -107,6 +108,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto", autoChooser);
 		image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
 		binary = NIVision.imaqCreateImage(ImageType.IMAGE_U8, 0);
+		SmartDashboard.putData(new RetractAll());
 	}
 
 	/**
