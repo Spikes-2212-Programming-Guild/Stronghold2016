@@ -2,7 +2,7 @@ package com.spikes2212.robot2016.subsystems;
 
 import com.spikes2212.robot2016.Constants;
 import com.spikes2212.robot2016.Robot;
-import com.spikes2212.robot2016.commands.drivetrain.TwoJoysticksDrive;
+import com.spikes2212.robot2016.commands.drivetrain.JoystickArcadeDrive;
 import com.spikes2212.robot2016.util.Gearbox;
 import com.spikes2212.robot2016.util.Util;
 
@@ -88,7 +88,7 @@ public class Drivetrain extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new TwoJoysticksDrive(Robot.oi::getLeftStraight, Robot.oi::getRightStraight));
+		setDefaultCommand(new JoystickArcadeDrive(Robot.oi::getRightStraight, Robot.oi::getLeftStraight));
 	}
 
 	public double getLeftDistance() {

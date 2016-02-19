@@ -5,8 +5,8 @@ import com.spikes2212.robot2016.commands.autonomous.InitializeChevalDeFrise;
 import com.spikes2212.robot2016.commands.autonomous.InitializeLowBar;
 import com.spikes2212.robot2016.commands.camera.FrontStream;
 import com.spikes2212.robot2016.commands.camera.StopCameras;
-import com.spikes2212.robot2016.commands.drivetrain.JoystickArcadeDrive;
 import com.spikes2212.robot2016.commands.drivetrain.SetDrivetrainMaximumSpeed;
+import com.spikes2212.robot2016.commands.drivetrain.TwoJoysticksDrive;
 import com.spikes2212.robot2016.commands.folder.MoveFolderDown;
 import com.spikes2212.robot2016.commands.folder.MoveFolderUp;
 import com.spikes2212.robot2016.commands.picker.RollBoulderIn;
@@ -30,7 +30,7 @@ public class OI /* GEVALD */ {
 
 	public OI() {
 		new JoystickButton(rightDriver, 1)
-				.whileHeld(new JoystickArcadeDrive(this::getRightStraight, this::getLeftTurn));
+				.whileHeld(new TwoJoysticksDrive(this::getLeftStraight, this::getRightStraight));
 		slowerButton.whenPressed(new SetDrivetrainMaximumSpeed(Constants.LOW_MAX_SPEED));
 		slowerButton.whenReleased(new SetDrivetrainMaximumSpeed(Constants.VERY_HIGH_MAX_SPEED));
 		new JoystickButton(rightDriver, 8).whenPressed(new FrontStream());
