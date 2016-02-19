@@ -34,7 +34,7 @@ public class CrossPortcullis extends CommandGroup {
 			addSequential(new ExpandAll());
 			addSequential(new MoveTrizUp(), 0.2);
 			addSequential(new PIDStraightDriveByDistance(1.5));
-			addSequential(new SetDrivetrainMaximumSpeed(Constants.LOW_MAX_SPEED));
+			addSequential(new SetDrivetrainMaximumSpeed(Constants.MEDIUM_MAX_SPEED));
 			addSequential(new MoveTrizDown());
 			addSequential(new PIDStraightDriveByDistance(1), 3);
 			addParallel(new PIDStay());

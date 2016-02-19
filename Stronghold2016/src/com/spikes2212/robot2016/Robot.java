@@ -126,7 +126,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	@Override
-	public void teleopInit() {
+	public void autonomousInit() {
 		try {
 			Defense defense = (Defense) defenseChooser.getSelected();
 			DefenseLocation location = (DefenseLocation) locationChooser.getSelected();
@@ -151,6 +151,7 @@ public class Robot extends IterativeRobot {
 				autoCommand = new CommandGroup();
 				break;
 			}
+			autoCommand.start();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
