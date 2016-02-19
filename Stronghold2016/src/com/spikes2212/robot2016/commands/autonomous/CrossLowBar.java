@@ -2,6 +2,7 @@ package com.spikes2212.robot2016.commands.autonomous;
 
 import static com.spikes2212.robot2016.Constants.METER;
 
+import com.spikes2212.robot2016.Constants;
 import com.spikes2212.robot2016.commands.drivetrain.PIDStraightDriveByDistance;
 import com.spikes2212.robot2016.commands.picker.RollOut;
 
@@ -18,7 +19,7 @@ public class CrossLowBar extends CommandGroup {
 	public CrossLowBar() {
 		addParallel(new MoveTrizUpish());
 		addSequential(new WaitCommand(1.5));
-		addSequential(new PIDStraightDriveByDistance(FIRST_DISTANCE, 0.5), 2.5);
+		addSequential(new PIDStraightDriveByDistance(FIRST_DISTANCE, Constants.CROSS_LOW_BAR_MAX_SPEED), 2.5);
 		addSequential(new WaitCommand(1));
 		addSequential(new RollOut(), 1);
 	}
