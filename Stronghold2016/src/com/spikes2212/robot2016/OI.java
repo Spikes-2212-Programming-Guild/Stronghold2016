@@ -11,7 +11,6 @@ import com.spikes2212.robot2016.commands.drivetrain.SetDrivetrainMaximumSpeed;
 import com.spikes2212.robot2016.commands.folder.MoveFolderDown;
 import com.spikes2212.robot2016.commands.folder.MoveFolderUp;
 import com.spikes2212.robot2016.commands.picker.RollBoulderIn;
-import com.spikes2212.robot2016.commands.picker.RollInALittle;
 import com.spikes2212.robot2016.commands.picker.RollOut;
 import com.spikes2212.robot2016.commands.triz.MoveTrizDown;
 import com.spikes2212.robot2016.commands.triz.MoveTrizUp;
@@ -46,7 +45,6 @@ public class OI /* GEVALD */ {
 		new JoystickButton(rightNavigator, 6).whileHeld(new RollOut());
 		new JoystickButton(rightNavigator, 7).whileHeld(new Shoot(Constants.SHOOTING_HIGH_VOLTAGE));
 		new JoystickButton(rightNavigator, 5).whileHeld(new Shoot(Constants.SHOOTING_LOW_VOLTAGE));
-		new JoystickButton(rightNavigator, 9).whenPressed(new RollInALittle());
 		new JoystickButton(rightNavigator, 10).whenPressed(new InitializeChevalDeFrise());
 		new JoystickButton(rightNavigator, 11).whenPressed(new InitializeLowBar());
 
