@@ -1,6 +1,8 @@
 package com.spikes2212.robot2016.subsystems;
 
 import com.spikes2212.robot2016.Constants;
+import com.spikes2212.robot2016.Robot;
+import com.spikes2212.robot2016.commands.triz.JoystickMoveTriz;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
@@ -71,6 +73,7 @@ public class Triz extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
+		new JoystickMoveTriz(() ->Robot.oi.getNavigatorStraight()*Constants.TRIZ_UP_SPEED);
 	}
 
 }
