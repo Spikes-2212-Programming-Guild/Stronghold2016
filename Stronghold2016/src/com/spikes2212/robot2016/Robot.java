@@ -98,12 +98,12 @@ public class Robot extends IterativeRobot {
 		locationChooser.addObject("4", DefenseLocation.k4);
 		locationChooser.addObject("5", DefenseLocation.k5);
 		autoChooser = new SendableChooser();
-		autoChooser.addDefault("Cross", "Cross");
+		autoChooser.addDefault("No autonomous", "NoAuto");
+		autoChooser.addObject("Cross", "Cross");
 		autoChooser.addObject("Cross & Return", "CrossAndReturn");
 		autoChooser.addObject("Cross, drop & Return", "CrossAndDropAndReturn");
 		autoChooser.addObject("Cross & score low", "CrossAndScoreLow");
 		autoChooser.addObject("Cross & score high", "CrossAndScoreHigh");
-		autoChooser.addObject("No autonomous", "NoAuto");
 		SmartDashboard.putData("Defense", defenseChooser);
 		SmartDashboard.putData("Location", locationChooser);
 		SmartDashboard.putData("Auto", autoChooser);

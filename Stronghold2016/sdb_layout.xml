@@ -1,82 +1,70 @@
 <xml version="1.0">
 <dashboard>
 	<widget field="folder down" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="416" y="288"/>
+		<location x="144" y="272"/>
 		<width>112</width>
 		<height>48</height>
 	</widget>
 	<widget field="triz up" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="752" y="208"/>
+		<location x="496" y="208"/>
 		<width>80</width>
 		<height>48</height>
 	</widget>
 	<widget field="boulder inside" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="560" y="208"/>
+		<location x="288" y="208"/>
 		<width>176</width>
-		<height>128</height>
+		<height>112</height>
 	</widget>
 	<widget field="triz down" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="752" y="287"/>
+		<location x="496" y="272"/>
 		<width>96</width>
 		<height>49</height>
 	</widget>
 	<widget field="folder up" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="416" y="208"/>
+		<location x="144" y="208"/>
 		<width>96</width>
 		<height>49</height>
 	</widget>
 	<widget field="Defense" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="1113" y="83"/>
+		<location x="16" y="155"/>
 	</widget>
 	<widget field="Auto" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="972" y="84"/>
+		<location x="112" y="16"/>
 	</widget>
 	<widget field="Location" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="917" y="84"/>
-	</widget>
-	<widget field="PIDTurnDriveByAngle" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="-5" y="317"/>
+		<location x="17" y="21"/>
 	</widget>
 	<widget field="RetractAll" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="413" y="147"/>
+		<location x="147" y="160"/>
 	</widget>
 	<widget field="Reset gyro" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="930" y="253"/>
-	</widget>
-	<widget field="PIDTurnDriveByAngle.TOLERANCE" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="273"/>
-	</widget>
-	<widget field="PIDTurnDriveByAngle.KP" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="252"/>
+		<location x="608" y="208"/>
 	</widget>
 	<widget field="right distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="592" y="60"/>
 	</widget>
 	<widget field="folder distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="416" y="352"/>
+		<location x="211" y="336"/>
 	</widget>
 	<widget field="angle with floor" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="189"/>
-	</widget>
-	<widget field="PIDTurnDriveByAngle.KI" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="168"/>
+		<location x="320" y="96"/>
 	</widget>
 	<widget field="triz distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="704" y="348"/>
-	</widget>
-	<widget field="PIDTurnDriveByAngle.KD" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="126"/>
+		<location x="432" y="336"/>
 	</widget>
 	<widget field="yaw angle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="528" y="96"/>
+		<location x="585" y="96"/>
 	</widget>
 	<widget field="left distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="416" y="60"/>
-	</widget>
-	<widget field="PIDTurnDriveByAngle.ANGLE" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="0"/>
+		<location x="320" y="60"/>
 	</widget>
 </dashboard>
 <live-window>
 </live-window>
+	<hidden field="PIDTurnDriveByAngle.TOLERANCE"/>
+	<hidden field="PIDTurnDriveByAngle.KI"/>
+	<hidden field="PIDTurnDriveByAngle.ANGLE"/>
+	<hidden field="PIDTurnDriveByAngle.KD"/>
+	<hidden field="PIDTurnDriveByAngle"/>
+	<hidden field="PIDTurnDriveByAngle.KP"/>
 </xml>
