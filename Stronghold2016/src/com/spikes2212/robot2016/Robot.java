@@ -104,43 +104,13 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Cross, drop & Return", "CrossAndDropAndReturn");
 		autoChooser.addObject("Cross & score low", "CrossAndScoreLow");
 		autoChooser.addObject("Cross & score high", "CrossAndScoreHigh");
+		autoChooser.addObject("No autonomous", "NoAuto");
 		SmartDashboard.putData("Defense", defenseChooser);
 		SmartDashboard.putData("Location", locationChooser);
 		SmartDashboard.putData("Auto", autoChooser);
 		image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
 		binary = NIVision.imaqCreateImage(ImageType.IMAGE_U8, 0);
 		SmartDashboard.putData(new RetractAll());
-		SmartDashboard.putData(new PIDTurnDriveByAngle(0));
-		SmartDashboard.putData("Reset gyro", new Command() {
-
-			@Override
-			protected boolean isFinished() {
-				return true;
-			}
-
-			@Override
-			protected void interrupted() {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			protected void initialize() {
-				gyro.reset();
-			}
-
-			@Override
-			protected void execute() {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			protected void end() {
-				// TODO Auto-generated method stub
-
-			}
-		});
 	}
 
 	/**
