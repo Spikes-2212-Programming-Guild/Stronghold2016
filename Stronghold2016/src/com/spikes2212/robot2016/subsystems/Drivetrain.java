@@ -47,7 +47,7 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public double getYawRate() {
-		return gyro.getRate();
+		return -gyro.getRate();
 	}
 
 	// arcade

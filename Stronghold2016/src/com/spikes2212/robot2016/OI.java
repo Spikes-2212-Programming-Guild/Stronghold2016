@@ -67,7 +67,7 @@ public class OI /* GEVALD */ {
 	}
 
 	public double getRightTurn() {
-		return adjustInput(-rightDriver.getX());
+		return adjustInput(rightDriver.getX());
 	}
 
 	public double getNavigatorStraight() {
