@@ -14,7 +14,6 @@ import com.spikes2212.robot2016.commands.RetractAll;
 import com.spikes2212.robot2016.commands.autonomous.Cross;
 import com.spikes2212.robot2016.commands.autonomous.CrossAndDropAndReturn;
 import com.spikes2212.robot2016.commands.autonomous.CrossAndReturn;
-import com.spikes2212.robot2016.commands.drivetrain.PIDTurnDriveByAngle;
 import com.spikes2212.robot2016.subsystems.Cameras;
 import com.spikes2212.robot2016.subsystems.Drivetrain;
 import com.spikes2212.robot2016.subsystems.Folder;
@@ -150,8 +149,6 @@ public class Robot extends IterativeRobot {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		SmartDashboard.putData(autoCommand);
-		SmartDashboard.putData(new PIDTurnDriveByAngle(0));
 	}
 
 	/**
