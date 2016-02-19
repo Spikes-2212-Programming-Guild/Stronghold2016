@@ -18,55 +18,131 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
+ * 
+ * 
+ * Dear driver,<br/>
+ * 
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
+ * 
+ * You should never touch this class or any other class during competition. Even
+ * though, it may be useful to know how to change things yourself without the
+ * need to call a programmer. Therefore, a little documentation is included in
+ * this class.
+ * 
+ * Please read this class <b>thoroughly</b> - it's not that hard.
+ * 
+ * The operations that the robot can do are called commands. Each command has a
+ * separate class. For example, "MoveTrizDown" is a class in the package
+ * .../commands/triz.
+ * 
+ * You can change when a command is started. Mainly, you have 3 options:
+ * <ul>
+ * <li>whenPressed - the command is started when you press a button</li>
+ * <li>whenReleased - the command is started when you release a button</li>
+ * <li>whileHeld - the command is started when you press a button, and is
+ * canceled when you release it</li>
+ * <li>toggleWhenPressed - the command is toggled when you press a button</li>
+ * </ul>
+ * 
  */
 public class OI /* GEVALD */ {
-	private final Joystick leftDriver = new Joystick(0);
-	private final Joystick rightDriver = new Joystick(1);
+	private final Joystick rightDriver = new Joystick(0);
+	private final Joystick leftDriver = new Joystick(1);
 	private final Joystick rightNavigator = new Joystick(2);
 
-	private JoystickButton slowerButton = new JoystickButton(leftDriver, 1);
+	private JoystickButton slowerButton;
 
 	public OI() {
 		new JoystickButton(rightDriver, 1)
 				.whileHeld(new TwoJoysticksDrive(this::getLeftStraight, this::getRightStraight));
+		slowerButton = new JoystickButton(leftDriver, 1);
+		/*
+		 * This value should be set to a low value between 0 and 1 from
+		 * com.spikes2212.robot2016.Constants such as 0.4.
+		 */
 		slowerButton.whenPressed(new SetDrivetrainMaximumSpeed(Constants.LOW_MAX_SPEED));
+		/*
+		 * This value should be set to a high value between 0 and 1 from
+		 * com.spikes2212.robot2016.Constants such as 0.8.
+		 */
 		slowerButton.whenReleased(new SetDrivetrainMaximumSpeed(Constants.VERY_HIGH_MAX_SPEED));
-		new JoystickButton(rightDriver, 8).whenPressed(new FrontStream());
-		new JoystickButton(rightDriver, 9).whenPressed(new StopCameras());
+		new JoystickButton(rightDriver, 3).whenPressed(new FrontStream());
+		new JoystickButton(rightDriver, 5).whenPressed(new StopCameras());
+
 		new JoystickButton(rightNavigator, 2).whileHeld(new MoveTrizDown());
 		new JoystickButton(rightNavigator, 4).whileHeld(new MoveTrizUp());
+
 		new JoystickButton(rightNavigator, 1).whileHeld(new MoveFolderUp());
 		new JoystickButton(rightNavigator, 3).whileHeld(new MoveFolderDown());
+
 		new JoystickButton(rightNavigator, 8).whileHeld(new RollBoulderIn());
 		new JoystickButton(rightNavigator, 6).whileHeld(new RollOut());
+
+		/*
+		 * This value should be set to a high value between 0 and 12 from
+		 * com.spikes2212.robot2016.Constants such as 11.9.
+		 */
 		new JoystickButton(rightNavigator, 7).whileHeld(new Shoot(Constants.SHOOTING_HIGH_VOLTAGE));
+		/*
+		 * This value should be set to a low value between 0 and 12 from
+		 * com.spikes2212.robot2016.Constants such as 4.
+		 */
 		new JoystickButton(rightNavigator, 5).whileHeld(new Shoot(Constants.SHOOTING_LOW_VOLTAGE));
 		new JoystickButton(rightNavigator, 10).whenPressed(new InitializeChevalDeFrise());
 		new JoystickButton(rightNavigator, 11).whenPressed(new InitializeLowBar());
 
 	}
 
+	/**
+	 * Increase the sensitivity by squaring the joystick's input.
+	 * 
+	 * @param input
+	 *            The joystick's input
+	 * @return A new scaled value
+	 */
 	private double adjustInput(double input) {
 		return input * Math.abs(input);
 	}
 
+	/**
+	 * 
+	 * @return The Y-axis value of the driver's left joystick
+	 */
 	public double getLeftStraight() {
 		return adjustInput(-leftDriver.getY());
 	}
 
+	/**
+	 * 
+	 * @return The X-axis value of the driver's left joystick
+	 */
 	public double getLeftTurn() {
 		return adjustInput(-leftDriver.getX());
 	}
 
+	/**
+	 * 
+	 * @return The Y-axis value of the driver's right joystick
+	 */
 	public double getRightStraight() {
 		return adjustInput(-rightDriver.getY());
 	}
 
+	/**
+	 * Not used.
+	 * 
+	 * @return The X-axis value of the driver's right joystick
+	 */
 	public double getRightTurn() {
-		return adjustInput(rightDriver.getX());
+		return adjustInput(-rightDriver.getX());
 	}
+
+	/**
+	 * Not used.
+	 * 
+	 * @return The X-axis value of the navigator's joystick
+	 */
 
 	public double getNavigatorStraight() {
 		return -rightNavigator.getY();
