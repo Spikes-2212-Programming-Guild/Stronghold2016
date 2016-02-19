@@ -7,12 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RotateShooterByVoltageAndTime extends Command {
+public class RotateShooterByVoltage extends Command {
 
 	private double voltage;
 
-	public RotateShooterByVoltageAndTime(double voltage, double timeout) {
-		super(timeout);
+	public RotateShooterByVoltage(double voltage) {
 		requires(shooter);
 		this.voltage = voltage;
 	}
@@ -25,7 +24,7 @@ public class RotateShooterByVoltageAndTime extends Command {
 	}
 
 	protected boolean isFinished() {
-		return isTimedOut();
+		return false;
 	}
 
 	protected void end() {

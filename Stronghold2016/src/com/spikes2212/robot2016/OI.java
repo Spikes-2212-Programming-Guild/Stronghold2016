@@ -1,5 +1,8 @@
 package com.spikes2212.robot2016;
 
+import com.spikes2212.robot2016.commands.Shoot;
+import com.spikes2212.robot2016.commands.autonomous.InitializeChevalDeFrise;
+import com.spikes2212.robot2016.commands.autonomous.InitializeLowBar;
 import com.spikes2212.robot2016.commands.camera.FrontStream;
 import com.spikes2212.robot2016.commands.camera.RearStream;
 import com.spikes2212.robot2016.commands.camera.StopCameras;
@@ -10,7 +13,6 @@ import com.spikes2212.robot2016.commands.folder.MoveFolderUp;
 import com.spikes2212.robot2016.commands.picker.RollBoulderIn;
 import com.spikes2212.robot2016.commands.picker.RollInALittle;
 import com.spikes2212.robot2016.commands.picker.RollOut;
-import com.spikes2212.robot2016.commands.shooter.RotateShooterByVoltageAndTime;
 import com.spikes2212.robot2016.commands.triz.MoveTrizDown;
 import com.spikes2212.robot2016.commands.triz.MoveTrizUp;
 
@@ -42,11 +44,12 @@ public class OI /* GEVALD */ {
 		new JoystickButton(rightNavigator, 3).whileHeld(new MoveFolderDown());
 		new JoystickButton(rightNavigator, 8).whileHeld(new RollBoulderIn());
 		new JoystickButton(rightNavigator, 6).whileHeld(new RollOut());
-		new JoystickButton(rightNavigator, 7)
-				.whileHeld(new RotateShooterByVoltageAndTime(Constants.SHOOTING_HIGH_VOLTAGE, 6));
-		new JoystickButton(rightNavigator, 5)
-				.whileHeld(new RotateShooterByVoltageAndTime(Constants.SHOOTING_LOW_VOLTAGE, 6));
+		new JoystickButton(rightNavigator, 7).whileHeld(new Shoot(Constants.SHOOTING_HIGH_VOLTAGE));
+		new JoystickButton(rightNavigator, 5).whileHeld(new Shoot(Constants.SHOOTING_LOW_VOLTAGE));
 		new JoystickButton(rightNavigator, 9).whenPressed(new RollInALittle());
+		new JoystickButton(rightNavigator, 10).whenPressed(new InitializeChevalDeFrise());
+		new JoystickButton(rightNavigator, 11).whenPressed(new InitializeLowBar());
+
 	}
 
 	private double adjustInput(double input) {

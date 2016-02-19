@@ -223,6 +223,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("boulder inside", picker.isBoulderInside());
 		SmartDashboard.putNumber("yaw angle", drivetrain.getYawAngle());
 		SmartDashboard.putNumber("angle with floor", drivetrain.getAngleWithFloor());
+
 	}
 
 }

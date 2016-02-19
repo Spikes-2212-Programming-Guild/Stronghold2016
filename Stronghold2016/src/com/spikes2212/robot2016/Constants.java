@@ -58,6 +58,10 @@ public class Constants {
 	public static final double SHOOTING_HIGH_VOLTAGE = 0.98 * 12;
 	public static final double SHOOTING_LOW_VOLTAGE = 0.3 * 12;
 
+	public static final double SHOOTER_ACCELERATION_TIME = 5;
+	public static final double TIME_GAP_FOR_SHOOTING = 2;
+	public static final double ROLL_IN_TIME = 2;
+
 	public interface Vision {
 		public static final Range rRange = new Range(0, 255);
 		public static final Range gRange = new Range(250, 255);

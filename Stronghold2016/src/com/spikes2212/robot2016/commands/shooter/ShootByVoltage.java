@@ -12,7 +12,7 @@ public class ShootByVoltage extends CommandGroup {
 	public static final double ROLL_IN_TIME = 2;
 
 	public ShootByVoltage(double voltage) {
-		addParallel(new RotateShooterByVoltageAndTime(voltage, ACCELERATION_TIME));
+		addParallel(new RotateShooterByVoltage(voltage));
 		addSequential(new WaitCommand(WAIT_TIME_BEFORE_ROLLING));
 		addParallel(new RollInALittle());
 	}
