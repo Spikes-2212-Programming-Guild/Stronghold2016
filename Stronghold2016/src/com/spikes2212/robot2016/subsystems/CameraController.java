@@ -14,6 +14,9 @@ public class CameraController {
 	public CameraController(String name) {
 		try {
 			USBCamera camera = new USBCamera(name);
+			camera.setFPS(15);
+			camera.setSize(160, 120);
+			camera.updateSettings();
 			this.camera = Optional.of(camera);
 		} catch (Exception e) {
 			this.camera = Optional.empty();
@@ -32,6 +35,10 @@ public class CameraController {
 
 	public void getImage(Image image) {
 		camera.ifPresent(c -> c.getImage(image));
+	}
+
+	public boolean hasCamera() {
+		return camera.isPresent();
 	}
 
 	public boolean isOn() {

@@ -4,7 +4,6 @@ import com.spikes2212.robot2016.commands.Shoot;
 import com.spikes2212.robot2016.commands.autonomous.InitializeChevalDeFrise;
 import com.spikes2212.robot2016.commands.autonomous.InitializeLowBar;
 import com.spikes2212.robot2016.commands.camera.FrontStream;
-import com.spikes2212.robot2016.commands.camera.RearStream;
 import com.spikes2212.robot2016.commands.camera.StopCameras;
 import com.spikes2212.robot2016.commands.drivetrain.JoystickArcadeDrive;
 import com.spikes2212.robot2016.commands.drivetrain.SetDrivetrainMaximumSpeed;
@@ -34,8 +33,7 @@ public class OI /* GEVALD */ {
 				.whileHeld(new JoystickArcadeDrive(this::getRightStraight, this::getLeftTurn));
 		slowerButton.whenPressed(new SetDrivetrainMaximumSpeed(Constants.LOW_MAX_SPEED));
 		slowerButton.whenReleased(new SetDrivetrainMaximumSpeed(Constants.VERY_HIGH_MAX_SPEED));
-		new JoystickButton(rightDriver, 7).whenPressed(new FrontStream());
-		new JoystickButton(rightDriver, 8).whenPressed(new RearStream());
+		new JoystickButton(rightDriver, 8).whenPressed(new FrontStream());
 		new JoystickButton(rightDriver, 9).whenPressed(new StopCameras());
 		new JoystickButton(rightNavigator, 2).whileHeld(new MoveTrizDown());
 		new JoystickButton(rightNavigator, 4).whileHeld(new MoveTrizUp());
