@@ -140,13 +140,6 @@ public class Robot extends IterativeRobot {
 			case "CrossAndDropAndReturn":
 				autoCommand = new CrossAndDropAndReturn(defense);
 				break;
-			// case "CrossAndScoreLow":
-			// autoCommand = new CrossAndScoreGoal(defense, location, Goal.LOW);
-			// break;
-			// case "CrossAndScoreHigh":
-			// autoCommand = new CrossAndScoreGoal(defense, location,
-			// Goal.HIGH);
-			// break;
 			default:
 				autoCommand = new CommandGroup();
 				break;
