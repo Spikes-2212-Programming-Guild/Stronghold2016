@@ -18,9 +18,6 @@ public class ScoreGoalFromLocation1 extends CommandGroup {
 	public static final double TIMEOUT = 0.5;
 
 	public ScoreGoalFromLocation1(Defense defense, Goal goal) {
-		if (defense == Defense.PORTCULLIS) {
-			addSequential(new PIDTurnDriveByAngle(ROTATE_ANGLE));
-		}
 		addSequential(new PIDStraightDriveByDistance(FIRST_DISTANCE, 0));
 		addSequential(new WaitCommand(TIMEOUT));
 		addSequential(new PIDTurnDriveByAngle(ANGLE));
