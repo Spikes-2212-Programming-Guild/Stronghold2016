@@ -11,8 +11,6 @@ import com.spikes2212.robot2016.commands.folder.MoveFolderDown;
 import com.spikes2212.robot2016.commands.folder.MoveFolderUp;
 import com.spikes2212.robot2016.commands.picker.RollBoulderIn;
 import com.spikes2212.robot2016.commands.picker.RollOut;
-import com.spikes2212.robot2016.commands.triz.MoveTrizDown;
-import com.spikes2212.robot2016.commands.triz.MoveTrizUp;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -51,44 +49,49 @@ public class OI /* GEVALD */ {
 	private final Joystick leftDriver = new Joystick(1);
 	private final Joystick rightNavigator = new Joystick(2);
 
-	private JoystickButton slowerButton;
+	JoystickButton rightDriverTrigger;
+	JoystickButton leftDriverTrigger;
+
+	JoystickButton rightDriver3;
+	JoystickButton rightDriver5;
+
+	JoystickButton navigatorBlue;
+	JoystickButton navigatorGreen;
+	JoystickButton navigatorYellow;
+	JoystickButton navigatorRed;
 
 	public OI() {
-		new JoystickButton(rightDriver, 1)
-				.whileHeld(new TwoJoysticksDrive(this::getLeftStraight, this::getRightStraight));
-		slowerButton = new JoystickButton(leftDriver, 1);
-		/*
-		 * This value should be set to a low value between 0 and 1 from
-		 * com.spikes2212.robot2016.Constants such as 0.4.
-		 */
-		slowerButton.whenPressed(new SetDrivetrainMaximumSpeed(Constants.LOW_MAX_SPEED));
-		/*
-		 * This value should be set to a high value between 0 and 1 from
-		 * com.spikes2212.robot2016.Constants such as 0.8.
-		 */
-		slowerButton.whenReleased(new SetDrivetrainMaximumSpeed(Constants.VERY_HIGH_MAX_SPEED));
-		new JoystickButton(rightDriver, 3).whenPressed(new FrontStream());
-		new JoystickButton(rightDriver, 5).whenPressed(new StopCameras());
+		rightDriverTrigger = new JoystickButton(rightDriver, 1);
+		leftDriverTrigger = new JoystickButton(leftDriver, 1);
+		rightDriver3 = new JoystickButton(rightDriver, 3);
+		rightDriver5 = new JoystickButton(rightDriver, 5);
 
-		new JoystickButton(rightNavigator, 2).whileHeld(new MoveTrizDown());
-		new JoystickButton(rightNavigator, 4).whileHeld(new MoveTrizUp());
+		navigatorBlue = new JoystickButton(rightNavigator, 1);
+		navigatorGreen = new JoystickButton(rightNavigator, 2);
+		navigatorRed = new JoystickButton(rightNavigator, 3);
+		navigatorYellow = new JoystickButton(rightNavigator, 4);
 
-		new JoystickButton(rightNavigator, 1).whileHeld(new MoveFolderUp());
-		new JoystickButton(rightNavigator, 3).whileHeld(new MoveFolderDown());
+		rightDriverTrigger.whileHeld(new TwoJoysticksDrive(this::getLeftStraight, this::getRightStraight));
+		// A low value between 0 and 1 such as 0.4
+		leftDriverTrigger.whenPressed(new SetDrivetrainMaximumSpeed(Constants.LOW_MAX_SPEED));
+		// A high value between 0 and 1 such as 0.8
+		leftDriverTrigger.whenReleased(new SetDrivetrainMaximumSpeed(Constants.VERY_HIGH_MAX_SPEED));
+
+		rightDriver3.whenPressed(new FrontStream());
+		rightDriver5.whenPressed(new StopCameras());
+
+		navigatorYellow.whileHeld(new MoveFolderUp());
+		navigatorGreen.whileHeld(new MoveFolderDown());
 
 		new JoystickButton(rightNavigator, 8).whileHeld(new RollBoulderIn());
 		new JoystickButton(rightNavigator, 6).whileHeld(new RollOut());
 
-		/*
-		 * This value should be set to a high value between 0 and 12 from
-		 * com.spikes2212.robot2016.Constants such as 11.9.
-		 */
+		// A high voltage below 12 such as 11.8
 		new JoystickButton(rightNavigator, 7).whileHeld(new Shoot(Constants.SHOOTING_HIGH_VOLTAGE));
-		/*
-		 * This value should be set to a low value between 0 and 12 from
-		 * com.spikes2212.robot2016.Constants such as 4.
-		 */
+
+		// A low voltage below 12 such as 4.0
 		new JoystickButton(rightNavigator, 5).whileHeld(new Shoot(Constants.SHOOTING_LOW_VOLTAGE));
+
 		new JoystickButton(rightNavigator, 10).whenPressed(new InitializeChevalDeFrise());
 		new JoystickButton(rightNavigator, 11).whenPressed(new InitializeLowBar());
 
