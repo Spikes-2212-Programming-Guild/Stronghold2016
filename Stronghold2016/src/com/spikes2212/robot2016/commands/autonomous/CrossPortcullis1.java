@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class CrossPortcullis extends CommandGroup {
+public class CrossPortcullis1 extends CommandGroup {
 	
 	public static final double ROTATE_ANGLE = 180;
 	public static final double FORWARD_DISTANCE = 0;
@@ -20,7 +20,7 @@ public class CrossPortcullis extends CommandGroup {
 	public static final double BACKWARD_AFTER_LIFTING_DISTANCE = 0;
 	
 
-	public CrossPortcullis(Direction direction) {
+	public CrossPortcullis1(Direction direction) {
 		if(direction==Direction.FORWARD){
 			addSequential(new PIDStraightDriveByDistance(FORWARD_DISTANCE));
 			addSequential(new MoveTrizUp());

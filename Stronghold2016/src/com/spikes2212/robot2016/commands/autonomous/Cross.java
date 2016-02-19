@@ -13,7 +13,7 @@ public class Cross extends CommandGroup {
 	public Cross(Defense defense, Direction direction) {
 		switch (defense) {
 		case CHEVAL_DE_FRISE:
-			addSequential(new CrossPortcullis(direction));
+			addSequential(new CrossPortcullis1(direction));
 			break;
 		case LOW_BAR:
 			addSequential(new CrossLowBar(direction));
