@@ -157,6 +157,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		Robot.drivetrain.setMaximumSpeed(Constants.VERY_HIGH_MAX_SPEED);
 		writeSensorData();
 
 	}
