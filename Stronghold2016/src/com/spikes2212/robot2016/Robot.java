@@ -183,13 +183,12 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("right distance", drivetrain.getRightDistance());
 		SmartDashboard.putBoolean("triz up", triz.isUp());
 		SmartDashboard.putBoolean("triz down", triz.isDown());
-		SmartDashboard.putNumber("triz distance", triz.getAngle());
+		SmartDashboard.putNumber("triz angle", triz.getAngle());
 		SmartDashboard.putBoolean("folder up", folder.isUp());
 		SmartDashboard.putBoolean("folder down", folder.isDown());
-		SmartDashboard.putNumber("folder distance", folder.getAngle());
+		SmartDashboard.putNumber("folder angle", folder.getAngle());
 		SmartDashboard.putBoolean("boulder inside", picker.isBoulderInside());
 		SmartDashboard.putNumber("yaw angle", drivetrain.getYawAngle());
-		SmartDashboard.putNumber("angle with floor", drivetrain.getAngleWithFloor());
 
 	}
 

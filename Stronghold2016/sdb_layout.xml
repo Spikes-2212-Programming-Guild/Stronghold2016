@@ -1,7 +1,7 @@
 <xml version="1.0">
 <dashboard>
 	<widget field="folder down" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="144" y="272"/>
+		<location x="142" y="266"/>
 		<width>112</width>
 		<height>48</height>
 	</widget>
@@ -26,13 +26,10 @@
 		<height>49</height>
 	</widget>
 	<widget field="Defense" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="16" y="155"/>
+		<location x="16" y="153"/>
 	</widget>
 	<widget field="Auto" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
 		<location x="112" y="16"/>
-	</widget>
-	<widget field="Location" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="17" y="21"/>
 	</widget>
 	<widget field="RetractAll" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="147" y="160"/>
@@ -67,4 +64,5 @@
 	<hidden field="PIDTurnDriveByAngle.KD"/>
 	<hidden field="PIDTurnDriveByAngle"/>
 	<hidden field="PIDTurnDriveByAngle.KP"/>
+	<hidden field="Location"/>
 </xml>
