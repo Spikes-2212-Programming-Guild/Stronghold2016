@@ -1,5 +1,6 @@
 package com.spikes2212.robot2016.commands.autonomous;
 
+import com.spikes2212.robot2016.Constants;
 import com.spikes2212.robot2016.Field.Direction;
 import com.spikes2212.robot2016.commands.ExpandAll;
 import com.spikes2212.robot2016.commands.drivetrain.PIDStay;
@@ -29,18 +30,18 @@ public class CrossPortcullis extends CommandGroup {
 
 	public CrossPortcullis(Direction direction) {
 		if (direction == Direction.FORWARD) {
-			addSequential(new SetDrivetrainMaximumSpeed(0.6));
+			addSequential(new SetDrivetrainMaximumSpeed(Constants.HIGH_MAX_SPEED));
 			addSequential(new ExpandAll());
 			addSequential(new MoveTrizUp(), 0.2);
 			addSequential(new PIDStraightDriveByDistance(1.5));
-			addSequential(new SetDrivetrainMaximumSpeed(0.35));
+			addSequential(new SetDrivetrainMaximumSpeed(Constants.LOW_MAX_SPEED));
 			addSequential(new MoveTrizDown());
 			addSequential(new PIDStraightDriveByDistance(1), 3);
 			addParallel(new PIDStay());
 			addSequential(new MoveTrizUp(), 1);
 			// addSequential(new
 			// PIDStraightDriveByDistance(FORWARD_AFTER_LIFTING_DISTANCE));
-			addSequential(new SetDrivetrainMaximumSpeed(0.6));
+			addSequential(new SetDrivetrainMaximumSpeed(Constants.HIGH_MAX_SPEED));
 			addSequential(new PIDStraightDriveByDistance(1.8));
 
 		} else {

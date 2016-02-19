@@ -32,7 +32,7 @@ public class OI /* GEVALD */ {
 		new JoystickButton(rightDriver, 1)
 				.whileHeld(new JoystickArcadeDrive(this::getRightStraight, this::getLeftTurn));
 		slowerButton.whenPressed(new SetDrivetrainMaximumSpeed(Constants.LOW_MAX_SPEED));
-		slowerButton.whenReleased(new SetDrivetrainMaximumSpeed(Constants.HIGH_MAX_SPEED));
+		slowerButton.whenReleased(new SetDrivetrainMaximumSpeed(Constants.VERY_HIGH_MAX_SPEED));
 		new JoystickButton(rightDriver, 7).whenPressed(new FrontStream());
 		new JoystickButton(rightDriver, 8).whenPressed(new RearStream());
 		new JoystickButton(rightDriver, 9).whenPressed(new StopCameras());

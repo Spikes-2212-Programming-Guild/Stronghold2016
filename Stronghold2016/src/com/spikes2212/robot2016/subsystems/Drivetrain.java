@@ -17,7 +17,7 @@ public class Drivetrain extends Subsystem {
 	private Gearbox left, right;
 	private Gyro gyro;
 	private Accelerometer accelerometer;
-	private double maxSpeed = Constants.HIGH_MAX_SPEED;
+	private double maxSpeed = Constants.VERY_HIGH_MAX_SPEED;
 
 	public Drivetrain(Gearbox left, Gearbox right, Gyro gyro, Accelerometer accelerometer) {
 		this.left = left;

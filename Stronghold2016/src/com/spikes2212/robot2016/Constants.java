@@ -50,8 +50,10 @@ public class Constants {
 	public static final double FREE_FALL_GRAVITY = 1.024;
 	public static final double MAX_LEFT_VELOCITY = 4;
 	public static final double MAX_RIGHT_VELOCITY = 4;
-	public static final double HIGH_MAX_SPEED = 0.8;
-	public static final double LOW_MAX_SPEED = 0.4;
+	public static final double VERY_HIGH_MAX_SPEED = 0.8;
+	public static final double HIGH_MAX_SPEED = 0.6;
+	public static final double MEDIUM_MAX_SPEED = 0.45;
+	public static final double LOW_MAX_SPEED = 0.35;
 
 	public static final double SHOOTING_HIGH_VOLTAGE = 0.98 * 12;
 	public static final double SHOOTING_LOW_VOLTAGE = 0.3 * 12;
