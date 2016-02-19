@@ -1,18 +1,18 @@
 package com.spikes2212.robot2016.commands.camera;
 
-import static com.spikes2212.robot2016.Robot.cameras;
+import static com.spikes2212.robot2016.Robot.vision;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class StopCameras extends Command {
 
 	public StopCameras() {
-		requires(cameras);
+		requires(vision);
 	}
 
 	@Override
 	protected void initialize() {
-		cameras.stop();
+		vision.stop();
 	}
 
 	@Override

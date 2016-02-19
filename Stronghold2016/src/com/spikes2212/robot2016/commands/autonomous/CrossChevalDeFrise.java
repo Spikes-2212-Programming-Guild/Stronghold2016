@@ -1,14 +1,11 @@
 package com.spikes2212.robot2016.commands.autonomous;
 
 import com.spikes2212.robot2016.Constants;
-import com.spikes2212.robot2016.Field.Direction;
 import com.spikes2212.robot2016.commands.drivetrain.PIDStay;
 import com.spikes2212.robot2016.commands.drivetrain.PIDStraightDriveByDistance;
-import com.spikes2212.robot2016.commands.drivetrain.PIDTurnDriveByAngle;
 import com.spikes2212.robot2016.commands.drivetrain.SetDrivetrainMaximumSpeed;
 import com.spikes2212.robot2016.commands.folder.MoveFolderDown;
 import com.spikes2212.robot2016.commands.triz.MoveTrizDown;
-import com.spikes2212.robot2016.commands.triz.MoveTrizUp;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -28,37 +25,25 @@ public class CrossChevalDeFrise extends CommandGroup {
 	public static final double BACKWARD_DISTANCE = 0;
 	public static final double BACKWARD_AFTER_LIFTING_DISTANCE = 0;
 
-	public CrossChevalDeFrise(Direction direction) {
-		if (direction == Direction.FORWARD) {
-			addSequential(new SetDrivetrainMaximumSpeed(Constants.HIGH_MAX_SPEED));
-			addParallel(new MoveFolderDown(), 0.5);
-			addSequential(new PIDStraightDriveByDistance(1.4));
+	public CrossChevalDeFrise() {
+		addSequential(new SetDrivetrainMaximumSpeed(Constants.HIGH_MAX_SPEED));
+		addParallel(new MoveFolderDown(), 0.5);
+		addSequential(new PIDStraightDriveByDistance(1.4, Constants.HIGH_MAX_SPEED));
+		addParallel(new PIDStay(), 2.25);
+		addSequential(new MoveTrizDown(), 2.25);
+		addSequential(new PIDStraightDriveByDistance(1.5, Constants.MEDIUM_MAX_SPEED));
+		addSequential(new PIDStraightDriveByDistance(0.5, Constants.LOW_MAX_SPEED));
 
-			addParallel(new PIDStay(), 2.25);
-			addSequential(new MoveTrizDown(), 2.25);
-			addSequential(new SetDrivetrainMaximumSpeed(Constants.MEDIUM_MAX_SPEED));
-			addSequential(new PIDStraightDriveByDistance(1.5));
+		// addSequential(new
+		// SetDrivetrainMaximumSpeed(Constants.LOW_MAX_SPEED));
+		// addSequential(new PIDStraightDriveByDistance(1));
+		// addSequential(new)
+		// SetDrivetrainMaximumSpeed(Constants.LOW_MAX_SPEED));
+		// addSequential(new PIDStraightDriveByDistance(1));
+		// addSequential(new
+		// PIDStraightDriveByDistance(FORWARD_AFTER_LIFTING_DISTANCE));
+		// addSequential(new SetDrivetrainMaximumSpeed(0.6));
+		// addSequential(new PIDStraightDriveByDistance(1.8));
 
-			addSequential(new SetDrivetrainMaximumSpeed(Constants.LOW_MAX_SPEED));
-			addSequential(new PIDStraightDriveByDistance(0.5));
-
-			// addSequential(new
-			// SetDrivetrainMaximumSpeed(Constants.LOW_MAX_SPEED));
-			// addSequential(new PIDStraightDriveByDistance(1));
-			// addSequential(new)
-			// SetDrivetrainMaximumSpeed(Constants.LOW_MAX_SPEED));
-			// addSequential(new PIDStraightDriveByDistance(1));
-			// addSequential(new
-			// PIDStraightDriveByDistance(FORWARD_AFTER_LIFTING_DISTANCE));
-			// addSequential(new SetDrivetrainMaximumSpeed(0.6));
-			// addSequential(new PIDStraightDriveByDistance(1.8));
-
-		} else {
-			addSequential(new MoveTrizDown());
-			addSequential(new PIDTurnDriveByAngle(ROTATE_ANGLE));
-			addSequential(new PIDStraightDriveByDistance(BACKWARD_DISTANCE));
-			addSequential(new MoveTrizUp());
-			addSequential(new PIDStraightDriveByDistance(BACKWARD_AFTER_LIFTING_DISTANCE));
-		}
 	}
 }

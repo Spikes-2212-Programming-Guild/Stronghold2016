@@ -1,7 +1,6 @@
 package com.spikes2212.robot2016.commands.autonomous;
 
 import com.spikes2212.robot2016.Field.Defense;
-import com.spikes2212.robot2016.Field.Direction;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -10,28 +9,25 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class Cross extends CommandGroup {
 
-	public Cross(Defense defense, Direction direction) {
+	public Cross(Defense defense) {
 		switch (defense) {
 		case CHEVAL_DE_FRISE:
-			addSequential(new CrossChevalDeFrise(direction));
+			addSequential(new CrossChevalDeFrise());
 			break;
 		case LOW_BAR:
-			addSequential(new CrossLowBar(direction));
+			addSequential(new CrossLowBar());
 			break;
 		case MOAT:
-			addSequential(new CrossMoat(direction));
+			addSequential(new CrossMoat());
 			break;
 		case PORTCULLIS:
-			addSequential(new CrossPortcullis(direction));
-			break;
-		case RAMPARTS:
-			addSequential(new CrossRamparts(direction));
+			addSequential(new CrossPortcullis());
 			break;
 		case ROCK_WALL:
-			addSequential(new CrossRockWall(direction));
+			addSequential(new CrossRockWall());
 			break;
 		case ROUGH_TERRAIN:
-			addSequential(new CrossRoughTerrain(direction));
+			addSequential(new CrossRoughTerrain());
 			break;
 		default:
 			break;

@@ -11,11 +11,6 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class RollIn extends Command {
 
-	public RollIn(double timeout) {
-		super(timeout);
-		requires(picker);
-	}
-
 	public RollIn() {
 		requires(picker);
 	}
@@ -28,7 +23,7 @@ public class RollIn extends Command {
 	}
 
 	protected boolean isFinished() {
-		return isTimedOut();
+		return false;
 	}
 
 	protected void end() {

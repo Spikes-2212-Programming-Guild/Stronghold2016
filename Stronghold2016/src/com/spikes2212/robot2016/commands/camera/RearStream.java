@@ -1,6 +1,6 @@
 package com.spikes2212.robot2016.commands.camera;
 
-import static com.spikes2212.robot2016.Robot.cameras;
+import static com.spikes2212.robot2016.Robot.vision;
 
 import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.Image;
@@ -13,19 +13,19 @@ public class RearStream extends Command {
 	private Image image;
 
 	public RearStream() {
-		requires(cameras);
+		requires(vision);
 	}
 
 	@Override
 	protected void initialize() {
 		image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
-		cameras.startRear();
+		vision.startRear();
 	}
 
 	@Override
 	protected void execute() {
-		cameras.getImage(image);
-		cameras.stream(image);
+		vision.getImage(image);
+		vision.stream(image);
 	}
 
 	@Override
