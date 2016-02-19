@@ -1,7 +1,5 @@
 package com.spikes2212.robot2016.subsystems;
 
-import static edu.wpi.first.wpilibj.smartdashboard.SmartDashboard.getNumber;
-
 import com.spikes2212.robot2016.Constants;
 import com.spikes2212.robot2016.Robot;
 import com.spikes2212.robot2016.commands.drivetrain.TwoJoysticksDrive;
@@ -37,7 +35,7 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public double getYawAngle() {
-		return gyro.getAngle();
+		return -gyro.getAngle();
 	}
 
 	public double getZAcceleration() {
@@ -84,8 +82,8 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void setTwoSides(double leftSpeed, double rightSpeed) {
-		left.set(maxSpeed * Util.limitAbs(leftSpeed, getNumber("MAX_LEFT_SPEED", 1)));
-		right.set(maxSpeed * Util.limitAbs(-rightSpeed, getNumber("MAX_RIGHT_SPEED", 1)));
+		left.set(maxSpeed * Util.limitAbs(leftSpeed, 1));
+		right.set(maxSpeed * Util.limitAbs(-rightSpeed, 1));
 	}
 
 	@Override
