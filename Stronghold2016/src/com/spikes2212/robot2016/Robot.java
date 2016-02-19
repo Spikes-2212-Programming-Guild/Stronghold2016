@@ -14,7 +14,7 @@ import com.spikes2212.robot2016.commands.RetractAll;
 import com.spikes2212.robot2016.commands.autonomous.Cross;
 import com.spikes2212.robot2016.commands.autonomous.CrossAndDropAndReturn;
 import com.spikes2212.robot2016.commands.autonomous.CrossAndReturn;
-import com.spikes2212.robot2016.commands.drivetrain.PIDTurnDriveByAngleush;
+import com.spikes2212.robot2016.commands.drivetrain.PIDTurnDriveByAngle;
 import com.spikes2212.robot2016.subsystems.Cameras;
 import com.spikes2212.robot2016.subsystems.Drivetrain;
 import com.spikes2212.robot2016.subsystems.Folder;
@@ -71,6 +71,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		gyro = new ADXRS450_Gyro();
+		gyro.reset();
 		accelerometer = new BuiltInAccelerometer();
 		left = new Gearbox(PWM.LEFT_FRONT_MOTOR, PWM.LEFT_REAR_MOTOR, DIO.LEFT_ENCODER_A, DIO.LEFT_ENCODER_B);
 		right = new Gearbox(PWM.RIGHT_FRONT_MOTOR, PWM.RIGHT_REAR_MOTOR, DIO.RIGHT_ENCODER_A, DIO.RIGHT_ENCODER_B);
@@ -109,6 +110,37 @@ public class Robot extends IterativeRobot {
 		image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
 		binary = NIVision.imaqCreateImage(ImageType.IMAGE_U8, 0);
 		SmartDashboard.putData(new RetractAll());
+		SmartDashboard.putData(new PIDTurnDriveByAngle(0));
+		SmartDashboard.putData("Reset gyro", new Command() {
+
+			@Override
+			protected boolean isFinished() {
+				return true;
+			}
+
+			@Override
+			protected void interrupted() {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			protected void initialize() {
+				gyro.reset();
+			}
+
+			@Override
+			protected void execute() {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			protected void end() {
+				// TODO Auto-generated method stub
+
+			}
+		});
 	}
 
 	/**
@@ -149,7 +181,7 @@ public class Robot extends IterativeRobot {
 			e.printStackTrace();
 		}
 		SmartDashboard.putData(autoCommand);
-		SmartDashboard.putData(new PIDTurnDriveByAngleush(0));
+		SmartDashboard.putData(new PIDTurnDriveByAngle(0));
 	}
 
 	/**

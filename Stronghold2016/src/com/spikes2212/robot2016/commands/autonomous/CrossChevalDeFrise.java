@@ -4,7 +4,7 @@ import com.spikes2212.robot2016.Constants;
 import com.spikes2212.robot2016.Field.Direction;
 import com.spikes2212.robot2016.commands.drivetrain.PIDStay;
 import com.spikes2212.robot2016.commands.drivetrain.PIDStraightDriveByDistance;
-import com.spikes2212.robot2016.commands.drivetrain.PIDTurnDriveByAngleush;
+import com.spikes2212.robot2016.commands.drivetrain.PIDTurnDriveByAngle;
 import com.spikes2212.robot2016.commands.drivetrain.SetDrivetrainMaximumSpeed;
 import com.spikes2212.robot2016.commands.folder.MoveFolderDown;
 import com.spikes2212.robot2016.commands.triz.MoveTrizDown;
@@ -55,7 +55,7 @@ public class CrossChevalDeFrise extends CommandGroup {
 
 		} else {
 			addSequential(new MoveTrizDown());
-			addSequential(new PIDTurnDriveByAngleush(ROTATE_ANGLE));
+			addSequential(new PIDTurnDriveByAngle(ROTATE_ANGLE));
 			addSequential(new PIDStraightDriveByDistance(BACKWARD_DISTANCE));
 			addSequential(new MoveTrizUp());
 			addSequential(new PIDStraightDriveByDistance(BACKWARD_AFTER_LIFTING_DISTANCE));

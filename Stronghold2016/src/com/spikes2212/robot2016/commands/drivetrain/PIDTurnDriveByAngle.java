@@ -7,17 +7,17 @@ import com.spikes2212.robot2016.Constants;
 import com.spikes2212.robot2016.Robot;
 import com.spikes2212.robot2016.pid.PIDCommand;
 
-public class PIDTurnDriveByAngleush extends PIDCommand {
+public class PIDTurnDriveByAngle extends PIDCommand {
 
-	private static final double KP = 1;
+	private static final double KP = 0.06;
 	private static final double KI = 0;
-	private static final double KD = 0;
-	private static final double TOLERANCE = 2; // degree
+	private static final double KD = 0.08;
+	private static final double TOLERANCE = 1; // degree
 
 	private double initialAngle;
 	private double angle;
 
-	public PIDTurnDriveByAngleush(double angle) {
+	public PIDTurnDriveByAngle(double angle) {
 		this.angle = angle;
 		Robot.drivetrain.resetGyro();
 		putNumber("PIDTurnDriveByAngle.KP", KP);
@@ -25,6 +25,7 @@ public class PIDTurnDriveByAngleush extends PIDCommand {
 		putNumber("PIDTurnDriveByAngle.KD", KD);
 		putNumber("PIDTurnDriveByAngle.TOLERANCE", TOLERANCE);
 		putNumber("PIDTurnDriveByAngle.ANGLE", angle);
+		Robot.drivetrain.setMaximumSpeed(Constants.HIGH_MAX_SPEED);
 		requires(Robot.drivetrain);
 	}
 
@@ -44,7 +45,7 @@ public class PIDTurnDriveByAngleush extends PIDCommand {
 		getCalculator().setPID(getNumber("PIDTurnDriveByAngle.KP", KP), getNumber("PIDTurnDriveByAngle.KI", KI),
 				getNumber("PIDTurnDriveByAngle.KD", KD));
 		getCalculator().setTolerance(getNumber("PIDTurnDriveByAngle.TOLERANCE", TOLERANCE));
-		getCalculator().setSetpoint(getNumber("PIDTurnDriveByAngle.ANGLE", angle - initialAngle));
+		getCalculator().setSetpoint(190);
 	}
 
 	@Override
