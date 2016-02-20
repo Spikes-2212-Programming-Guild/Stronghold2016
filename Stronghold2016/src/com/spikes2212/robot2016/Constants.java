@@ -51,8 +51,7 @@ public class Constants {
 	public static final double MEDIUM_MAX_SPEED = 0.45;
 	public static final double LOW_MAX_SPEED = 0.35;
 
-	public static final double SHOOTING_HIGH_VOLTAGE = 0.98 * 12;
-	public static final double SHOOTING_LOW_VOLTAGE = 0.3 * 12;
+	public static final double SHOOTING_HIGH_VOLTAGE = 11;
 
 	public static final double SHOOTER_ACCELERATION_TIME = 5;
 	public static final double TIME_GAP_FOR_SHOOTING = 2;

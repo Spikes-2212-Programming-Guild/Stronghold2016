@@ -59,6 +59,12 @@ public class OI /* GEVALD */ {
 	JoystickButton navigatorGreen;
 	JoystickButton navigatorYellow;
 	JoystickButton navigatorRed;
+	JoystickButton navigatorLB;
+	JoystickButton navigatorRB;
+	JoystickButton navigatorLT;
+	JoystickButton navigatorRT;
+	JoystickButton navigatorBack;
+	JoystickButton navigatorStart;
 
 	public OI() {
 		rightDriverTrigger = new JoystickButton(rightDriver, 1);
@@ -70,6 +76,14 @@ public class OI /* GEVALD */ {
 		navigatorGreen = new JoystickButton(rightNavigator, 2);
 		navigatorRed = new JoystickButton(rightNavigator, 3);
 		navigatorYellow = new JoystickButton(rightNavigator, 4);
+
+		navigatorRT = new JoystickButton(rightNavigator, 8);
+		navigatorLT = new JoystickButton(rightNavigator, 7);
+		navigatorRB = new JoystickButton(rightNavigator, 6);
+		navigatorLB = new JoystickButton(rightNavigator, 5);
+
+		navigatorBack = new JoystickButton(rightNavigator, 9);
+		navigatorStart = new JoystickButton(rightNavigator, 10);
 
 		rightDriverTrigger.whileHeld(new TwoJoysticksDrive(this::getLeftStraight, this::getRightStraight));
 		// A low value between 0 and 1 such as 0.4
@@ -83,17 +97,14 @@ public class OI /* GEVALD */ {
 		navigatorYellow.whileHeld(new MoveFolderUp());
 		navigatorGreen.whileHeld(new MoveFolderDown());
 
-		new JoystickButton(rightNavigator, 8).whileHeld(new RollBoulderIn());
-		new JoystickButton(rightNavigator, 6).whileHeld(new RollOut());
+		navigatorRT.whileHeld(new RollBoulderIn());
+		navigatorRB.whileHeld(new RollOut());
 
 		// A high voltage below 12 such as 11.8
-		new JoystickButton(rightNavigator, 7).whileHeld(new Shoot(Constants.SHOOTING_HIGH_VOLTAGE));
+		navigatorLT.whileHeld(new Shoot(Constants.SHOOTING_HIGH_VOLTAGE));
 
-		// A low voltage below 12 such as 4.0
-		new JoystickButton(rightNavigator, 5).whileHeld(new Shoot(Constants.SHOOTING_LOW_VOLTAGE));
-
-		new JoystickButton(rightNavigator, 10).whenPressed(new InitializeChevalDeFrise());
-		new JoystickButton(rightNavigator, 11).whenPressed(new InitializeLowBar());
+		navigatorBack.whenPressed(new InitializeLowBar());
+		navigatorStart.whenPressed(new InitializeChevalDeFrise());
 
 	}
 
