@@ -1,10 +1,5 @@
 package com.spikes2212.robot2016;
 
-import com.ni.vision.NIVision;
-import com.ni.vision.NIVision.ParticleFilterCriteria2;
-import com.ni.vision.NIVision.ParticleFilterOptions2;
-import com.ni.vision.NIVision.Range;
-
 public class Constants {
 
 	// Limit Switches are normally open
@@ -52,6 +47,7 @@ public class Constants {
 	public static final double MAX_RIGHT_VELOCITY = 4;
 	public static final double VERY_HIGH_MAX_SPEED = 0.8;
 	public static final double HIGH_MAX_SPEED = 0.6;
+	public static final double CROSS_LOW_BAR_MAX_SPEED = 0.5;
 	public static final double MEDIUM_MAX_SPEED = 0.45;
 	public static final double LOW_MAX_SPEED = 0.35;
 
@@ -61,19 +57,4 @@ public class Constants {
 	public static final double SHOOTER_ACCELERATION_TIME = 5;
 	public static final double TIME_GAP_FOR_SHOOTING = 2;
 	public static final double ROLL_IN_TIME = 2;
-
-	public interface Vision {
-		public static final Range rRange = new Range(0, 255);
-		public static final Range gRange = new Range(250, 255);
-		public static final Range bRange = new Range(250, 255);
-
-		public static final ParticleFilterOptions2 options = new NIVision.ParticleFilterOptions2(0, 0, 1, 1);
-		public static final double MIN_WIDTH_PIXELS = 40;
-		public static final ParticleFilterCriteria2[] criteria = { new NIVision.ParticleFilterCriteria2(
-				NIVision.MeasurementType.MT_BOUNDING_RECT_WIDTH, MIN_WIDTH_PIXELS, 100, 0, 0) };
-		public static final double REFLECTIVE_WIDTH = 0.73;
-		public static final int RESOLUTION_WIDTH = 320;
-		public static final double TARGET_HEIGHT = 0.68;
-		public static final double VIEW_HORIZONTAL_ANGLE = 53;
-	}
 }

@@ -4,8 +4,6 @@ import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.Image;
 import com.ni.vision.NIVision.ImageType;
 import com.spikes2212.robot2016.Field.Defense;
-import com.spikes2212.robot2016.Field.DefenseLocation;
-import com.spikes2212.robot2016.Field.Direction;
 import com.spikes2212.robot2016.RobotMap.CAN;
 import com.spikes2212.robot2016.RobotMap.DIO;
 import com.spikes2212.robot2016.RobotMap.PWM;
@@ -14,12 +12,12 @@ import com.spikes2212.robot2016.commands.RetractAll;
 import com.spikes2212.robot2016.commands.autonomous.Cross;
 import com.spikes2212.robot2016.commands.autonomous.CrossAndDropAndReturn;
 import com.spikes2212.robot2016.commands.autonomous.CrossAndReturn;
-import com.spikes2212.robot2016.subsystems.Cameras;
 import com.spikes2212.robot2016.subsystems.Drivetrain;
 import com.spikes2212.robot2016.subsystems.Folder;
 import com.spikes2212.robot2016.subsystems.Picker;
 import com.spikes2212.robot2016.subsystems.Shooter;
 import com.spikes2212.robot2016.subsystems.Triz;
+import com.spikes2212.robot2016.subsystems.Vision;
 import com.spikes2212.robot2016.util.Gearbox;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -53,12 +51,11 @@ public class Robot extends IterativeRobot {
 	public static Shooter shooter;
 	public static Gyro gyro;
 	public static Accelerometer accelerometer;
-	public static Cameras cameras;
+	public static Vision vision;
 
 	public static Command autoCommand;
 
 	SendableChooser defenseChooser;
-	SendableChooser locationChooser;
 	SendableChooser autoChooser;
 
 	Image image, binary;
@@ -81,22 +78,16 @@ public class Robot extends IterativeRobot {
 		picker = new Picker(PWM.PICKER_MOTOR, DIO.BALL_INSIDE);
 		folder = new Folder(PWM.FOLDER_MOTOR, DIO.FOLDER_UP, DIO.FOLDER_DOWN, DIO.FOLDER_ENCODER_A,
 				DIO.FOLDER_ENCODER_B);
-		cameras = new Cameras(USB.FRONT_CAMERA, USB.REAR_CAMERA);
+		vision = new Vision(USB.FRONT_CAMERA, USB.REAR_CAMERA);
 		oi = new OI();
 		defenseChooser = new SendableChooser();
-		defenseChooser.addDefault("Low Bar", Defense.LOW_BAR);
+		defenseChooser.addDefault("No Defense", Defense.NONE);
+		defenseChooser.addObject("Low Bar", Defense.LOW_BAR);
 		defenseChooser.addObject("Portcullis", Defense.PORTCULLIS);
 		defenseChooser.addObject("Cheval de Frise", Defense.CHEVAL_DE_FRISE);
 		defenseChooser.addObject("Moat", Defense.MOAT);
-		defenseChooser.addObject("Ramparts", Defense.RAMPARTS);
 		defenseChooser.addObject("Rough Terrain", Defense.ROUGH_TERRAIN);
 		defenseChooser.addObject("Rock Wall", Defense.ROCK_WALL);
-		locationChooser = new SendableChooser();
-		locationChooser.addDefault("1", DefenseLocation.k1);
-		locationChooser.addObject("2", DefenseLocation.k2);
-		locationChooser.addObject("3", DefenseLocation.k3);
-		locationChooser.addObject("4", DefenseLocation.k4);
-		locationChooser.addObject("5", DefenseLocation.k5);
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("No autonomous", "NoAuto");
 		autoChooser.addObject("Cross", "Cross");
@@ -105,7 +96,6 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Cross & score low", "CrossAndScoreLow");
 		autoChooser.addObject("Cross & score high", "CrossAndScoreHigh");
 		SmartDashboard.putData("Defense", defenseChooser);
-		SmartDashboard.putData("Location", locationChooser);
 		SmartDashboard.putData("Auto", autoChooser);
 		image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
 		binary = NIVision.imaqCreateImage(ImageType.IMAGE_U8, 0);
@@ -130,22 +120,23 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		try {
 			Defense defense = (Defense) defenseChooser.getSelected();
-			DefenseLocation location = (DefenseLocation) locationChooser.getSelected();
-			switch ((String) autoChooser.getSelected()) {
-			case "Cross":
-				autoCommand = new Cross(defense, Direction.FORWARD);
-				break;
-			case "CrossAndReturn":
-				autoCommand = new CrossAndReturn(defense);
-				break;
-			case "CrossAndDropAndReturn":
-				autoCommand = new CrossAndDropAndReturn(defense);
-				break;
-			default:
-				autoCommand = new CommandGroup();
-				break;
+			if (defense != Defense.NONE) {
+				switch ((String) autoChooser.getSelected()) {
+				case "Cross":
+					autoCommand = new Cross(defense);
+					break;
+				case "CrossAndReturn":
+					autoCommand = new CrossAndReturn(defense);
+					break;
+				case "CrossAndDropAndReturn":
+					autoCommand = new CrossAndDropAndReturn(defense);
+					break;
+				default:
+					autoCommand = new CommandGroup();
+					break;
+				}
+				autoCommand.start();
 			}
-			autoCommand.start();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -166,6 +157,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		Robot.drivetrain.setMaximumSpeed(Constants.VERY_HIGH_MAX_SPEED);
 		writeSensorData();
 
 	}

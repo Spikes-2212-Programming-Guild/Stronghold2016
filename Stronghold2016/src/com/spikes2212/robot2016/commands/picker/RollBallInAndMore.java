@@ -7,6 +7,6 @@ public class RollBallInAndMore extends CommandGroup {
 
 	public RollBallInAndMore() {
 		addSequential(new RollBoulderIn());
-		addSequential(new RollIn(0.2));
+		addSequential(new RollIn(), 0.2);
 	}
 }

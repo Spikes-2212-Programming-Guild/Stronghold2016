@@ -1,4 +1,4 @@
-package com.spikes2212.robot2016.subsystems;
+package com.spikes2212.robot2016.util;
 
 import java.util.Optional;
 
@@ -19,6 +19,7 @@ public class CameraController {
 			camera.updateSettings();
 			this.camera = Optional.of(camera);
 		} catch (Exception e) {
+			e.printStackTrace();
 			this.camera = Optional.empty();
 		}
 	}

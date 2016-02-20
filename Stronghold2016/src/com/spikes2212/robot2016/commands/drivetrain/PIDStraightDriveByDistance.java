@@ -13,8 +13,9 @@ public class PIDStraightDriveByDistance extends DoublePIDCommand {
 	private static final double TOLERANCE = 0.01;
 
 	private double distance;
+	private double maxSpeed;
 
-	public PIDStraightDriveByDistance(double distance) {
+	public PIDStraightDriveByDistance(double distance, double maxSpeed) {
 		// putNumber("PIDStraightDriveByDistance.KP_LEFT", KP_LEFT);
 		// putNumber("PIDStraightDriveByDistance.KI_LEFT", KI_LEFT);
 		// putNumber("PIDStraightDriveByDistance.KD_LEFT", KD_LEFT);
@@ -28,6 +29,7 @@ public class PIDStraightDriveByDistance extends DoublePIDCommand {
 		// SmartDashboard.putNumber("PIDStraightDriveByDistance.DISTANCE",
 		// distance);
 		this.distance = distance;
+		this.maxSpeed = maxSpeed;
 		requires(drivetrain);
 	}
 
@@ -49,6 +51,7 @@ public class PIDStraightDriveByDistance extends DoublePIDCommand {
 	@Override
 	protected void initialize() {
 		drivetrain.resetEncoders();
+		drivetrain.setMaximumSpeed(maxSpeed);
 		getCalculator1().setPID(KP, KI, KD);
 		getCalculator1().setTolerance(TOLERANCE);
 		getCalculator1().setSetpoint(distance);
