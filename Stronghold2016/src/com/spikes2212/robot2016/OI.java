@@ -10,6 +10,7 @@ import com.spikes2212.robot2016.commands.drivetrain.TwoJoysticksDrive;
 import com.spikes2212.robot2016.commands.folder.MoveFolderDown;
 import com.spikes2212.robot2016.commands.folder.MoveFolderUp;
 import com.spikes2212.robot2016.commands.picker.RollBoulderIn;
+import com.spikes2212.robot2016.commands.picker.RollBoulderInAndMore;
 import com.spikes2212.robot2016.commands.picker.RollOut;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -97,7 +98,7 @@ public class OI /* GEVALD */ {
 		navigatorYellow.whileHeld(new MoveFolderUp());
 		navigatorGreen.whileHeld(new MoveFolderDown());
 
-		navigatorRT.whileHeld(new RollBoulderIn());
+		navigatorRT.whileHeld(new RollBoulderInAndMore());
 		navigatorRB.whileHeld(new RollOut());
 
 		// A high voltage below 12 such as 11.8
