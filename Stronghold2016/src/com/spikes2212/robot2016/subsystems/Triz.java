@@ -76,10 +76,10 @@ public class Triz extends Subsystem {
 	public void initDefaultCommand() {
 		setDefaultCommand(new JoystickMoveTriz(() -> {
 			double y = oi.getNavigatorStraight();
-			if (y > 0) {
+			if (y > 0.5) {
 				return Constants.TRIZ_DOWN_SPEED;
 			}
-			if (y < 0) {
+			if (y < -0.5) {
 				return -Constants.TRIZ_UP_SPEED;
 			}
 			return 0;
