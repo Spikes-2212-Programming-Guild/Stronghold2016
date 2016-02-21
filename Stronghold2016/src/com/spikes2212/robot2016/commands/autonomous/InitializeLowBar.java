@@ -14,6 +14,6 @@ public class InitializeLowBar extends CommandGroup {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		addSequential(new ExpandAll());
-		addSequential(new MoveTrizUp(), 0.5);
+		addSequential(new MoveTrizUp(), 0.2);
 	}
 }

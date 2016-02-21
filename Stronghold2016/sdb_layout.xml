@@ -1,68 +1,82 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="frontExposure" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="272"/>
+	</widget>
+	<widget field="max speed" type="String" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="138" y="31"/>
+		<width>176</width>
+		<height>60</height>
+		<property name="Font Size" value="30"/>
+	</widget>
+	<widget field="folder angle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="177" y="395"/>
+	</widget>
+	<widget field="triz angle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="33" y="369"/>
+	</widget>
 	<widget field="folder down" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="142" y="266"/>
-		<width>112</width>
-		<height>48</height>
+		<location x="14" y="196"/>
+		<width>109</width>
+		<height>52</height>
 	</widget>
 	<widget field="triz up" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="496" y="208"/>
+		<location x="15" y="11"/>
 		<width>80</width>
-		<height>48</height>
+		<height>52</height>
 	</widget>
 	<widget field="boulder inside" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="288" y="208"/>
-		<width>176</width>
-		<height>112</height>
+		<location x="131" y="101"/>
+		<width>266</width>
+		<height>170</height>
 	</widget>
 	<widget field="triz down" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="496" y="272"/>
+		<location x="15" y="69"/>
 		<width>96</width>
-		<height>49</height>
+		<height>54</height>
 	</widget>
 	<widget field="folder up" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="144" y="208"/>
+		<location x="14" y="131"/>
 		<width>96</width>
-		<height>49</height>
+		<height>56</height>
 	</widget>
 	<widget field="Defense" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="16" y="153"/>
+		<location x="390" y="332"/>
 	</widget>
 	<widget field="Auto" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="112" y="16"/>
+		<location x="544" y="382"/>
+	</widget>
+	<widget field="Location" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="310" y="347"/>
 	</widget>
 	<widget field="RetractAll" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="147" y="160"/>
-	</widget>
-	<widget field="Reset gyro" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="608" y="208"/>
+		<location x="234" y="477"/>
 	</widget>
 	<widget field="right distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="592" y="60"/>
+		<location x="168" y="369"/>
 	</widget>
 	<widget field="folder distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="211" y="336"/>
+		<location x="15" y="402"/>
 	</widget>
 	<widget field="angle with floor" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="320" y="96"/>
+		<location x="18" y="470"/>
 	</widget>
 	<widget field="triz distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="432" y="336"/>
+		<location x="159" y="427"/>
 	</widget>
 	<widget field="yaw angle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="585" y="96"/>
+		<location x="168" y="450"/>
 	</widget>
 	<widget field="left distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="320" y="60"/>
+		<location x="27" y="436"/>
 	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
+		<location x="400" y="6"/>
+		<width>376</width>
+		<height>276</height>
+	</static-widget>
 </dashboard>
 <live-window>
 </live-window>
-	<hidden field="PIDTurnDriveByAngle.TOLERANCE"/>
-	<hidden field="PIDTurnDriveByAngle.KI"/>
-	<hidden field="PIDTurnDriveByAngle.ANGLE"/>
-	<hidden field="PIDTurnDriveByAngle.KD"/>
-	<hidden field="PIDTurnDriveByAngle"/>
-	<hidden field="PIDTurnDriveByAngle.KP"/>
-	<hidden field="Location"/>
+	<hidden field="PDP"/>
 </xml>

@@ -119,5 +119,9 @@ public class Drivetrain extends Subsystem {
 	public void setMaximumSpeed(double maxSpeed) {
 		this.maxSpeed = maxSpeed;
 	}
+	
+	public double getMaximumSpeed() {
+		return maxSpeed;
+	}
 
 }

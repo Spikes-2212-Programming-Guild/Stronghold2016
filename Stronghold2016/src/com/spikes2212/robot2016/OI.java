@@ -54,7 +54,7 @@ public class OI /* GEVALD */ {
 	JoystickButton leftDriverTrigger;
 
 	JoystickButton rightDriver3;
-	JoystickButton rightDriver5;
+	JoystickButton rightDriver2;
 
 	JoystickButton navigatorBlue;
 	JoystickButton navigatorGreen;
@@ -71,7 +71,7 @@ public class OI /* GEVALD */ {
 		rightDriverTrigger = new JoystickButton(rightDriver, 1);
 		leftDriverTrigger = new JoystickButton(leftDriver, 1);
 		rightDriver3 = new JoystickButton(rightDriver, 3);
-		rightDriver5 = new JoystickButton(rightDriver, 5);
+		rightDriver2 = new JoystickButton(rightDriver, 2);
 
 		navigatorBlue = new JoystickButton(rightNavigator, 1);
 		navigatorGreen = new JoystickButton(rightNavigator, 2);
@@ -92,8 +92,8 @@ public class OI /* GEVALD */ {
 		// A high value between 0 and 1 such as 0.8
 		leftDriverTrigger.whenReleased(new SetDrivetrainMaximumSpeed(Constants.VERY_HIGH_MAX_SPEED));
 
-		rightDriver3.whenPressed(new FrontStream());
-		rightDriver5.whenPressed(new StopCameras());
+		rightDriver2.whenPressed(new FrontStream());
+		rightDriver3.whenPressed(new StopCameras());
 
 		navigatorYellow.whileHeld(new MoveFolderUp());
 		navigatorGreen.whileHeld(new MoveFolderDown());

@@ -23,6 +23,7 @@ import com.spikes2212.robot2016.util.Gearbox;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -69,15 +70,18 @@ public class Robot extends IterativeRobot {
 		gyro = new ADXRS450_Gyro();
 		gyro.reset();
 		accelerometer = new BuiltInAccelerometer();
-		left = new Gearbox(PWM.LEFT_FRONT_MOTOR, PWM.LEFT_REAR_MOTOR, DIO.LEFT_ENCODER_A, DIO.LEFT_ENCODER_B);
-		right = new Gearbox(PWM.RIGHT_FRONT_MOTOR, PWM.RIGHT_REAR_MOTOR, DIO.RIGHT_ENCODER_A, DIO.RIGHT_ENCODER_B);
+		left = new Gearbox(PWM.LEFT_FRONT_MOTOR, PWM.LEFT_REAR_MOTOR,
+				DIO.LEFT_ENCODER_A, DIO.LEFT_ENCODER_B);
+		right = new Gearbox(PWM.RIGHT_FRONT_MOTOR, PWM.RIGHT_REAR_MOTOR,
+				DIO.RIGHT_ENCODER_A, DIO.RIGHT_ENCODER_B);
 		drivetrain = new Drivetrain(left, right, gyro, accelerometer);
-		triz = new Triz(PWM.TRIZ_MOTOR, DIO.TRIZ_UP, DIO.TRIZ_DOWN, DIO.TRIZ_UNDER_PORTCULLIS, DIO.TRIZ_ENCODER_A,
+		triz = new Triz(PWM.TRIZ_MOTOR, DIO.TRIZ_UP, DIO.TRIZ_DOWN,
+				DIO.TRIZ_UNDER_PORTCULLIS, DIO.TRIZ_ENCODER_A,
 				DIO.TRIZ_ENCODER_B);
 		shooter = new Shooter(CAN.SHOOTER_MOTOR);
 		picker = new Picker(PWM.PICKER_MOTOR, DIO.BALL_INSIDE);
-		folder = new Folder(PWM.FOLDER_MOTOR, DIO.FOLDER_UP, DIO.FOLDER_DOWN, DIO.FOLDER_ENCODER_A,
-				DIO.FOLDER_ENCODER_B);
+		folder = new Folder(PWM.FOLDER_MOTOR, DIO.FOLDER_UP, DIO.FOLDER_DOWN,
+				DIO.FOLDER_ENCODER_A, DIO.FOLDER_ENCODER_B);
 		vision = new Vision(USB.FRONT_CAMERA, USB.REAR_CAMERA);
 		oi = new OI();
 		defenseChooser = new SendableChooser();
@@ -100,6 +104,9 @@ public class Robot extends IterativeRobot {
 		image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
 		binary = NIVision.imaqCreateImage(ImageType.IMAGE_U8, 0);
 		SmartDashboard.putData(new RetractAll());
+		SmartDashboard.putNumber("frontExposure",
+				Constants.EXPOSURE);
+		//SmartDashboard.putData("PDP", new PowerDistributionPanel());
 	}
 
 	/**
@@ -150,6 +157,12 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		writeSensorData();
 	}
+	
+	@Override
+	public void teleopInit() {
+
+		drivetrain.setMaximumSpeed(Constants.VERY_HIGH_MAX_SPEED);
+	}
 
 	/**
 	 * This function is called periodically during operator control
@@ -157,7 +170,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		Robot.drivetrain.setMaximumSpeed(Constants.VERY_HIGH_MAX_SPEED);
+		vision.setFrontExposure((int)SmartDashboard.getNumber("frontExposure",
+				Constants.EXPOSURE));
 		writeSensorData();
 
 	}
@@ -172,7 +186,8 @@ public class Robot extends IterativeRobot {
 
 	private void writeSensorData() {
 		SmartDashboard.putNumber("left distance", drivetrain.getLeftDistance());
-		SmartDashboard.putNumber("right distance", drivetrain.getRightDistance());
+		SmartDashboard.putNumber("right distance",
+				drivetrain.getRightDistance());
 		SmartDashboard.putBoolean("triz up", triz.isUp());
 		SmartDashboard.putBoolean("triz down", triz.isDown());
 		SmartDashboard.putNumber("triz angle", triz.getAngle());
@@ -181,6 +196,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("folder angle", folder.getAngle());
 		SmartDashboard.putBoolean("boulder inside", picker.isBoulderInside());
 		SmartDashboard.putNumber("yaw angle", drivetrain.getYawAngle());
+		SmartDashboard.putString("max speed", drivetrain.getMaximumSpeed()
+				* 100 + "%");
 
 	}
 

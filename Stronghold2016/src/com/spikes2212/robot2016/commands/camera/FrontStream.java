@@ -24,8 +24,13 @@ public class FrontStream extends Command {
 
 	@Override
 	protected void execute() {
-		vision.getImage(image);
-		vision.stream(image);
+		try {
+			vision.getImage(image);
+			vision.stream(image);
+
+		} catch (Exception e) {
+
+		}
 	}
 
 	@Override
