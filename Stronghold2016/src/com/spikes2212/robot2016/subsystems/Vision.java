@@ -51,6 +51,9 @@ public class Vision extends Subsystem {
 	public void setFrontExposure(int exposure) {
 		front.setExposure(exposure);
 	}
+	public void setRearExposure(int exposure) {
+		rear.setExposure(exposure);
+	}
 
 	public void stream(Image image) {
 		CameraServer.getInstance().setImage(image);

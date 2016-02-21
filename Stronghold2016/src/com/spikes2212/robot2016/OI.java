@@ -4,6 +4,7 @@ import com.spikes2212.robot2016.commands.Shoot;
 import com.spikes2212.robot2016.commands.autonomous.InitializeChevalDeFrise;
 import com.spikes2212.robot2016.commands.autonomous.InitializeLowBar;
 import com.spikes2212.robot2016.commands.camera.FrontStream;
+import com.spikes2212.robot2016.commands.camera.RearStream;
 import com.spikes2212.robot2016.commands.camera.StopCameras;
 import com.spikes2212.robot2016.commands.drivetrain.SetDrivetrainMaximumSpeed;
 import com.spikes2212.robot2016.commands.drivetrain.TwoJoysticksDrive;
@@ -54,7 +55,8 @@ public class OI /* GEVALD */ {
 	JoystickButton leftDriverTrigger;
 
 	JoystickButton rightDriver3;
-	JoystickButton rightDriver2;
+	JoystickButton rightDriver4;
+	JoystickButton rightDriver5;
 
 	JoystickButton navigatorBlue;
 	JoystickButton navigatorGreen;
@@ -71,7 +73,8 @@ public class OI /* GEVALD */ {
 		rightDriverTrigger = new JoystickButton(rightDriver, 1);
 		leftDriverTrigger = new JoystickButton(leftDriver, 1);
 		rightDriver3 = new JoystickButton(rightDriver, 3);
-		rightDriver2 = new JoystickButton(rightDriver, 2);
+		rightDriver4 = new JoystickButton(rightDriver, 4);
+		rightDriver5 = new JoystickButton(rightDriver, 5);
 
 		navigatorBlue = new JoystickButton(rightNavigator, 1);
 		navigatorGreen = new JoystickButton(rightNavigator, 2);
@@ -92,7 +95,8 @@ public class OI /* GEVALD */ {
 		// A high value between 0 and 1 such as 0.8
 		leftDriverTrigger.whenReleased(new SetDrivetrainMaximumSpeed(Constants.VERY_HIGH_MAX_SPEED));
 
-		rightDriver2.whenPressed(new FrontStream());
+		rightDriver5.whenPressed(new FrontStream());
+		rightDriver4.whenPressed(new RearStream());
 		rightDriver3.whenPressed(new StopCameras());
 
 		navigatorYellow.whileHeld(new MoveFolderUp());
