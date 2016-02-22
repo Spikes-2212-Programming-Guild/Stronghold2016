@@ -2,8 +2,6 @@ package com.spikes2212.robot2016.commands.triz;
 
 import static com.spikes2212.robot2016.Robot.triz;
 
-import com.spikes2212.robot2016.Constants;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -11,8 +9,11 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class MoveTrizDown extends Command {
 
-	public MoveTrizDown() {
+	private double speed;
+
+	public MoveTrizDown(double speed) {
 		requires(triz);
+		this.speed = speed;
 	}
 
 	// Called just before this Command runs the first time
@@ -22,7 +23,7 @@ public class MoveTrizDown extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		if (!triz.isDown()) {
-			triz.tryMove(Constants.TRIZ_DOWN_SPEED);
+			triz.tryMove(speed);
 		}
 	}
 

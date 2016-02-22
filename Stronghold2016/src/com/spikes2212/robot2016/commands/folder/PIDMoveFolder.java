@@ -4,33 +4,20 @@ import static com.spikes2212.robot2016.Robot.folder;
 
 import com.spikes2212.robot2016.pid.PIDCommand;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 public class PIDMoveFolder extends PIDCommand {
 
-	private static final double KD = 0.01;
-	private static final double KI = 0;
-	private static final double KP = 0;
-	private static final double TOLERANCE = 0.01; // meter
+	public static /* final */ double KD = 0;
+	public static /* final */ double KI = 0;
+	public static /* final */ double KP = 0;
 
-	private double angle;
-
-	public PIDMoveFolder(double angle) {
+	public PIDMoveFolder(double setpoint, double tolerance) {
+		super(KP, KI, KD, setpoint, tolerance);
 		requires(folder);
-		this.angle = angle;
-		SmartDashboard.putNumber("PIDMoveFolder.KP", KP);
-		SmartDashboard.putNumber("PIDMoveFolder.KI", KI);
-		SmartDashboard.putNumber("PIDMoveFolder.KD", KD);
-		SmartDashboard.putNumber("PIDMoveFolder.TOLERANCE", TOLERANCE);
 	}
 
 	@Override
 	protected void initialize() {
 		folder.calibrate();
-		getCalculator().setPID(SmartDashboard.getNumber("PIDMoveFolder.KP", KP),
-				SmartDashboard.getNumber("PIDMoveFolder.KI", KI), SmartDashboard.getNumber("PIDMoveFolder.KD", KD));
-		getCalculator().setSetpoint(angle);
-		getCalculator().setTolerance(SmartDashboard.getNumber("PIDMoveFolder.TOLERANCE", TOLERANCE));
 	}
 
 	@Override

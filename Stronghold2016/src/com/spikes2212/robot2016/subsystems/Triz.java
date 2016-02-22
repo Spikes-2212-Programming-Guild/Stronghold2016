@@ -18,7 +18,7 @@ public class Triz extends Subsystem {
 
 	private SpeedController motor;
 	private DigitalInput up, down;
-	private Encoder encoder;
+	public Encoder encoder;
 	private double phase;
 
 	public Triz(SpeedController motor, DigitalInput up, DigitalInput down, Encoder encoder) {
@@ -84,6 +84,10 @@ public class Triz extends Subsystem {
 			}
 			return 0;
 		}));
+	}
+
+	public void resetEncoder() {
+		encoder.reset();
 	}
 
 }

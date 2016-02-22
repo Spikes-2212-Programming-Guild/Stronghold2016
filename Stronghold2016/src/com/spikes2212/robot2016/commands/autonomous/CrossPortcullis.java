@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *         placed with the triz facing the outerworks.
  *
  */
-public class CrossPortcullis extends CommandGroup {//U R Great <3
+public class CrossPortcullis extends CommandGroup {// U R Great <3
 
 	public static final double ROTATE_ANGLE = 180;
 	public static final double FORWARD_DISTANCE = 1.8;
@@ -27,12 +27,12 @@ public class CrossPortcullis extends CommandGroup {//U R Great <3
 
 	public CrossPortcullis() {
 		addSequential(new ExpandAll());
-		addSequential(new MoveTrizUp(), 0.2);
+		addSequential(new MoveTrizUp(Constants.TRIZ_UP_SPEED), 0.2);
 		addSequential(new PIDStraightDriveByDistance(1.5, Constants.HIGH_MAX_SPEED));
-		addSequential(new MoveTrizDown());
+		addSequential(new MoveTrizDown(Constants.TRIZ_DOWN_SPEED));
 		addSequential(new PIDStraightDriveByDistance(1, Constants.MEDIUM_MAX_SPEED), 3);
 		addParallel(new PIDStay());
-		addSequential(new MoveTrizUp(), 1);
+		addSequential(new MoveTrizUp(Constants.TRIZ_UP_SPEED), 1);
 		// addSequential(new
 		// PIDStraightDriveByDistance(FORWARD_AFTER_LIFTING_DISTANCE));
 		addSequential(new PIDStraightDriveByDistance(1.8, Constants.HIGH_MAX_SPEED));
