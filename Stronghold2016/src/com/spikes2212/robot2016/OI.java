@@ -10,7 +10,6 @@ import com.spikes2212.robot2016.commands.drivetrain.SetDrivetrainMaximumSpeed;
 import com.spikes2212.robot2016.commands.drivetrain.TwoJoysticksDrive;
 import com.spikes2212.robot2016.commands.folder.MoveFolderDown;
 import com.spikes2212.robot2016.commands.folder.MoveFolderUp;
-import com.spikes2212.robot2016.commands.picker.RollBoulderIn;
 import com.spikes2212.robot2016.commands.picker.RollBoulderInAndMore;
 import com.spikes2212.robot2016.commands.picker.RollOut;
 

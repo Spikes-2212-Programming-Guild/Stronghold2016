@@ -49,7 +49,7 @@ public class Constants {
 	public static final double MAX_RIGHT_VELOCITY = 4;
 	public static final double VERY_HIGH_MAX_SPEED = 1.0;
 	public static final double HIGH_MAX_SPEED = 0.6;
-	public static final double CROSS_LOW_BAR_MAX_SPEED = 0.5;
+	public static final double CROSS_LOW_BAR_MAX_SPEED = 0.4;
 	public static final double MEDIUM_MAX_SPEED = 0.45;
 	public static final double LOW_MAX_SPEED = 0.35;
 

@@ -100,6 +100,7 @@ public class Robot extends IterativeRobot {
 		image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
 		binary = NIVision.imaqCreateImage(ImageType.IMAGE_U8, 0);
 		SmartDashboard.putData(new RetractAll());
+		SmartDashboard.putNumber("rearExposure", Constants.EXPOSURE);
 		SmartDashboard.putNumber("frontExposure", Constants.EXPOSURE);
 	}
 
@@ -165,6 +166,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		vision.setFrontExposure((int) SmartDashboard.getNumber("frontExposure", Constants.EXPOSURE));
+		vision.setRearExposure((int) SmartDashboard.getNumber("rearExposure", Constants.EXPOSURE));
 		writeSensorData();
 
 	}
