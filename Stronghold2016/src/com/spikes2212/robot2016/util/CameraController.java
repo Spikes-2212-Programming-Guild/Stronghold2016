@@ -52,6 +52,7 @@ public class CameraController {
 	public void setExposure(int exposure) {
 		if (exposure != this.exposure) {
 			this.exposure = exposure;
+			camera.ifPresent(c -> c.setExposureManual(exposure));
 			camera.ifPresent(USBCamera::updateSettings);
 		}
 	}

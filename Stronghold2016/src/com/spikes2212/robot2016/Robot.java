@@ -10,8 +10,6 @@ import com.spikes2212.robot2016.RobotMap.PWM;
 import com.spikes2212.robot2016.RobotMap.USB;
 import com.spikes2212.robot2016.commands.RetractAll;
 import com.spikes2212.robot2016.commands.autonomous.Cross;
-import com.spikes2212.robot2016.commands.autonomous.CrossAndDropAndReturn;
-import com.spikes2212.robot2016.commands.autonomous.CrossAndReturn;
 import com.spikes2212.robot2016.subsystems.Drivetrain;
 import com.spikes2212.robot2016.subsystems.Folder;
 import com.spikes2212.robot2016.subsystems.Picker;
@@ -23,7 +21,6 @@ import com.spikes2212.robot2016.util.Gearbox;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -56,7 +53,6 @@ public class Robot extends IterativeRobot {
 
 	public static Command autoCommand;
 
-	SendableChooser defenseChooser;
 	SendableChooser autoChooser;
 
 	Image image, binary;
@@ -84,29 +80,15 @@ public class Robot extends IterativeRobot {
 				DIO.FOLDER_ENCODER_A, DIO.FOLDER_ENCODER_B);
 		vision = new Vision(USB.FRONT_CAMERA, USB.REAR_CAMERA);
 		oi = new OI();
-		defenseChooser = new SendableChooser();
-		defenseChooser.addDefault("No Defense", Defense.NONE);
-		defenseChooser.addObject("Low Bar", Defense.LOW_BAR);
-		defenseChooser.addObject("Portcullis", Defense.PORTCULLIS);
-		defenseChooser.addObject("Cheval de Frise", Defense.CHEVAL_DE_FRISE);
-		defenseChooser.addObject("Moat", Defense.MOAT);
-		defenseChooser.addObject("Rough Terrain", Defense.ROUGH_TERRAIN);
-		defenseChooser.addObject("Rock Wall", Defense.ROCK_WALL);
 		autoChooser = new SendableChooser();
-		autoChooser.addDefault("No autonomous", "NoAuto");
-		autoChooser.addObject("Cross", "Cross");
-		autoChooser.addObject("Cross & Return", "CrossAndReturn");
-		autoChooser.addObject("Cross, drop & Return", "CrossAndDropAndReturn");
-		autoChooser.addObject("Cross & score low", "CrossAndScoreLow");
-		autoChooser.addObject("Cross & score high", "CrossAndScoreHigh");
-		SmartDashboard.putData("Defense", defenseChooser);
+		autoChooser.addDefault("No autonomous", new CommandGroup());
+		autoChooser.addObject("Cross", new Cross(Defense.LOW_BAR));
 		SmartDashboard.putData("Auto", autoChooser);
 		image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
 		binary = NIVision.imaqCreateImage(ImageType.IMAGE_U8, 0);
 		SmartDashboard.putData(new RetractAll());
-		SmartDashboard.putNumber("frontExposure",
-				Constants.EXPOSURE);
-		//SmartDashboard.putData("PDP", new PowerDistributionPanel());
+		SmartDashboard.putNumber("frontExposure", Constants.EXPOSURE_FRONT);
+		SmartDashboard.putNumber("rearExposure", Constants.EXPOSURE_REAR);
 	}
 
 	/**
@@ -126,24 +108,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		try {
-			Defense defense = (Defense) defenseChooser.getSelected();
-			if (defense != Defense.NONE) {
-				switch ((String) autoChooser.getSelected()) {
-				case "Cross":
-					autoCommand = new Cross(defense);
-					break;
-				case "CrossAndReturn":
-					autoCommand = new CrossAndReturn(defense);
-					break;
-				case "CrossAndDropAndReturn":
-					autoCommand = new CrossAndDropAndReturn(defense);
-					break;
-				default:
-					autoCommand = new CommandGroup();
-					break;
-				}
-				autoCommand.start();
-			}
+			autoCommand = (Command) autoChooser.getSelected();
+			autoCommand.start();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -157,7 +123,7 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		writeSensorData();
 	}
-	
+
 	@Override
 	public void teleopInit() {
 
@@ -170,8 +136,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		vision.setFrontExposure((int)SmartDashboard.getNumber("frontExposure",
-				Constants.EXPOSURE));
+		vision.setFrontExposure((int) SmartDashboard.getNumber("frontExposure",
+				Constants.EXPOSURE_FRONT));
+		vision.setRearExposure((int) SmartDashboard.getNumber("rearExposure",
+				Constants.EXPOSURE_REAR));
 		writeSensorData();
 
 	}
@@ -190,10 +158,8 @@ public class Robot extends IterativeRobot {
 				drivetrain.getRightDistance());
 		SmartDashboard.putBoolean("triz up", triz.isUp());
 		SmartDashboard.putBoolean("triz down", triz.isDown());
-		SmartDashboard.putNumber("triz angle", triz.getAngle());
 		SmartDashboard.putBoolean("folder up", folder.isUp());
 		SmartDashboard.putBoolean("folder down", folder.isDown());
-		SmartDashboard.putNumber("folder angle", folder.getAngle());
 		SmartDashboard.putBoolean("boulder inside", picker.isBoulderInside());
 		SmartDashboard.putNumber("yaw angle", drivetrain.getYawAngle());
 		SmartDashboard.putString("max speed", drivetrain.getMaximumSpeed()

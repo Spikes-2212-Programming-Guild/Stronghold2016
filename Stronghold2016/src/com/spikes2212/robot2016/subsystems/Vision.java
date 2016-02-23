@@ -1,6 +1,5 @@
 package com.spikes2212.robot2016.subsystems;
 
-import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.Image;
 import com.spikes2212.robot2016.util.CameraController;
 
@@ -48,7 +47,7 @@ public class Vision extends Subsystem {
 		}
 	}
 	
-	public void setFrontExposure(int exposure) {
+	public void setFrontExposure(double exposure) {
 		front.setExposure(exposure);
 	}
 
@@ -58,6 +57,11 @@ public class Vision extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
+	}
+
+	public void setRearExposure(int exposure) {
+		// TODO Auto-generated method stub
+		rear.setExposure(exposure);
 	}
 
 }

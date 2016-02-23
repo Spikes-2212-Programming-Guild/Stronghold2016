@@ -11,7 +11,7 @@ public class PIDMoveFolder extends PIDCommand {
 	private static final double KD = 0.01;
 	private static final double KI = 0;
 	private static final double KP = 0;
-	private static final double TOLERANCE = 0.01; // meter
+	private static final double TOLERANCE = 1;
 
 	private double angle;
 
@@ -22,6 +22,7 @@ public class PIDMoveFolder extends PIDCommand {
 		SmartDashboard.putNumber("PIDMoveFolder.KI", KI);
 		SmartDashboard.putNumber("PIDMoveFolder.KD", KD);
 		SmartDashboard.putNumber("PIDMoveFolder.TOLERANCE", TOLERANCE);
+		SmartDashboard.putNumber("PIDMoveFolder.ANGLE", angle);
 	}
 
 	@Override
@@ -29,7 +30,7 @@ public class PIDMoveFolder extends PIDCommand {
 		folder.calibrate();
 		getCalculator().setPID(SmartDashboard.getNumber("PIDMoveFolder.KP", KP),
 				SmartDashboard.getNumber("PIDMoveFolder.KI", KI), SmartDashboard.getNumber("PIDMoveFolder.KD", KD));
-		getCalculator().setSetpoint(angle);
+		getCalculator().setSetpoint(SmartDashboard.getNumber("PIDMoveFolder.ANGLE", angle));
 		getCalculator().setTolerance(SmartDashboard.getNumber("PIDMoveFolder.TOLERANCE", TOLERANCE));
 	}
 

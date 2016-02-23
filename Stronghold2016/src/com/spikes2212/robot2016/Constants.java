@@ -25,9 +25,9 @@ public class Constants {
 	public static final double INCH = FEET / 12;
 
 	public static final double TRIZ_UP_SPEED = 0.9;
-	//0.4
+	// 0.4
 	public static final double TRIZ_DOWN_SPEED = 0.5;
-	//0.3
+	// 0.3
 	public static final double FOLDER_UP_SPEED = 0.45;
 	public static final double FOLDER_DOWN_SPEED = 0.45;
 	public static final double PICKER_ROLL_IN_SPEED = 0.8;
@@ -38,10 +38,11 @@ public class Constants {
 	public static final double FOLDER_DOWN_ANGLE = 0;
 	public static final double FOLDER_UP_ANGLE = 0;
 
-	public static final double TRIZ_ANGLE_PER_PULSE = 1;
-	public static final double FOLDER_ANGLE_PER_PULSE = 1;
+	public static final double TRIZ_ANGLE_PER_PULSE = 360.0 / 1024;
+	public static final double FOLDER_ANGLE_PER_PULSE = 360.0 / 1024;
 
-	public static final double DRIVETRAIN_WHEEL_PERIMETER = 0.203 * Math.PI * METER;
+	public static final double DRIVETRAIN_WHEEL_PERIMETER = 0.203 * Math.PI
+			* METER;
 	public static final double LEFT_DISTANCE_PER_PULSE = DRIVETRAIN_WHEEL_PERIMETER / 360;
 	public static final double RIGHT_DISTANCE_PER_PULSE = DRIVETRAIN_WHEEL_PERIMETER / 360;
 	public static final double FREE_FALL_GRAVITY = 1.024;
@@ -58,5 +59,6 @@ public class Constants {
 	public static final double SHOOTER_ACCELERATION_TIME = 5;
 	public static final double TIME_GAP_FOR_SHOOTING = 2;
 	public static final double ROLL_IN_TIME = 2;
-	public static final int EXPOSURE = 7;
+	public static final double EXPOSURE_FRONT = 0;
+	public static final double EXPOSURE_REAR = 2;
 }

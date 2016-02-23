@@ -56,9 +56,9 @@ public class Folder extends Subsystem {
 	}
 
 	public void calibrate() {
-		if (isDown()) {
+		if (isDown() && false) {
 			phase = Constants.FOLDER_DOWN_ANGLE;
-		} else if (isUp()) {
+		} else if (isUp() && false) {
 			phase = Constants.FOLDER_UP_ANGLE;
 		} else {
 			phase = getAngle();
