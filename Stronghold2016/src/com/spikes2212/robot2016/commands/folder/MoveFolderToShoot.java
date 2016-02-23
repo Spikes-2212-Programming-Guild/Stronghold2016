@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 
-//TODO - CR: why the class is not extends from PIDCommands?
+// TODO - CR: why the class is not extends from PIDCommands?
 
 public class MoveFolderToShoot extends CommandGroup {
 

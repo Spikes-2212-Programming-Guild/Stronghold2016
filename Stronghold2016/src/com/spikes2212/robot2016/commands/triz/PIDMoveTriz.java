@@ -22,6 +22,7 @@ public class PIDMoveTriz extends PIDCommand {
 		SmartDashboard.putNumber("PIDMoveTriz.KI", KI);
 		SmartDashboard.putNumber("PIDMoveTriz.KD", KD);
 		SmartDashboard.putNumber("PIDMoveTriz.TOLERANCE", TOLERANCE);
+		SmartDashboard.putNumber("PIDMoveTriz.ANGLE", angle);
 	}
 
 	@Override
@@ -29,7 +30,7 @@ public class PIDMoveTriz extends PIDCommand {
 		triz.calibrate();
 		getCalculator().setPID(SmartDashboard.getNumber("PIDMoveTriz.KP", KP),
 				SmartDashboard.getNumber("PIDMoveTriz.KI", KI), SmartDashboard.getNumber("PIDMoveTriz.KD", KD));
-		getCalculator().setSetpoint(angle);
+		getCalculator().setSetpoint(SmartDashboard.getNumber("PIDMoveTriz.ANGLE", angle));
 		getCalculator().setTolerance(SmartDashboard.getNumber("PIDMoveTriz.TOLERANCE", TOLERANCE));
 	}
 

@@ -32,8 +32,8 @@ public class RobotMap {
 		public static final int LEFT_ENCODER_B = 6;
 		public static final int RIGHT_ENCODER_A = 9;
 		public static final int RIGHT_ENCODER_B = 8;
-		public static final int TRIZ_ENCODER_A = 19;
-		public static final int TRIZ_ENCODER_B = 18;
+		public static final int TRIZ_ENCODER_A = 14;
+		public static final int TRIZ_ENCODER_B = 15;
 		public static final int FOLDER_ENCODER_A = 17;
 		public static final int FOLDER_ENCODER_B = 16;
 		public static final int TRIZ_UP = 4;

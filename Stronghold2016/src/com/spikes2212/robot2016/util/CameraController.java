@@ -13,12 +13,12 @@ public class CameraController {
 	private boolean on;
 	private int exposure;
 
-	public CameraController(String name) {
+	public CameraController(String name, int exposure) {
 		try {
 			USBCamera camera = new USBCamera(name);
 			camera.setFPS(15);
 			camera.setSize(160, 120);
-			camera.setExposureManual(Constants.EXPOSURE);
+			camera.setExposureManual(exposure);
 			camera.updateSettings();
 			this.camera = Optional.of(camera);
 		} catch (Exception e) {
@@ -48,7 +48,7 @@ public class CameraController {
 	public boolean isOn() {
 		return on;
 	}
-	
+
 	public void setExposure(int exposure) {
 		if (exposure != this.exposure) {
 			this.exposure = exposure;

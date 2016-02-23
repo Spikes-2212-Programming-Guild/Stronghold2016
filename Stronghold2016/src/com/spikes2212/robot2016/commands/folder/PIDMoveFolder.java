@@ -12,10 +12,10 @@ public class PIDMoveFolder extends PIDCommand {
 	private static final double KI = 0;
 	private static final double KP = 0;
 	private static final double TOLERANCE = 1;
-
 	private double angle;
 
 	public PIDMoveFolder(double angle) {
+		super(KP, KI, KD, angle, TOLERANCE);
 		requires(folder);
 		this.angle = angle;
 		SmartDashboard.putNumber("PIDMoveFolder.KP", KP);

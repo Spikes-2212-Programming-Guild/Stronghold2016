@@ -1,6 +1,7 @@
 package com.spikes2212.robot2016.subsystems;
 
 import com.ni.vision.NIVision.Image;
+import com.spikes2212.robot2016.Constants;
 import com.spikes2212.robot2016.util.CameraController;
 
 import edu.wpi.first.wpilibj.CameraServer;
@@ -11,8 +12,8 @@ public class Vision extends Subsystem {
 	private CameraController front, rear;
 
 	public Vision(String frontName, String rearName) {
-		this.front = new CameraController(frontName);
-		this.rear = new CameraController(rearName);
+		this.front = new CameraController(frontName, Constants.EXPOSURE_FRONT);
+		this.rear = new CameraController(rearName, Constants.EXPOSURE_REAR);
 
 	}
 
@@ -46,9 +47,13 @@ public class Vision extends Subsystem {
 			rear.getImage(image);
 		}
 	}
-	
-	public void setFrontExposure(double exposure) {
+
+	public void setFrontExposure(int exposure) {
 		front.setExposure(exposure);
+	}
+
+	public void setRearExposure(int exposure) {
+		rear.setExposure(exposure);
 	}
 
 	public void stream(Image image) {
@@ -57,11 +62,6 @@ public class Vision extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-	}
-
-	public void setRearExposure(int exposure) {
-		// TODO Auto-generated method stub
-		rear.setExposure(exposure);
 	}
 
 }

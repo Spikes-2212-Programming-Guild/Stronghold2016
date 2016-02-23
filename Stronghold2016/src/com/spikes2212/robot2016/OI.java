@@ -94,8 +94,8 @@ public class OI /* GEVALD */ {
 		// A high value between 0 and 1 such as 0.8
 		leftDriverTrigger.whenReleased(new SetDrivetrainMaximumSpeed(Constants.VERY_HIGH_MAX_SPEED));
 
-		rightDriver4.whenPressed(new RearStream());
 		rightDriver5.whenPressed(new FrontStream());
+		rightDriver4.whenPressed(new RearStream());
 		rightDriver3.whenPressed(new StopCameras());
 		
 

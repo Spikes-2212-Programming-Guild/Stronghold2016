@@ -66,18 +66,15 @@ public class Robot extends IterativeRobot {
 		gyro = new ADXRS450_Gyro();
 		gyro.reset();
 		accelerometer = new BuiltInAccelerometer();
-		left = new Gearbox(PWM.LEFT_FRONT_MOTOR, PWM.LEFT_REAR_MOTOR,
-				DIO.LEFT_ENCODER_A, DIO.LEFT_ENCODER_B);
-		right = new Gearbox(PWM.RIGHT_FRONT_MOTOR, PWM.RIGHT_REAR_MOTOR,
-				DIO.RIGHT_ENCODER_A, DIO.RIGHT_ENCODER_B);
+		left = new Gearbox(PWM.LEFT_FRONT_MOTOR, PWM.LEFT_REAR_MOTOR, DIO.LEFT_ENCODER_A, DIO.LEFT_ENCODER_B);
+		right = new Gearbox(PWM.RIGHT_FRONT_MOTOR, PWM.RIGHT_REAR_MOTOR, DIO.RIGHT_ENCODER_A, DIO.RIGHT_ENCODER_B);
 		drivetrain = new Drivetrain(left, right, gyro, accelerometer);
-		triz = new Triz(PWM.TRIZ_MOTOR, DIO.TRIZ_UP, DIO.TRIZ_DOWN,
-				DIO.TRIZ_UNDER_PORTCULLIS, DIO.TRIZ_ENCODER_A,
+		triz = new Triz(PWM.TRIZ_MOTOR, DIO.TRIZ_UP, DIO.TRIZ_DOWN, DIO.TRIZ_UNDER_PORTCULLIS, DIO.TRIZ_ENCODER_A,
 				DIO.TRIZ_ENCODER_B);
 		shooter = new Shooter(CAN.SHOOTER_MOTOR);
 		picker = new Picker(PWM.PICKER_MOTOR, DIO.BALL_INSIDE);
-		folder = new Folder(PWM.FOLDER_MOTOR, DIO.FOLDER_UP, DIO.FOLDER_DOWN,
-				DIO.FOLDER_ENCODER_A, DIO.FOLDER_ENCODER_B);
+		folder = new Folder(PWM.FOLDER_MOTOR, DIO.FOLDER_UP, DIO.FOLDER_DOWN, DIO.FOLDER_ENCODER_A,
+				DIO.FOLDER_ENCODER_B);
 		vision = new Vision(USB.FRONT_CAMERA, USB.REAR_CAMERA);
 		oi = new OI();
 		autoChooser = new SendableChooser();
@@ -136,10 +133,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		vision.setFrontExposure((int) SmartDashboard.getNumber("frontExposure",
-				Constants.EXPOSURE_FRONT));
-		vision.setRearExposure((int) SmartDashboard.getNumber("rearExposure",
-				Constants.EXPOSURE_REAR));
+		vision.setFrontExposure((int) SmartDashboard.getNumber("frontExposure", Constants.EXPOSURE_FRONT));
+		vision.setRearExposure((int) SmartDashboard.getNumber("rearExposure", Constants.EXPOSURE_REAR));
 		writeSensorData();
 
 	}
@@ -154,16 +149,14 @@ public class Robot extends IterativeRobot {
 
 	private void writeSensorData() {
 		SmartDashboard.putNumber("left distance", drivetrain.getLeftDistance());
-		SmartDashboard.putNumber("right distance",
-				drivetrain.getRightDistance());
+		SmartDashboard.putNumber("right distance", drivetrain.getRightDistance());
 		SmartDashboard.putBoolean("triz up", triz.isUp());
 		SmartDashboard.putBoolean("triz down", triz.isDown());
 		SmartDashboard.putBoolean("folder up", folder.isUp());
 		SmartDashboard.putBoolean("folder down", folder.isDown());
 		SmartDashboard.putBoolean("boulder inside", picker.isBoulderInside());
 		SmartDashboard.putNumber("yaw angle", drivetrain.getYawAngle());
-		SmartDashboard.putString("max speed", drivetrain.getMaximumSpeed()
-				* 100 + "%");
+		SmartDashboard.putString("max speed", drivetrain.getMaximumSpeed() * 100 + "%");
 
 	}
 

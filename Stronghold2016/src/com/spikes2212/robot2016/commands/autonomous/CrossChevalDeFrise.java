@@ -30,7 +30,7 @@ public class CrossChevalDeFrise extends CommandGroup {
 		addParallel(new MoveFolderDown(), 0.5);
 		addSequential(new PIDStraightDriveByDistance(1.4, Constants.HIGH_MAX_SPEED));
 		addParallel(new PIDStay(), 2.25);
-		addSequential(new MoveTrizDown(), 2.25);
+		addSequential(new MoveTrizDown(Constants.TRIZ_DOWN_SPEED), 2.25);
 		addSequential(new PIDStraightDriveByDistance(1.5, Constants.MEDIUM_MAX_SPEED));
 		addSequential(new PIDStraightDriveByDistance(0.5, Constants.LOW_MAX_SPEED));
 
