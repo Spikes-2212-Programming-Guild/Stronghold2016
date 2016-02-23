@@ -21,6 +21,7 @@ public class Cameras extends Subsystem {
 	private final double Y_ANGLE_PER_PIXEL = VIEW_ANGLE_UP / CAMERA_RESOLUTION_Y;
 	private final double X_ANGLE_PER_PIXEL = VIEW_ANGLE_SIDE / CAMERA_RESOLUTION_X;
 	public final double WIDTH_MIN = 0;
+	
 
 	public final NIVision.Range rRange = new NIVision.Range(230, 255);
 	public final NIVision.Range gRange = new NIVision.Range(250, 255);
@@ -142,7 +143,9 @@ public class Cameras extends Subsystem {
 		}
 		return -1;
 	}
-
+	public void updateCon(){
+		
+	}
 	public double getDistance() {
 		double angleUp = getAngleUp();
 		return TARGET_HEIGHT / Math.tan(Math.toRadians(angleUp + CAMERA_ANGLE));
