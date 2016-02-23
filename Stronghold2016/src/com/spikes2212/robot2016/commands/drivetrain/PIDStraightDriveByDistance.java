@@ -8,7 +8,7 @@ import com.spikes2212.robot2016.pid.DoublePIDCommand;
 public class PIDStraightDriveByDistance extends DoublePIDCommand {
 
 	private static final double KP = 2;
-	private static final double KI = 0.01;
+	private static final double KI = 0.0;
 	private static final double KD = 8;
 	private static final double TOLERANCE = 0.01;
 

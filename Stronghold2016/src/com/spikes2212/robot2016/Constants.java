@@ -24,9 +24,9 @@ public class Constants {
 	public static final double FEET = 0.3048;
 	public static final double INCH = FEET / 12;
 
-	public static final double TRIZ_UP_SPEED = 0.4;
+	public static final double TRIZ_UP_SPEED = 0.7;
 	// 0.4
-	public static final double TRIZ_DOWN_SPEED = 0.3;
+	public static final double TRIZ_DOWN_SPEED = 0.5;
 	// 0.3
 	public static final double FOLDER_UP_SPEED = 0.45;
 	public static final double FOLDER_DOWN_SPEED = 0.45;
