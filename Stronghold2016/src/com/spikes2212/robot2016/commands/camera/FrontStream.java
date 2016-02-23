@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class FrontStream extends Command {
 
 	private Image image;
+	private boolean running;
 
 	public FrontStream() {
 		requires(vision);
@@ -18,24 +19,31 @@ public class FrontStream extends Command {
 
 	@Override
 	protected void initialize() {
-		image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
-		vision.startFront();
+		running = true;
+		try {
+			image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
+			vision.startFront();
+		} catch (Exception e) {
+			running = false;
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	protected void execute() {
-		try {
-			vision.getImage(image);
-			vision.stream(image);
+		if (!isFinished()) {
+			try {
+				vision.getImage(image);
+				vision.stream(image);
+			} catch (Exception e) {
 
-		} catch (Exception e) {
-
+			}
 		}
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return !running;
 	}
 
 	@Override

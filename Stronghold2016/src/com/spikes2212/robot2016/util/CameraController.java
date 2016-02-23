@@ -27,17 +27,31 @@ public class CameraController {
 	}
 
 	public void start() {
-		camera.ifPresent(USBCamera::startCapture);
-		on = true;
+		if (camera.isPresent()) {
+			try {
+				camera.get().startCapture();
+				on = true;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public void stop() {
-		camera.ifPresent(USBCamera::stopCapture);
-		on = false;
+		try {
+			camera.ifPresent(USBCamera::stopCapture);
+			on = false;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void getImage(Image image) {
-		camera.ifPresent(c -> c.getImage(image));
+		try {
+			camera.ifPresent(c -> c.getImage(image));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public boolean hasCamera() {
@@ -50,9 +64,13 @@ public class CameraController {
 
 	public void setExposure(int exposure) {
 		if (exposure != this.exposure) {
-			this.exposure = exposure;
-			camera.ifPresent(c -> c.setExposureManual(exposure));
-			camera.ifPresent(USBCamera::updateSettings);
+			try {
+				camera.ifPresent(c -> c.setExposureManual(exposure));
+				camera.ifPresent(USBCamera::updateSettings);
+				this.exposure = exposure;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class RearStream extends Command {
 
 	private Image image;
+	private boolean running;
 
 	public RearStream() {
 		requires(vision);
@@ -18,19 +19,31 @@ public class RearStream extends Command {
 
 	@Override
 	protected void initialize() {
-		image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
-		vision.startRear();
+		running = true;
+		try {
+			image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
+			vision.startRear();
+		} catch (Exception e) {
+			running = false;
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	protected void execute() {
-		vision.getImage(image);
-		vision.stream(image);
+		if (!isFinished()) {
+			try {
+				vision.getImage(image);
+				vision.stream(image);
+			} catch (Exception e) {
+
+			}
+		}
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return !running;
 	}
 
 	@Override

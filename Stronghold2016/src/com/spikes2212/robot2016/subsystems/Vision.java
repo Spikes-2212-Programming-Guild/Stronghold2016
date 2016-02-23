@@ -57,7 +57,11 @@ public class Vision extends Subsystem {
 	}
 
 	public void stream(Image image) {
-		CameraServer.getInstance().setImage(image);
+		try {
+			CameraServer.getInstance().setImage(image);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
