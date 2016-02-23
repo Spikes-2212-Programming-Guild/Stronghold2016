@@ -79,7 +79,9 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("No autonomous", new CommandGroup());
-		autoChooser.addObject("Cross", new Cross(Defense.LOW_BAR));
+		autoChooser.addObject("Low Bar", new Cross(Defense.LOW_BAR));
+		autoChooser.addObject("Rough Terrain", new Cross(Defense.ROUGH_TERRAIN));
+		autoChooser.addObject("Cheval De Frise", new Cross(Defense.CHEVAL_DE_FRISE));
 		SmartDashboard.putData("Auto", autoChooser);
 		image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
 		binary = NIVision.imaqCreateImage(ImageType.IMAGE_U8, 0);

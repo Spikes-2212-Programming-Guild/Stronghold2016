@@ -13,7 +13,6 @@ public class CrossRockWall extends CommandGroup {
 	public static final double SPEED = 0;
 
 	public CrossRockWall() {
-		addSequential(new ExpandAll());
-		addSequential(new StraightDriveBySpeedAndTime(SPEED, 3));
+		addSequential(new StraightDriveBySpeedAndTime(SPEED, 2.5));
 	}
 }
