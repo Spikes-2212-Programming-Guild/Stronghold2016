@@ -53,7 +53,7 @@ public class OI /* GEVALD */ {
 	JoystickButton rightDriverTrigger;
 	JoystickButton leftDriverTrigger;
 
-	JoystickButton rightDriver3;
+	JoystickButton rightDriver2;
 	JoystickButton rightDriver4;
 	JoystickButton rightDriver5;
 
@@ -71,7 +71,7 @@ public class OI /* GEVALD */ {
 	public OI() {
 		rightDriverTrigger = new JoystickButton(rightDriver, 1);
 		leftDriverTrigger = new JoystickButton(leftDriver, 1);
-		rightDriver3 = new JoystickButton(rightDriver, 3);
+		rightDriver2 = new JoystickButton(rightDriver, 2);
 		rightDriver4 = new JoystickButton(rightDriver, 4);
 		rightDriver5 = new JoystickButton(rightDriver, 5);
 
@@ -96,7 +96,7 @@ public class OI /* GEVALD */ {
 
 		rightDriver5.whenPressed(new FrontStream());
 		rightDriver4.whenPressed(new RearStream());
-		rightDriver3.whenPressed(new StopCameras());
+		rightDriver2.whenPressed(new StopCameras());
 		
 
 		navigatorYellow.whileHeld(new MoveFolderUp());

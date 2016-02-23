@@ -3,7 +3,6 @@ package com.spikes2212.robot2016.util;
 import java.util.Optional;
 
 import com.ni.vision.NIVision.Image;
-import com.spikes2212.robot2016.Constants;
 
 import edu.wpi.first.wpilibj.vision.USBCamera;
 
