@@ -1,61 +1,69 @@
 <xml version="1.0">
 <dashboard>
 	<widget field="rearExposure" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="4" y="298"/>
+		<location x="0" y="224"/>
+		<width>160</width>
 	</widget>
 	<widget field="frontExposure" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="272"/>
+		<location x="0" y="192"/>
+		<width>160</width>
 	</widget>
 	<widget field="max speed" type="String" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
-		<location x="138" y="31"/>
+		<location x="176" y="192"/>
 		<width>176</width>
-		<height>60</height>
+		<height>48</height>
 		<property name="Font Size" value="30"/>
 	</widget>
 	<widget field="folder down" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="14" y="196"/>
-		<width>109</width>
-		<height>52</height>
+		<location x="0" y="96"/>
+		<width>112</width>
+		<height>48</height>
 	</widget>
 	<widget field="triz up" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="15" y="11"/>
+		<location x="368" y="32"/>
 		<width>80</width>
-		<height>52</height>
+		<height>48</height>
 	</widget>
 	<widget field="boulder inside" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="126" y="92"/>
-		<width>266</width>
-		<height>170</height>
+		<location x="124" y="16"/>
+		<width>228</width>
+		<height>163</height>
 	</widget>
 	<widget field="triz down" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="15" y="69"/>
+		<location x="368" y="96"/>
 		<width>96</width>
-		<height>54</height>
+		<height>47</height>
 	</widget>
 	<widget field="folder up" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="14" y="131"/>
+		<location x="0" y="32"/>
 		<width>96</width>
-		<height>56</height>
+		<height>48</height>
 	</widget>
 	<widget field="Auto" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
 		<location x="175" y="271"/>
 	</widget>
 	<widget field="RetractAll" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="295" y="291"/>
+		<location x="192" y="256"/>
 	</widget>
 	<widget field="right distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="162" y="388"/>
+		<location x="176" y="320"/>
+		<width>176</width>
+		<height>32</height>
 	</widget>
 	<widget field="yaw angle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="10" y="359"/>
+		<location x="0" y="272"/>
+		<width>160</width>
+		<height>20</height>
 	</widget>
 	<widget field="left distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="8" y="387"/>
+		<location x="0" y="320"/>
+		<width>160</width>
+		<height>32</height>
 	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
-		<location x="400" y="6"/>
-		<width>376</width>
-		<height>276</height>
+		<location x="480" y="32"/>
+		<width>352</width>
+		<height>256</height>
 	</static-widget>
 </dashboard>
 <live-window>
