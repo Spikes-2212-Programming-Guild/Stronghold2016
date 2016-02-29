@@ -12,7 +12,7 @@ public class StopCameras extends Command {
 
 	@Override
 	protected void initialize() {
-		vision.stop();
+		new Thread(() -> vision.stop()).start();
 	}
 
 	@Override

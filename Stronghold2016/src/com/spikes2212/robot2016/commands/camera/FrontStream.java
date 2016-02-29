@@ -12,7 +12,7 @@ public class FrontStream extends Command {
 
 	@Override
 	protected void initialize() {
-		vision.startFront();
+		new Thread(() -> vision.startFront()).start();
 	}
 
 	@Override

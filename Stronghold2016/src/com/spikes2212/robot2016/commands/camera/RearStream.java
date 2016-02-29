@@ -12,7 +12,7 @@ public class RearStream extends Command {
 
 	@Override
 	protected void initialize() {
-		vision.startRear();
+		new Thread(() -> vision.startRear()).start();
 	}
 
 	@Override
