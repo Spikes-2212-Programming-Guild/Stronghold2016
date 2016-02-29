@@ -26,12 +26,10 @@ public class StopCameras extends Command {
 
 	@Override
 	protected void end() {
-
 	}
 
 	@Override
 	protected void interrupted() {
-		end();
 	}
 
 }

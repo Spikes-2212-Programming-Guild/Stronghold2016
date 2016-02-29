@@ -1,8 +1,5 @@
 package com.spikes2212.robot2016;
 
-import com.ni.vision.NIVision;
-import com.ni.vision.NIVision.Image;
-import com.ni.vision.NIVision.ImageType;
 import com.spikes2212.robot2016.Field.Defense;
 import com.spikes2212.robot2016.RobotMap.CAN;
 import com.spikes2212.robot2016.RobotMap.DIO;
@@ -10,6 +7,7 @@ import com.spikes2212.robot2016.RobotMap.PWM;
 import com.spikes2212.robot2016.RobotMap.USB;
 import com.spikes2212.robot2016.commands.RetractAll;
 import com.spikes2212.robot2016.commands.autonomous.Cross;
+import com.spikes2212.robot2016.commands.camera.VisionRunnable;
 import com.spikes2212.robot2016.subsystems.Drivetrain;
 import com.spikes2212.robot2016.subsystems.Folder;
 import com.spikes2212.robot2016.subsystems.Picker;
@@ -53,9 +51,9 @@ public class Robot extends IterativeRobot {
 
 	public static Command autoCommand;
 
-	SendableChooser autoChooser;
+	Thread visionThread;
 
-	Image image, binary;
+	SendableChooser autoChooser;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -76,6 +74,8 @@ public class Robot extends IterativeRobot {
 		folder = new Folder(PWM.FOLDER_MOTOR, DIO.FOLDER_UP, DIO.FOLDER_DOWN, DIO.FOLDER_ENCODER_A,
 				DIO.FOLDER_ENCODER_B);
 		vision = new Vision(USB.FRONT_CAMERA, USB.REAR_CAMERA);
+		visionThread = new Thread(new VisionRunnable());
+		visionThread.start();
 		oi = new OI();
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("No autonomous", new CommandGroup());
@@ -83,8 +83,6 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Rough Terrain", new Cross(Defense.ROUGH_TERRAIN));
 		autoChooser.addObject("Cheval De Frise", new Cross(Defense.CHEVAL_DE_FRISE));
 		SmartDashboard.putData("Auto", autoChooser);
-		image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
-		binary = NIVision.imaqCreateImage(ImageType.IMAGE_U8, 0);
 		SmartDashboard.putData(new RetractAll());
 		SmartDashboard.putNumber("frontExposure", Constants.EXPOSURE_FRONT);
 		SmartDashboard.putNumber("rearExposure", Constants.EXPOSURE_REAR);

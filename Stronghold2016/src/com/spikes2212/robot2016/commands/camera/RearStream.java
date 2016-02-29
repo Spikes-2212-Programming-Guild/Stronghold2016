@@ -2,16 +2,9 @@ package com.spikes2212.robot2016.commands.camera;
 
 import static com.spikes2212.robot2016.Robot.vision;
 
-import com.ni.vision.NIVision;
-import com.ni.vision.NIVision.Image;
-import com.ni.vision.NIVision.ImageType;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 public class RearStream extends Command {
-
-	private Image image;
-	private boolean running;
 
 	public RearStream() {
 		requires(vision);
@@ -19,41 +12,24 @@ public class RearStream extends Command {
 
 	@Override
 	protected void initialize() {
-		running = true;
-		try {
-			image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
-			vision.startRear();
-		} catch (Exception e) {
-			running = false;
-			e.printStackTrace();
-		}
+		vision.startRear();
 	}
 
 	@Override
 	protected void execute() {
-		if (!isFinished()) {
-			try {
-				vision.getImage(image);
-				vision.stream(image);
-			} catch (Exception e) {
-
-			}
-		}
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return !running;
+		return true;
 	}
 
 	@Override
 	protected void end() {
-
 	}
 
 	@Override
 	protected void interrupted() {
-		end();
 	}
 
 }
