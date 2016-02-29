@@ -8,8 +8,10 @@ public class VisionRunnable implements Runnable {
 
 	@Override
 	public void run() {
-		vision.stream();
-		Timer.delay(0.005);
+		while (true) {
+			vision.tryStream();
+			Timer.delay(0.005);
+		}
 	}
 
 }

@@ -51,7 +51,7 @@ public class Vision extends Subsystem {
 		rear.setExposure(exposure);
 	}
 
-	public synchronized void stream() {
+	public synchronized void tryStream() {
 		try {
 			if (front.isOn()) {
 				front.getImage(image);

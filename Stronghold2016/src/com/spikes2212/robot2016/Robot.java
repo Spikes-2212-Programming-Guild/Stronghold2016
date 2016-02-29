@@ -123,7 +123,6 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
-
 		drivetrain.setMaximumSpeed(Constants.VERY_HIGH_MAX_SPEED);
 	}
 
