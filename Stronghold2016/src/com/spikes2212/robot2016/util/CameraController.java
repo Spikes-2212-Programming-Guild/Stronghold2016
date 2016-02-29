@@ -3,6 +3,7 @@ package com.spikes2212.robot2016.util;
 import java.util.Optional;
 
 import com.ni.vision.NIVision.Image;
+import com.spikes2212.robot2016.Constants;
 
 import edu.wpi.first.wpilibj.vision.USBCamera;
 
@@ -15,8 +16,8 @@ public class CameraController {
 	public CameraController(String name, int exposure) {
 		try {
 			USBCamera camera = new USBCamera(name);
-			camera.setFPS(15);
-			camera.setSize(160, 120);
+			camera.setFPS(Constants.FPS);
+			camera.setSize(Constants.RESOLUTION_WIDTH, Constants.RESOLUTION_HEIGHT);
 			camera.setExposureManual(exposure);
 			camera.updateSettings();
 			this.camera = Optional.of(camera);
@@ -40,10 +41,10 @@ public class CameraController {
 	public void stop() {
 		try {
 			camera.ifPresent(USBCamera::stopCapture);
-			on = false;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		on = false;
 	}
 
 	public void getImage(Image image) {

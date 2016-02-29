@@ -41,13 +41,13 @@ public class Constants {
 	public static final double TRIZ_ANGLE_PER_PULSE = 360.0 / 1024;
 	public static final double FOLDER_ANGLE_PER_PULSE = 360.0 / 1024;
 
-	public static final double DRIVETRAIN_WHEEL_PERIMETER = 0.203 * Math.PI
-			* METER;
+	public static final double DRIVETRAIN_WHEEL_PERIMETER = 0.203 * Math.PI * METER;
 	public static final double LEFT_DISTANCE_PER_PULSE = DRIVETRAIN_WHEEL_PERIMETER / 360;
 	public static final double RIGHT_DISTANCE_PER_PULSE = DRIVETRAIN_WHEEL_PERIMETER / 360;
 	public static final double FREE_FALL_GRAVITY = 1.024;
 	public static final double MAX_LEFT_VELOCITY = 4;
 	public static final double MAX_RIGHT_VELOCITY = 4;
+
 	public static final double VERY_HIGH_MAX_SPEED = 1.0;
 	public static final double HIGH_MAX_SPEED = 0.6;
 	public static final double CROSS_LOW_BAR_MAX_SPEED = 0.4;
@@ -55,10 +55,13 @@ public class Constants {
 	public static final double LOW_MAX_SPEED = 0.35;
 
 	public static final double SHOOTING_HIGH_VOLTAGE = 11;
-
 	public static final double SHOOTER_ACCELERATION_TIME = 5;
 	public static final double TIME_GAP_FOR_SHOOTING = 2;
 	public static final double ROLL_IN_TIME = 2;
+
 	public static final int EXPOSURE_FRONT = 0;
 	public static final int EXPOSURE_REAR = 2;
+	public static final int FPS = 30;
+	public static final int RESOLUTION_WIDTH = 320;
+	public static final int RESOLUTION_HEIGHT = 240;
 }
