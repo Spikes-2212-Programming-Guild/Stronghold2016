@@ -1,12 +1,13 @@
 package com.spikes2212.robot2016;
 
-import com.spikes2212.robot2016.Field.Defense;
 import com.spikes2212.robot2016.RobotMap.CAN;
 import com.spikes2212.robot2016.RobotMap.DIO;
 import com.spikes2212.robot2016.RobotMap.PWM;
 import com.spikes2212.robot2016.RobotMap.USB;
 import com.spikes2212.robot2016.commands.RetractAll;
-import com.spikes2212.robot2016.commands.autonomous.Cross;
+import com.spikes2212.robot2016.commands.autonomous.CrossChevalDeFrise;
+import com.spikes2212.robot2016.commands.autonomous.CrossLowBar;
+import com.spikes2212.robot2016.commands.autonomous.CrossRoughTerrain;
 import com.spikes2212.robot2016.commands.camera.VisionRunnable;
 import com.spikes2212.robot2016.subsystems.Drivetrain;
 import com.spikes2212.robot2016.subsystems.Folder;
@@ -74,9 +75,9 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("No autonomous", new CommandGroup());
-		autoChooser.addObject("Low Bar", new Cross(Defense.LOW_BAR));
-		autoChooser.addObject("Rough Terrain", new Cross(Defense.ROUGH_TERRAIN));
-		autoChooser.addObject("Cheval De Frise", new Cross(Defense.CHEVAL_DE_FRISE));
+		autoChooser.addObject("Low Bar", new CrossLowBar());
+		autoChooser.addObject("Rough Terrain", new CrossRoughTerrain());
+		autoChooser.addObject("Cheval De Frise", new CrossChevalDeFrise());
 		SmartDashboard.putData("Auto", autoChooser);
 		SmartDashboard.putData(new RetractAll());
 		SmartDashboard.putNumber("frontExposure", Constants.EXPOSURE_FRONT);
