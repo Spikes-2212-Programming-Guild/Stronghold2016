@@ -3,7 +3,6 @@ package com.spikes2212.robot2016.commands.autonomous;
 import com.spikes2212.robot2016.Constants;
 import com.spikes2212.robot2016.commands.drivetrain.PIDStay;
 import com.spikes2212.robot2016.commands.drivetrain.PIDStraightDriveByDistance;
-import com.spikes2212.robot2016.commands.drivetrain.SetDrivetrainMaximumSpeed;
 import com.spikes2212.robot2016.commands.folder.MoveFolderDown;
 import com.spikes2212.robot2016.commands.triz.MoveTrizDown;
 
@@ -26,7 +25,6 @@ public class CrossChevalDeFrise extends CommandGroup {
 	public static final double BACKWARD_AFTER_LIFTING_DISTANCE = 0;
 
 	public CrossChevalDeFrise() {
-		addSequential(new SetDrivetrainMaximumSpeed(Constants.HIGH_MAX_SPEED));
 		addParallel(new MoveFolderDown(), 0.5);
 		addSequential(new PIDStraightDriveByDistance(1.4, 1.4 * 2.8 / 3.2, Constants.HIGH_MAX_SPEED), 2.5);
 		addParallel(new PIDStay(), 1.2);
