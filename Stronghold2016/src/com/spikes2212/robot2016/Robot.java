@@ -5,9 +5,6 @@ import com.spikes2212.robot2016.RobotMap.DIO;
 import com.spikes2212.robot2016.RobotMap.PWM;
 import com.spikes2212.robot2016.RobotMap.USB;
 import com.spikes2212.robot2016.commands.RetractAll;
-import com.spikes2212.robot2016.commands.autonomous.CrossChevalDeFrise;
-import com.spikes2212.robot2016.commands.autonomous.CrossLowBar;
-import com.spikes2212.robot2016.commands.autonomous.CrossRoughTerrain;
 import com.spikes2212.robot2016.commands.camera.VisionRunnable;
 import com.spikes2212.robot2016.subsystems.Drivetrain;
 import com.spikes2212.robot2016.subsystems.Folder;
@@ -17,12 +14,10 @@ import com.spikes2212.robot2016.subsystems.Triz;
 import com.spikes2212.robot2016.subsystems.Vision;
 import com.spikes2212.robot2016.util.Gearbox;
 
-import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -44,7 +39,6 @@ public class Robot extends IterativeRobot {
 	public static Folder folder;
 	public static Picker picker;
 	public static Shooter shooter;
-	public static Accelerometer accelerometer;
 	public static Vision vision;
 
 	public static Command autoCommand;
@@ -59,10 +53,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		accelerometer = new BuiltInAccelerometer();
 		left = new Gearbox(PWM.LEFT_FRONT_MOTOR, PWM.LEFT_REAR_MOTOR, DIO.LEFT_ENCODER_A, DIO.LEFT_ENCODER_B);
 		right = new Gearbox(PWM.RIGHT_FRONT_MOTOR, PWM.RIGHT_REAR_MOTOR, DIO.RIGHT_ENCODER_A, DIO.RIGHT_ENCODER_B);
-		drivetrain = new Drivetrain(left, right, accelerometer);
+		drivetrain = new Drivetrain(left, right);
 		triz = new Triz(PWM.TRIZ_MOTOR, DIO.TRIZ_UP, DIO.TRIZ_DOWN, DIO.TRIZ_UNDER_PORTCULLIS, DIO.TRIZ_ENCODER_A,
 				DIO.TRIZ_ENCODER_B);
 		shooter = new Shooter(CAN.SHOOTER_MOTOR);
@@ -75,9 +68,6 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("No autonomous", new CommandGroup());
-		autoChooser.addObject("Low Bar", new CrossLowBar());
-		autoChooser.addObject("Rough Terrain", new CrossRoughTerrain());
-		autoChooser.addObject("Cheval De Frise", new CrossChevalDeFrise());
 		SmartDashboard.putData("Auto", autoChooser);
 		SmartDashboard.putData(new RetractAll());
 		SmartDashboard.putNumber("frontExposure", Constants.EXPOSURE_FRONT);

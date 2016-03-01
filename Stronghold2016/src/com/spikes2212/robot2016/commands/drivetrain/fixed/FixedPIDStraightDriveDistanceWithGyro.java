@@ -4,6 +4,7 @@ import static com.spikes2212.robot2016.Robot.drivetrain;
 
 import com.spikes2212.robot2016.pid.DoublePIDCommand;
 
+@Deprecated
 public class FixedPIDStraightDriveDistanceWithGyro extends DoublePIDCommand {
 
 	private static final double KP_STRAIGHT = 1;

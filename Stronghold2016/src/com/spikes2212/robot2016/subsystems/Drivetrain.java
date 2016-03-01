@@ -7,18 +7,15 @@ import com.spikes2212.robot2016.util.Gearbox;
 import com.spikes2212.robot2016.util.Util;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 
 public class Drivetrain extends Subsystem {
 
 	private Gearbox left, right;
-	private Accelerometer accelerometer;
 	private double maxSpeed = Constants.VERY_HIGH_MAX_SPEED;
 
-	public Drivetrain(Gearbox left, Gearbox right, Accelerometer accelerometer) {
+	public Drivetrain(Gearbox left, Gearbox right) {
 		this.left = left;
 		this.right = right;
-		this.accelerometer = accelerometer;
 		left.setDistancePerPulse(Constants.LEFT_DISTANCE_PER_PULSE);
 		right.setDistancePerPulse(Constants.RIGHT_DISTANCE_PER_PULSE);
 	}
@@ -31,21 +28,12 @@ public class Drivetrain extends Subsystem {
 		setTwoSides(speed, -speed);
 	}
 
-	/*
-	 * 
-	 */
+	@Deprecated
 	public double getYawAngle() {
 		return 0;
 	}
 
-	public double getZAcceleration() {
-		return accelerometer.getZ();
-	}
-
-	public double getAngleWithFloor() {
-		return Math.toDegrees(Math.acos(Math.max(-1, Math.min(1, getZAcceleration() / Constants.FREE_FALL_GRAVITY))));
-	}
-
+	@Deprecated
 	public double getYawRate() {
 		return 0;
 	}

@@ -4,6 +4,7 @@ import com.spikes2212.robot2016.Constants;
 import com.spikes2212.robot2016.Robot;
 import com.spikes2212.robot2016.pid.PIDCommand;
 
+@Deprecated
 public class PIDTurnDriveByAngle extends PIDCommand {
 
 	private static final double KP = 0.06;
@@ -33,7 +34,7 @@ public class PIDTurnDriveByAngle extends PIDCommand {
 	@Override
 	protected void initialize() {
 		initialAngle = Robot.drivetrain.getYawAngle();
-		getCalculator().setPID(KP, KI,KD);
+		getCalculator().setPID(KP, KI, KD);
 		getCalculator().setTolerance(TOLERANCE);
 		getCalculator().setSetpoint(angle);
 	}
