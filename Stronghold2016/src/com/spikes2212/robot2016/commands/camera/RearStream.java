@@ -8,6 +8,7 @@ public class RearStream extends Command {
 
 	public RearStream() {
 		requires(vision);
+		setRunWhenDisabled(true);
 	}
 
 	@Override

@@ -8,19 +8,16 @@ import com.spikes2212.robot2016.util.Util;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 public class Drivetrain extends Subsystem {
 
 	private Gearbox left, right;
-	private Gyro gyro;
 	private Accelerometer accelerometer;
 	private double maxSpeed = Constants.VERY_HIGH_MAX_SPEED;
 
-	public Drivetrain(Gearbox left, Gearbox right, Gyro gyro, Accelerometer accelerometer) {
+	public Drivetrain(Gearbox left, Gearbox right, Accelerometer accelerometer) {
 		this.left = left;
 		this.right = right;
-		this.gyro = gyro;
 		this.accelerometer = accelerometer;
 		left.setDistancePerPulse(Constants.LEFT_DISTANCE_PER_PULSE);
 		right.setDistancePerPulse(Constants.RIGHT_DISTANCE_PER_PULSE);
@@ -34,8 +31,11 @@ public class Drivetrain extends Subsystem {
 		setTwoSides(speed, -speed);
 	}
 
+	/*
+	 * 
+	 */
 	public double getYawAngle() {
-		return -gyro.getAngle();
+		return 0;
 	}
 
 	public double getZAcceleration() {
@@ -47,7 +47,7 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public double getYawRate() {
-		return -gyro.getRate();
+		return 0;
 	}
 
 	// arcade
@@ -105,7 +105,7 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void resetGyro() {
-		gyro.reset();
+		// gyro.reset();
 	}
 
 	public double getLeftVelocity() {
@@ -119,7 +119,7 @@ public class Drivetrain extends Subsystem {
 	public void setMaximumSpeed(double maxSpeed) {
 		this.maxSpeed = maxSpeed;
 	}
-	
+
 	public double getMaximumSpeed() {
 		return maxSpeed;
 	}

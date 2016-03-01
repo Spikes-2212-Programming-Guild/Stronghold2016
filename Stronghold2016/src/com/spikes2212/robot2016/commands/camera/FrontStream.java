@@ -8,6 +8,7 @@ public class FrontStream extends Command {
 
 	public FrontStream() {
 		requires(vision);
+		setRunWhenDisabled(true);
 	}
 
 	@Override

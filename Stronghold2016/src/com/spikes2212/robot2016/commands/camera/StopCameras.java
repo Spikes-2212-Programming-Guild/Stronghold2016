@@ -8,6 +8,7 @@ public class StopCameras extends Command {
 
 	public StopCameras() {
 		requires(vision);
+		setRunWhenDisabled(true);
 	}
 
 	@Override

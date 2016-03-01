@@ -16,14 +16,12 @@ import com.spikes2212.robot2016.subsystems.Triz;
 import com.spikes2212.robot2016.subsystems.Vision;
 import com.spikes2212.robot2016.util.Gearbox;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -45,7 +43,6 @@ public class Robot extends IterativeRobot {
 	public static Folder folder;
 	public static Picker picker;
 	public static Shooter shooter;
-	public static Gyro gyro;
 	public static Accelerometer accelerometer;
 	public static Vision vision;
 
@@ -61,12 +58,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		gyro = new ADXRS450_Gyro();
-		gyro.reset();
 		accelerometer = new BuiltInAccelerometer();
 		left = new Gearbox(PWM.LEFT_FRONT_MOTOR, PWM.LEFT_REAR_MOTOR, DIO.LEFT_ENCODER_A, DIO.LEFT_ENCODER_B);
 		right = new Gearbox(PWM.RIGHT_FRONT_MOTOR, PWM.RIGHT_REAR_MOTOR, DIO.RIGHT_ENCODER_A, DIO.RIGHT_ENCODER_B);
-		drivetrain = new Drivetrain(left, right, gyro, accelerometer);
+		drivetrain = new Drivetrain(left, right, accelerometer);
 		triz = new Triz(PWM.TRIZ_MOTOR, DIO.TRIZ_UP, DIO.TRIZ_DOWN, DIO.TRIZ_UNDER_PORTCULLIS, DIO.TRIZ_ENCODER_A,
 				DIO.TRIZ_ENCODER_B);
 		shooter = new Shooter(CAN.SHOOTER_MOTOR);
@@ -154,7 +149,6 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("folder up", folder.isUp());
 		SmartDashboard.putBoolean("folder down", folder.isDown());
 		SmartDashboard.putBoolean("boulder inside", picker.isBoulderInside());
-		SmartDashboard.putNumber("yaw angle", drivetrain.getYawAngle());
 		SmartDashboard.putString("max speed", drivetrain.getMaximumSpeed() * 100 + "%");
 
 	}
