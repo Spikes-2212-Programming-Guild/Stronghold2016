@@ -18,19 +18,17 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class CrossChevalDeFrise extends CommandGroup {
 
-	public static final double ROTATE_ANGLE = 180;
-	public static final double FORWARD_DISTANCE = 1.8;
-	public static final double FORWARD_AFTER_LIFTING_DISTANCE = 0;
-	public static final double BACKWARD_DISTANCE = 0;
-	public static final double BACKWARD_AFTER_LIFTING_DISTANCE = 0;
+	public static final double DEFENCE_DISTANCE = 1.4;
+	public static final double INSIDE_DEFENCE_DISTANCE = 2.5;
+	public static final double AFTER_DEFENCE_DISTANCE = 0.5;
 
 	public CrossChevalDeFrise() {
 		addParallel(new MoveFolderDown(), 0.5);
-		addSequential(new PIDStraightDriveByDistance(1.4, 1.4 * 2.8 / 3.2, Constants.HIGH_MAX_SPEED), 2.5);
+		addSequential(new PIDStraightDriveByDistance(DEFENCE_DISTANCE, Constants.HIGH_MAX_SPEED), 2.5);
 		addParallel(new PIDStay(), 1.2);
 		addSequential(new MoveTrizDown(Constants.TRIZ_DOWN_SPEED), 2.25);
-		addSequential(new PIDStraightDriveByDistance(2.5, 2.5 * 2.8 / 3.2, Constants.HIGH_MAX_SPEED), 3.3);
-		addSequential(new PIDStraightDriveByDistance(0.5, Constants.LOW_MAX_SPEED));
+		addSequential(new PIDStraightDriveByDistance(INSIDE_DEFENCE_DISTANCE, Constants.HIGH_MAX_SPEED), 3.3);
+		addSequential(new PIDStraightDriveByDistance(AFTER_DEFENCE_DISTANCE, Constants.LOW_MAX_SPEED));
 
 		// addSequential(new
 		// SetDrivetrainMaximumSpeed(Constants.LOW_MAX_SPEED));
