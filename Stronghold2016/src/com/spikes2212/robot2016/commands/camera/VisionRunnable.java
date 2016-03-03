@@ -9,8 +9,12 @@ public class VisionRunnable implements Runnable {
 	@Override
 	public void run() {
 		while (true) {
-			vision.tryStream();
-			Timer.delay(0.005);
+			try {
+				vision.tryStream();
+				Timer.delay(0.005);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
