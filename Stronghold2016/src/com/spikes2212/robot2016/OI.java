@@ -1,6 +1,5 @@
 package com.spikes2212.robot2016;
 
-import com.spikes2212.robot2016.commands.Shoot;
 import com.spikes2212.robot2016.commands.autonomous.InitializeChevalDeFrise;
 import com.spikes2212.robot2016.commands.autonomous.InitializeLowBar;
 import com.spikes2212.robot2016.commands.camera.FrontStream;
@@ -12,6 +11,7 @@ import com.spikes2212.robot2016.commands.folder.MoveFolderDown;
 import com.spikes2212.robot2016.commands.folder.MoveFolderUp;
 import com.spikes2212.robot2016.commands.picker.RollBoulderInAndMore;
 import com.spikes2212.robot2016.commands.picker.RollOut;
+import com.spikes2212.robot2016.commands.shooter.RotateShooterByVoltage;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -108,7 +108,7 @@ public class OI /* GEVALD */ {
 		navigatorRB.whileHeld(new RollOut());
 
 		// A high voltage below 12 such as 11.8
-		navigatorLT.whileHeld(new Shoot(Constants.SHOOTING_HIGH_VOLTAGE));
+		navigatorLT.whileHeld(new RotateShooterByVoltage(Constants.SHOOTING_HIGH_VOLTAGE));
 
 		navigatorBack.whenPressed(new InitializeLowBar());
 		navigatorStart.whenPressed(new InitializeChevalDeFrise());
