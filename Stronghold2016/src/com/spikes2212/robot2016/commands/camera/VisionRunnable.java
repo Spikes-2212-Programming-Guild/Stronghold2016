@@ -8,7 +8,7 @@ public class VisionRunnable implements Runnable {
 
 	@Override
 	public void run() {
-		while (true) {
+		while (!Thread.interrupted()) {
 			vision.tryStream();
 			Timer.delay(0.005);
 		}
