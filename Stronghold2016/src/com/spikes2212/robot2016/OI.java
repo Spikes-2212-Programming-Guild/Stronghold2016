@@ -1,5 +1,6 @@
 package com.spikes2212.robot2016;
 
+import com.spikes2212.robot2016.commands.StopAll;
 import com.spikes2212.robot2016.commands.autonomous.InitializeChevalDeFrise;
 import com.spikes2212.robot2016.commands.autonomous.InitializeLowBar;
 import com.spikes2212.robot2016.commands.camera.FrontStream;
@@ -68,6 +69,7 @@ public class OI /* GEVALD */ {
 	JoystickButton navigatorRT;
 	JoystickButton navigatorBack;
 	JoystickButton navigatorStart;
+	JoystickButton navigator11;
 
 	public OI() {
 		rightDriverTrigger = new JoystickButton(rightDriver, 1);
@@ -90,6 +92,7 @@ public class OI /* GEVALD */ {
 
 		navigatorBack = new JoystickButton(rightNavigator, 9);
 		navigatorStart = new JoystickButton(rightNavigator, 10);
+		navigator11 = new JoystickButton(rightNavigator, 11);
 
 		rightDriverTrigger.whileHeld(new TwoJoysticksDrive(this::getLeftStraight, this::getRightStraight));
 		// A low value between 0 and 1 such as 0.4
@@ -112,6 +115,7 @@ public class OI /* GEVALD */ {
 
 		navigatorBack.whenPressed(new InitializeLowBar());
 		navigatorStart.whenPressed(new InitializeChevalDeFrise());
+		navigator11.whenPressed(new StopAll());
 
 	}
 

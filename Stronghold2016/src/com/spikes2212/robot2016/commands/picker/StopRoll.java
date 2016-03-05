@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class StopRoll extends Command {
 
-	public StopRoll(double timeout) {
+	public StopRoll() {
 		requires(picker);
 	}
 

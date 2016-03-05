@@ -12,7 +12,7 @@ public class Reach extends CommandGroup {
 	public Reach() {
 		addParallel(new ExpandAll());
 		addSequential(new WaitCommand(1));
-		addSequential(new PIDStraightDriveByDistance(1.4, 1.4 * 2.8 / 3.2, Constants.HIGH_MAX_SPEED), 2.5);
+		addSequential(new PIDStraightDriveByDistance(1.4, 1.4 * 2.8 / 3.2, Constants.HIGH_MAX_SPEED));
 	}
 
 }
