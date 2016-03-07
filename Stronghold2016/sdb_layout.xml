@@ -1,5 +1,12 @@
 <xml version="1.0">
 <dashboard>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="9" y="367"/>
+		<property name="Text" value="Connection:"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
+		<location x="84" y="373"/>
+	</static-widget>
 	<widget field="rearExposure" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="224"/>
 		<width>160</width>
@@ -35,7 +42,7 @@
 		<height>47</height>
 	</widget>
 	<widget field="folder up" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="0" y="32"/>
+		<location x="1" y="32"/>
 		<width>96</width>
 		<height>48</height>
 	</widget>
@@ -43,7 +50,7 @@
 		<location x="175" y="271"/>
 	</widget>
 	<widget field="RetractAll" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="192" y="256"/>
+		<location x="175" y="260"/>
 	</widget>
 	<widget field="right distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="176" y="320"/>
@@ -62,8 +69,8 @@
 	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
 		<location x="480" y="32"/>
-		<width>352</width>
-		<height>256</height>
+		<width>690</width>
+		<height>508</height>
 	</static-widget>
 </dashboard>
 <live-window>
