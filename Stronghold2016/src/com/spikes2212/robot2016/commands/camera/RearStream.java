@@ -2,6 +2,8 @@ package com.spikes2212.robot2016.commands.camera;
 
 import static com.spikes2212.robot2016.Robot.vision;
 
+import com.spikes2212.robot2016.subsystems.Vision;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 public class RearStream extends Command {
@@ -13,7 +15,7 @@ public class RearStream extends Command {
 
 	@Override
 	protected void initialize() {
-		new Thread(() -> vision.startRear()).start();
+		new Thread(() -> vision.setCamera(Vision.CameraType.REAR)).start();
 	}
 
 	@Override

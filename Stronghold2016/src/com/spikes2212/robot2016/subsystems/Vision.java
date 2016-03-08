@@ -10,9 +10,12 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Vision extends Subsystem {
-
+	
+	public enum CameraType { FRONT, REAR, NONE }
+	
 	private CameraController front, rear;
 	private Image image;
+	private CameraType type = CameraType.NONE;
 
 	public Vision(String frontName, String rearName) {
 		this.front = new CameraController(frontName, Constants.EXPOSURE_FRONT);
@@ -27,20 +30,14 @@ public class Vision extends Subsystem {
 	public synchronized boolean isRearOn() {
 		return rear.isOn();
 	}
-
-	public synchronized void startFront() {
-		rear.stop();
-		front.start();
+	
+	public synchronized void setCamera(CameraType type) {
+		this.type = type;
 	}
 
-	public synchronized void startRear() {
-		front.stop();
+	public synchronized void start() {
 		rear.start();
-	}
-
-	public synchronized void stop() {
-		front.stop();
-		rear.stop();
+		front.start();
 	}
 
 	public synchronized void setFrontExposure(int exposure) {
@@ -53,10 +50,10 @@ public class Vision extends Subsystem {
 
 	public synchronized void tryStream() {
 		try {
-			if (front.isOn()) {
+			if (type == CameraType.FRONT) {
 				front.getImage(image);
 				CameraServer.getInstance().setImage(image);
-			} else if (rear.isOn()) {
+			} else if (type == CameraType.REAR) {
 				rear.getImage(image);
 				CameraServer.getInstance().setImage(image);
 			}
