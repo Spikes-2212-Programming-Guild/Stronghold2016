@@ -82,8 +82,6 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Portcullis", new CrossPortcullis());
 		SmartDashboard.putData("Auto", autoChooser);
 		SmartDashboard.putData(new RetractAll());
-		SmartDashboard.putNumber("frontExposure", Constants.EXPOSURE_FRONT);
-		SmartDashboard.putNumber("rearExposure", Constants.EXPOSURE_REAR);
 	}
 
 	/**
@@ -131,8 +129,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		vision.setFrontExposure((int) SmartDashboard.getNumber("frontExposure", Constants.EXPOSURE_FRONT));
-		vision.setRearExposure((int) SmartDashboard.getNumber("rearExposure", Constants.EXPOSURE_REAR));
 		writeSensorData();
 
 	}

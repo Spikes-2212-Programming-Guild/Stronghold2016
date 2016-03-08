@@ -3,7 +3,6 @@ package com.spikes2212.robot2016.subsystems;
 import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.Image;
 import com.ni.vision.NIVision.ImageType;
-import com.spikes2212.robot2016.Constants;
 import com.spikes2212.robot2016.util.CameraController;
 
 import edu.wpi.first.wpilibj.CameraServer;
@@ -15,8 +14,8 @@ public class Vision extends Subsystem {
 	private Image image;
 
 	public Vision(String frontName, String rearName) {
-		this.front = new CameraController(frontName, Constants.EXPOSURE_FRONT);
-		this.rear = new CameraController(rearName, Constants.EXPOSURE_REAR);
+		this.front = new CameraController(frontName);
+		this.rear = new CameraController(rearName);
 		this.image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
 	}
 
@@ -41,14 +40,6 @@ public class Vision extends Subsystem {
 	public synchronized void stop() {
 		front.stop();
 		rear.stop();
-	}
-
-	public synchronized void setFrontExposure(int exposure) {
-		front.setExposure(exposure);
-	}
-
-	public synchronized void setRearExposure(int exposure) {
-		rear.setExposure(exposure);
 	}
 
 	public synchronized void tryStream() {

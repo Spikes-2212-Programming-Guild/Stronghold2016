@@ -11,9 +11,8 @@ public class CameraController {
 
 	private Optional<USBCamera> camera;
 	private boolean on;
-	private int exposure;
 
-	public CameraController(String name, int exposure) {
+	public CameraController(String name) {
 		try {
 			USBCamera camera = new USBCamera(name);
 			camera.setFPS(Constants.FPS);
@@ -61,17 +60,5 @@ public class CameraController {
 
 	public boolean isOn() {
 		return on;
-	}
-
-	public void setExposure(int exposure) {
-		if (exposure != this.exposure) {
-			try {
-				camera.ifPresent(c -> c.setExposureManual(exposure));
-				camera.ifPresent(USBCamera::updateSettings);
-				this.exposure = exposure;
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
 	}
 }
