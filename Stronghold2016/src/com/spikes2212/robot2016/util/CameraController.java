@@ -18,7 +18,7 @@ public class CameraController {
 			USBCamera camera = new USBCamera(name);
 			camera.setFPS(Constants.FPS);
 			camera.setSize(Constants.RESOLUTION_WIDTH, Constants.RESOLUTION_HEIGHT);
-			camera.setExposureManual(exposure);
+			camera.setExposureAuto();
 			camera.updateSettings();
 			this.camera = Optional.of(camera);
 		} catch (Exception e) {
