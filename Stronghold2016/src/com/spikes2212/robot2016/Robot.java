@@ -98,6 +98,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		writeSensorData();
 	}
 
 	@Override
@@ -145,15 +146,18 @@ public class Robot extends IterativeRobot {
 	}
 
 	private void writeSensorData() {
-		SmartDashboard.putNumber("left distance", drivetrain.getLeftDistance());
-		SmartDashboard.putNumber("right distance", drivetrain.getRightDistance());
-		SmartDashboard.putBoolean("triz up", triz.isUp());
-		SmartDashboard.putBoolean("triz down", triz.isDown());
-		SmartDashboard.putBoolean("folder up", folder.isUp());
-		SmartDashboard.putBoolean("folder down", folder.isDown());
-		SmartDashboard.putBoolean("boulder inside", picker.isBoulderInside());
-		SmartDashboard.putString("max speed", drivetrain.getMaximumSpeed() * 100 + "%");
-
+		try {
+			SmartDashboard.putNumber("left distance", drivetrain.getLeftDistance());
+			SmartDashboard.putNumber("right distance", drivetrain.getRightDistance());
+			SmartDashboard.putBoolean("triz up", triz.isUp());
+			SmartDashboard.putBoolean("triz down", triz.isDown());
+			SmartDashboard.putBoolean("folder up", folder.isUp());
+			SmartDashboard.putBoolean("folder down", folder.isDown());
+			SmartDashboard.putBoolean("boulder inside", picker.isBoulderInside());
+			SmartDashboard.putString("max speed", drivetrain.getMaximumSpeed() * 100 + "%");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

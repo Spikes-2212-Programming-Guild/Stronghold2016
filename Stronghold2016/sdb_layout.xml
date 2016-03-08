@@ -47,7 +47,7 @@
 		<height>48</height>
 	</widget>
 	<widget field="Auto" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="175" y="271"/>
+		<location x="325" y="363"/>
 	</widget>
 	<widget field="RetractAll" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="175" y="260"/>
