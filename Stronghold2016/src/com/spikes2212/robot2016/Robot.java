@@ -71,6 +71,7 @@ public class Robot extends IterativeRobot {
 		vision = new Vision(USB.FRONT_CAMERA, USB.REAR_CAMERA);
 		visionThread = new Thread(new VisionRunnable());
 		visionThread.start();
+		vision.start();
 		oi = new OI();
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("No autonomous", new CommandGroup());
