@@ -4,13 +4,7 @@ import com.spikes2212.robot2016.RobotMap.CAN;
 import com.spikes2212.robot2016.RobotMap.DIO;
 import com.spikes2212.robot2016.RobotMap.PWM;
 import com.spikes2212.robot2016.RobotMap.USB;
-import com.spikes2212.robot2016.commands.RetractAll;
-import com.spikes2212.robot2016.commands.autonomous.CrossChevalDeFrise;
 import com.spikes2212.robot2016.commands.autonomous.CrossLowBar;
-import com.spikes2212.robot2016.commands.autonomous.CrossLowBarAndReturn;
-import com.spikes2212.robot2016.commands.autonomous.CrossPortcullis;
-import com.spikes2212.robot2016.commands.autonomous.CrossRoughTerrain;
-import com.spikes2212.robot2016.commands.autonomous.Reach;
 import com.spikes2212.robot2016.commands.camera.VisionRunnable;
 import com.spikes2212.robot2016.subsystems.Drivetrain;
 import com.spikes2212.robot2016.subsystems.Folder;
@@ -22,10 +16,8 @@ import com.spikes2212.robot2016.util.Gearbox;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -47,11 +39,9 @@ public class Robot extends IterativeRobot {
 	public static Shooter shooter;
 	public static Vision vision;
 
-	public static Command autoCommand;
+	private Command autoCommand;
 
 	Thread visionThread;
-
-	SendableChooser autoChooser;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -72,16 +62,6 @@ public class Robot extends IterativeRobot {
 		visionThread = new Thread(new VisionRunnable());
 		visionThread.start();
 		oi = new OI();
-		autoChooser = new SendableChooser();
-		autoChooser.addDefault("No autonomous", new CommandGroup());
-		autoChooser.addObject("Reach", new Reach());
-		autoChooser.addObject("Low Bar", new CrossLowBar());
-		autoChooser.addObject("Low Bar + Return", new CrossLowBarAndReturn());
-		autoChooser.addObject("Cheval de Frise", new CrossChevalDeFrise());
-		autoChooser.addObject("Rough Terrain", new CrossRoughTerrain());
-		autoChooser.addObject("Portcullis", new CrossPortcullis());
-		SmartDashboard.putData("Auto", autoChooser);
-		SmartDashboard.putData(new RetractAll());
 	}
 
 	/**
@@ -96,7 +76,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-		writeSensorData();
 	}
 
 	@Override
@@ -115,7 +94,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		writeSensorData();
+		writeData();
 	}
 
 	@Override
@@ -129,8 +108,20 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		writeSensorData();
+		writeData();
 
+	}
+
+	public static void writeData() {
+		try {
+			SmartDashboard.putBoolean("DB/LED 0", picker.isBoulderInside());
+			SmartDashboard.putString("DB/String 0", "folder up: " + folder.isUp());
+			SmartDashboard.putString("DB/String 1", "folder down: " + folder.isDown());
+			SmartDashboard.putString("DB/String 2", "triz up: " + triz.isUp());
+			SmartDashboard.putString("DB/String 3", "triz down: " + triz.isDown());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -139,21 +130,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 		LiveWindow.run();
-	}
-
-	private void writeSensorData() {
-		try {
-			SmartDashboard.putNumber("left distance", drivetrain.getLeftDistance());
-			SmartDashboard.putNumber("right distance", drivetrain.getRightDistance());
-			SmartDashboard.putBoolean("triz up", triz.isUp());
-			SmartDashboard.putBoolean("triz down", triz.isDown());
-			SmartDashboard.putBoolean("folder up", folder.isUp());
-			SmartDashboard.putBoolean("folder down", folder.isDown());
-			SmartDashboard.putBoolean("boulder inside", picker.isBoulderInside());
-			SmartDashboard.putString("max speed", drivetrain.getMaximumSpeed() * 100 + "%");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 }
