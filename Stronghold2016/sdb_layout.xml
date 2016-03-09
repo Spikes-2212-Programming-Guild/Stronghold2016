@@ -1,76 +1,59 @@
 <xml version="1.0">
 <dashboard>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
-		<location x="9" y="367"/>
-		<property name="Text" value="Connection:"/>
-	</static-widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
-		<location x="84" y="373"/>
-	</static-widget>
-	<widget field="rearExposure" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="224"/>
-		<width>160</width>
-	</widget>
-	<widget field="frontExposure" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="192"/>
-		<width>160</width>
-	</widget>
-	<widget field="max speed" type="String" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
-		<location x="176" y="192"/>
-		<width>176</width>
-		<height>48</height>
-		<property name="Font Size" value="30"/>
-	</widget>
-	<widget field="folder down" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="0" y="96"/>
-		<width>112</width>
-		<height>48</height>
-	</widget>
 	<widget field="triz up" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="368" y="32"/>
-		<width>80</width>
-		<height>48</height>
-	</widget>
-	<widget field="boulder inside" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="124" y="16"/>
-		<width>228</width>
-		<height>163</height>
+		<location x="417" y="28"/>
+		<width>94</width>
+		<height>67</height>
 	</widget>
 	<widget field="triz down" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="368" y="96"/>
-		<width>96</width>
-		<height>47</height>
+		<location x="417" y="134"/>
+		<width>109</width>
+		<height>65</height>
 	</widget>
 	<widget field="folder up" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="1" y="32"/>
-		<width>96</width>
-		<height>48</height>
+		<location x="28" y="28"/>
+		<width>107</width>
+		<height>69</height>
 	</widget>
-	<widget field="Auto" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-<<<<<<< master
-		<location x="362" y="196"/>
-=======
-		<location x="175" y="271"/>
->>>>>>> e5b42bf Write sensor data in disabled
-	</widget>
-	<widget field="RetractAll" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="175" y="260"/>
-	</widget>
-	<widget field="right distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="176" y="320"/>
-		<width>176</width>
-		<height>32</height>
-	</widget>
-	<widget field="left distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="320"/>
-		<width>160</width>
-		<height>32</height>
+	<widget field="boulder inside" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="165" y="20"/>
+		<width>228</width>
+		<height>182</height>
 	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
-		<location x="529" y="32"/>
-		<width>641</width>
-		<height>508</height>
+		<location x="578" y="27"/>
+		<width>499</width>
+		<height>374</height>
 	</static-widget>
+	<widget field="max speed" type="String" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="190" y="208"/>
+		<width>175</width>
+		<height>45</height>
+		<property name="Font Size" value="32"/>
+	</widget>
+	<widget field="folder down" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="31" y="134"/>
+		<width>116</width>
+		<height>60</height>
+	</widget>
+	<widget field="right distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="169" y="258"/>
+	</widget>
+	<widget field="Auto" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="401" y="210"/>
+	</widget>
+	<widget field="rearExposure" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="178" y="312"/>
+	</widget>
+	<widget field="frontExposure" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="11" y="306"/>
+	</widget>
+	<widget field="RetractAll" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="38" y="204"/>
+	</widget>
+	<widget field="left distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="20" y="256"/>
+	</widget>
 </dashboard>
 <live-window>
 </live-window>
