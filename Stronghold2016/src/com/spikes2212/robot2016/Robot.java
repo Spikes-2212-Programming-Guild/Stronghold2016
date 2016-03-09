@@ -116,10 +116,14 @@ public class Robot extends IterativeRobot {
 	public static void writeData() {
 		try {
 			SmartDashboard.putBoolean("DB/LED 0", picker.isBoulderInside());
+			SmartDashboard.putBoolean("DB/LED 1", picker.isBoulderInside());
+			SmartDashboard.putBoolean("DB/LED 2", picker.isBoulderInside());
+			SmartDashboard.putBoolean("DB/LED 3", picker.isBoulderInside());
 			SmartDashboard.putString("DB/String 0", "folder up: " + folder.isUp());
 			SmartDashboard.putString("DB/String 1", "folder down: " + folder.isDown());
 			SmartDashboard.putString("DB/String 2", "triz up: " + triz.isUp());
 			SmartDashboard.putString("DB/String 3", "triz down: " + triz.isDown());
+			SmartDashboard.putString("DB/String 4", "Max speed: " + drivetrain.getMaximumSpeed());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
