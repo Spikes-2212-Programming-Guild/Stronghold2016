@@ -102,7 +102,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		try {
-			autoCommand = (Command) autoChooser.getSelected();
+			autoCommand = new CrossLowBar();
 			autoCommand.start();
 		} catch (Exception e) {
 			e.printStackTrace();
