@@ -6,10 +6,10 @@ public class ButtonHandler implements Runnable {
 	private boolean[] lastIteration = new boolean[4];
 
 	public ButtonHandler() {
-		lastIteration[0] = true;
-		lastIteration[1] = false;
-		lastIteration[2] = false;
-		lastIteration[3] = false;
+		for (int i = 0; i < lastIteration.length; i++) {
+			SmartDashboard.putBoolean("DB/Button " + i, false);
+			lastIteration[i] = false;
+		}
 	}
 
 	@Override
