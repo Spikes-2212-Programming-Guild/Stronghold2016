@@ -4,6 +4,10 @@ import com.spikes2212.robot2016.RobotMap.CAN;
 import com.spikes2212.robot2016.RobotMap.DIO;
 import com.spikes2212.robot2016.RobotMap.PWM;
 import com.spikes2212.robot2016.RobotMap.USB;
+import com.spikes2212.robot2016.commands.autonomous.CrossChevalDeFrise;
+import com.spikes2212.robot2016.commands.autonomous.CrossLowBar;
+import com.spikes2212.robot2016.commands.autonomous.CrossRoughTerrain;
+import com.spikes2212.robot2016.commands.autonomous.Reach;
 import com.spikes2212.robot2016.commands.camera.VisionRunnable;
 import com.spikes2212.robot2016.subsystems.Drivetrain;
 import com.spikes2212.robot2016.subsystems.Folder;
@@ -16,7 +20,7 @@ import com.spikes2212.robot2016.util.Gearbox;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.PrintCommand;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -29,6 +33,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
+
+	private static String[] autoNames = new String[] { "Low bar", "Forward only", "Cheval", "Reach" };
 
 	public static OI oi;
 	public static Gearbox right;
@@ -81,12 +87,29 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		writeData();
 		buttonHandler.run();
-		SmartDashboard.putString("DB/String 0", String.valueOf(buttonHandler.getPressed()));
 	}
 
 	@Override
 	public void autonomousInit() {
 		try {
+			switch (buttonHandler.getPressed()) {
+			case 0:
+				autoCommand = new CrossLowBar();
+				break;
+			case 1:
+				autoCommand = new CrossRoughTerrain();
+				break;
+			case 2:
+				autoCommand = new CrossChevalDeFrise();
+				break;
+			case 3:
+				autoCommand = new Reach();
+				break;
+			default:
+				autoCommand = new CommandGroup();
+				break;
+			}
+			autoCommand.start();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -105,6 +128,13 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopInit() {
 		drivetrain.setMaximumSpeed(Constants.VERY_HIGH_MAX_SPEED);
+		try {
+			if (autoCommand != null) {
+				autoCommand.cancel();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -117,17 +147,24 @@ public class Robot extends IterativeRobot {
 		buttonHandler.run();
 	}
 
-	public static void writeData() {
+	public void writeData() {
 		try {
 			SmartDashboard.putBoolean("DB/LED 0", picker.isBoulderInside());
 			SmartDashboard.putBoolean("DB/LED 1", picker.isBoulderInside());
 			SmartDashboard.putBoolean("DB/LED 2", picker.isBoulderInside());
 			SmartDashboard.putBoolean("DB/LED 3", picker.isBoulderInside());
-			SmartDashboard.putString("DB/String 0", "folder up: " + folder.isUp());
-			SmartDashboard.putString("DB/String 1", "folder down: " + folder.isDown());
-			SmartDashboard.putString("DB/String 2", "triz up: " + triz.isUp());
-			SmartDashboard.putString("DB/String 3", "triz down: " + triz.isDown());
-			SmartDashboard.putString("DB/String 4", "Max speed: " + drivetrain.getMaximumSpeed());
+			for (int i = 0; i < autoNames.length; i++) {
+				SmartDashboard.putString("DB/String " + i, i + ": " + autoNames[i]);
+			}
+			int selected = buttonHandler.getPressed();
+			String selectedName = selected >= 0 && selected < autoNames.length ? autoNames[selected]
+					: selected == -1 ? "None" : "Invalid";
+			SmartDashboard.putString("DB/String 4", "Selected: " + selectedName);
+			SmartDashboard.putString("DB/String 5", "folder up: " + folder.isUp());
+			SmartDashboard.putString("DB/String 6", "folder down: " + folder.isDown());
+			SmartDashboard.putString("DB/String 7", "triz up: " + triz.isUp());
+			SmartDashboard.putString("DB/String 8", "triz down: " + triz.isDown());
+			SmartDashboard.putString("DB/String 9", "Max speed: " + drivetrain.getMaximumSpeed());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
