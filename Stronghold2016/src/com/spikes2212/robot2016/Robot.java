@@ -4,7 +4,6 @@ import com.spikes2212.robot2016.RobotMap.CAN;
 import com.spikes2212.robot2016.RobotMap.DIO;
 import com.spikes2212.robot2016.RobotMap.PWM;
 import com.spikes2212.robot2016.RobotMap.USB;
-import com.spikes2212.robot2016.commands.autonomous.CrossLowBar;
 import com.spikes2212.robot2016.commands.camera.VisionRunnable;
 import com.spikes2212.robot2016.subsystems.Drivetrain;
 import com.spikes2212.robot2016.subsystems.Folder;
@@ -12,10 +11,12 @@ import com.spikes2212.robot2016.subsystems.Picker;
 import com.spikes2212.robot2016.subsystems.Shooter;
 import com.spikes2212.robot2016.subsystems.Triz;
 import com.spikes2212.robot2016.subsystems.Vision;
+import com.spikes2212.robot2016.util.ButtonHandler;
 import com.spikes2212.robot2016.util.Gearbox;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.PrintCommand;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -41,6 +42,7 @@ public class Robot extends IterativeRobot {
 
 	private Command autoCommand;
 
+	private ButtonHandler buttonHandler;
 	Thread visionThread;
 
 	/**
@@ -62,6 +64,7 @@ public class Robot extends IterativeRobot {
 		visionThread = new Thread(new VisionRunnable());
 		visionThread.start();
 		oi = new OI();
+		buttonHandler = new ButtonHandler();
 	}
 
 	/**
@@ -77,13 +80,13 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 		writeData();
+		buttonHandler.run();
+		SmartDashboard.putString("DB/String 0", String.valueOf(buttonHandler.getPressed()));
 	}
 
 	@Override
 	public void autonomousInit() {
 		try {
-			autoCommand = new CrossLowBar();
-			autoCommand.start();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -96,6 +99,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 		writeData();
+		buttonHandler.run();
 	}
 
 	@Override
@@ -110,7 +114,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		writeData();
-
+		buttonHandler.run();
 	}
 
 	public static void writeData() {
