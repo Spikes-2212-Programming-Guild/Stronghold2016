@@ -59,8 +59,8 @@ public class Constants {
 	public static final double TIME_GAP_FOR_SHOOTING = 2;
 	public static final double ROLL_IN_TIME = 2;
 
-	public static final int EXPOSURE_FRONT = 0;
-	public static final int EXPOSURE_REAR = 2;
+//	public static final int EXPOSURE_FRONT = 0;
+//	public static final int EXPOSURE_REAR = 2;
 	public static final int FPS = 30;
 	public static final int RESOLUTION_WIDTH = 320;
 	public static final int RESOLUTION_HEIGHT = 240;
