@@ -14,18 +14,22 @@ public class ButtonHandler implements Runnable {
 
 	@Override
 	public void run() {
-		boolean[] newIteration = new boolean[4];
-		for (int i = 0; i < newIteration.length; i++) {
-			newIteration[i] = SmartDashboard.getBoolean("DB/Button " + i, false);
-			if (newIteration[i] && !lastIteration[i]) {
-				for (int j = 0; j < lastIteration.length; j++) {
-					if (i != j) {
-						SmartDashboard.putBoolean("DB/Button " + j, false);
+		try {
+			boolean[] newIteration = new boolean[4];
+			for (int i = 0; i < newIteration.length; i++) {
+				newIteration[i] = SmartDashboard.getBoolean("DB/Button " + i, false);
+				if (newIteration[i] && !lastIteration[i]) {
+					for (int j = 0; j < lastIteration.length; j++) {
+						if (i != j) {
+							SmartDashboard.putBoolean("DB/Button " + j, false);
+						}
 					}
 				}
 			}
+			lastIteration = newIteration;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		lastIteration = newIteration;
 	}
 
 	public int getPressed() {
