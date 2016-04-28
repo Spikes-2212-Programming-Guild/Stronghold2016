@@ -6,6 +6,7 @@ import com.spikes2212.robot2016.RobotMap.PWM;
 import com.spikes2212.robot2016.RobotMap.USB;
 import com.spikes2212.robot2016.commands.autonomous.CrossChevalDeFrise;
 import com.spikes2212.robot2016.commands.autonomous.CrossLowBar;
+import com.spikes2212.robot2016.commands.autonomous.CrossRockWall;
 import com.spikes2212.robot2016.commands.autonomous.CrossRoughTerrain;
 import com.spikes2212.robot2016.commands.autonomous.Reach;
 import com.spikes2212.robot2016.commands.camera.VisionRunnable;
@@ -91,7 +92,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
-		autoCommand = new CrossLowBar();
+		autoCommand = new CrossRockWall();
 		autoCommand.start();
 	}
 
