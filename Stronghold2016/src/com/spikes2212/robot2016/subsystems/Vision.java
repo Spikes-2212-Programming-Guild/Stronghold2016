@@ -9,9 +9,11 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Vision extends Subsystem {
-	
-	public enum CameraType { FRONT, REAR, NONE }
-	
+
+	public enum CameraType {
+		FRONT, REAR, NONE
+	}
+
 	private CameraController front, rear;
 	private Image image;
 	private CameraType type = CameraType.NONE;
@@ -20,7 +22,7 @@ public class Vision extends Subsystem {
 		this.front = new CameraController(frontName);
 		this.rear = new CameraController(rearName);
 		this.image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
-		this.start();
+
 	}
 
 	public synchronized boolean isFrontOn() {
@@ -30,14 +32,18 @@ public class Vision extends Subsystem {
 	public synchronized boolean isRearOn() {
 		return rear.isOn();
 	}
-	
-	public synchronized void setCamera(CameraType type) {
-		this.type = type;
-	}
 
-	public synchronized void start() {
-		front.start();
-		rear.start();
+	public synchronized void setCamera(CameraType type) {
+		if (!type.equals(this.type)) {
+			this.type = type;
+			stop();
+			if (type == CameraType.FRONT) {
+				this.front.start();
+			}
+			if (type == CameraType.REAR) {
+				this.rear.start();
+			}
+		}
 	}
 
 	public synchronized void stop() {
