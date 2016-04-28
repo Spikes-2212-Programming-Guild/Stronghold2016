@@ -19,6 +19,6 @@ public class CrossLowBar extends CommandGroup {
 	public CrossLowBar() {
 		addParallel(new MoveTrizDownish());
 		addSequential(new WaitCommand(2.5));
-		addSequential(new StraightDriveBySpeedAndTime(0.4, 5));
+		addSequential(new StraightDriveBySpeedAndTime(0.4, 4));
 	}
 }
