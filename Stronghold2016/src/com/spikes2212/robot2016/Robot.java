@@ -91,28 +91,8 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
-		try {
-			switch (buttonHandler.getPressed()) {
-			case 0:
-				autoCommand = new CrossLowBar();
-				break;
-			case 1:
-				autoCommand = new CrossRoughTerrain();
-				break;
-			case 2:
-				autoCommand = new CrossChevalDeFrise();
-				break;
-			case 3:
-				autoCommand = new Reach();
-				break;
-			default:
-				autoCommand = new CommandGroup();
-				break;
-			}
-			autoCommand.start();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		autoCommand = new CrossLowBar();
+		autoCommand.start();
 	}
 
 	/**
@@ -160,10 +140,12 @@ public class Robot extends IterativeRobot {
 			String selectedName = selected >= 0 && selected < autoNames.length ? autoNames[selected]
 					: selected == -1 ? "None" : "Invalid";
 			SmartDashboard.putString("DB/String 4", "Selected: " + selectedName);
-			SmartDashboard.putString("DB/String 5", "folder up: " + folder.isUp());
-			SmartDashboard.putString("DB/String 6", "folder down: " + folder.isDown());
-			SmartDashboard.putString("DB/String 7", "triz up: " + triz.isUp());
-			SmartDashboard.putString("DB/String 8", "triz down: " + triz.isDown());
+			SmartDashboard.putString("DB/String 5",
+					"Folder: " + (folder.isUp() ? "up " : "") + (folder.isDown() ? "down " : ""));
+			SmartDashboard.putString("DB/String 6",
+					"Triz: " + (triz.isUp() ? "up " : "") + (triz.isDown() ? "down " : ""));
+			SmartDashboard.putString("DB/String 7",
+					"Drive: " + drivetrain.getLeftDistance() + ", " + drivetrain.getRightDistance());
 			SmartDashboard.putString("DB/String 9", "Max speed: " + drivetrain.getMaximumSpeed());
 		} catch (Exception e) {
 			e.printStackTrace();
