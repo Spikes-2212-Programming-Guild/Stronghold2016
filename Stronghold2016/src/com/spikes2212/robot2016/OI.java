@@ -1,5 +1,7 @@
 package com.spikes2212.robot2016;
 
+import com.spikes2212.robot2016.commands.NextAuto;
+import com.spikes2212.robot2016.commands.PreviousAuto;
 import com.spikes2212.robot2016.commands.StopAll;
 import com.spikes2212.robot2016.commands.autonomous.InitializeChevalDeFrise;
 import com.spikes2212.robot2016.commands.autonomous.InitializeLowBar;
@@ -58,6 +60,9 @@ public class OI /* GEVALD */ {
 	JoystickButton rightDriver3;
 	JoystickButton rightDriver4;
 	JoystickButton rightDriver5;
+	
+	JoystickButton leftDriver8;
+	JoystickButton leftDriver9;
 
 	JoystickButton navigatorBlue;
 	JoystickButton navigatorGreen;
@@ -80,6 +85,9 @@ public class OI /* GEVALD */ {
 		rightDriver4 = new JoystickButton(rightDriver, 4);
 		rightDriver5 = new JoystickButton(rightDriver, 5);
 
+		leftDriver8 = new JoystickButton(leftDriver, 8);
+		leftDriver9 = new JoystickButton(leftDriver, 9);
+		
 		navigatorBlue = new JoystickButton(rightNavigator, 1);
 		navigatorGreen = new JoystickButton(rightNavigator, 2);
 		navigatorRed = new JoystickButton(rightNavigator, 3);
@@ -104,6 +112,9 @@ public class OI /* GEVALD */ {
 		rightDriver2.whenPressed(new RearStream());
 		rightDriver4.whenPressed(new StopCameras());
 
+		leftDriver8.whenPressed(new PreviousAuto());
+		leftDriver9.whenPressed(new NextAuto());
+		
 		navigatorYellow.whileHeld(new MoveFolderUp());
 		navigatorGreen.whileHeld(new MoveFolderDown());
 

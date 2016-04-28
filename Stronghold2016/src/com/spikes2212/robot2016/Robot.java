@@ -22,6 +22,7 @@ import com.spikes2212.robot2016.util.Gearbox;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.PrintCommand;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -35,7 +36,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	private static String[] autoNames = new String[] { "Low bar", "Forward only", "Cheval", "Reach" };
+	private static String[] autoNames;
+	public static Command[] commands;
 
 	public static OI oi;
 	public static Gearbox right;
@@ -46,10 +48,10 @@ public class Robot extends IterativeRobot {
 	public static Picker picker;
 	public static Shooter shooter;
 	public static Vision vision;
+	public static int selected;
 
 	private Command autoCommand;
 
-	private ButtonHandler buttonHandler;
 	Thread visionThread;
 
 	/**
@@ -71,7 +73,11 @@ public class Robot extends IterativeRobot {
 		visionThread = new Thread(new VisionRunnable());
 		visionThread.start();
 		oi = new OI();
-		buttonHandler = new ButtonHandler();
+		autoNames = new String[] { "No Auto", "Low Bar", "NC-Rough Terrain", "NC-Rock Wall" };
+		 commands = new Command[] { new CommandGroup(), new CrossLowBar(), new
+		 CrossRoughTerrain(), new CrossRockWall() };
+//		commands = new Command[] { new PrintCommand("no auto"), new PrintCommand("LowBar"),
+//				new PrintCommand("RoughTerrain"), new PrintCommand("RockWall") };
 	}
 
 	/**
@@ -87,12 +93,11 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 		writeData();
-		buttonHandler.run();
 	}
 
 	@Override
 	public void autonomousInit() {
-		autoCommand = new CrossRockWall();
+		autoCommand = commands[selected % commands.length];
 		autoCommand.start();
 	}
 
@@ -103,7 +108,6 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 		writeData();
-		buttonHandler.run();
 	}
 
 	@Override
@@ -125,7 +129,6 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		writeData();
-		buttonHandler.run();
 	}
 
 	public void writeData() {
@@ -137,9 +140,7 @@ public class Robot extends IterativeRobot {
 			for (int i = 0; i < autoNames.length; i++) {
 				SmartDashboard.putString("DB/String " + i, i + ": " + autoNames[i]);
 			}
-			int selected = buttonHandler.getPressed();
-			String selectedName = selected >= 0 && selected < autoNames.length ? autoNames[selected]
-					: selected == -1 ? "None" : "Invalid";
+			String selectedName = autoNames[selected % autoNames.length];
 			SmartDashboard.putString("DB/String 4", "Selected: " + selectedName);
 			SmartDashboard.putString("DB/String 5",
 					"Folder: " + (folder.isUp() ? "up " : "") + (folder.isDown() ? "down " : ""));
