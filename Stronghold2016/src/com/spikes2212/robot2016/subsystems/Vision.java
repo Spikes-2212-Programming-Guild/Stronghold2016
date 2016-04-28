@@ -20,6 +20,7 @@ public class Vision extends Subsystem {
 		this.front = new CameraController(frontName);
 		this.rear = new CameraController(rearName);
 		this.image = NIVision.imaqCreateImage(ImageType.IMAGE_RGB, 0);
+		this.start();
 	}
 
 	public synchronized boolean isFrontOn() {
