@@ -1,6 +1,7 @@
 package com.spikes2212.robot2016.commands.autonomous;
 
 import com.spikes2212.robot2016.commands.drivetrain.StraightDriveBySpeedAndTime;
+import com.spikes2212.robot2016.commands.folder.MoveFolderDown;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -9,9 +10,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class CrossRockWall extends CommandGroup {
 
-	public static final double SPEED = 0;
-
 	public CrossRockWall() {
-		addSequential(new StraightDriveBySpeedAndTime(SPEED, 2.5));
+		addSequential(new MoveFolderDown(), 0.25);
+		addSequential(new StraightDriveBySpeedAndTime(0.6, 4));
 	}
 }
