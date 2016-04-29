@@ -73,7 +73,7 @@ public class Robot extends IterativeRobot {
 		visionThread = new Thread(new VisionRunnable());
 		visionThread.start();
 		oi = new OI();
-		autoNames = new String[] { "No Auto", "Low Bar", "NC-Rough Terrain", "NC-Rock Wall" };
+		autoNames = new String[] { "No Auto", "Low Bar", "Rough Terrain", "NC-Rock Wall" };
 		 commands = new Command[] { new CommandGroup(), new CrossLowBar(), new
 		 CrossRoughTerrain(), new CrossRockWall() };
 //		commands = new Command[] { new PrintCommand("no auto"), new PrintCommand("LowBar"),
