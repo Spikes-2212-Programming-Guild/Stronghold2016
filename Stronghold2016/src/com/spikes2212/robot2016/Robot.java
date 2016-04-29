@@ -6,6 +6,7 @@ import com.spikes2212.robot2016.RobotMap.PWM;
 import com.spikes2212.robot2016.RobotMap.USB;
 import com.spikes2212.robot2016.commands.autonomous.CrossChevalDeFrise;
 import com.spikes2212.robot2016.commands.autonomous.CrossLowBar;
+import com.spikes2212.robot2016.commands.autonomous.CrossMoat;
 import com.spikes2212.robot2016.commands.autonomous.CrossRockWall;
 import com.spikes2212.robot2016.commands.autonomous.CrossRoughTerrain;
 import com.spikes2212.robot2016.commands.autonomous.Reach;
@@ -73,11 +74,12 @@ public class Robot extends IterativeRobot {
 		visionThread = new Thread(new VisionRunnable());
 		visionThread.start();
 		oi = new OI();
-		autoNames = new String[] { "No Auto", "Low Bar", "Rough Terrain", "NC-Rock Wall" };
-		 commands = new Command[] { new CommandGroup(), new CrossLowBar(), new
-		 CrossRoughTerrain(), new CrossRockWall() };
-//		commands = new Command[] { new PrintCommand("no auto"), new PrintCommand("LowBar"),
-//				new PrintCommand("RoughTerrain"), new PrintCommand("RockWall") };
+		autoNames = new String[] { "No Auto", "Low Bar", "Rough Terrain", "NC-Rock Wall", "NC-Moat", "NC-Cheval" };
+		commands = new Command[] { new CommandGroup(), new CrossLowBar(), new CrossRoughTerrain(), new CrossRockWall(),
+				new CrossMoat(), new CrossChevalDeFrise()};
+		// commands = new Command[] { new PrintCommand("no auto"), new
+		// PrintCommand("LowBar"),
+		// new PrintCommand("RoughTerrain"), new PrintCommand("RockWall") };
 	}
 
 	/**
