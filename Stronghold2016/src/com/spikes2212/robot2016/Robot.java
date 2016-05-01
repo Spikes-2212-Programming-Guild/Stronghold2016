@@ -19,6 +19,7 @@ import com.spikes2212.robot2016.subsystems.Triz;
 import com.spikes2212.robot2016.subsystems.Vision;
 import com.spikes2212.robot2016.util.ButtonHandler;
 import com.spikes2212.robot2016.util.Gearbox;
+import com.spikes2212.robot2016.util.Util;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -74,9 +75,9 @@ public class Robot extends IterativeRobot {
 		visionThread = new Thread(new VisionRunnable());
 		visionThread.start();
 		oi = new OI();
-		autoNames = new String[] { "No Auto", "Low Bar", "Rough Terrain", "NC-Rock Wall", "NC-Moat", "NC-Cheval" };
+		autoNames = new String[] { "No Auto", "Low Bar", "Rough Terrain", "Rock Wall", "Moat", "NC-Cheval" };
 		commands = new Command[] { new CommandGroup(), new CrossLowBar(), new CrossRoughTerrain(), new CrossRockWall(),
-				new CrossMoat(), new CrossChevalDeFrise()};
+				new CrossMoat(), new CrossChevalDeFrise() };
 		// commands = new Command[] { new PrintCommand("no auto"), new
 		// PrintCommand("LowBar"),
 		// new PrintCommand("RoughTerrain"), new PrintCommand("RockWall") };
@@ -139,17 +140,17 @@ public class Robot extends IterativeRobot {
 			SmartDashboard.putBoolean("DB/LED 1", picker.isBoulderInside());
 			SmartDashboard.putBoolean("DB/LED 2", picker.isBoulderInside());
 			SmartDashboard.putBoolean("DB/LED 3", picker.isBoulderInside());
-			for (int i = 0; i < autoNames.length; i++) {
-				SmartDashboard.putString("DB/String " + i, i + ": " + autoNames[i]);
-			}
+//			for (int i = 0; i < 4; i++) {
+//				SmartDashboard.putString("DB/String " + i, i + ": " + autoNames[i]);
+//			}
 			String selectedName = autoNames[selected % autoNames.length];
 			SmartDashboard.putString("DB/String 4", "Selected: " + selectedName);
 			SmartDashboard.putString("DB/String 5",
 					"Folder: " + (folder.isUp() ? "up " : "") + (folder.isDown() ? "down " : ""));
 			SmartDashboard.putString("DB/String 6",
 					"Triz: " + (triz.isUp() ? "up " : "") + (triz.isDown() ? "down " : ""));
-			SmartDashboard.putString("DB/String 7",
-					"Drive: " + drivetrain.getLeftDistance() + ", " + drivetrain.getRightDistance());
+			SmartDashboard.putString("DB/String 8", "Drive: " + Util.roundTo(drivetrain.getLeftDistance(), 3) + ", "
+					+ Util.roundTo(drivetrain.getRightDistance(), 3));
 			SmartDashboard.putString("DB/String 9", "Max speed: " + drivetrain.getMaximumSpeed());
 		} catch (Exception e) {
 			e.printStackTrace();

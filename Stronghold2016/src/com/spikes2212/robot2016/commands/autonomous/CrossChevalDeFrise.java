@@ -24,10 +24,13 @@ public class CrossChevalDeFrise extends CommandGroup {
 
 	public CrossChevalDeFrise() {
 		addParallel(new MoveFolderDown(), 0.5);
-		addSequential(new PIDStraightDriveByDistance(DEFENCE_DISTANCE, Constants.HIGH_MAX_SPEED), 2.5);
+		addSequential(
+				new PIDStraightDriveByDistance(DEFENCE_DISTANCE, DEFENCE_DISTANCE * 7 / 8, Constants.HIGH_MAX_SPEED),
+				2.5);
 		addParallel(new PIDStay(), 1.2);
 		addSequential(new MoveTrizDown(Constants.TRIZ_DOWN_SPEED), 2.25);
-		addSequential(new PIDStraightDriveByDistance(INSIDE_DEFENCE_DISTANCE, Constants.HIGH_MAX_SPEED), 3.3);
+		addSequential(new PIDStraightDriveByDistance(INSIDE_DEFENCE_DISTANCE, INSIDE_DEFENCE_DISTANCE * 7 / 8,
+				Constants.HIGH_MAX_SPEED), 3.3);
 		addSequential(new PIDStraightDriveByDistance(AFTER_DEFENCE_DISTANCE, Constants.LOW_MAX_SPEED));
 
 		// addSequential(new

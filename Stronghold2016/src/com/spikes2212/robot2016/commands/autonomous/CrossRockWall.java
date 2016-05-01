@@ -12,6 +12,6 @@ public class CrossRockWall extends CommandGroup {
 
 	public CrossRockWall() {
 		addSequential(new MoveFolderDown(), 0.25);
-		addSequential(new StraightDriveBySpeedAndTime(0.6, 4));
+		addSequential(new StraightDriveBySpeedAndTime(0.6, 3.25));
 	}
 }

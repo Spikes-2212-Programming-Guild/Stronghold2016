@@ -10,4 +10,9 @@ public class Util {
 		return limit(value, -Math.abs(abs), Math.abs(abs));
 	}
 
+	public static double roundTo(double num, int digits) {
+		return ((int) (num * Math.pow(10, digits))) / Math.pow(10, digits);
+
+	}
+
 }
