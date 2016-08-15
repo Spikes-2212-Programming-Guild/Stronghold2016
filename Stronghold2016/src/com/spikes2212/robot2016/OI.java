@@ -15,8 +15,11 @@ import com.spikes2212.robot2016.commands.folder.MoveFolderUp;
 import com.spikes2212.robot2016.commands.picker.RollBoulderInAndMore;
 import com.spikes2212.robot2016.commands.picker.RollOut;
 import com.spikes2212.robot2016.commands.shooter.RotateShooterByVoltage;
+import com.spikes2212.robot2016.commands.triz.MoveTrizDown;
+import com.spikes2212.robot2016.commands.triz.MoveTrizUp;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
@@ -50,83 +53,33 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI /* GEVALD */ {
 	private final Joystick rightDriver = new Joystick(0);
-	private final Joystick leftDriver = new Joystick(1);
-	private final Joystick rightNavigator = new Joystick(2);
 
 	JoystickButton rightDriverTrigger;
-	JoystickButton leftDriverTrigger;
 
 	JoystickButton rightDriver2;
 	JoystickButton rightDriver3;
-	JoystickButton rightDriver4;
-	JoystickButton rightDriver5;
-	
-	JoystickButton leftDriver8;
-	JoystickButton leftDriver9;
-
-	JoystickButton navigatorBlue;
-	JoystickButton navigatorGreen;
-	JoystickButton navigatorYellow;
-	JoystickButton navigatorRed;
-	JoystickButton navigatorLB;
-	JoystickButton navigatorRB;
-	JoystickButton navigatorLT;
-	JoystickButton navigatorRT;
-	JoystickButton navigatorBack;
-	JoystickButton navigatorStart;
-	JoystickButton navigator11;
+	JoystickButton rightDriver6;
+	JoystickButton rightDriver7;
+	JoystickButton rightDriver8;
+	JoystickButton rightDriver9;
 
 	public OI() {
-		rightDriverTrigger = new JoystickButton(rightDriver, 1);
-		leftDriverTrigger = new JoystickButton(leftDriver, 1);
 
 		rightDriver2 = new JoystickButton(rightDriver, 2);
 		rightDriver3 = new JoystickButton(rightDriver, 3);
-		rightDriver4 = new JoystickButton(rightDriver, 4);
-		rightDriver5 = new JoystickButton(rightDriver, 5);
+		rightDriver6 = new JoystickButton(rightDriver, 6);
+		rightDriver7 = new JoystickButton(rightDriver, 7);
+		rightDriver8 = new JoystickButton(rightDriver, 8);
+		rightDriver9 = new JoystickButton(rightDriver, 9);
 
-		leftDriver8 = new JoystickButton(leftDriver, 8);
-		leftDriver9 = new JoystickButton(leftDriver, 9);
-		
-		navigatorBlue = new JoystickButton(rightNavigator, 1);
-		navigatorGreen = new JoystickButton(rightNavigator, 2);
-		navigatorRed = new JoystickButton(rightNavigator, 3);
-		navigatorYellow = new JoystickButton(rightNavigator, 4);
+		rightDriver2.whileHeld(new MoveTrizDown(0.75));
+		rightDriver3.whileHeld(new MoveTrizUp(0.75));
 
-		navigatorRT = new JoystickButton(rightNavigator, 8);
-		navigatorLT = new JoystickButton(rightNavigator, 7);
-		navigatorRB = new JoystickButton(rightNavigator, 6);
-		navigatorLB = new JoystickButton(rightNavigator, 5);
+		rightDriver6.whileHeld(new MoveFolderDown());
+		rightDriver7.whileHeld(new MoveFolderUp());
 
-		navigatorBack = new JoystickButton(rightNavigator, 9);
-		navigatorStart = new JoystickButton(rightNavigator, 10);
-		navigator11 = new JoystickButton(rightNavigator, 11);
-
-		rightDriverTrigger.whileHeld(new TwoJoysticksDrive(this::getLeftStraight, this::getRightStraight));
-		// A low value between 0 and 1 such as 0.4
-		leftDriverTrigger.whenPressed(new SetDrivetrainMaximumSpeed(Constants.LOW_MAX_SPEED));
-		// A high value between 0 and 1 such as 0.8
-		leftDriverTrigger.whenReleased(new SetDrivetrainMaximumSpeed(Constants.VERY_HIGH_MAX_SPEED));
-
-		rightDriver2.whenPressed(new FrontStream());
-		rightDriver3.whenPressed(new RearStream());
-		rightDriver4.whenPressed(new StopCameras());
-
-		leftDriver8.whenPressed(new PreviousAuto());
-		leftDriver9.whenPressed(new NextAuto());
-		
-		navigatorYellow.whileHeld(new MoveFolderUp());
-		navigatorGreen.whileHeld(new MoveFolderDown());
-
-		navigatorRT.whileHeld(new RollBoulderInAndMore());
-		navigatorRB.whileHeld(new RollOut());
-
-		// A high voltage below 12 such as 11.8
-		navigatorLT.whileHeld(new RotateShooterByVoltage(Constants.SHOOTING_HIGH_VOLTAGE));
-
-		navigatorBack.whenPressed(new InitializeLowBar());
-		navigatorStart.whenPressed(new InitializeChevalDeFrise());
-		navigator11.whenPressed(new StopAll());
+		rightDriver8.whileHeld(new RollBoulderInAndMore());
+		rightDriver9.whileHeld(new RotateShooterByVoltage(Constants.SHOOTING_HIGH_VOLTAGE));
 
 	}
 
@@ -145,17 +98,11 @@ public class OI /* GEVALD */ {
 	 * 
 	 * @return The Y-axis value of the driver's left joystick
 	 */
-	public double getLeftStraight() {
-		return adjustInput(-leftDriver.getY());
-	}
 
 	/**
 	 * 
 	 * @return The X-axis value of the driver's left joystick
 	 */
-	public double getLeftTurn() {
-		return adjustInput(-leftDriver.getX());
-	}
 
 	/**
 	 * 
@@ -180,8 +127,5 @@ public class OI /* GEVALD */ {
 	 * @return The X-axis value of the navigator's joystick
 	 */
 
-	public double getNavigatorStraight() {
-		return -rightNavigator.getY();
-	}
 
 }
