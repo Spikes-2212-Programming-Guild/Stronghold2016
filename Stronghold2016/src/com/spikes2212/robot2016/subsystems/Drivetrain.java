@@ -76,7 +76,7 @@ public class Drivetrain extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new JoystickArcadeDrive(Robot.oi::getRightStraight, Robot.oi::getLeftStraight));
+		setDefaultCommand(new JoystickArcadeDrive(Robot.oi::getRightStraight, Robot.oi::getRightTurn));
 	}
 
 	public double getLeftDistance() {
