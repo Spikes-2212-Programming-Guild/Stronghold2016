@@ -72,8 +72,8 @@ public class OI /* GEVALD */ {
 		rightDriver8 = new JoystickButton(rightDriver, 8);
 		rightDriver9 = new JoystickButton(rightDriver, 9);
 
-		rightDriver2.whileHeld(new MoveTrizDown(0.75));
-		rightDriver3.whileHeld(new MoveTrizUp(0.75));
+		rightDriver2.whileHeld(new MoveTrizDown(0.5));
+		rightDriver3.whileHeld(new MoveTrizUp(0.5));
 
 		rightDriver6.whileHeld(new MoveFolderDown());
 		rightDriver7.whileHeld(new MoveFolderUp());
