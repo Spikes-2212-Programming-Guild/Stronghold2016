@@ -70,8 +70,8 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void setTwoSides(double leftSpeed, double rightSpeed) {
-		left.set(maxSpeed * Util.limitAbs(leftSpeed, 1));
-		right.set(maxSpeed * Util.limitAbs(-rightSpeed, 1));
+		left.set(maxSpeed * Util.limitAbs(-leftSpeed, 1));
+		right.set(maxSpeed * Util.limitAbs(rightSpeed, 1));
 	}
 
 	@Override
