@@ -13,7 +13,7 @@ public class FeedForward {
 	PIDCalculator pid;
 	private double maxV, maxA, maxD, setpoint;
 	/*
-	 * the algorithem work by breaking the movement to 3 parts *
+	 * the algorithm work by breaking the movement to 3 parts *
 	 */
 	double dt1, dt2, dt3;
 
@@ -47,13 +47,19 @@ public class FeedForward {
  * @return value for speed controller
  */
 	//TODO: check return type
-	public double getVoltage(double velocity, double acceleration, double location, double expected) {
+	public double getVoltage(double velocity, double acceleration,double expected, double location ) {
 		pid.setSetpoint(expected);
 		double value = pid.calculate(location);
 		return (Constants.VOLTAGE_VELOCITY_PARAMETER * (velocity + value)
 				+ Constants.VOLTAGE_ACCELERATION_PARAMETER * acceleration);
 	}
 
+	
+	/**
+	 * 
+	 * @param t
+	 * @return [expectedLoaction, velocity, acceleration]
+	 */
 	public double[] getExpected(double t) {
 		if (dt2 < 0) {
 			return new double[] { 0, 0, 0 };
