@@ -12,10 +12,15 @@ public class FeedForward {
 
 	PIDCalculator pid;
 	private double maxV, maxA, maxD, setpoint;
+	double dt1, dt2, dt3;
 
-	public FeedForward(double p) {
+	public FeedForward(double p, double maxV, double maxA, double maxD, double setpoint) {
+		this.setpoint = setpoint;
 		pid = new PIDCalculator();
 		pid.setPID(p, 0, 0);
+		dt1 = (maxV / maxA);
+		dt2 = (setpoint / maxV - maxV / (2 * maxA) - maxV / (2 * maxD));
+		dt3 = maxV / maxD;
 	}
 
 	public double getVoltage(double velocity, double acceleration, double location, double expected) {
@@ -26,23 +31,17 @@ public class FeedForward {
 	}
 
 	public double[] getExpected(double t) {
-		double dt1 = (maxV / maxA),
-				dt2 = (setpoint/maxV - maxV/(2*maxA) - maxV/(2*maxD)),
-				dt3 =  maxV / maxD;
-		
-		if(dt2 < 0){
-			return new double[]{0,0,0};
+		if (dt2 < 0) {
+			return new double[] { 0, 0, 0 };
 		}
-		
+
 		if (t < dt1) {
 			return new double[] { maxA * t * t / 2, maxA * t, maxA };
 		} else if (t > dt1 && t < dt1 + dt2) {
-			return new double[]{((maxA * dt1 * dt1) / 2) + (t - dt1) * maxV,maxV,0};
-		} else{
-			double location = ((maxA * dt1 * dt1) / 2) 
-					+ ((dt2 - dt1) * maxV )
-					+ ((t - dt1 - dt2) * (-maxD)/2);
-			return new double[] {location,0,0};
+			return new double[] { ((maxA * dt1 * dt1) / 2) + (t - dt1) * maxV, maxV, 0 };
+		} else {
+			double location = ((maxA * dt1 * dt1) / 2) + ((dt2 - dt1) * maxV) + ((t - dt1 - dt2) * (-maxD) / 2);
+			return new double[] { location, 0, 0 };
 		}
 	}
 }
