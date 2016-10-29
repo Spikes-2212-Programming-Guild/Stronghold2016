@@ -7,16 +7,20 @@ public class PIDCalculator {
 	private double setpoint;
 	private double error, prevError;
 	private double tolerance;
+	private long t;
 
 	public PIDCalculator() {
 	}
 
 	public double calculate(double input) {
+		long curr = System.currentTimeMillis();
+		long dt = curr - t;
 		prevError = error;
 		error = setpoint - input;
 		pValue = kp * error;
-		iValue += ki * error;
-		dValue = kd * (error - prevError);
+		iValue += ki * (error * ((double)dt / 1000));
+		dValue = kd * ((error - prevError) / (((double) dt) / 1000));
+		t = curr;
 		return getResult();
 	}
 
@@ -45,6 +49,7 @@ public class PIDCalculator {
 	public void setSetpoint(double setpoint) {
 		this.setpoint = setpoint;
 		this.error = setpoint;
+		this.t = System.currentTimeMillis();
 	}
 
 	public void setTolerance(double tolerance) {
