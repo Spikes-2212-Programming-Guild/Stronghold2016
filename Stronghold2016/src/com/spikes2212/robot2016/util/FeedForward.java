@@ -13,9 +13,9 @@ public class FeedForward {
 	PIDCalculator pid;
 	private double maxV, maxA, maxD, setpoint;
 
-	public FeedForward(double p, double i, double d) {
+	public FeedForward(double p) {
 		pid = new PIDCalculator();
-		pid.setPID(p, i, d);
+		pid.setPID(p, 0, 0);
 	}
 
 	public double getVoltage(double velocity, double acceleration, double location, double expected) {
