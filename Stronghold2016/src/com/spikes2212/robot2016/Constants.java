@@ -47,7 +47,7 @@ public class Constants {
 	public static final double FREE_FALL_GRAVITY = 1.024;
 	public static final double MAX_LEFT_VELOCITY = 4;
 	public static final double MAX_RIGHT_VELOCITY = 4;
-	public static final double MAX_ACCELERATION = 1;
+	public static final double MAX_ACCELERATION = 0.6;//FIXME:g to m/s^2
 	public static final double MAX_DECCELERATION = 1;
 	
 	public static final double VERY_HIGH_MAX_SPEED = 1.0;
