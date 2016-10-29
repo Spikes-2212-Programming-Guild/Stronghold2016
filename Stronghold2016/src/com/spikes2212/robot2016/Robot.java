@@ -21,6 +21,7 @@ import com.spikes2212.robot2016.util.ButtonHandler;
 import com.spikes2212.robot2016.util.Gearbox;
 import com.spikes2212.robot2016.util.Util;
 
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -41,6 +42,8 @@ public class Robot extends IterativeRobot {
 	private static String[] autoNames;
 	public static Command[] commands;
 
+	BuiltInAccelerometer BIA;
+	public double acc=0;
 	public static OI oi;
 	public static Gearbox right;
 	public static Gearbox left;
@@ -78,6 +81,7 @@ public class Robot extends IterativeRobot {
 		autoNames = new String[] { "No Auto", "Low Bar", "Rough Terrain", "Rock Wall", "Moat", "NC-Cheval" };
 		commands = new Command[] { new CommandGroup(), new CrossLowBar(), new CrossRoughTerrain(), new CrossRockWall(),
 				new CrossMoat(), new CrossChevalDeFrise() };
+		BIA= new BuiltInAccelerometer();
 		// commands = new Command[] { new PrintCommand("no auto"), new
 		// PrintCommand("LowBar"),
 		// new PrintCommand("RoughTerrain"), new PrintCommand("RockWall") };
@@ -130,6 +134,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		if(BIA.getX()>acc)
+			acc=BIA.getX();
 		Scheduler.getInstance().run();
 		writeData();
 	}
@@ -143,6 +149,7 @@ public class Robot extends IterativeRobot {
 //			for (int i = 0; i < 4; i++) {
 //				SmartDashboard.putString("DB/String " + i, i + ": " + autoNames[i]);
 //			}
+			SmartDashboard.putNumber("max acc", acc);
 			String selectedName = autoNames[selected % autoNames.length];
 			SmartDashboard.putString("DB/String 4", "Selected: " + selectedName);
 			SmartDashboard.putString("DB/String 5",
