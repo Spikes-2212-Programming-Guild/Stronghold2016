@@ -47,9 +47,9 @@ public class Constants {
 	public static final double FREE_FALL_GRAVITY = 1.024;
 	public static final double MAX_LEFT_VELOCITY = 4;
 	public static final double MAX_RIGHT_VELOCITY = 4;
-	public static final double MAX_ACCELERATION = 0.6;//FIXME:g to m/s^2
+	public static final double MAX_ACCELERATION = 0.6 * 9.8;// g to m/s^2
 	public static final double MAX_DECCELERATION = 1;
-	
+
 	public static final double VERY_HIGH_MAX_SPEED = 1.0;
 	public static final double HIGH_MAX_SPEED = 0.6;
 	public static final double CROSS_LOW_BAR_MAX_SPEED = 0.4;
@@ -61,13 +61,13 @@ public class Constants {
 	public static final double TIME_GAP_FOR_SHOOTING = 2;
 	public static final double ROLL_IN_TIME = 2;
 
-	public static final double KP=0.5;
-	
-	public static final double VOLTAGE_VELOCITY_PARAMETER=1/MAX_LEFT_VELOCITY; 
-	public static final double VOLTAGE_ACCELERATION_PARAMETER=0.8; 
-	
-//	public static final int EXPOSURE_FRONT = 0;
-//	public static final int EXPOSURE_REAR = 2;
+	public static final double KP = 0.5;
+
+	public static final double VOLTAGE_VELOCITY_PARAMETER = 1 / MAX_LEFT_VELOCITY;
+	public static final double VOLTAGE_ACCELERATION_PARAMETER = 0.8;
+
+	// public static final int EXPOSURE_FRONT = 0;
+	// public static final int EXPOSURE_REAR = 2;
 	public static final int FPS = 30;
 	public static final int RESOLUTION_WIDTH = 320;
 	public static final int RESOLUTION_HEIGHT = 240;
