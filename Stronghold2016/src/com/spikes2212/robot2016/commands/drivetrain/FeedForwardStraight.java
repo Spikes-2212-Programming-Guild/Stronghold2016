@@ -35,7 +35,7 @@ public class FeedForwardStraight extends Command {
     	double dtime=(System.currentTimeMillis()-time)/1000.0;
     	double[] expected=feedForward.getExpected(dtime);
     	
-    	Robot.drivetrain.forward(feedForward.getVoltage(expected[1], expected[2], expected[0], -Robot.drivetrain.getLeftDistance()));
+    	Robot.drivetrain.forward(feedForward.getVoltage(expected[1], expected[2], expected[0], Math.abs(Robot.drivetrain.getLeftDistance())));
     	SmartDashboard.putString("expected", Arrays.toString(expected));
     	SmartDashboard.putNumber("dtime", dtime);
     }

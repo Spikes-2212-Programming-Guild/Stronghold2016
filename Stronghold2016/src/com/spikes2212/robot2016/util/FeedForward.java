@@ -246,7 +246,7 @@ public class FeedForward {
 			double expected, double location) {
 		pid.setSetpoint(expected);
 		double value = 0;
-		return (Constants.VOLTAGE_VELOCITY_PARAMETER * (velocity + value) + Constants.VOLTAGE_ACCELERATION_PARAMETER
+		return (Constants.VOLTAGE_VELOCITY_PARAMETER * (velocity) + Constants.VOLTAGE_ACCELERATION_PARAMETER
 				* acceleration);
 	}
 
