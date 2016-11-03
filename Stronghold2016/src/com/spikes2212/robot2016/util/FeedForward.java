@@ -195,13 +195,10 @@
 
 package com.spikes2212.robot2016.util;
 
-import java.util.ArrayList;
-
-import javax.imageio.stream.FileImageInputStream;
-
 import com.spikes2212.robot2016.Constants;
 import com.spikes2212.robot2016.pid.PIDCalculator;
-import com.sun.xml.internal.txw2.Document;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class FeedForward {
 
@@ -214,8 +211,8 @@ public class FeedForward {
 
 	/**
 	 * 
-	 * @param p-
-	 *            kp
+	 * @param p
+	 *            - kp
 	 * @param maxV
 	 *            max velocity of subsystem
 	 * @param maxA
@@ -225,31 +222,34 @@ public class FeedForward {
 	 * @param setpoint
 	 *            the distance to go
 	 */
-	public FeedForward(double p, double maxV, double maxA, double maxD, double setpoint) {
+	public FeedForward(double p, double maxV, double maxA, double maxD,
+			double setpoint) {
 		this.setpoint = setpoint;
 		pid = new PIDCalculator();
 		pid.setPID(p, 0, 0);
 		dt1 = (maxV / maxA);
 		dt2 = (setpoint / maxV - maxV / (2 * maxA) - maxV / (2 * maxD));
 		dt3 = maxV / maxD;
-	}
-/**
- * 
- * @param velocity
- * @param acceleration
- * @param location
- * @param expected
- * @return value for speed controller
- */
-	//TODO: check return type
-	public double getVoltage(double velocity, double acceleration,double expected, double location ) {
-		pid.setSetpoint(expected);
-		double value = pid.calculate(location);
-		return (Constants.VOLTAGE_VELOCITY_PARAMETER * (velocity + value)
-				+ Constants.VOLTAGE_ACCELERATION_PARAMETER * acceleration);
+		SmartDashboard.putString("(dt)", "("+dt1+","+dt2+","+dt3+")");
 	}
 
-	
+	/**
+	 * 
+	 * @param velocity
+	 * @param acceleration
+	 * @param location
+	 * @param expected
+	 * @return value for speed controller
+	 */
+	// TODO: check return type
+	public double getVoltage(double velocity, double acceleration,
+			double expected, double location) {
+		pid.setSetpoint(expected);
+		double value = 0;
+		return (Constants.VOLTAGE_VELOCITY_PARAMETER * (velocity + value) + Constants.VOLTAGE_ACCELERATION_PARAMETER
+				* acceleration);
+	}
+
 	/**
 	 * 
 	 * @param t
@@ -261,11 +261,13 @@ public class FeedForward {
 		}
 		if (t < dt1) {
 			return new double[] { maxA * t * t / 2, maxA * t, maxA };
-		} else if (t >= dt1 && t < dt1 + dt2) {
-			return new double[] { ((maxA * dt1 * dt1) / 2) + (t - dt1) * maxV, maxV, 0 };
-		} else {
-			double location = ((maxA * dt1 * dt1) / 2) + ((dt2 - dt1) * maxV) + ((t - dt1 - dt2) * (-maxD) / 2);
-			return new double[] { location, 0, 0 };
 		}
+		if (t >= dt1 && t < dt1 + dt2) {
+			return new double[] { ((maxA * dt1 * dt1) / 2) + (t - dt1) * maxV,
+					maxV, 0 };
+		}
+		double location = ((maxA * dt1 * dt1) / 2) + ((dt2 - dt1) * maxV)
+				+ ((t - dt1 - dt2) * (-maxD) / 2);
+		return new double[] { location, 0, 0 };
 	}
 }

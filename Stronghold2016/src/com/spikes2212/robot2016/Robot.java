@@ -11,6 +11,7 @@ import com.spikes2212.robot2016.commands.autonomous.CrossRockWall;
 import com.spikes2212.robot2016.commands.autonomous.CrossRoughTerrain;
 import com.spikes2212.robot2016.commands.autonomous.Reach;
 import com.spikes2212.robot2016.commands.camera.VisionRunnable;
+import com.spikes2212.robot2016.commands.drivetrain.FeedForwardStraight;
 import com.spikes2212.robot2016.subsystems.Drivetrain;
 import com.spikes2212.robot2016.subsystems.Folder;
 import com.spikes2212.robot2016.subsystems.Picker;
@@ -43,7 +44,7 @@ public class Robot extends IterativeRobot {
 	public static Command[] commands;
 
 	BuiltInAccelerometer BIA;
-	public double acc=0;
+	public double acc;
 	public static OI oi;
 	public static Gearbox right;
 	public static Gearbox left;
@@ -65,23 +66,30 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		left = new Gearbox(PWM.LEFT_FRONT_MOTOR, PWM.LEFT_REAR_MOTOR, DIO.LEFT_ENCODER_A, DIO.LEFT_ENCODER_B);
-		right = new Gearbox(PWM.RIGHT_FRONT_MOTOR, PWM.RIGHT_REAR_MOTOR, DIO.RIGHT_ENCODER_A, DIO.RIGHT_ENCODER_B);
+		acc = 0;
+		left = new Gearbox(PWM.LEFT_FRONT_MOTOR, PWM.LEFT_REAR_MOTOR,
+				DIO.LEFT_ENCODER_A, DIO.LEFT_ENCODER_B);
+		right = new Gearbox(PWM.RIGHT_FRONT_MOTOR, PWM.RIGHT_REAR_MOTOR,
+				DIO.RIGHT_ENCODER_A, DIO.RIGHT_ENCODER_B);
 		drivetrain = new Drivetrain(left, right);
-		triz = new Triz(PWM.TRIZ_MOTOR, DIO.TRIZ_UP, DIO.TRIZ_DOWN, DIO.TRIZ_UNDER_PORTCULLIS, DIO.TRIZ_ENCODER_A,
+		triz = new Triz(PWM.TRIZ_MOTOR, DIO.TRIZ_UP, DIO.TRIZ_DOWN,
+				DIO.TRIZ_UNDER_PORTCULLIS, DIO.TRIZ_ENCODER_A,
 				DIO.TRIZ_ENCODER_B);
 		shooter = new Shooter(CAN.SHOOTER_MOTOR);
 		picker = new Picker(PWM.PICKER_MOTOR, DIO.BALL_INSIDE);
-		folder = new Folder(PWM.FOLDER_MOTOR, DIO.FOLDER_UP, DIO.FOLDER_DOWN, DIO.FOLDER_ENCODER_A,
-				DIO.FOLDER_ENCODER_B);
+		folder = new Folder(PWM.FOLDER_MOTOR, DIO.FOLDER_UP, DIO.FOLDER_DOWN,
+				DIO.FOLDER_ENCODER_A, DIO.FOLDER_ENCODER_B);
 		vision = new Vision(USB.FRONT_CAMERA, USB.REAR_CAMERA);
 		visionThread = new Thread(new VisionRunnable());
 		visionThread.start();
 		oi = new OI();
-		autoNames = new String[] { "No Auto", "Low Bar", "Rough Terrain", "Rock Wall", "Moat", "NC-Cheval" };
-		commands = new Command[] { new CommandGroup(), new CrossLowBar(), new CrossRoughTerrain(), new CrossRockWall(),
-				new CrossMoat(), new CrossChevalDeFrise() };
-		BIA= new BuiltInAccelerometer();
+		autoNames = new String[] { "No Auto", "Low Bar", "Rough Terrain",
+				"Rock Wall", "Moat", "NC-Cheval" };
+		commands = new Command[] { new CommandGroup(), new CrossLowBar(),
+				new CrossRoughTerrain(), new CrossRockWall(), new CrossMoat(),
+				new CrossChevalDeFrise() };
+		BIA = new BuiltInAccelerometer();
+		SmartDashboard.putNumber("distance", 1);
 		// commands = new Command[] { new PrintCommand("no auto"), new
 		// PrintCommand("LowBar"),
 		// new PrintCommand("RoughTerrain"), new PrintCommand("RockWall") };
@@ -127,6 +135,8 @@ public class Robot extends IterativeRobot {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		SmartDashboard
+				.putData("feedforward", new FeedForwardStraight(7));
 	}
 
 	/**
@@ -134,8 +144,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		if(BIA.getX()>acc)
-			acc=BIA.getX();
 		Scheduler.getInstance().run();
 		writeData();
 	}
@@ -146,19 +154,28 @@ public class Robot extends IterativeRobot {
 			SmartDashboard.putBoolean("DB/LED 1", picker.isBoulderInside());
 			SmartDashboard.putBoolean("DB/LED 2", picker.isBoulderInside());
 			SmartDashboard.putBoolean("DB/LED 3", picker.isBoulderInside());
-//			for (int i = 0; i < 4; i++) {
-//				SmartDashboard.putString("DB/String " + i, i + ": " + autoNames[i]);
-//			}
-			SmartDashboard.putNumber("max acc", acc);
+			// for (int i = 0; i < 4; i++) {
+			// SmartDashboard.putString("DB/String " + i, i + ": " +
+			// autoNames[i]);
+			// }
+			SmartDashboard.putNumber("left distance",
+					drivetrain.getLeftDistance());
 			String selectedName = autoNames[selected % autoNames.length];
-			SmartDashboard.putString("DB/String 4", "Selected: " + selectedName);
-			SmartDashboard.putString("DB/String 5",
-					"Folder: " + (folder.isUp() ? "up " : "") + (folder.isDown() ? "down " : ""));
-			SmartDashboard.putString("DB/String 6",
-					"Triz: " + (triz.isUp() ? "up " : "") + (triz.isDown() ? "down " : ""));
-			SmartDashboard.putString("DB/String 8", "Drive: " + Util.roundTo(drivetrain.getLeftDistance(), 3) + ", "
-					+ Util.roundTo(drivetrain.getRightDistance(), 3));
-			SmartDashboard.putString("DB/String 9", "Max speed: " + drivetrain.getMaximumSpeed());
+			SmartDashboard
+					.putString("DB/String 4", "Selected: " + selectedName);
+			SmartDashboard.putString("DB/String 5", "Folder: "
+					+ (folder.isUp() ? "up " : "")
+					+ (folder.isDown() ? "down " : ""));
+			SmartDashboard.putString("DB/String 6", "Triz: "
+					+ (triz.isUp() ? "up " : "")
+					+ (triz.isDown() ? "down " : ""));
+			SmartDashboard.putString(
+					"DB/String 8",
+					"Drive: " + Util.roundTo(drivetrain.getLeftDistance(), 3)
+							+ ", "
+							+ Util.roundTo(drivetrain.getRightDistance(), 3));
+			SmartDashboard.putString("DB/String 9",
+					"Max speed: " + drivetrain.getMaximumSpeed());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

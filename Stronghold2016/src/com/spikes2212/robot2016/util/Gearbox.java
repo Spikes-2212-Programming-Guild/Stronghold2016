@@ -1,7 +1,9 @@
+
 package com.spikes2212.robot2016.util;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.VictorSP;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Gearbox {
 	private VictorSP front, rear;
@@ -20,6 +22,7 @@ public class Gearbox {
 	public void set(double speed) {
 		front.set(speed);
 		rear.set(speed);
+		SmartDashboard.putNumber("gearbox speed", speed);
 	}
 
 	public void setDistancePerPulse(double distancePerPulse) {
