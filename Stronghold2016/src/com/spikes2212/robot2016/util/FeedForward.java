@@ -208,6 +208,8 @@ public class FeedForward {
 	 * the algorithm work by breaking the movement to 3 parts *
 	 */
 	double dt1, dt2, dt3;
+	private double t2;
+	private double t1;
 
 	/**
 	 * 
@@ -224,13 +226,27 @@ public class FeedForward {
 	 */
 	public FeedForward(double p, double maxV, double maxA, double maxD,
 			double setpoint) {
+		this.maxA = maxA;
+		this.maxD = maxD;
+		this.maxV = maxV;
 		this.setpoint = setpoint;
 		pid = new PIDCalculator();
 		pid.setPID(p, 0, 0);
 		dt1 = (maxV / maxA);
 		dt2 = (setpoint / maxV - maxV / (2 * maxA) - maxV / (2 * maxD));
 		dt3 = maxV / maxD;
-		SmartDashboard.putString("(dt)", "("+dt1+","+dt2+","+dt3+")");
+		t2 = Math.sqrt((2 * setpoint * Math.pow(maxA + maxD, 2))
+				/ (maxA * Math.pow(maxD, 2) + Math.pow(maxA, 2) * maxD));
+		t1 = ((maxD * t2) / (maxA + maxD));
+		SmartDashboard.putString("(dt)", getTotalTime() + " (" + dt1 + ","
+				+ dt2 + "," + dt3 + ")");
+
+		for (double t = 0; t < getTotalTime(); t += 0.1) {
+			double[] expected = getExpected(t);
+			SmartDashboard.putNumber("pos", expected[0]);
+			SmartDashboard.putNumber("vel", expected[1]);
+			SmartDashboard.putNumber("acc", expected[2]);
+		}
 	}
 
 	/**
@@ -250,6 +266,10 @@ public class FeedForward {
 				* acceleration);
 	}
 
+	public double getTotalTime() {
+		return dt1 + dt2 + dt3;
+	}
+
 	/**
 	 * 
 	 * @param t
@@ -257,7 +277,14 @@ public class FeedForward {
 	 */
 	public double[] getExpected(double t) {
 		if (dt2 < 0) {
-			return new double[] { 0, 0, 0 };
+			if (t < t1) {
+				return new double[] { maxA * t * t / 2, maxA * t, maxA };
+			} else {
+				return new double[] {
+						((t1 * t1 * maxA) + Math.pow((t - t1), 2) * maxD) / 2,
+						0, 0 };
+			}
+
 		}
 		if (t < dt1) {
 			return new double[] { maxA * t * t / 2, maxA * t, maxA };

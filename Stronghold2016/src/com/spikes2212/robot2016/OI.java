@@ -8,6 +8,7 @@ import com.spikes2212.robot2016.commands.autonomous.InitializeLowBar;
 import com.spikes2212.robot2016.commands.camera.FrontStream;
 import com.spikes2212.robot2016.commands.camera.RearStream;
 import com.spikes2212.robot2016.commands.camera.StopCameras;
+import com.spikes2212.robot2016.commands.drivetrain.JoystickTurnDrive;
 import com.spikes2212.robot2016.commands.drivetrain.SetDrivetrainMaximumSpeed;
 import com.spikes2212.robot2016.commands.drivetrain.TwoJoysticksDrive;
 import com.spikes2212.robot2016.commands.folder.MoveFolderDown;
@@ -75,6 +76,8 @@ public class OI /* GEVALD */ {
 		rightDriver2.whileHeld(new MoveTrizDown(0.5));
 		rightDriver3.whileHeld(new MoveTrizUp(0.5));
 
+		rightDriverTrigger.whileHeld(new JoystickTurnDrive(this::getRightTurn));;
+		
 		rightDriver6.whileHeld(new MoveFolderDown());
 		rightDriver7.whileHeld(new MoveFolderUp());
 

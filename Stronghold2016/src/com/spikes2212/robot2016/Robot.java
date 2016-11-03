@@ -102,6 +102,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
+		drivetrain.resetEncoders();
 	}
 
 	@Override
@@ -136,7 +137,7 @@ public class Robot extends IterativeRobot {
 			e.printStackTrace();
 		}
 		SmartDashboard
-				.putData("feedforward", new FeedForwardStraight(7));
+				.putData("feedforward", new FeedForwardStraight(2.0));
 	}
 
 	/**

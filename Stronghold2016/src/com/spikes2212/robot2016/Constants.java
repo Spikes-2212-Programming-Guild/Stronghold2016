@@ -42,13 +42,13 @@ public class Constants {
 	public static final double FOLDER_ANGLE_PER_PULSE = 360.0 / 1024;
 
 	public static final double DRIVETRAIN_WHEEL_PERIMETER = 0.203 * Math.PI * METER;
-	public static final double LEFT_DISTANCE_PER_PULSE = DRIVETRAIN_WHEEL_PERIMETER / 360;
-	public static final double RIGHT_DISTANCE_PER_PULSE = DRIVETRAIN_WHEEL_PERIMETER / 360;
+	public static final double LEFT_DISTANCE_PER_PULSE = DRIVETRAIN_WHEEL_PERIMETER*4 / 1440;
+	public static final double RIGHT_DISTANCE_PER_PULSE = DRIVETRAIN_WHEEL_PERIMETER*4 / 1440;
 	public static final double FREE_FALL_GRAVITY = 1.024;
 	public static final double MAX_LEFT_VELOCITY = 4;
 	public static final double MAX_RIGHT_VELOCITY = 4;
 	public static final double MAX_ACCELERATION = 0.785 * 9.8;// g to m/s^2
-	public static final double MAX_DECCELERATION = MAX_ACCELERATION;
+	public static final double MAX_DECCELERATION = 7;
 
 	public static final double VERY_HIGH_MAX_SPEED = 1.0;
 	public static final double HIGH_MAX_SPEED = 0.6;
@@ -63,8 +63,8 @@ public class Constants {
 
 	public static final double KP = 0.5;
 
-	public static final double VOLTAGE_VELOCITY_PARAMETER = 1 / MAX_LEFT_VELOCITY;
-	public static final double VOLTAGE_ACCELERATION_PARAMETER = 1/MAX_ACCELERATION;
+	public static final double VOLTAGE_VELOCITY_PARAMETER = 1.0 / MAX_LEFT_VELOCITY;
+	public static final double VOLTAGE_ACCELERATION_PARAMETER = 1.0/MAX_ACCELERATION;
 
 	// public static final int EXPOSURE_FRONT = 0;
 	// public static final int EXPOSURE_REAR = 2;
