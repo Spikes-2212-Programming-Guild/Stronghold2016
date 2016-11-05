@@ -272,7 +272,7 @@ public class FeedForward {
 
 	/**
 	 * 
-	 * @param t
+	 * @param t=time[sec]
 	 * @return [expectedLoaction, velocity, acceleration]
 	 */
 	public double[] getExpected(double t) {
