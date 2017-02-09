@@ -226,9 +226,9 @@ public class FeedForward {
 	 */
 	public FeedForward(double p, double maxV, double maxA, double maxD,
 			double setpoint) {
-		this.maxA = maxA;
+		this.maxA = maxA/2;
 		this.maxD = maxD;
-		this.maxV = maxV;
+		this.maxV = maxV/2;
 		this.setpoint = setpoint;
 		pid = new PIDCalculator();
 		pid.setPID(p, 0, 0);
